@@ -1,0 +1,147 @@
+PODS:
+  - Alamofire (4.8.2)
+  - DropDown (2.3.4)
+  - FBSDKCoreKit (5.0.0):
+    - FBSDKCoreKit/Basics (= 5.0.0)
+    - FBSDKCoreKit/Core (= 5.0.0)
+  - FBSDKCoreKit/Basics (5.0.0)
+  - FBSDKCoreKit/Core (5.0.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.0.0):
+    - FBSDKCoreKit (= 5.0.0)
+  - Firebase (4.13.0):
+    - Firebase/Core (= 4.13.0)
+  - Firebase/Core (4.13.0):
+    - FirebaseAnalytics (= 4.2.0)
+    - FirebaseCore (= 4.0.20)
+  - Firebase/Messaging (4.13.0):
+    - Firebase/Core
+    - FirebaseMessaging (= 2.2.0)
+  - FirebaseAnalytics (4.2.0):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (4.0.20):
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - FirebaseInstanceID (2.0.10):
+    - FirebaseCore (~> 4.0)
+  - FirebaseMessaging (2.2.0):
+    - FirebaseAnalytics (~> 4.1)
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.5)
+  - GoogleToolboxForMac/Defines (2.2.1)
+  - GoogleToolboxForMac/Logger (2.2.1):
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - "GoogleToolboxForMac/NSData+zlib (2.2.1)":
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - Hero (1.4.0)
+  - IQKeyboardManagerSwift (6.3.0)
+  - Kingfisher (4.10.1)
+  - lottie-ios (3.0.6)
+  - M13Checkbox (3.4.0)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - Protobuf (3.7.0)
+  - PryntTrimmerView (3.0.0)
+  - SkyFloatingLabelTextField (3.7.0)
+  - SnapKit (4.0.1)
+  - SPStorkController (1.6.5)
+  - SteviaLayout (4.4.4)
+  - StickyScrollView (0.1.6)
+  - SwiftyJSON (4.3.0)
+  - SwiftyUserDefaults (4.0.0-alpha.1)
+  - UIWindowTransitions (0.2.0)
+  - YPImagePicker (4.0.0):
+    - PryntTrimmerView (~> 3.0.0)
+    - SteviaLayout (~> 4.4.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - DropDown (= 2.3.4)
+  - FBSDKCoreKit (~> 5.0.0)
+  - FBSDKLoginKit (~> 5.0.0)
+  - Firebase (~> 4.0)
+  - Firebase/Core
+  - Firebase/Messaging
+  - Hero
+  - IQKeyboardManagerSwift
+  - Kingfisher (~> 4.0)
+  - lottie-ios
+  - M13Checkbox
+  - SkyFloatingLabelTextField
+  - SnapKit (~> 4.0.0)
+  - SPStorkController
+  - StickyScrollView
+  - SwiftyJSON (~> 4.0)
+  - SwiftyUserDefaults (= 4.0.0-alpha.1)
+  - UIWindowTransitions
+  - YPImagePicker
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - DropDown
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleToolboxForMac
+    - Hero
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - lottie-ios
+    - M13Checkbox
+    - nanopb
+    - Protobuf
+    - PryntTrimmerView
+    - SkyFloatingLabelTextField
+    - SnapKit
+    - SPStorkController
+    - SteviaLayout
+    - StickyScrollView
+    - SwiftyJSON
+    - SwiftyUserDefaults
+    - UIWindowTransitions
+    - YPImagePicker
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  DropDown: f225ff0fd09dde064d17aa03db7e4d4e4ff40b6b
+  FBSDKCoreKit: ba361d4a9d4dc29ff218822b849b22d4f869c7bb
+  FBSDKLoginKit: c6d0dc187bd076e370dffa10f7fc8a3562a6892c
+  Firebase: 5ec5e863d269d82d66b4bf56856726f8fb8f0fb3
+  FirebaseAnalytics: 7ef69e76a5142f643aeb47c780e1cdce4e23632e
+  FirebaseCore: 90cb1c53d69b556f112a1bf72b5fcfaad7650790
+  FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
+  FirebaseMessaging: 75cdb862e86c30e0913a2ff307e48d49357c5b73
+  GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
+  Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
+  IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  lottie-ios: d030b6cda141cfd8bbaa3db89264785e6fdf675a
+  M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
+  PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
+  SkyFloatingLabelTextField: 4b46db0ab1ccde0919cded29c656e6b4805eda04
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  SPStorkController: f74a60dbcd3c35180c996688873f6eadac839642
+  SteviaLayout: 523469269059f2c6da02820bb2ff28a5fe0780aa
+  StickyScrollView: f5ab16318861a47cab1e6fe548d09e6f547b65ce
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  SwiftyUserDefaults: cebe0ff9472f52699772a514b6f7155861d8069b
+  UIWindowTransitions: cb662e2ae9e2d1060fcdbe3eb3de9232bedb7612
+  YPImagePicker: 8039f89ad79281545fa868486f32d9bf5d65ede1
+
+PODFILE CHECKSUM: f0bfc85f2940bd0402c46966c2326e3a42ad7bfd
+
+COCOAPODS: 1.5.3

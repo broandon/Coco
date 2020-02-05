@@ -18,6 +18,8 @@ class MainController: UIViewController {
     @IBOutlet weak var balanceView: UIView!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var cocopointsView: UIView!
+    @IBOutlet weak var cocopointsBalance: UILabel!
     
     private var loader: LoaderVC!
     private var mainData: Main!
@@ -41,6 +43,7 @@ class MainController: UIViewController {
     
     private func configureView() {
         balanceView.roundCorners(15)
+        cocopointsView.roundCorners(15)
     }
     
     private func configureTable() {
@@ -67,7 +70,8 @@ class MainController: UIViewController {
     
     private func fillInfo() {
         table.reloadData()
-        balanceLabel.text = "Saldo disponible: $ \(mainData.info?.current_balance ?? "--")"
+        balanceLabel.text = "Saldo: $ \(mainData.info?.current_balance ?? "--")"
+        cocopointsBalance.text = "Cocopoints: \(mainData.info?.cocopoints_balance ?? "--")"
     }
     
     @IBAction func menuAction(_ sender: Any) {

@@ -16,17 +16,20 @@ class UserMain: Decodable {
   public var phone: String?
   public var notifications: String?
   public var current_balance: String?
-  
+  public var cocopoints_balance: String?
+    
   public init(name: String = "",
               last_name: String = "",
               phone: String = "",
               notifications: String = "",
-              current_balance: String = "") {
+              current_balance: String = "",
+              cocopoints_balance: String = "") {
     self.name = name
     self.last_name = last_name
     self.phone = phone
     self.notifications = notifications
     self.current_balance = current_balance
+    self.cocopoints_balance = cocopoints_balance
   }
   
   enum CodingKeys: String, CodingKey {
@@ -35,6 +38,7 @@ class UserMain: Decodable {
     case phone = "telefono"
     case notifications = "notificaciones"
     case current_balance = "saldo_actual"
+    case cocopoints_balance = "saldo_cocopoints"
   }
 }
 

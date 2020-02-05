@@ -30,7 +30,12 @@ class PaymentFormsTableViewCell: UITableViewCell {
     super.awakeFromNib()
     counterLabel.circleBorders()
   }
-  
+    @IBAction func addBalance(_ sender: Any) {
+        
+        print("succes")
+        
+    }
+    
   @IBAction func deleteAction(_ sender: Any) {
     delegate.didTapDeletePaymentForm(index: index)
   }

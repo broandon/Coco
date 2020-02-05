@@ -68,6 +68,7 @@ class PaymentForms: Decodable {
     Alamofire.request(General.url_connection,
                       method: .post,
                       parameters: data).responseJSON { (response) in
+                        print(response)
       guard let data = response.result.value else {
         completion(.failure("Error de conexión"))
         return

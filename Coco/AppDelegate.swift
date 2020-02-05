@@ -8,6 +8,10 @@
 
 import UIKit
 import CoreData
+import Firebase
+import FBSDKLoginKit
+import SwiftyUserDefaults
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +20,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
-    return true
+    FirebaseApp.configure()
+    IQKeyboardManager.shared.enable = true
+    
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    var storyboardScreenName = "AccountVC"
+    if Defaults[.user] != ""{
+      storyboardScreenName = "MainController"
+    }
+    let initialViewController = storyboard.instantiateViewController(withIdentifier: storyboardScreenName)
+    self.window?.rootViewController = initialViewController
+    self.window?.makeKeyAndVisible()
+    
+    return ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+  
+  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    let isFBOpenUrl = ApplicationDelegate.shared.application(app,
+                                                             open: url,
+                                                             sourceApplication: options[.sourceApplication] as? String,
+                                                             annotation: options[.annotation])
+    if isFBOpenUrl { return true }
+    return false
   }
 
   func applicationWillResignActive(_ application: UIApplication) {

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="MyriadPro-Regular.otf">
+            <string>MyriadPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="PaymentFormsTableViewCell" customModule="Coco" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soT-kb-v8k">
+                        <rect key="frame" x="16" y="16" width="27.5" height="27.5"/>
+                        <color key="backgroundColor" name="Salmon"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="soT-kb-v8k" secondAttribute="height" multiplier="1:1" id="tBm-LP-JRa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mvw-wr-Ner">
+                        <rect key="frame" x="59.5" y="8" width="201" height="43.5"/>
+                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                        <color key="textColor" name="Black"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JkA-UR-By0">
+                        <rect key="frame" x="276.5" y="16" width="27.5" height="27.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="JkA-UR-By0" secondAttribute="height" multiplier="1:1" id="Lmy-XU-c4J"/>
+                        </constraints>
+                        <state key="normal" image="borrargris"/>
+                        <connections>
+                            <action selector="deleteAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5RE-B4-FpU"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="soT-kb-v8k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="0GB-Hg-6Cc"/>
+                    <constraint firstItem="JkA-UR-By0" firstAttribute="leading" secondItem="Mvw-wr-Ner" secondAttribute="trailing" constant="16" id="3FA-xr-Y2C"/>
+                    <constraint firstAttribute="bottom" secondItem="soT-kb-v8k" secondAttribute="bottom" constant="16" id="5AZ-tr-yBC"/>
+                    <constraint firstItem="JkA-UR-By0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="7Gf-Md-xeS"/>
+                    <constraint firstItem="Mvw-wr-Ner" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Cf5-eS-gl4"/>
+                    <constraint firstAttribute="bottom" secondItem="Mvw-wr-Ner" secondAttribute="bottom" constant="8" id="NVS-ya-r38"/>
+                    <constraint firstAttribute="bottom" secondItem="JkA-UR-By0" secondAttribute="bottom" constant="16" id="VaA-Kw-Pfr"/>
+                    <constraint firstAttribute="trailing" secondItem="JkA-UR-By0" secondAttribute="trailing" constant="16" id="WhV-a9-tFj"/>
+                    <constraint firstItem="Mvw-wr-Ner" firstAttribute="leading" secondItem="soT-kb-v8k" secondAttribute="trailing" constant="16" id="dMh-DW-aj0"/>
+                    <constraint firstItem="soT-kb-v8k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="uHS-vn-eZT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="counterLabel" destination="soT-kb-v8k" id="oBA-mG-9os"/>
+                <outlet property="deleteButton" destination="JkA-UR-By0" id="SnO-Gm-voq"/>
+                <outlet property="digitsLabel" destination="Mvw-wr-Ner" id="2HU-ZK-nhW"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="137.27678571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="borrargris" width="128" height="128"/>
+        <namedColor name="Black">
+            <color red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Salmon">
+            <color red="1" green="0.44705882352941179" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

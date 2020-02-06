@@ -114,6 +114,25 @@ extension PaymentFormsVC: PaymentFormCellDelegate {
     }))
     present(alert, animated: true)
   }
+    
+    func didChoseAPayment(index: Int) {
+        
+        
+        let cardID = self.paymentForms.paymentForm[index].id
+        let lastDigits = self.paymentForms.paymentForm[index].digits
+        
+        // Here we gonna put the id of the card so I can use it in the new view.
+        UserDefaults.standard.set(cardID, forKey: "cardIDValue")
+        // And here we gonna put the last digits.
+        UserDefaults.standard.set(lastDigits, forKey: "lastDigitsValue")
+        
+        // Register Nib
+        let newViewController = rechargeCreditViewController(nibName: "rechargeCreditViewController", bundle: nil)
+
+        // Present View "Modally"
+        self.present(newViewController, animated: true, completion: nil)
+        
+    }
 }
 
 extension PaymentFormsVC: AddCardDelegate {

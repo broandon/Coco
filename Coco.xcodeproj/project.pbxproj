@@ -103,6 +103,8 @@
 		C3C0F38222D3E6B900B03F62 /* AlertModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C0F38022D3E6B900B03F62 /* AlertModal.swift */; };
 		C3C0F38322D3E6B900B03F62 /* AlertModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C0F38122D3E6B900B03F62 /* AlertModal.xib */; };
 		CA07F8D7ADCBAEFBD51D5E30 /* Pods_Coco.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4915966DA5C2608206AE0A /* Pods_Coco.framework */; };
+		CFF0B6AE23EBC97800C30A6D /* rechargeCreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0B6AC23EBC97800C30A6D /* rechargeCreditViewController.swift */; };
+		CFF0B6AF23EBC97800C30A6D /* rechargeCreditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFF0B6AD23EBC97800C30A6D /* rechargeCreditViewController.xib */; };
 		D1768355637E940C0BEFEBD7 /* Pods_CocoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6546AE0874C25E7DDE23877 /* Pods_CocoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +238,8 @@
 		C3C0F37D22D3D73400B03F62 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		C3C0F38022D3E6B900B03F62 /* AlertModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModal.swift; sourceTree = "<group>"; };
 		C3C0F38122D3E6B900B03F62 /* AlertModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertModal.xib; sourceTree = "<group>"; };
+		CFF0B6AC23EBC97800C30A6D /* rechargeCreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rechargeCreditViewController.swift; sourceTree = "<group>"; };
+		CFF0B6AD23EBC97800C30A6D /* rechargeCreditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = rechargeCreditViewController.xib; sourceTree = "<group>"; };
 		D130DF29F11E0E2FDD29E8B1 /* Pods-Coco.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coco.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coco/Pods-Coco.debug.xcconfig"; sourceTree = "<group>"; };
 		E6546AE0874C25E7DDE23877 /* Pods_CocoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14347B74DDFE317E603C86A /* Pods_CocoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -486,6 +490,7 @@
 		C3A161DE22B9B38900076DD8 /* Coco */ = {
 			isa = PBXGroup;
 			children = (
+				CFF0B6AB23EBC80600C30A6D /* Brandon Added These */,
 				C3A1621622B9BAC900076DD8 /* Coco.entitlements */,
 				C3A1621422B9B94C00076DD8 /* Conekta */,
 				C3A1621222B9B90800076DD8 /* Model */,
@@ -670,6 +675,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CFF0B6AB23EBC80600C30A6D /* Brandon Added These */ = {
+			isa = PBXGroup;
+			children = (
+				CFF0B6AC23EBC97800C30A6D /* rechargeCreditViewController.swift */,
+				CFF0B6AD23EBC97800C30A6D /* rechargeCreditViewController.xib */,
+			);
+			path = "Brandon Added These";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -819,6 +833,7 @@
 				C355729A22CA80C200FC5C89 /* loader.json in Resources */,
 				C3C0F36D22D3C1EE00B03F62 /* SchoolModal.xib in Resources */,
 				C3A161E522B9B38900076DD8 /* Main.storyboard in Resources */,
+				CFF0B6AF23EBC97800C30A6D /* rechargeCreditViewController.xib in Resources */,
 				C35572AE22CA910600FC5C89 /* ProfileVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1017,6 +1032,7 @@
 				C34466F022CAEA2F00A11433 /* Favorites.swift in Sources */,
 				C348F14222CB896B000F185C /* Deposits.swift in Sources */,
 				C35572C422CABD7D00FC5C89 /* Business.swift in Sources */,
+				CFF0B6AE23EBC97800C30A6D /* rechargeCreditViewController.swift in Sources */,
 				C3C0F36822D3B33700B03F62 /* Schools.swift in Sources */,
 				C348F15D22CBC94B000F185C /* PaymentFormsTableViewCell.swift in Sources */,
 				C355729722CA80B000FC5C89 /* LoaderVC.swift in Sources */,

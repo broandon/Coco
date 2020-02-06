@@ -10,6 +10,7 @@ import UIKit
 
 protocol PaymentFormCellDelegate {
   func didTapDeletePaymentForm(index: Int)
+    func didChoseAPayment(index: Int)
 }
 class PaymentFormsTableViewCell: UITableViewCell {
 
@@ -32,7 +33,7 @@ class PaymentFormsTableViewCell: UITableViewCell {
   }
     @IBAction func addBalance(_ sender: Any) {
         
-        print("succes")
+        delegate.didChoseAPayment(index: index)
         
     }
     

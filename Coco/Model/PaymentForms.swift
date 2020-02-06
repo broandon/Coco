@@ -30,6 +30,12 @@ class PaymentForm: Decodable {
       "id_token": id ?? ""
     ]
     
+    func setAValue() {
+        
+        print(id!)
+        
+    }
+    
     Alamofire.request(General.url_connection,
                       method: .post,
                       parameters: data).responseJSON { (response) in

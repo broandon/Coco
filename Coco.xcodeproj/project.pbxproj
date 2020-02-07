@@ -103,6 +103,11 @@
 		C3C0F38222D3E6B900B03F62 /* AlertModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C0F38022D3E6B900B03F62 /* AlertModal.swift */; };
 		C3C0F38322D3E6B900B03F62 /* AlertModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C0F38122D3E6B900B03F62 /* AlertModal.xib */; };
 		CA07F8D7ADCBAEFBD51D5E30 /* Pods_Coco.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4915966DA5C2608206AE0A /* Pods_Coco.framework */; };
+		CFD9D35523EC949C00DACF9E /* doneModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9D35323EC949C00DACF9E /* doneModalViewController.swift */; };
+		CFD9D35623EC949C00DACF9E /* doneModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD9D35423EC949C00DACF9E /* doneModalViewController.xib */; };
+		CFD9D35A23ECBD0400DACF9E /* checkmark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFD9D35923ECBD0300DACF9E /* checkmark.mp4 */; };
+		CFD9D35C23ECBD4E00DACF9E /* e80652af2c77e3a73858e16b2ffe5f9a.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFD9D35B23ECBD4D00DACF9E /* e80652af2c77e3a73858e16b2ffe5f9a.gif */; };
+		CFD9D35E23ECBDB500DACF9E /*  checkmark - 01.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFD9D35D23ECBDB400DACF9E /*  checkmark - 01.mp4 */; };
 		CFF0B6AE23EBC97800C30A6D /* rechargeCreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0B6AC23EBC97800C30A6D /* rechargeCreditViewController.swift */; };
 		CFF0B6AF23EBC97800C30A6D /* rechargeCreditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFF0B6AD23EBC97800C30A6D /* rechargeCreditViewController.xib */; };
 		D1768355637E940C0BEFEBD7 /* Pods_CocoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6546AE0874C25E7DDE23877 /* Pods_CocoTests.framework */; };
@@ -238,6 +243,11 @@
 		C3C0F37D22D3D73400B03F62 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		C3C0F38022D3E6B900B03F62 /* AlertModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModal.swift; sourceTree = "<group>"; };
 		C3C0F38122D3E6B900B03F62 /* AlertModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertModal.xib; sourceTree = "<group>"; };
+		CFD9D35323EC949C00DACF9E /* doneModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doneModalViewController.swift; sourceTree = "<group>"; };
+		CFD9D35423EC949C00DACF9E /* doneModalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = doneModalViewController.xib; sourceTree = "<group>"; };
+		CFD9D35923ECBD0300DACF9E /* checkmark.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = checkmark.mp4; sourceTree = "<group>"; };
+		CFD9D35B23ECBD4D00DACF9E /* e80652af2c77e3a73858e16b2ffe5f9a.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = e80652af2c77e3a73858e16b2ffe5f9a.gif; sourceTree = "<group>"; };
+		CFD9D35D23ECBDB400DACF9E /*  checkmark - 01.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = " checkmark - 01.mp4"; sourceTree = "<group>"; };
 		CFF0B6AC23EBC97800C30A6D /* rechargeCreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rechargeCreditViewController.swift; sourceTree = "<group>"; };
 		CFF0B6AD23EBC97800C30A6D /* rechargeCreditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = rechargeCreditViewController.xib; sourceTree = "<group>"; };
 		D130DF29F11E0E2FDD29E8B1 /* Pods-Coco.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coco.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coco/Pods-Coco.debug.xcconfig"; sourceTree = "<group>"; };
@@ -468,6 +478,9 @@
 		C3A161D322B9B38900076DD8 = {
 			isa = PBXGroup;
 			children = (
+				CFD9D35D23ECBDB400DACF9E /*  checkmark - 01.mp4 */,
+				CFD9D35B23ECBD4D00DACF9E /* e80652af2c77e3a73858e16b2ffe5f9a.gif */,
+				CFD9D35923ECBD0300DACF9E /* checkmark.mp4 */,
 				C3A161DE22B9B38900076DD8 /* Coco */,
 				C3A161F622B9B38C00076DD8 /* CocoTests */,
 				C3A1620122B9B38C00076DD8 /* CocoUITests */,
@@ -680,6 +693,8 @@
 			children = (
 				CFF0B6AC23EBC97800C30A6D /* rechargeCreditViewController.swift */,
 				CFF0B6AD23EBC97800C30A6D /* rechargeCreditViewController.xib */,
+				CFD9D35323EC949C00DACF9E /* doneModalViewController.swift */,
+				CFD9D35423EC949C00DACF9E /* doneModalViewController.xib */,
 			);
 			path = "Brandon Added These";
 			sourceTree = "<group>";
@@ -801,9 +816,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFD9D35623EC949C00DACF9E /* doneModalViewController.xib in Resources */,
 				C3A1623022B9BD4200076DD8 /* MyriadPro-BlackSemiCn.otf in Resources */,
 				C35572B622CA93C000FC5C89 /* OrdersVC.xib in Resources */,
 				C348F14922CB9258000F185C /* CategoriesVC.xib in Resources */,
+				CFD9D35E23ECBDB500DACF9E /*  checkmark - 01.mp4 in Resources */,
+				CFD9D35A23ECBD0400DACF9E /* checkmark.mp4 in Resources */,
+				CFD9D35C23ECBD4E00DACF9E /* e80652af2c77e3a73858e16b2ffe5f9a.gif in Resources */,
 				C3A161ED22B9B38C00076DD8 /* LaunchScreen.storyboard in Resources */,
 				C3A1622E22B9BD4200076DD8 /* MyriadPro-Regular.otf in Resources */,
 				C348F14022CB8790000F185C /* BalanceTableViewCell.xib in Resources */,
@@ -997,6 +1016,7 @@
 				C3B06FE823032D8900E03EC2 /* Notifications.swift in Sources */,
 				C329B73422E226D8005F579D /* OrderProductTableViewCell.swift in Sources */,
 				C35572B922CA946D00FC5C89 /* SettingsVC.swift in Sources */,
+				CFD9D35523EC949C00DACF9E /* doneModalViewController.swift in Sources */,
 				C329B72D22E2173C005F579D /* UITextFieldExtensions.swift in Sources */,
 				C3A1622122B9BBB300076DD8 /* UILabelExtensions.swift in Sources */,
 				C3222BB222E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift in Sources */,

@@ -63,7 +63,7 @@
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9t1-Vk-7sy">
-                    <rect key="frame" x="64" y="828" width="286" height="35"/>
+                    <rect key="frame" x="64" y="822" width="286" height="35"/>
                     <color key="backgroundColor" name="Green"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="IkQ-7V-Rcx"/>
@@ -79,7 +79,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="9t1-Vk-7sy" firstAttribute="top" secondItem="XXs-LM-lxQ" secondAttribute="bottom" constant="16" id="FFI-Rt-BdO"/>
+                <constraint firstItem="9t1-Vk-7sy" firstAttribute="top" secondItem="XXs-LM-lxQ" secondAttribute="bottom" constant="10" id="FFI-Rt-BdO"/>
                 <constraint firstItem="XXs-LM-lxQ" firstAttribute="top" secondItem="aOZ-ym-yZa" secondAttribute="bottom" id="OU4-Sh-ACo"/>
                 <constraint firstItem="9t1-Vk-7sy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="64" id="Rgt-HJ-yAU"/>
                 <constraint firstItem="XXs-LM-lxQ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ccx-CQ-gVF"/>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="doneModalViewController" customModule="Coco" customModuleProvider="target">
+            <connections>
+                <outlet property="doneCheckVideo" destination="gw9-n2-xkv" id="Q2C-IX-CRH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gw9-n2-xkv">
+                    <rect key="frame" x="107" y="348" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="WbC-ZU-pU7"/>
+                        <constraint firstAttribute="height" constant="200" id="jrU-vh-AoM"/>
+                        <constraint firstAttribute="width" secondItem="gw9-n2-xkv" secondAttribute="height" multiplier="1:1" id="lAd-e5-epS"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¡Listo!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhO-79-qhQ">
+                    <rect key="frame" x="180" y="316" width="54" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="MhO-79-qhQ" secondAttribute="height" multiplier="9:4" id="Igs-xM-mYf"/>
+                        <constraint firstAttribute="width" constant="54" id="Wm1-0t-ltq"/>
+                        <constraint firstAttribute="height" constant="24" id="e2Y-j2-KUc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tu pedido ha sido enviado." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Fa-8v-nzd">
+                    <rect key="frame" x="91.5" y="556" width="231" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="afF-gr-Swx"/>
+                        <constraint firstAttribute="width" constant="231" id="dWD-vy-QEw"/>
+                        <constraint firstAttribute="width" secondItem="2Fa-8v-nzd" secondAttribute="height" multiplier="77:8" id="i6a-qK-Now"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.34906923769999998" green="0.74120157959999999" blue="0.44662386180000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="gw9-n2-xkv" firstAttribute="top" secondItem="MhO-79-qhQ" secondAttribute="bottom" constant="8" id="GGH-ZJ-ROL"/>
+                <constraint firstItem="2Fa-8v-nzd" firstAttribute="top" secondItem="gw9-n2-xkv" secondAttribute="bottom" constant="8" id="Qse-Jr-xi3"/>
+                <constraint firstItem="MhO-79-qhQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bCz-Dd-VhK"/>
+                <constraint firstItem="2Fa-8v-nzd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pMr-GJ-qHr"/>
+                <constraint firstItem="gw9-n2-xkv" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="vZf-Xl-HxZ"/>
+                <constraint firstItem="gw9-n2-xkv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vyp-sP-TOp"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+        </view>
+    </objects>
+</document>

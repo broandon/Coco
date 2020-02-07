@@ -38,6 +38,14 @@ class rechargeCreditViewController: UIViewController {
     }
     
     //MARK: Buttons
+    
+    @IBAction func cancelRecharge(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
     @IBAction func rechargeButton(_ sender: Any) {
         
         if rechargeAmount.text!.isEmpty {
@@ -52,6 +60,11 @@ class rechargeCreditViewController: UIViewController {
             
         }
         
+        if  Int(rechargeAmount.text!)! < 200 {
+            throwError(str: "El monto a recargar no puede ser menor a $ 200")
+            return
+          }
+        
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
               
               var request = URLRequest(url: url)
@@ -60,7 +73,7 @@ class rechargeCreditViewController: UIViewController {
         
         let string1 = "funcion=rechargeBalance&id_token="+cardID!
         let string2 = "&amount="+rechargeAmount.text!
-        let string3 = "&id_user"+userID!
+        let string3 = "&id_user="+userID!
         
         let postString = string1+string2+string3
         
@@ -97,7 +110,14 @@ class rechargeCreditViewController: UIViewController {
                                       
                                       let alert = UIAlertController(title: "¡Exito!", message: "Hemos recargado la cantidad solicitada a tu saldo. ¡A comer!", preferredStyle: .alert)
                                       
-                                      alert.addAction(UIAlertAction(title: "Genial", style: .default, handler: nil))
+                                      alert.addAction(UIAlertAction(title: "Genial", style: .cancel, handler: { action in
+                                          
+                                          let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                          let newViewController = storyBoard.instantiateViewController(withIdentifier: "MainController") as! MainController
+                                          newViewController.modalPresentationStyle = .fullScreen
+                                          self.present(newViewController, animated: true, completion: nil)
+                                          
+                                      }))
                                       
                                       self.present(alert, animated: true)
                                       
@@ -118,6 +138,8 @@ class rechargeCreditViewController: UIViewController {
                               } else {
                                   
                                   DispatchQueue.main.async {
+                                    
+                                    print(stateString)
                                                                             
                                       let alert = UIAlertController(title: "Error", message: "Hay un problema con el servidor, inténtalo de nuevo más tarde.", preferredStyle: .alert)
                                       

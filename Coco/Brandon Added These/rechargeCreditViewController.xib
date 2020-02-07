@@ -90,12 +90,56 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b6N-PS-Lup">
+                    <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backnegro" translatesAutoresizingMaskIntoConstraints="NO" id="HgB-qF-qiN">
+                            <rect key="frame" x="8" y="14" width="23" height="23"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="HgB-qF-qiN" secondAttribute="height" multiplier="1:1" id="zpn-ge-fHR"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recargar saldo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJ4-Wd-0mB">
+                            <rect key="frame" x="39" y="15" width="115" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="CJ4-Wd-0mB" secondAttribute="height" multiplier="115:21" id="alW-mZ-AUv"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7UX-Yb-Qv4">
+                            <rect key="frame" x="0.0" y="0.0" width="197" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="197" id="gRp-Sc-ybg"/>
+                            </constraints>
+                            <connections>
+                                <action selector="cancelRecharge:" destination="-1" eventType="touchUpInside" id="taJ-Th-fiJ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="7UX-Yb-Qv4" secondAttribute="bottom" id="0V3-z6-msT"/>
+                        <constraint firstAttribute="height" constant="50" id="DUQ-hb-ng4"/>
+                        <constraint firstItem="CJ4-Wd-0mB" firstAttribute="leading" secondItem="HgB-qF-qiN" secondAttribute="trailing" constant="8" id="G2M-Vb-ydQ"/>
+                        <constraint firstItem="HgB-qF-qiN" firstAttribute="leading" secondItem="b6N-PS-Lup" secondAttribute="leading" constant="8" id="KJr-sP-P67"/>
+                        <constraint firstItem="7UX-Yb-Qv4" firstAttribute="leading" secondItem="b6N-PS-Lup" secondAttribute="leading" id="MXz-hB-gZJ"/>
+                        <constraint firstItem="7UX-Yb-Qv4" firstAttribute="top" secondItem="b6N-PS-Lup" secondAttribute="top" id="N8x-m1-IMM"/>
+                        <constraint firstAttribute="bottom" secondItem="CJ4-Wd-0mB" secondAttribute="bottom" constant="14" id="TAQ-Nr-Qfe"/>
+                        <constraint firstAttribute="bottom" secondItem="HgB-qF-qiN" secondAttribute="bottom" constant="13" id="XHt-AH-CuR"/>
+                        <constraint firstItem="CJ4-Wd-0mB" firstAttribute="top" secondItem="b6N-PS-Lup" secondAttribute="top" constant="15" id="YJI-5e-iMe"/>
+                        <constraint firstItem="HgB-qF-qiN" firstAttribute="top" secondItem="b6N-PS-Lup" secondAttribute="top" constant="14" id="egT-Y7-0BD"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hUb-CY-fuk" secondAttribute="trailing" constant="20" id="8dd-pF-AZe"/>
                 <constraint firstItem="794-zO-94B" firstAttribute="leading" secondItem="iXB-KA-aro" secondAttribute="trailing" constant="1" id="DZe-WR-OTV"/>
                 <constraint firstItem="C0s-Mx-oRJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="E2T-pW-sYu"/>
+                <constraint firstItem="b6N-PS-Lup" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fzx-NZ-yWC"/>
+                <constraint firstItem="b6N-PS-Lup" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="GeE-hH-0KN"/>
                 <constraint firstItem="FNR-rD-W28" firstAttribute="top" secondItem="794-zO-94B" secondAttribute="bottom" constant="72" id="H40-ZC-waa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Za1-Yj-O05" secondAttribute="trailing" constant="20" id="I43-HE-cRj"/>
                 <constraint firstItem="iXB-KA-aro" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="IWq-mR-NZY"/>
@@ -106,6 +150,7 @@
                 <constraint firstItem="hUb-CY-fuk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Y8n-dL-hHl"/>
                 <constraint firstItem="iXB-KA-aro" firstAttribute="top" secondItem="C0s-Mx-oRJ" secondAttribute="bottom" constant="8" id="k17-st-t8R"/>
                 <constraint firstItem="Za1-Yj-O05" firstAttribute="top" secondItem="hUb-CY-fuk" secondAttribute="bottom" constant="8" id="mX7-3Q-aN3"/>
+                <constraint firstItem="b6N-PS-Lup" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="n52-us-cjy"/>
                 <constraint firstItem="hUb-CY-fuk" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="215" id="nmY-Mv-nPO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="C0s-Mx-oRJ" secondAttribute="trailing" constant="20" id="p1N-ih-IUH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="794-zO-94B" secondAttribute="trailing" constant="20" id="uBe-T1-LpM"/>
@@ -116,6 +161,7 @@
         </view>
     </objects>
     <resources>
+        <image name="backnegro" width="64" height="64"/>
         <namedColor name="Green">
             <color red="0.0" green="0.61568627450980395" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

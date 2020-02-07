@@ -27,6 +27,9 @@ class MainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        cocopointsView.isHidden = true
+        cocopointsBalance.isHidden = true
+        
         mainData = Main()
         configureView()
         configureTable()

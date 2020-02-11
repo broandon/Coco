@@ -24,6 +24,7 @@ class PaymentFormsVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     paymentForms = PaymentForms()
     configureView()
     configureTable()
@@ -120,11 +121,14 @@ extension PaymentFormsVC: PaymentFormCellDelegate {
         
         let cardID = self.paymentForms.paymentForm[index].id
         let lastDigits = self.paymentForms.paymentForm[index].digits
-        
+        let type = self.paymentForms.paymentForm[index].type
+                
         // Here we gonna put the id of the card so I can use it in the new view.
         UserDefaults.standard.set(cardID, forKey: "cardIDValue")
         // And here we gonna put the last digits.
         UserDefaults.standard.set(lastDigits, forKey: "lastDigitsValue")
+        // And the type of payment
+        UserDefaults.standard.set(type, forKey: "typeOfCard")
         
         // Register Nib
         let newViewController = rechargeCreditViewController(nibName: "rechargeCreditViewController", bundle: nil)

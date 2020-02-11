@@ -22,7 +22,7 @@ class doneModalViewController: UIViewController {
         
         initializeVideoPlayerWithVideo()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
             //self.close()
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -81,11 +81,11 @@ class doneModalViewController: UIViewController {
         // add the layer to the container view
         doneCheckVideo?.layer.addSublayer(layer)
         
-        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem, queue: .main) { [weak self] _ in
-            self?.player?.seek(to: CMTime.zero)
-            self?.player?.play()
-            
-        }
+//        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem, queue: .main) { [weak self] _ in
+//            self?.player?.seek(to: CMTime.zero)
+//            self?.player?.play()
+//            
+//        }
         
     }
     

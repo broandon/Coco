@@ -38,12 +38,10 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tu pedido ha sido enviado." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Fa-8v-nzd">
-                    <rect key="frame" x="91.5" y="556" width="231" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tu pedido ha sido enviado." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Fa-8v-nzd">
+                    <rect key="frame" x="20" y="556" width="374" height="46"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="24" id="afF-gr-Swx"/>
-                        <constraint firstAttribute="width" constant="231" id="dWD-vy-QEw"/>
-                        <constraint firstAttribute="width" secondItem="2Fa-8v-nzd" secondAttribute="height" multiplier="77:8" id="i6a-qK-Now"/>
+                        <constraint firstAttribute="height" constant="46" id="Ov9-bI-74W"/>
                     </constraints>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -52,10 +50,11 @@
             </subviews>
             <color key="backgroundColor" red="0.34906923769999998" green="0.74120157959999999" blue="0.44662386180000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2Fa-8v-nzd" secondAttribute="trailing" constant="20" id="9JX-7d-bbF"/>
                 <constraint firstItem="gw9-n2-xkv" firstAttribute="top" secondItem="MhO-79-qhQ" secondAttribute="bottom" constant="8" id="GGH-ZJ-ROL"/>
-                <constraint firstItem="2Fa-8v-nzd" firstAttribute="top" secondItem="gw9-n2-xkv" secondAttribute="bottom" constant="8" id="Qse-Jr-xi3"/>
+                <constraint firstItem="2Fa-8v-nzd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="M9m-7j-5Pt"/>
                 <constraint firstItem="MhO-79-qhQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bCz-Dd-VhK"/>
-                <constraint firstItem="2Fa-8v-nzd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pMr-GJ-qHr"/>
+                <constraint firstItem="2Fa-8v-nzd" firstAttribute="top" secondItem="gw9-n2-xkv" secondAttribute="bottom" constant="8" id="lDH-ms-yvI"/>
                 <constraint firstItem="gw9-n2-xkv" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="vZf-Xl-HxZ"/>
                 <constraint firstItem="gw9-n2-xkv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vyp-sP-TOp"/>
             </constraints>

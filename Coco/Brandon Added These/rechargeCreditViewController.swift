@@ -15,10 +15,12 @@ class rechargeCreditViewController: UIViewController {
     
     @IBOutlet weak var cardNumbers: UITextField!
     @IBOutlet weak var rechargeAmount: UITextField!
+    @IBOutlet weak var cardImage: UIImageView!
     
     let userID = Defaults[.user]
     let cardID = UserDefaults.standard.string(forKey: "cardIDValue")
     let digits = UserDefaults.standard.string(forKey: "lastDigitsValue")
+    let typeOfCard = UserDefaults.standard.string(forKey: "typeOfCard")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +29,45 @@ class rechargeCreditViewController: UIViewController {
 
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        UIView.animate(withDuration: 1, animations: {
+            
+            self.cardImage.alpha = 100
+            
+        })
+        
+    }
+    
     //MARK: Funcs
     
     func configureView() {
+        
+        cardImage.alpha = 0
         
         cardNumbers.isUserInteractionEnabled = false
         cardNumbers.text! = "**** **** **** \(digits ?? "****")"
         cardNumbers.textAlignment = .center
         rechargeAmount.textAlignment = .center
+        
+        if typeOfCard == "VISA" {
+            
+            cardImage.image = UIImage(named: "visa_sola")
+            
+        }
+        
+        if typeOfCard == "MASTER CARD" {
+            
+            cardImage.image = UIImage(named: "mastercard")
+            
+        }
+        
+        if typeOfCard == "AMEX" {
+            
+            cardImage.image = UIImage(named: "amex")
+            
+        }
+        
     }
     
     //MARK: Buttons

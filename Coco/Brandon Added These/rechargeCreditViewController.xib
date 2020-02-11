@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="rechargeCreditViewController" customModule="Coco" customModuleProvider="target">
             <connections>
+                <outlet property="cardImage" destination="cua-Yo-OFa" id="KG8-sC-V49"/>
                 <outlet property="cardNumbers" destination="Za1-Yj-O05" id="o2H-Lu-NLK"/>
                 <outlet property="rechargeAmount" destination="794-zO-94B" id="2hS-Hm-o3b"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -132,6 +133,12 @@
                         <constraint firstItem="HgB-qF-qiN" firstAttribute="top" secondItem="b6N-PS-Lup" secondAttribute="top" constant="14" id="egT-Y7-0BD"/>
                     </constraints>
                 </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cua-Yo-OFa">
+                    <rect key="frame" x="143" y="136" width="128" height="82"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="cua-Yo-OFa" secondAttribute="height" multiplier="64:41" id="Kdi-ZN-yey"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -148,12 +155,16 @@
                 <constraint firstItem="FNR-rD-W28" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="136" id="UCZ-uk-XKN"/>
                 <constraint firstItem="794-zO-94B" firstAttribute="top" secondItem="C0s-Mx-oRJ" secondAttribute="bottom" constant="8" id="Wso-rt-BMw"/>
                 <constraint firstItem="hUb-CY-fuk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Y8n-dL-hHl"/>
+                <constraint firstItem="cua-Yo-OFa" firstAttribute="top" secondItem="b6N-PS-Lup" secondAttribute="bottom" constant="42" id="bVk-WA-zgL"/>
+                <constraint firstItem="hUb-CY-fuk" firstAttribute="top" secondItem="cua-Yo-OFa" secondAttribute="bottom" constant="41" id="dQs-00-iKq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cua-Yo-OFa" secondAttribute="trailing" constant="143" id="ijB-KO-W5p"/>
                 <constraint firstItem="iXB-KA-aro" firstAttribute="top" secondItem="C0s-Mx-oRJ" secondAttribute="bottom" constant="8" id="k17-st-t8R"/>
                 <constraint firstItem="Za1-Yj-O05" firstAttribute="top" secondItem="hUb-CY-fuk" secondAttribute="bottom" constant="8" id="mX7-3Q-aN3"/>
                 <constraint firstItem="b6N-PS-Lup" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="n52-us-cjy"/>
                 <constraint firstItem="hUb-CY-fuk" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="215" id="nmY-Mv-nPO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="C0s-Mx-oRJ" secondAttribute="trailing" constant="20" id="p1N-ih-IUH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="794-zO-94B" secondAttribute="trailing" constant="20" id="uBe-T1-LpM"/>
+                <constraint firstItem="cua-Yo-OFa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="143" id="zKQ-0X-UUp"/>
                 <constraint firstItem="Za1-Yj-O05" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="zxz-4x-ut5"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

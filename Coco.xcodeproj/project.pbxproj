@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3F70D7C3F4D6293AE3D5BAAC /* Pods_CocoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F14347B74DDFE317E603C86A /* Pods_CocoUITests.framework */; };
+		9DA878D2240472C9001F8FAF /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D1240472C9001F8FAF /* popUpViewController.swift */; };
+		9DA878D424048428001F8FAF /* newCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D324048428001F8FAF /* newCodeViewController.swift */; };
 		C3222BA822E0400300E63F38 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3222BA722E0400300E63F38 /* ShoppingCart.swift */; };
 		C3222BB122E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3222BAF22E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib */; };
 		C3222BB222E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3222BB022E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift */; };
@@ -137,6 +139,8 @@
 		6E4915966DA5C2608206AE0A /* Pods_Coco.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coco.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B3EAF956F1B8B3139D70DA /* Pods-CocoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoTests/Pods-CocoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8224668FFF2D9C032908D0EF /* Pods-Coco.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coco.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coco/Pods-Coco.release.xcconfig"; sourceTree = "<group>"; };
+		9DA878D1240472C9001F8FAF /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
+		9DA878D324048428001F8FAF /* newCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newCodeViewController.swift; sourceTree = "<group>"; };
 		C3222BA722E0400300E63F38 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		C3222BAF22E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartProductCellTableViewCell.xib; sourceTree = "<group>"; };
 		C3222BB022E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartProductCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -695,6 +699,8 @@
 				CFF0B6AD23EBC97800C30A6D /* rechargeCreditViewController.xib */,
 				CFD9D35323EC949C00DACF9E /* doneModalViewController.swift */,
 				CFD9D35423EC949C00DACF9E /* doneModalViewController.xib */,
+				9DA878D1240472C9001F8FAF /* popUpViewController.swift */,
+				9DA878D324048428001F8FAF /* newCodeViewController.swift */,
 			);
 			path = "Brandon Added These";
 			sourceTree = "<group>";
@@ -1038,12 +1044,14 @@
 				C3A161E822B9B38A00076DD8 /* Coco.xcdatamodeld in Sources */,
 				C3C0F37A22D3D4B000B03F62 /* Card.m in Sources */,
 				C3A1621B22B9BB8400076DD8 /* UIViewControllerExtensions.swift in Sources */,
+				9DA878D2240472C9001F8FAF /* popUpViewController.swift in Sources */,
 				C348F15322CB99AE000F185C /* Products.swift in Sources */,
 				C348F16422CBD61A000F185C /* AddCardVC.swift in Sources */,
 				C3222BA822E0400300E63F38 /* ShoppingCart.swift in Sources */,
 				C35572C622CABE3300FC5C89 /* UserMain.swift in Sources */,
 				C3A1623422BA71F300076DD8 /* MenuVC.swift in Sources */,
 				C3C0F36C22D3C1EE00B03F62 /* SchoolModal.swift in Sources */,
+				9DA878D424048428001F8FAF /* newCodeViewController.swift in Sources */,
 				C3C0F37C22D3D4B000B03F62 /* Conekta.m in Sources */,
 				C348F15522CBB4B0000F185C /* ProductDetailVC.swift in Sources */,
 				C348F14422CB90B0000F185C /* Categories.swift in Sources */,

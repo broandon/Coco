@@ -27,9 +27,6 @@ class MainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cocopointsView.isHidden = true
-        cocopointsBalance.isHidden = true
-        
         mainData = Main()
         configureView()
         configureTable()
@@ -38,6 +35,27 @@ class MainController: UIViewController {
         pushManager.registerForPushNotifications()
         
     }
+    
+    @IBAction func showCards(_ sender: Any) {
+        
+        let vc = BalanceVC()
+        vc.delegate = self
+        vc.modalTransitionStyle = .crossDissolve
+        presentAsync(vc)
+        
+    }
+    
+    @IBAction func showCocoPopUp(_ sender: Any) {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "popUpViewController") as! popUpViewController
+        newViewController.modalPresentationStyle = .overCurrentContext
+        newViewController.modalTransitionStyle = .crossDissolve
+        self.present(newViewController, animated: true, completion: nil)
+        
+    }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -137,6 +155,12 @@ extension MainController: MenuDelegate {
             vc.delegate = self
             vc.modalTransitionStyle = .crossDissolve
             presentAsync(vc)
+        case .cocopoints:
+            print("cocopoints pressed")
+        case .promocode:
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "newCodeViewController") as! newCodeViewController
+            self.present(newViewController, animated: true, completion: nil)
         case .favorite:
             let vc = FavoritesVC()
             vc.modalTransitionStyle = .crossDissolve

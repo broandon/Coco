@@ -56,6 +56,8 @@ enum ReturnErrors: String {
 enum Menu: String {
   case profile = "Mi Perfil"
   case balance = "Recargar Saldo"
+  case cocopoints = "Tarjeta Coco"
+  case promocode = "Código Promocional"
   case favorite = "Favoritos"
   case orders = "Pedidos"
   case settings = "Configuración"
@@ -65,10 +67,12 @@ enum Menu: String {
     switch self {
     case .profile: return #imageLiteral(resourceName: "profile_menu")
     case .balance: return #imageLiteral(resourceName: "credit_menu")
+    case .promocode: return UIImage(named: "deal")!
     case .favorite: return #imageLiteral(resourceName: "favorite_menu")
     case .orders: return #imageLiteral(resourceName: "menu_pedidos")
     case .settings: return #imageLiteral(resourceName: "conf_menu")
     case .session: return #imageLiteral(resourceName: "cerrar_menu")
+    case .cocopoints: return UIImage(named: "cococard")!
     }
   }
 }

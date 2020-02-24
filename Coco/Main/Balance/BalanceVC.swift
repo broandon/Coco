@@ -90,7 +90,7 @@ extension BalanceVC: UITableViewDelegate, UITableViewDataSource {
     switch item.type {
     case "VISA":
       cell.typeView.image = #imageLiteral(resourceName: "visa_sola")
-    case "MC":
+    case "MASTER CARD":
       cell.typeView.image = #imageLiteral(resourceName: "mastercard")
     case "AMEX":
       cell.typeView.image = #imageLiteral(resourceName: "amex")

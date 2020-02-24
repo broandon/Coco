@@ -88,7 +88,7 @@ class AddCardVC: UIViewController {
           self.throwError(str: "No se pudo procesar la tarjeta")
           return
       }
-      let type = cardNo.prefix(1) == "4" ? "VISA" : cardNo.prefix(1) == "5" ? "MASTERCARD" : "AMEX"
+      let type = cardNo.prefix(1) == "4" ? "VISA" : cardNo.prefix(1) == "5" ? "MASTER CARD" : "AMEX"
       
       let newCard = Cards(name: name, address: address, second_address: address_2, zip: zip, number: phone, digits: String(cardNo.suffix(4)), type: type, token: "\(id)", auto: self.switchAutoCharge.isOn ? "1" : "0", amount: amount)
       

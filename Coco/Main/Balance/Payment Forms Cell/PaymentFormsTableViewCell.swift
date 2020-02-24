@@ -17,7 +17,8 @@ class PaymentFormsTableViewCell: UITableViewCell {
   @IBOutlet weak var counterLabel: UILabel!
   @IBOutlet weak var digitsLabel: UILabel!
   @IBOutlet weak var deleteButton: UIButton!
-  
+  @IBOutlet weak var typeOfCard: UIImageView!
+    
   static let cellIdentifier = "PaymentFormsTableViewCell"
   
   var delegate: PaymentFormCellDelegate!

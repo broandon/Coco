@@ -27,11 +27,9 @@
                         <constraint firstAttribute="width" secondItem="gw9-n2-xkv" secondAttribute="height" multiplier="1:1" id="lAd-e5-epS"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¡Listo!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhO-79-qhQ">
-                    <rect key="frame" x="180" y="316" width="54" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¡Listo!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhO-79-qhQ">
+                    <rect key="frame" x="20" y="316" width="374" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="MhO-79-qhQ" secondAttribute="height" multiplier="9:4" id="Igs-xM-mYf"/>
-                        <constraint firstAttribute="width" constant="54" id="Wm1-0t-ltq"/>
                         <constraint firstAttribute="height" constant="24" id="e2Y-j2-KUc"/>
                     </constraints>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -52,9 +50,11 @@
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2Fa-8v-nzd" secondAttribute="trailing" constant="20" id="9JX-7d-bbF"/>
                 <constraint firstItem="gw9-n2-xkv" firstAttribute="top" secondItem="MhO-79-qhQ" secondAttribute="bottom" constant="8" id="GGH-ZJ-ROL"/>
+                <constraint firstItem="MhO-79-qhQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="K1L-t8-Ssf"/>
                 <constraint firstItem="2Fa-8v-nzd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="M9m-7j-5Pt"/>
                 <constraint firstItem="MhO-79-qhQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bCz-Dd-VhK"/>
                 <constraint firstItem="2Fa-8v-nzd" firstAttribute="top" secondItem="gw9-n2-xkv" secondAttribute="bottom" constant="8" id="lDH-ms-yvI"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MhO-79-qhQ" secondAttribute="trailing" constant="20" id="m0t-fc-yke"/>
                 <constraint firstItem="gw9-n2-xkv" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="vZf-Xl-HxZ"/>
                 <constraint firstItem="gw9-n2-xkv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vyp-sP-TOp"/>
             </constraints>

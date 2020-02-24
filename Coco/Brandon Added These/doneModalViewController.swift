@@ -22,7 +22,7 @@ class doneModalViewController: UIViewController {
         
         initializeVideoPlayerWithVideo()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
             //self.close()
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

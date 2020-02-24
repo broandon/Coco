@@ -89,6 +89,21 @@ extension PaymentFormsVC: UITableViewDelegate, UITableViewDataSource {
     cell.delegate = self
     cell.index = indexPath.row
     cell.digitsLabel.text = "**** **** **** \(item.digits ?? "****")"
+    
+    if paymentForms.paymentForm[indexPath.row].type == "VISA" {
+        
+        cell.typeOfCard.image = UIImage(named: "visa_sola")
+        
+    } else if paymentForms.paymentForm[indexPath.row].type == "MASTER CARD" {
+        
+        cell.typeOfCard.image = UIImage(named: "mastercard")
+        
+    } else if paymentForms.paymentForm[indexPath.row].type == "AMEX" {
+        
+        cell.typeOfCard.image = UIImage(named: "amex")
+        
+    }
+    
     return cell
   }
   

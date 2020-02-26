@@ -105,6 +105,16 @@
 		C3C0F38222D3E6B900B03F62 /* AlertModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C0F38022D3E6B900B03F62 /* AlertModal.swift */; };
 		C3C0F38322D3E6B900B03F62 /* AlertModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C0F38122D3E6B900B03F62 /* AlertModal.xib */; };
 		CA07F8D7ADCBAEFBD51D5E30 /* Pods_Coco.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4915966DA5C2608206AE0A /* Pods_Coco.framework */; };
+		CFBC53A12406DC7500D4FF95 /* promoCodesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC539F2406DC7500D4FF95 /* promoCodesTableViewCell.swift */; };
+		CFBC53A22406DC7500D4FF95 /* promoCodesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBC53A02406DC7500D4FF95 /* promoCodesTableViewCell.xib */; };
+		CFBC53A52406EADB00D4FF95 /* addNewPromoCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC53A32406EADB00D4FF95 /* addNewPromoCodeViewController.swift */; };
+		CFBC53A62406EADC00D4FF95 /* addNewPromoCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBC53A42406EADB00D4FF95 /* addNewPromoCodeViewController.xib */; };
+		CFBC53AA2407134300D4FF95 /* storedCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC53A82407134300D4FF95 /* storedCardsViewController.swift */; };
+		CFBC53AB2407134300D4FF95 /* storedCardsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBC53A92407134300D4FF95 /* storedCardsViewController.xib */; };
+		CFBC53AE2407182F00D4FF95 /* cardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC53AC2407182F00D4FF95 /* cardsTableViewCell.swift */; };
+		CFBC53AF2407182F00D4FF95 /* cardsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBC53AD2407182F00D4FF95 /* cardsTableViewCell.xib */; };
+		CFBC53B224071B5000D4FF95 /* addNewCocoCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC53B024071B5000D4FF95 /* addNewCocoCardViewController.swift */; };
+		CFBC53B324071B5000D4FF95 /* addNewCocoCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBC53B124071B5000D4FF95 /* addNewCocoCardViewController.xib */; };
 		CFD9D35523EC949C00DACF9E /* doneModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9D35323EC949C00DACF9E /* doneModalViewController.swift */; };
 		CFD9D35623EC949C00DACF9E /* doneModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD9D35423EC949C00DACF9E /* doneModalViewController.xib */; };
 		CFD9D35A23ECBD0400DACF9E /* checkmark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFD9D35923ECBD0300DACF9E /* checkmark.mp4 */; };
@@ -247,6 +257,16 @@
 		C3C0F37D22D3D73400B03F62 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		C3C0F38022D3E6B900B03F62 /* AlertModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModal.swift; sourceTree = "<group>"; };
 		C3C0F38122D3E6B900B03F62 /* AlertModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertModal.xib; sourceTree = "<group>"; };
+		CFBC539F2406DC7500D4FF95 /* promoCodesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promoCodesTableViewCell.swift; sourceTree = "<group>"; };
+		CFBC53A02406DC7500D4FF95 /* promoCodesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = promoCodesTableViewCell.xib; sourceTree = "<group>"; };
+		CFBC53A32406EADB00D4FF95 /* addNewPromoCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewPromoCodeViewController.swift; sourceTree = "<group>"; };
+		CFBC53A42406EADB00D4FF95 /* addNewPromoCodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addNewPromoCodeViewController.xib; sourceTree = "<group>"; };
+		CFBC53A82407134300D4FF95 /* storedCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = storedCardsViewController.swift; sourceTree = "<group>"; };
+		CFBC53A92407134300D4FF95 /* storedCardsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = storedCardsViewController.xib; sourceTree = "<group>"; };
+		CFBC53AC2407182F00D4FF95 /* cardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardsTableViewCell.swift; sourceTree = "<group>"; };
+		CFBC53AD2407182F00D4FF95 /* cardsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = cardsTableViewCell.xib; sourceTree = "<group>"; };
+		CFBC53B024071B5000D4FF95 /* addNewCocoCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewCocoCardViewController.swift; sourceTree = "<group>"; };
+		CFBC53B124071B5000D4FF95 /* addNewCocoCardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addNewCocoCardViewController.xib; sourceTree = "<group>"; };
 		CFD9D35323EC949C00DACF9E /* doneModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doneModalViewController.swift; sourceTree = "<group>"; };
 		CFD9D35423EC949C00DACF9E /* doneModalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = doneModalViewController.xib; sourceTree = "<group>"; };
 		CFD9D35923ECBD0300DACF9E /* checkmark.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = checkmark.mp4; sourceTree = "<group>"; };
@@ -692,9 +712,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CFBC539E2406DC3A00D4FF95 /* Promo Codes */ = {
+			isa = PBXGroup;
+			children = (
+				CFBC539F2406DC7500D4FF95 /* promoCodesTableViewCell.swift */,
+				CFBC53A02406DC7500D4FF95 /* promoCodesTableViewCell.xib */,
+				CFBC53A32406EADB00D4FF95 /* addNewPromoCodeViewController.swift */,
+				CFBC53A42406EADB00D4FF95 /* addNewPromoCodeViewController.xib */,
+			);
+			path = "Promo Codes";
+			sourceTree = "<group>";
+		};
+		CFBC53A7240712C500D4FF95 /* Coco Cards */ = {
+			isa = PBXGroup;
+			children = (
+				CFBC53A82407134300D4FF95 /* storedCardsViewController.swift */,
+				CFBC53A92407134300D4FF95 /* storedCardsViewController.xib */,
+				CFBC53AC2407182F00D4FF95 /* cardsTableViewCell.swift */,
+				CFBC53AD2407182F00D4FF95 /* cardsTableViewCell.xib */,
+				CFBC53B024071B5000D4FF95 /* addNewCocoCardViewController.swift */,
+				CFBC53B124071B5000D4FF95 /* addNewCocoCardViewController.xib */,
+			);
+			path = "Coco Cards";
+			sourceTree = "<group>";
+		};
 		CFF0B6AB23EBC80600C30A6D /* Brandon Added These */ = {
 			isa = PBXGroup;
 			children = (
+				CFBC53A7240712C500D4FF95 /* Coco Cards */,
+				CFBC539E2406DC3A00D4FF95 /* Promo Codes */,
 				CFF0B6AC23EBC97800C30A6D /* rechargeCreditViewController.swift */,
 				CFF0B6AD23EBC97800C30A6D /* rechargeCreditViewController.xib */,
 				CFD9D35323EC949C00DACF9E /* doneModalViewController.swift */,
@@ -826,6 +872,7 @@
 				C3A1623022B9BD4200076DD8 /* MyriadPro-BlackSemiCn.otf in Resources */,
 				C35572B622CA93C000FC5C89 /* OrdersVC.xib in Resources */,
 				C348F14922CB9258000F185C /* CategoriesVC.xib in Resources */,
+				CFBC53A62406EADC00D4FF95 /* addNewPromoCodeViewController.xib in Resources */,
 				CFD9D35E23ECBDB500DACF9E /*  checkmark - 01.mp4 in Resources */,
 				CFD9D35A23ECBD0400DACF9E /* checkmark.mp4 in Resources */,
 				CFD9D35C23ECBD4E00DACF9E /* e80652af2c77e3a73858e16b2ffe5f9a.gif in Resources */,
@@ -835,6 +882,7 @@
 				C35572B222CA932700FC5C89 /* FavoritesVC.xib in Resources */,
 				C34F4CE022CA676600A97097 /* GoogleService-Info.plist in Resources */,
 				C3A161EA22B9B38C00076DD8 /* Assets.xcassets in Resources */,
+				CFBC53B324071B5000D4FF95 /* addNewCocoCardViewController.xib in Resources */,
 				C348F14D22CB9277000F185C /* CategoriesCollectionViewCell.xib in Resources */,
 				C348F15E22CBC94B000F185C /* PaymentFormsTableViewCell.xib in Resources */,
 				C34466EE22CAE65400A11433 /* FavoritesTableViewCell.xib in Resources */,
@@ -845,15 +893,18 @@
 				C35572BA22CA946D00FC5C89 /* SettingsVC.xib in Resources */,
 				C348F13722CB7F76000F185C /* OrderTableViewCell.xib in Resources */,
 				C35572BF22CAB7DD00FC5C89 /* BusinessTableViewCell.xib in Resources */,
+				CFBC53AB2407134300D4FF95 /* storedCardsViewController.xib in Resources */,
 				C3A1622D22B9BD4200076DD8 /* MyriadPro-Bold.otf in Resources */,
 				C329B73522E226D8005F579D /* OrderProductTableViewCell.xib in Resources */,
 				C3222BB122E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib in Resources */,
 				C3C0F38322D3E6B900B03F62 /* AlertModal.xib in Resources */,
 				C329B72F22E21865005F579D /* OrderStoryboard.storyboard in Resources */,
 				C355729822CA80B000FC5C89 /* LoaderVC.xib in Resources */,
+				CFBC53AF2407182F00D4FF95 /* cardsTableViewCell.xib in Resources */,
 				C3A1622F22B9BD4200076DD8 /* Myriad Pro Bold SemiExtended.ttf in Resources */,
 				C348F16222CBD11F000F185C /* CardsStoryboard.storyboard in Resources */,
 				C334339422D5304E0014A254 /* ShoppingCartVC.xib in Resources */,
+				CFBC53A22406DC7500D4FF95 /* promoCodesTableViewCell.xib in Resources */,
 				C348F15122CB991D000F185C /* ProductsVC.xib in Resources */,
 				C355729A22CA80C200FC5C89 /* loader.json in Resources */,
 				C3C0F36D22D3C1EE00B03F62 /* SchoolModal.xib in Resources */,
@@ -1039,6 +1090,8 @@
 				C34466ED22CAE65400A11433 /* FavoritesTableViewCell.swift in Sources */,
 				C3A1622322B9BC4700076DD8 /* General.swift in Sources */,
 				C34466E222CAC4BA00A11433 /* RegisterVC.swift in Sources */,
+				CFBC53A52406EADB00D4FF95 /* addNewPromoCodeViewController.swift in Sources */,
+				CFBC53A12406DC7500D4FF95 /* promoCodesTableViewCell.swift in Sources */,
 				C35572B122CA932700FC5C89 /* FavoritesVC.swift in Sources */,
 				C3C0F37E22D3D73400B03F62 /* Cards.swift in Sources */,
 				C3A161E822B9B38A00076DD8 /* Coco.xcdatamodeld in Sources */,
@@ -1060,12 +1113,14 @@
 				C34466F022CAEA2F00A11433 /* Favorites.swift in Sources */,
 				C348F14222CB896B000F185C /* Deposits.swift in Sources */,
 				C35572C422CABD7D00FC5C89 /* Business.swift in Sources */,
+				CFBC53AA2407134300D4FF95 /* storedCardsViewController.swift in Sources */,
 				CFF0B6AE23EBC97800C30A6D /* rechargeCreditViewController.swift in Sources */,
 				C3C0F36822D3B33700B03F62 /* Schools.swift in Sources */,
 				C348F15D22CBC94B000F185C /* PaymentFormsTableViewCell.swift in Sources */,
 				C355729722CA80B000FC5C89 /* LoaderVC.swift in Sources */,
 				C3A1622522B9BC8B00076DD8 /* Routes.swift in Sources */,
 				C348F13222CB7CE3000F185C /* Orders.swift in Sources */,
+				CFBC53AE2407182F00D4FF95 /* cardsTableViewCell.swift in Sources */,
 				C334339322D5304E0014A254 /* ShoppingCartVC.swift in Sources */,
 				C3A1621D22B9BB9200076DD8 /* UIImageViewExtensions.swift in Sources */,
 				C348F13622CB7F76000F185C /* OrderTableViewCell.swift in Sources */,
@@ -1074,6 +1129,7 @@
 				C348F14C22CB9277000F185C /* CategoriesCollectionViewCell.swift in Sources */,
 				C3A161E022B9B38900076DD8 /* AppDelegate.swift in Sources */,
 				C3C0F38222D3E6B900B03F62 /* AlertModal.swift in Sources */,
+				CFBC53B224071B5000D4FF95 /* addNewCocoCardViewController.swift in Sources */,
 				C3B06FE623032CF400E03EC2 /* PushNotificationManager.swift in Sources */,
 				C348F14822CB9258000F185C /* CategoriesVC.swift in Sources */,
 				C35572C222CABC1E00FC5C89 /* User.swift in Sources */,

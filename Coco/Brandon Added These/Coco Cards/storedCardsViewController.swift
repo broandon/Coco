@@ -1,8 +1,8 @@
 //
-//  newCodeViewController.swift
+//  storedCardsViewController.swift
 //  Coco
 //
-//  Created by Brandon Gonzalez on 24/02/20.
+//  Created by Brandon Gonzalez on 26/02/20.
 //  Copyright © 2020 Easycode. All rights reserved.
 //
 
@@ -10,41 +10,42 @@ import UIKit
 import SwiftyUserDefaults
 import Hero
 
-class newCodeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class storedCardsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //MARK: Outlets
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addCodeButton: UIButton!
-    let reuseDocument = "DocumentoCellCoupons"
+    let reuseDocument = "DocumentCellCards"
     let userID = Defaults[.user]
-    var codes : [Dictionary<String, Any>] = []
+    var cards : [Dictionary<String, Any>] = []
+
+    @IBOutlet weak var tableView: UITableView!
     
     //MARK: viewDid
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTableView()
-        getThemCodes()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(newCode), name: Notification.Name(rawValue: "newCodeReload"), object: nil)
+        getThemCards()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(newCard), name: Notification.Name(rawValue: "newCardReload"), object: nil)
         
     }
-    
-    //MARK: Tableview
+
+    //MARK: TableView
     
     func setupTableView() {
         
         tableView.delegate = self
         tableView.dataSource = self
-        let documentXib = UINib(nibName: "promoCodesTableViewCell", bundle: nil)
+        let documentXib = UINib(nibName: "cardsTableViewCell", bundle: nil)
         tableView.register(documentXib, forCellReuseIdentifier: reuseDocument)
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        codes.count
+        cards.count
         
     }
     
@@ -56,23 +57,23 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let document = codes[indexPath.row]
+        let document = cards[indexPath.row]
         
-        let amount = document["monto"]
-        let date = document["fecha"]
-        let token = document["token"]
+        let amount = document["monto"] as! String
+        let date = document["fecha"] as! String
+        let token = document["token"] as! String
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseDocument, for: indexPath)
         
         cell.selectionStyle = .none
         
-        if let cell = cell as? promoCodesTableViewCell {
+        if let cell = cell as? cardsTableViewCell {
             
             DispatchQueue.main.async {
                 
-                cell.montoLabel.text = amount as! String
-                cell.fechaLabel.text = date as! String
-                cell.codigoLabel.text = token as! String
+                cell.fechaLabel.text = date
+                cell.folioLabel.text = token
+                cell.moneyAmountLavel.text = "$\(amount)"
                 
             }
             
@@ -84,44 +85,25 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    //MARK: Actions
-    
-    @IBAction func promoCodes(_ sender: Any) {
-        
-        self.dismiss(animated: true, completion: nil)
-        
-    }
-    
-    @IBAction func addCode(_ sender: Any) {
-        
-        
-        let addCardVC = addNewPromoCodeViewController(nibName: "addNewPromoCodeViewController", bundle: nil)
-        
-        self.present(addCardVC, animated: true, completion: nil)
-        
-    }
-    
-    
-    
     //MARK: Funcs
     
-    @objc func newCode() {
+    @objc func newCard() {
         
         print("called")
-        codes.removeAll()
-        getThemCodes()
+        cards.removeAll()
+        getThemCards()
         DispatchQueue.main.async { self.tableView.reloadData() }
         
     }
     
-    func getThemCodes() {
+    func getThemCards() {
         
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
         
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let postString = "funcion=getCodePromotionals&id_user="+userID!
+        let postString = "funcion=getCocoCards&id_user="+userID!
         
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -144,7 +126,7 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
                         
                         for d in items {
                             
-                            self.codes.append(d)
+                            self.cards.append(d)
                             
                         }
                         
@@ -153,7 +135,7 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
                 
                 DispatchQueue.main.async {
-                    if self.codes.count > 0 {
+                    if self.cards.count > 0 {
                         self.tableView.reloadData()
                     }
                     
@@ -166,6 +148,21 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    //MARK: Extensions
+    //MARK: Buttons
     
+    @IBAction func addNewCard(_ sender: Any) {
+        
+        let addCardVC = addNewCocoCardViewController(nibName: "addNewCocoCardViewController", bundle: nil)
+                self.present(addCardVC, animated: true, completion: nil)
+        
+    }
+    
+    
+    @IBAction func closeView(_ sender: Any) {
+    
+        self.dismiss(animated: true, completion: nil)
+    
+    }
+    
+
 }

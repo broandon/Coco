@@ -156,7 +156,8 @@ extension MainController: MenuDelegate {
             vc.modalTransitionStyle = .crossDissolve
             presentAsync(vc)
         case .cocopoints:
-            print("cocopoints pressed")
+            let addCardVC = storedCardsViewController(nibName: "storedCardsViewController", bundle: nil)
+            self.present(addCardVC, animated: true, completion: nil)
         case .promocode:
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "newCodeViewController") as! newCodeViewController

@@ -45,7 +45,15 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        cards.count
+        if cards.count < 0 {
+            
+            tableView.isHidden = true
+            
+            return 0
+            
+        }
+        
+        return cards.count
         
     }
     
@@ -89,7 +97,6 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
     
     @objc func newCard() {
         
-        print("called")
         cards.removeAll()
         getThemCards()
         DispatchQueue.main.async { self.tableView.reloadData() }
@@ -117,10 +124,6 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
                 if let dictionary = json as? Dictionary<String, AnyObject>
                     
                 {
-                    
-                    print("cupones")
-                    print(dictionary)
-                    print("*********")
                     
                     if let items = dictionary["data"] as? [Dictionary<String, Any>] {
                         

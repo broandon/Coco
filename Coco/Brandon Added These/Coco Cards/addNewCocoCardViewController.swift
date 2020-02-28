@@ -13,7 +13,8 @@ class addNewCocoCardViewController: UIViewController {
     
     @IBOutlet weak var cardNumberTF: UITextField!
     let userID = Defaults[.user]
-
+    private var mainData: Main!
+    private var balance: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +84,7 @@ class addNewCocoCardViewController: UIViewController {
                             
                             DispatchQueue.main.async {
                                 
-                                let alert = UIAlertController(title: "Error", message: "Ya usaste este codigo", preferredStyle: .alert)
+                                let alert = UIAlertController(title: "Error", message: "No se pudo canjear el codigo.", preferredStyle: .alert)
                                 
                                 alert.addAction(UIAlertAction(title: "Intentar otro", style: .default, handler: nil))
                                 
@@ -95,14 +96,13 @@ class addNewCocoCardViewController: UIViewController {
                         if stateString == "200" {
                             
                             DispatchQueue.main.async {
-                                
+            
                                 let alert = UIAlertController(title: "¡Exito!", message: "Se ha recargado tu saldo.", preferredStyle: .alert)
                                 
                                 alert.addAction(UIAlertAction(title: "Genial", style: .cancel, handler: { action in
                                     NotificationCenter.default.post(name: Notification.Name(rawValue: "newCardReload"), object: nil)
-                                    
+                                    NotificationCenter.default.post(name: Notification.Name(rawValue: "reloadBalance"), object: nil)
                                     self.dismiss(animated: true, completion: nil)
-                                    
                                     
                                 }))
                                 
@@ -114,7 +114,7 @@ class addNewCocoCardViewController: UIViewController {
                             
                             DispatchQueue.main.async {
                                 
-                                let alert = UIAlertController(title: "Error", message: "El codigo no existe.", preferredStyle: .alert)
+                                let alert = UIAlertController(title: "Error", message: "El codigo ya fue utilizado.", preferredStyle: .alert)
                                 
                                 alert.addAction(UIAlertAction(title: "Volver a intentar o corregir.", style: .default, handler: nil))
                                 

@@ -65,6 +65,7 @@ class ShoppingCartVC: UIViewController {
                 self.throwError(str: errorMssg)
             case .success(_):
                 self.balance = self.mainData.info?.current_balance ?? "0.0"
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "reloadBalance"), object: nil)
             }
         }
     }

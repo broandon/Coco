@@ -20,7 +20,7 @@ class MenuVC: UIViewController {
   
   var delegate: MenuDelegate!
   
-    let menuDataTable: [Menu] = [.profile, .balance, .cocopoints, .promocode, .favorite, .orders, .settings, .session]
+    let menuDataTable: [Menu] = [.profile, .balance, .cocopoints, .favorite, .orders, .settings, .session]
   
   override func viewDidLoad() {
     super.viewDidLoad()

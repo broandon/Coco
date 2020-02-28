@@ -34,6 +34,29 @@ class MainController: UIViewController {
         let pushManager = PushNotificationManager()
         pushManager.registerForPushNotifications()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLabels), name: Notification.Name(rawValue: "reloadBalance"), object: nil)
+        
+    }
+    
+    @objc func updateLabels() {
+        print("Updating labels")
+        mainData.requestUserMain { (result) in
+            print("Labels data requested")
+            self.loader.removeAnimate()
+            switch result {
+            case .failure(let errorMssg):
+                self.throwError(str: errorMssg)
+            case .success(_):
+                print("Labels data was succesfully received, updating texts")
+                self.table.reloadData()
+                DispatchQueue.main.async {
+                    self.balanceLabel.text = "Saldo: $ \(self.mainData.info?.current_balance ?? "--")"
+                    self.cocopointsBalance.text = "Cocopoints: \(self.mainData.info?.cocopoints_balance ?? "--")"
+                print("Text populated")
+                }
+                self.table.reloadData()
+            }
+        }
     }
     
     @IBAction func showCards(_ sender: Any) {

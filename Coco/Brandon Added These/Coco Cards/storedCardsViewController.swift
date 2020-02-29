@@ -105,13 +105,15 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func getThemCards() {
         
+        print("Downloading cards")
+        
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
         
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         let postString = "funcion=getCocoCards&id_user="+userID!
-        
+        print(userID!)
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil, response != nil else {
@@ -125,11 +127,15 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
                     
                 {
                     
+                    print(dictionary)
+                    
                     if let items = dictionary["data"] as? [Dictionary<String, Any>] {
                         
                         for d in items {
                             
                             self.cards.append(d)
+                            
+                            print("Appended cards")
                             
                         }
                         
@@ -140,6 +146,7 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
                 DispatchQueue.main.async {
                     if self.cards.count > 0 {
                         self.tableView.reloadData()
+                        print("Tableview was reloaded")
                     }
                     
                 }

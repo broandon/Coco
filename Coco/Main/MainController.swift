@@ -17,6 +17,7 @@ class MainController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var balanceView: UIView!
     @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var referalCodeLabel: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var cocopointsView: UIView!
     @IBOutlet weak var cocopointsBalance: UILabel!
@@ -88,6 +89,7 @@ class MainController: UIViewController {
     private func configureView() {
         balanceView.roundCorners(15)
         cocopointsView.roundCorners(15)
+        referalCodeLabel.roundCorners(15)
     }
     
     private func configureTable() {
@@ -116,6 +118,7 @@ class MainController: UIViewController {
         table.reloadData()
         balanceLabel.text = "Saldo: $ \(mainData.info?.current_balance ?? "--")"
         cocopointsBalance.text = "Cocopoints: \(mainData.info?.cocopoints_balance ?? "--")"
+        referalCodeLabel.text = "\(mainData.info?.codigo_referido ?? "")"
     }
     
     @IBAction func menuAction(_ sender: Any) {

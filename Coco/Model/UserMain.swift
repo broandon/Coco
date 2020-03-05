@@ -17,19 +17,22 @@ class UserMain: Decodable {
   public var notifications: String?
   public var current_balance: String?
   public var cocopoints_balance: String?
+  public var codigo_referido: String?
     
   public init(name: String = "",
               last_name: String = "",
               phone: String = "",
               notifications: String = "",
               current_balance: String = "",
-              cocopoints_balance: String = "") {
+              cocopoints_balance: String = "",
+              codigo_referido: String = "") {
     self.name = name
     self.last_name = last_name
     self.phone = phone
     self.notifications = notifications
     self.current_balance = current_balance
     self.cocopoints_balance = cocopoints_balance
+    self.codigo_referido = codigo_referido
   }
   
   enum CodingKeys: String, CodingKey {
@@ -39,6 +42,7 @@ class UserMain: Decodable {
     case notifications = "notificaciones"
     case current_balance = "saldo_actual"
     case cocopoints_balance = "saldo_cocopoints"
+    case codigo_referido = "codigo_referido"
   }
 }
 
@@ -80,6 +84,12 @@ class Main: Decodable {
         completion(.failure(dictionary["status_msg"]?.string ?? ""))
         return
       }
+                        
+                        if dictionary["state"] == "200" {
+                            
+                            print(dictionary)
+                            
+                        }
       
       guard let dataDictionary = dictionary["data"],
         let object = try? dataDictionary.rawData(),

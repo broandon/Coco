@@ -18,7 +18,8 @@ class ProductDetailVC: UIViewController {
   @IBOutlet weak var productNameLabel: UILabel!
   @IBOutlet weak var descriptionLabel: UILabel!
   @IBOutlet weak var priceLabel: UILabel!
-  @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var cocopointsLabel: UILabel!
+    @IBOutlet weak var quantityLabel: UILabel!
   @IBOutlet weak var lessQuantityButton: UIButton!
   @IBOutlet weak var addQuantityButton: UIButton!
   @IBOutlet weak var addToCartButton: UIButton!
@@ -91,7 +92,8 @@ class ProductDetailVC: UIViewController {
   private func fillInfo() {
     productNameLabel.text = product.name
     descriptionLabel.text = product.description
-    priceLabel.text = product.price
+    priceLabel.text = "Precio: \(product.price ?? "")"
+    cocopointsLabel.text = "Cocopoints \(product.cocopoints ?? 0)"
     
     if product.favorite != nil && product.favorite == "1" {
       favoriteButton.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)

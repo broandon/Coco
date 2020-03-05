@@ -30,7 +30,7 @@
                                 <constraint firstAttribute="height" constant="23" id="Vcu-aX-rPm"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agregar Tarjeta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGl-am-cxP">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canjear Tarjeta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGl-am-cxP">
                             <rect key="frame" x="39" y="8" width="367" height="47"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
@@ -91,7 +91,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="147" id="l6O-MS-71R"/>
                     </constraints>
-                    <string key="text">Recuerda una vez cambiado el folio ya no es utilizable para otras cuentas. Te invitamos a desechar la tarjeta una vez concluida tu captura.</string>
+                    <string key="text">Recuerda una vez canjeado el folio ya no es utilizable para otras cuentas. Te invitamos a desechar la tarjeta una vez concluida tu captura.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>

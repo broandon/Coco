@@ -40,6 +40,7 @@ struct Routes {
   
   static let getOrdersDetail = "getOrderDetail"
   static let saveOrder = "saveOrder"
+  static let saveOrderCocopoints = "saveOrderCocopoints"
   static let adminFavorite = "adminFavorite"
   
   static let sendToken = "sendToken"

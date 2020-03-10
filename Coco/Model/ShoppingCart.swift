@@ -19,6 +19,7 @@ class ShoppingCart: Codable {
   public var store_name: String?
   public var comments: String?
   public var products: [Product] = []
+  public var cocopoints: Int?
   
   public init(sub_amount: String? = "",
               percentage_service: String? = "",
@@ -26,7 +27,8 @@ class ShoppingCart: Codable {
               amount_final: String? = "",
               id_store: String? = "",
               store_name: String? = "",
-              comments: String? = "") {
+              comments: String? = "",
+              cocopoints: Int? = 0) {
     self.sub_amount = sub_amount
     self.percentage_service = percentage_service
     self.amount_service = amount_service
@@ -34,6 +36,7 @@ class ShoppingCart: Codable {
     self.id_store = id_store
     self.store_name = store_name
     self.comments = comments
+    self.cocopoints = cocopoints
   }
   
   enum CodingKeys: String, CodingKey {
@@ -45,6 +48,7 @@ class ShoppingCart: Codable {
     case comments
     case products
     case store_name
+    case cocopoints
   }
   
   func addProduct(product: Product) {
@@ -75,6 +79,36 @@ class ShoppingCart: Codable {
       throw NSError()
     }
     return dictionary
+  }
+    
+  func saveOrder2(products: String, parameters: [String: Any], completion: @escaping(Result) -> Void){
+    var data = parameters
+    data["products"] = products
+    data["funcion"] = Routes.saveOrderCocopoints
+    data["id_user"] = Defaults[.user]!
+    
+    Alamofire.request(General.url_connection,
+                      method: .post,
+                      parameters: data).responseJSON { (response) in
+                        if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                          print("Data: \(utf8Text)")
+                        }
+      guard let data = response.result.value else {
+        completion(.failure("Error de conexión"))
+        return
+      }
+      
+      guard let dictionary = JSON(data).dictionary else {
+        completion(.failure("Error al obtener los datos"))
+        return
+      }
+      
+      if dictionary["state"] != "200" {
+        completion(.failure(dictionary["status_msg"]?.string ?? ""))
+        return
+      }
+      completion(.success([]))
+    }
   }
   
   func saveOrder(products: String, parameters: [String: Any], completion: @escaping(Result) -> Void){

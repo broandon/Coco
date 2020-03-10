@@ -15,20 +15,24 @@ class OrderDetail: UIViewController {
   @IBOutlet weak var scroll: UIScrollView!
   @IBOutlet weak var businessName: UILabel!
   @IBOutlet weak var amount: UILabel!
+  @IBOutlet weak var cocopoints: UILabel!
   @IBOutlet weak var table: UITableView!
   @IBOutlet weak var tip: UIButton!
   @IBOutlet weak var orderDescription: UITextView!
   @IBOutlet weak var heightTable: NSLayoutConstraint!
-  
+  @IBOutlet weak var tipLabel: UILabel!
+    
   var loader: LoaderVC!
   var ordersDetail: OrdersDetail!
   var order: Order!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    print("Orders details")
     configureView()
     configureTable()
     requestData()
+    newPayment()
   }
   
   private func requestData() {
@@ -50,6 +54,7 @@ class OrderDetail: UIViewController {
   private func fillInfo() {
     businessName.text = ordersDetail.order.business
     amount.text = ordersDetail.order.total
+    cocopoints.text = "\(ordersDetail.order.cocopoints ?? 0)"
     orderDescription.text = ordersDetail.order.comments
     guard let tipPercentage = ordersDetail.order.tipPercentage else {
       tip.setTitle("0 %", for: .normal)
@@ -74,6 +79,15 @@ class OrderDetail: UIViewController {
     orderDescription.addBorder(thickness: 1, color: .CocoBlack)
   }
   
+    func newPayment() {
+        
+        orderDescription.isHidden = true
+        tip.isHidden = true
+        tipLabel.isHidden = true
+        
+        
+    }
+    
   @IBAction func backBtn(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }

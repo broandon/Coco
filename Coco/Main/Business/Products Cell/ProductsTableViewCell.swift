@@ -14,7 +14,8 @@ class ProductsTableViewCell: UITableViewCell {
   @IBOutlet weak var dishImage: UIImageView!
   @IBOutlet weak var dishName: UILabel!
   @IBOutlet weak var price: UILabel!
-  
+    @IBOutlet weak var cocopointsCost: UILabel!
+    
   static let cellIdentifier = "ProductsTableViewCell"
   let index: Int = 0
   

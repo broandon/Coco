@@ -18,23 +18,34 @@ class ShoppingCartVC: UIViewController {
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var tip_5: UIButton!
     @IBOutlet weak var tip_10: UIButton!
+    @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var tip_15: UIButton!
     @IBOutlet weak var orderDescription: UITextView!
     @IBOutlet weak var payButton: UIButton!
+    @IBOutlet weak var cocopoints: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var payWithMoneyButton: UIButton!
+    @IBOutlet weak var payWithCocopoints: UIButton!
+    @IBOutlet weak var payWithCocoButton: UIButton!
+    @IBOutlet weak var payViews: UIView!
     
     var loader: LoaderVC!
     var shoppingCart: ShoppingCart?
     private var mainData: Main!
     private var balance: String = ""
+    private var cocopointsBalance: String = ""
+    var costInCocopoints: String = ""
     
     var tip: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Orders details")
         requestData()
         configureView()
         configureTable()
         getShoppingCart()
+        firstTimer()
     }
     
     private func configureTable() {
@@ -53,6 +64,17 @@ class ShoppingCartVC: UIViewController {
                 
                 businessName.text = shoppingCart?.store_name
                 amount.text = shoppingCart?.sub_amount
+             
+                //MARK: Heres the cocopoints amount
+                
+                let value = Double("\(shoppingCart?.sub_amount ?? "")") ?? 0
+                let oneThousand = 1000.0
+                
+                let valueCocopoints = value * oneThousand
+                
+                costInCocopoints = "\(valueCocopoints)"
+                cocopoints.text = "\(valueCocopoints)"
+                
             }
         }
     }
@@ -65,6 +87,7 @@ class ShoppingCartVC: UIViewController {
                 self.throwError(str: errorMssg)
             case .success(_):
                 self.balance = self.mainData.info?.current_balance ?? "0.0"
+                self.cocopointsBalance = self.mainData.info?.cocopoints_balance ?? "0.0"
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "reloadBalance"), object: nil)
             }
         }
@@ -84,7 +107,53 @@ class ShoppingCartVC: UIViewController {
         tip_15.addBorder(thickness: 2, color: .CocoBlack)
         
         orderDescription.addBorder(thickness: 1, color: .CocoBlack)
+        
+        payWithMoneyButton.roundCorners(15)
+        payWithCocopoints.roundCorners(15)
+        payWithCocoButton.roundCorners(15)
     }
+    
+    func firstTimer() {
+        
+        tipLabel.isHidden = true
+        tip_5.isHidden = true
+        tip_10.isHidden = true
+        tip_15.isHidden = true
+        orderDescription.isHidden = true
+        descriptionLabel.isHidden = true
+        payButton.isHidden = true
+        payWithCocoButton.isHidden = true
+        
+        
+    }
+    
+    @IBAction func payWithMoney(_ sender: Any) {
+        
+        payViews.isHidden = true
+        tipLabel.isHidden = false
+        tip_5.isHidden = false
+        tip_10.isHidden = false
+        tip_15.isHidden = false
+        orderDescription.isHidden = false
+        descriptionLabel.isHidden = false
+        payButton.isHidden = false
+        
+    }
+    
+    @IBAction func payWithCocopoints(_ sender: Any) {
+        
+        payViews.isHidden = true
+        orderDescription.isHidden = false
+        descriptionLabel.isHidden = false
+        payWithCocoButton.isHidden = false
+        
+        let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.bounds.size.height)
+        scroll.setContentOffset(bottomOffset, animated: true)
+        
+    }
+    
+
+    
     
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -141,6 +210,57 @@ class ShoppingCartVC: UIViewController {
                 self.present(newViewController, animated: true, completion: nil)
             }
         })
+    }
+    
+    @IBAction func payActionB(_ sender: Any) {
+        
+        guard let shoppingCart = shoppingCart else { return }
+        shoppingCart.comments = orderDescription.text
+        guard let dict = try? shoppingCart.asDictionary() else {
+            return
+        }
+       
+        var jsonText = ""
+        var products = [[String:Any]]()
+        for i in dict["products"] as! [[String: Any]] {
+            
+            var temp = [String:Any]()
+            temp["id"] = i["id"]
+            temp["cantidad"] = i["cantidad"]
+            temp["precio"] = i["precio"]
+            products.append(temp)
+        }
+        
+        if let theJSONData = try? JSONSerialization.data(withJSONObject: products, options: .prettyPrinted),
+            let theJSONText = String(data:theJSONData, encoding: String.Encoding.ascii) {
+            
+            jsonText = theJSONText
+            
+        }
+        
+        let my_balance = NumberFormatter().number(from: cocopointsBalance)
+        let cost = NumberFormatter().number(from: costInCocopoints)!
+        
+        if my_balance!.floatValue < cost.floatValue {
+            
+            self.throwError(str: "Saldo insuciente")
+            return
+        }
+    
+        showLoader(&loader, view: view)
+        shoppingCart.saveOrder2(products: jsonText, parameters: dict, completion: { result in
+            self.loader.removeAnimate()
+            switch result {
+            case .failure(let errorMssg):
+                self.throwError(str: errorMssg)
+                return
+            case .success(_):
+                
+                print("Done stuff")
+                
+            }
+        })
+    
     }
     
     @IBAction func tip5Action(_ sender: Any) {
@@ -241,7 +361,7 @@ extension ShoppingCartVC: ShoppingCartProductCellDelegate {
             }
             
             shoppingCart?.sub_amount = "\(totalAccount)"
-            amount.text = "\(totalAccount)"
+            amount.text = "\(totalAccount) butch"
             table.reloadData()
         }
     }

@@ -62,7 +62,7 @@
                                         <rect key="frame" x="16" y="16" width="382" height="124"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monto:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbO-xm-gIp">
-                                                <rect key="frame" x="200" y="32" width="174" height="20"/>
+                                                <rect key="frame" x="200" y="8" width="174" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="11s-4u-2Gh"/>
                                                 </constraints>
@@ -80,7 +80,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMd-V5-Nb5">
-                                                <rect key="frame" x="200" y="68" width="174" height="24"/>
+                                                <rect key="frame" x="200" y="36" width="174" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="47p-Av-HnQ"/>
                                                 </constraints>
@@ -95,20 +95,42 @@
                                                     <constraint firstAttribute="width" constant="1.5" id="46w-mE-t8O"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cocopoints:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WcB-cH-1Pe">
+                                                <rect key="frame" x="200" y="56" width="174" height="20"/>
+                                                <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="15"/>
+                                                <color key="textColor" name="Black"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc6-Vu-Yyo">
+                                                <rect key="frame" x="200" y="84" width="174" height="24"/>
+                                                <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="18"/>
+                                                <color key="textColor" name="Salmon"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="kc6-Vu-Yyo" secondAttribute="trailing" constant="8" id="0Zq-yl-tFa"/>
+                                            <constraint firstAttribute="trailing" secondItem="WcB-cH-1Pe" secondAttribute="trailing" constant="8" id="1rT-Pg-yLJ"/>
                                             <constraint firstAttribute="height" constant="124" id="7kn-KZ-rLd"/>
                                             <constraint firstItem="dts-LG-7ig" firstAttribute="leading" secondItem="qdM-QI-axw" secondAttribute="trailing" constant="8" id="9We-Rt-4fX"/>
+                                            <constraint firstItem="kc6-Vu-Yyo" firstAttribute="width" secondItem="GMd-V5-Nb5" secondAttribute="width" id="CNP-ah-Z8h"/>
                                             <constraint firstItem="GMd-V5-Nb5" firstAttribute="leading" secondItem="dts-LG-7ig" secondAttribute="trailing" constant="8" id="GvG-0g-9K6"/>
-                                            <constraint firstItem="GMd-V5-Nb5" firstAttribute="top" secondItem="nbO-xm-gIp" secondAttribute="bottom" constant="16" id="MUe-qw-5XL"/>
-                                            <constraint firstItem="nbO-xm-gIp" firstAttribute="top" secondItem="5q5-uw-olW" secondAttribute="top" constant="32" id="MsE-IU-wJc"/>
+                                            <constraint firstItem="GMd-V5-Nb5" firstAttribute="top" secondItem="nbO-xm-gIp" secondAttribute="bottom" constant="8" id="MUe-qw-5XL"/>
+                                            <constraint firstItem="nbO-xm-gIp" firstAttribute="top" secondItem="5q5-uw-olW" secondAttribute="top" constant="8" id="MsE-IU-wJc"/>
                                             <constraint firstItem="qdM-QI-axw" firstAttribute="top" secondItem="5q5-uw-olW" secondAttribute="top" constant="32" id="NWy-8s-UBw"/>
                                             <constraint firstAttribute="trailing" secondItem="nbO-xm-gIp" secondAttribute="trailing" constant="8" id="PZZ-uS-WUl"/>
+                                            <constraint firstItem="kc6-Vu-Yyo" firstAttribute="top" secondItem="WcB-cH-1Pe" secondAttribute="bottom" constant="8" id="QAg-m6-z5l"/>
                                             <constraint firstAttribute="trailing" secondItem="GMd-V5-Nb5" secondAttribute="trailing" constant="8" id="QjI-qj-j1G"/>
+                                            <constraint firstItem="kc6-Vu-Yyo" firstAttribute="leading" secondItem="dts-LG-7ig" secondAttribute="trailing" constant="8" id="TKh-lb-KdI"/>
                                             <constraint firstItem="nbO-xm-gIp" firstAttribute="width" secondItem="qdM-QI-axw" secondAttribute="width" id="TS3-3J-0pN"/>
+                                            <constraint firstItem="WcB-cH-1Pe" firstAttribute="width" secondItem="nbO-xm-gIp" secondAttribute="width" id="X0O-WJ-A7k"/>
                                             <constraint firstAttribute="bottom" secondItem="dts-LG-7ig" secondAttribute="bottom" constant="16" id="Z5o-HR-k7Q"/>
+                                            <constraint firstItem="WcB-cH-1Pe" firstAttribute="height" secondItem="nbO-xm-gIp" secondAttribute="height" id="d1n-nc-Vdk"/>
+                                            <constraint firstItem="kc6-Vu-Yyo" firstAttribute="height" secondItem="GMd-V5-Nb5" secondAttribute="height" id="gC9-ll-lZW"/>
                                             <constraint firstItem="nbO-xm-gIp" firstAttribute="leading" secondItem="dts-LG-7ig" secondAttribute="trailing" constant="8" id="hd5-1b-93b"/>
+                                            <constraint firstItem="WcB-cH-1Pe" firstAttribute="leading" secondItem="dts-LG-7ig" secondAttribute="trailing" constant="8" id="lUV-2Z-fCe"/>
+                                            <constraint firstItem="WcB-cH-1Pe" firstAttribute="top" secondItem="nbO-xm-gIp" secondAttribute="bottom" constant="28" id="mus-Xc-4dO"/>
                                             <constraint firstItem="dts-LG-7ig" firstAttribute="top" secondItem="5q5-uw-olW" secondAttribute="top" constant="16" id="oY8-Rv-X2w"/>
                                             <constraint firstItem="qdM-QI-axw" firstAttribute="leading" secondItem="5q5-uw-olW" secondAttribute="leading" constant="8" id="qxO-Iq-Ojz"/>
                                         </constraints>
@@ -257,11 +279,13 @@
                         <outlet property="amount" destination="GMd-V5-Nb5" id="ZA9-Nb-rHg"/>
                         <outlet property="backView" destination="5q5-uw-olW" id="6D0-Kt-puE"/>
                         <outlet property="businessName" destination="qdM-QI-axw" id="xWf-lO-yep"/>
+                        <outlet property="cocopoints" destination="kc6-Vu-Yyo" id="6qT-bc-1WQ"/>
                         <outlet property="heightTable" destination="wLq-IO-SJ1" id="vof-BA-pij"/>
                         <outlet property="orderDescription" destination="MNZ-BC-100" id="PLH-gK-341"/>
                         <outlet property="scroll" destination="mhU-P4-vGX" id="zZA-xh-8Ek"/>
                         <outlet property="table" destination="kub-sM-8cB" id="5NY-h3-ZbX"/>
                         <outlet property="tip" destination="YUS-Li-kYo" id="kBo-bF-jgd"/>
+                        <outlet property="tipLabel" destination="6ur-GU-xKb" id="1zH-o2-1B8"/>
                         <outlet property="topBar" destination="sww-Z3-aDr" id="fhs-w2-qR7"/>
                     </connections>
                 </viewController>
@@ -277,6 +301,9 @@
         </namedColor>
         <namedColor name="Green">
             <color red="0.0" green="0.61568627450980395" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Salmon">
+            <color red="1" green="0.44705882352941179" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

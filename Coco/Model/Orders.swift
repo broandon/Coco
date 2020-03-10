@@ -21,6 +21,7 @@ class Order: Decodable {
   public var status: String?
   public var comments: String?
   public var tipPercentage: String?
+  public var cocopoints: Int?
   
   enum CodingKeys: String, CodingKey {
     case id = "Id"
@@ -33,6 +34,7 @@ class Order: Decodable {
     case status = "estatus"
     case comments = "comentarios"
     case tipPercentage = "procentaje_propina"
+    case cocopoints = "cocopoints"
   }
 }
 

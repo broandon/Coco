@@ -71,6 +71,7 @@ extension ProductsVC: UITableViewDelegate, UITableViewDataSource {
     let item = products.products[indexPath.row]
     cell.dishName.text = item.name
     cell.price.text = "Precio: \(item.price ?? "--")"
+    cell.cocopointsCost.text = "Cocopoints: \(item.cocopoints ?? 0)"
     cell.dishImage.kf.setImage(with: URL(string: item.imageURL ?? ""),
                                placeholder: nil,
                                options: [.transition(.fade(0.4))],

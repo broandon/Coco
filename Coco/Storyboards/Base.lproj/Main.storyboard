@@ -144,7 +144,7 @@
                                             <action selector="menuAction:" destination="a5t-bI-LM1" eventType="touchUpInside" id="XGP-ON-by8"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7yd-k4-mOv">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7yd-k4-mOv">
                                         <rect key="frame" x="104" y="12" width="86" height="34"/>
                                         <color key="backgroundColor" red="0.70675939320000003" green="0.51245278120000004" blue="0.32124722" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -668,11 +668,11 @@
         <scene sceneID="zfP-5s-RIR">
             <objects>
                 <viewController storyboardIdentifier="popUpViewController" id="pve-kM-Ezk" customClass="popUpViewController" customModule="Coco" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="rkq-Sk-D15">
+                    <view key="view" contentMode="scaleToFill" id="rkq-Sk-D15">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khL-bv-66e">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khL-bv-66e">
                                 <rect key="frame" x="32" y="190" width="350" height="438"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UpI-ST-Mtc">
@@ -1094,7 +1094,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="Colegio:"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Selecciona el colegio"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Selecciona tu proveedor"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
                                                 <color key="value" name="Black"/>
                                             </userDefinedRuntimeAttribute>

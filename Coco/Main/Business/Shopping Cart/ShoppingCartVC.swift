@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftyUserDefaults
+import Alamofire
 
 class ShoppingCartVC: UIViewController {
     
@@ -31,10 +33,13 @@ class ShoppingCartVC: UIViewController {
     
     var loader: LoaderVC!
     var shoppingCart: ShoppingCart?
+    var shoppingCart2extra: ShoppingCart2?
     private var mainData: Main!
     private var balance: String = ""
     private var cocopointsBalance: String = ""
     var costInCocopoints: String = ""
+    var normalCost: String = ""
+    let userID = Defaults[.user]
     
     var tip: Int = 0
     
@@ -64,7 +69,7 @@ class ShoppingCartVC: UIViewController {
                 
                 businessName.text = shoppingCart?.store_name
                 amount.text = shoppingCart?.sub_amount
-             
+                
                 //MARK: Heres the cocopoints amount
                 
                 let value = Double("\(shoppingCart?.sub_amount ?? "")") ?? 0
@@ -72,6 +77,7 @@ class ShoppingCartVC: UIViewController {
                 
                 let valueCocopoints = value * oneThousand
                 
+                normalCost = "\(value)"
                 costInCocopoints = "\(valueCocopoints)"
                 cocopoints.text = "\(valueCocopoints)"
                 
@@ -152,7 +158,7 @@ class ShoppingCartVC: UIViewController {
         
     }
     
-
+    
     
     
     @IBAction func backBtn(_ sender: Any) {
@@ -202,7 +208,7 @@ class ShoppingCartVC: UIViewController {
                 return
             case .success(_):
                 UserDefaults.standard.removeObject(forKey: "shoppingCart")
-               // Register Nib
+                // Register Nib
                 let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
                 newViewController.modalPresentationStyle = .fullScreen
                 
@@ -212,14 +218,16 @@ class ShoppingCartVC: UIViewController {
         })
     }
     
-    @IBAction func payActionB(_ sender: Any) {
+    func saveValueDic() {
         
         guard let shoppingCart = shoppingCart else { return }
-        shoppingCart.comments = orderDescription.text
-        guard let dict = try? shoppingCart.asDictionary() else {
-            return
-        }
-       
+        
+        guard let dict = try? shoppingCart.asDictionary() else { return }
+        
+        print("This is the DIC before")
+        print(dict)
+        print("****")
+        
         var jsonText = ""
         var products = [[String:Any]]()
         for i in dict["products"] as! [[String: Any]] {
@@ -231,36 +239,55 @@ class ShoppingCartVC: UIViewController {
             products.append(temp)
         }
         
-        if let theJSONData = try? JSONSerialization.data(withJSONObject: products, options: .prettyPrinted),
-            let theJSONText = String(data:theJSONData, encoding: String.Encoding.ascii) {
-            
-            jsonText = theJSONText
-            
-        }
+        let theCocoDict = dict["products"]
         
-        let my_balance = NumberFormatter().number(from: cocopointsBalance)
+        UserDefaults.standard.setValue(theCocoDict, forKey: "theCocoDict")
+        
+    }
+    
+    @IBAction func payActionB(_ sender: Any) {
+        
+        saveValueDic()
+        
+        let normalCost1 = NumberFormatter().number(from: normalCost)!
         let cost = NumberFormatter().number(from: costInCocopoints)!
+        let idStore = (shoppingCart?.id_store)!
+        let comments = (shoppingCart?.comments)!
+        let theDict = UserDefaults.standard.value(forKey: "theCocoDict")
         
-        if my_balance!.floatValue < cost.floatValue {
-            
-            self.throwError(str: "Saldo insuciente")
-            return
+        let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
+        
+        let params:NSMutableDictionary? = [
+            "funcion" : "saveOrderCocopoints",
+            "id_user" : userID,
+            "amount_final" : normalCost1,
+            "productos": theDict,
+            "amount_cocopoints": cost,
+            "id_store" : idStore,
+            "comments" : comments]
+        
+        var request = URLRequest(url: NSURL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")! as URL)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let data = try! JSONSerialization.data(withJSONObject: params!, options: JSONSerialization.WritingOptions.prettyPrinted)
+        
+        let json = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+        if let json = json {
+            print(json)
         }
-    
-        showLoader(&loader, view: view)
-        shoppingCart.saveOrder2(products: jsonText, parameters: dict, completion: { result in
-            self.loader.removeAnimate()
-            switch result {
-            case .failure(let errorMssg):
-                self.throwError(str: errorMssg)
-                return
-            case .success(_):
+        request.httpBody = json!.data(using: String.Encoding.utf8.rawValue);
+        
+        Alamofire.request(request as! URLRequestConvertible)
+            .responseJSON { response in
+                UserDefaults.standard.removeObject(forKey: "shoppingCart")
+                // Register Nib
+                let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
+                newViewController.modalPresentationStyle = .fullScreen
                 
-                print("Done stuff")
-                
-            }
-        })
-    
+                // Present View "Modally"
+                self.present(newViewController, animated: true, completion: nil)
+        }
+        
     }
     
     @IBAction func tip5Action(_ sender: Any) {

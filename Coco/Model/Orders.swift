@@ -22,6 +22,8 @@ class Order: Decodable {
   public var comments: String?
   public var tipPercentage: String?
   public var cocopoints: Int?
+  public var tipoDeCompra: String?
+  public var totalCocopoints: String?
   
   enum CodingKeys: String, CodingKey {
     case id = "Id"
@@ -35,6 +37,9 @@ class Order: Decodable {
     case comments = "comentarios"
     case tipPercentage = "procentaje_propina"
     case cocopoints = "cocopoints"
+    case tipoDeCompra = "tipo_compra"
+    case totalCocopoints = "monto_cocopoints"
+    
   }
 }
 
@@ -63,6 +68,9 @@ class Orders: Decodable {
         completion(.failure("Error al obtener los datos"))
         return
       }
+                       
+      print("This is the dictionary")
+      print(dictionary)
       
       if dictionary["state"] != "200" {
         completion(.failure(dictionary["status_msg"]?.string ?? ""))

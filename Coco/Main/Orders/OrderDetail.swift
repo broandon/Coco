@@ -14,8 +14,10 @@ class OrderDetail: UIViewController {
   @IBOutlet weak var backView: UIView!
   @IBOutlet weak var scroll: UIScrollView!
   @IBOutlet weak var businessName: UILabel!
-  @IBOutlet weak var amount: UILabel!
-  @IBOutlet weak var cocopoints: UILabel!
+    @IBOutlet weak var amountLabels: UILabel!
+    @IBOutlet weak var amount: UILabel!
+    @IBOutlet weak var cocopointsLabels: UILabel!
+    @IBOutlet weak var cocopoints: UILabel!
   @IBOutlet weak var table: UITableView!
   @IBOutlet weak var tip: UIButton!
   @IBOutlet weak var orderDescription: UITextView!
@@ -25,14 +27,14 @@ class OrderDetail: UIViewController {
   var loader: LoaderVC!
   var ordersDetail: OrdersDetail!
   var order: Order!
-  
+  var orders: Orders!
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    print("Orders details")
+    checkTypeOfOrder()
     configureView()
     configureTable()
     requestData()
-    newPayment()
   }
   
   private func requestData() {
@@ -54,7 +56,7 @@ class OrderDetail: UIViewController {
   private func fillInfo() {
     businessName.text = ordersDetail.order.business
     amount.text = ordersDetail.order.total
-    cocopoints.text = "\(ordersDetail.order.cocopoints ?? 0)"
+    cocopoints.text = order.totalCocopoints
     orderDescription.text = ordersDetail.order.comments
     guard let tipPercentage = ordersDetail.order.tipPercentage else {
       tip.setTitle("0 %", for: .normal)
@@ -78,13 +80,30 @@ class OrderDetail: UIViewController {
     
     orderDescription.addBorder(thickness: 1, color: .CocoBlack)
   }
-  
-    func newPayment() {
+    
+    func checkTypeOfOrder() {
+    
+        if order.tipoDeCompra == "1" {
+            
+            cocopointsLabels.isHidden = true
+            cocopoints.isHidden = true
+            
+        }
         
-        orderDescription.isHidden = true
-        tip.isHidden = true
-        tipLabel.isHidden = true
-        
+        if order.tipoDeCompra == "2" {
+            
+            let totaldeCocos = "\(order.totalCocopoints ?? "")"
+            
+            amountLabels.isHidden = true
+            amount.isHidden = true
+            tipLabel.isHidden = true
+            tip.isHidden = true
+            cocopoints.text = totaldeCocos
+            
+            print("BITCHES")
+            print(totaldeCocos)
+            print(order.totalCocopoints)
+        }
         
     }
     

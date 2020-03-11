@@ -16,7 +16,8 @@ class OrderTableViewCell: UITableViewCell {
   @IBOutlet weak var statusLabel: UILabel!
   @IBOutlet weak var businessLabel: UILabel!
   @IBOutlet weak var amountLabel: UILabel!
-  
+  @IBOutlet weak var montoCocoLabel: UILabel!
+    
   
   static let cellIdentifier = "OrderTableViewCell"
   let index: Int = 0

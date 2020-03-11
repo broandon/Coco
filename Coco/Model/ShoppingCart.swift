@@ -128,6 +128,11 @@ class ShoppingCart: Codable {
         Alamofire.request(General.url_connection,
                           method: .post,
                           parameters: data).responseJSON { (response) in
+                            
+                            print("THIS IS THE LAST DATA")
+                            print(data)
+                            print("*********************")
+                            
                             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                                 print("Data: \(utf8Text)")
                             }

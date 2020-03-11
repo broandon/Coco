@@ -21,6 +21,7 @@ class OrdersVC: UIViewController {
     orders = Orders()
     configureTable()
     requestData()
+    
   }
   
   private func configureTable() {
@@ -72,7 +73,19 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
     cell.dateLabel.text = "Fecha: \(item.date ?? "--")"
     cell.statusLabel.text = "Estatus: \(item.status ?? "--")"
     cell.businessLabel.text = "Cafetería: \(item.business ?? "--")"
-    cell.amountLabel.text = item.total
+    
+    if item.tipoDeCompra == "1" {
+        
+        cell.montoCocoLabel.text = "Monto"
+        cell.amountLabel.text = item.total
+        
+    } else if item.tipoDeCompra == "2" {
+        
+        cell.montoCocoLabel.text = "Cocopoints"
+        cell.amountLabel.text = item.totalCocopoints
+        
+    }
+    
     return cell
   }
   

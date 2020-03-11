@@ -46,13 +46,11 @@ class ShoppingCartVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Orders details")
         requestData()
         configureView()
         configureTable()
         getShoppingCart()
         firstTimer()
-        saveValueDic()
     }
     
     private func configureTable() {
@@ -146,6 +144,9 @@ class ShoppingCartVC: UIViewController {
         descriptionLabel.isHidden = false
         payButton.isHidden = false
         
+        let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.bounds.size.height)
+        scroll.setContentOffset(bottomOffset, animated: true)
+        
     }
     
     @IBAction func payWithCocopoints(_ sender: Any) {
@@ -160,9 +161,6 @@ class ShoppingCartVC: UIViewController {
         
     }
     
-    
-    
-    
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -174,6 +172,9 @@ class ShoppingCartVC: UIViewController {
         guard let dict = try? shoppingCart.asDictionary() else {
             return
         }
+        
+        print(dict)
+        
         var jsonText = ""
         var products = [[String: Any]]()
         for i in dict["products"] as! [[String: Any]] {
@@ -184,6 +185,8 @@ class ShoppingCartVC: UIViewController {
             products.append(temp)
         }
         
+        print(products)
+        
         if let theJSONData = try? JSONSerialization.data(
             withJSONObject: products,
             options: .prettyPrinted
@@ -192,6 +195,8 @@ class ShoppingCartVC: UIViewController {
                                      encoding: String.Encoding.ascii) {
             jsonText = theJSONText
         }
+        
+        print(jsonText)
         
         let my_balance = NumberFormatter().number(from: balance)!
         let cost = NumberFormatter().number(from: shoppingCart.amount_final ?? "0.0")!
@@ -220,117 +225,69 @@ class ShoppingCartVC: UIViewController {
         })
     }
     
-    func saveValueDic() {
+    @IBAction func payActionB(_ sender: Any) {
         
-        guard let shoppingCart = shoppingCart else { return }
-        
-        guard let dict = try? shoppingCart.asDictionary() else { return }
-        
-        print("This is the DIC before")
-        print(dict)
-        print("****")
+        guard let shoppingCarts = shoppingCart else { return }
+        guard let dict = try? shoppingCarts.asDictionary() else {
+            return
+        }
         
         var jsonText = ""
-        var products = [[String:Any]]()
+        var products = [[String: Any]]()
         for i in dict["products"] as! [[String: Any]] {
-            
-            var temp = [String:Any]()
-            temp["id"] = i["id"]
+            var temp = [String: Any]()
+            temp["id"] = i["Id"]
             temp["cantidad"] = i["cantidad"]
             temp["precio"] = i["precio"]
             products.append(temp)
         }
         
-        let theCocoDict = dict["products"] as! [[String:Any]]
+        if let theJSONData = try? JSONSerialization.data(
+            withJSONObject: products,
+            options: .prettyPrinted
+            ),
+            let theJSONText = String(data: theJSONData,
+                                     encoding: String.Encoding.ascii) {
+            jsonText = theJSONText
+        }
         
-        let theCocoDictAfter = theCocoDict[0]
+        let my_balance = NumberFormatter().number(from: cocopointsBalance)!
+        let costTotal = NumberFormatter().number(from: costInCocopoints)!
         
-        print("This is theCocoDict")
-        print(theCocoDict)
-        print("*******************")
-        print("And then some")
-        print(theCocoDictAfter)
-        print("*******************")
-        
-        UserDefaults.standard.setValue(theCocoDictAfter, forKey: "theCocoDict")
-        
-    }
-    
-    @IBAction func payActionB(_ sender: Any) {
-        
-        saveValueDic()
+        if my_balance.floatValue < costTotal.floatValue {
+            self.throwError(str: "Saldo insuficiente")
+            return
+        }
         
         let normalCost1 = NumberFormatter().number(from: normalCost)!
         let cost = NumberFormatter().number(from: costInCocopoints)!
         let idStore = (shoppingCart?.id_store)!
         let comments = (shoppingCart?.comments)!
-        let theDict = UserDefaults.standard.value(forKey: "theCocoDict") as! [String:Any]
-        
-        print("The coco Dict After")
-        print(theDict)
-        
-        let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
         
         let Parameters = [
             "funcion" : "saveOrderCocopoints",
             "id_user" : Defaults[.user]!,
             "amount_final" : normalCost1,
-            "productos": theDict,
             "amount_cocopoints": cost,
             "id_store" : idStore,
             "comments" : comments] as [String : Any]
         
-        print("The parameters")
-        print(Parameters)
-        
-        
-        
-        //   var request = URLRequest(url: NSURL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")! as URL)
-        //   request.httpMethod = "POST"
-        //  request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let data = try! JSONSerialization.data(withJSONObject: Parameters, options: JSONSerialization.WritingOptions.prettyPrinted)
-        
-        let json = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
-        if let json = json {
-            
-        }
-        
-        Alamofire.request("https://easycode.mx/sistema_coco/webservice/controller_last.php",
-                          method: .post,
-                          parameters: Parameters).responseJSON { (response) in
-                            
-                            if let data = response.data, let uf8Text = String(data: data, encoding: .utf8) {
-                                
-                                print("Data: \(uf8Text)")
-                                
-                            }
-                            
-                            guard let data = response.result.value else {
-                                print("error")
-                                return
-                            }
-                            
-
-                            guard let dictionary = JSON(data).dictionary else {
-                                
-                                print("error")
-                                return
-                            }
-                            
-                            if dictionary["state"] == "200" {
-                                
-                                print("This was succesful")
-                                print(dictionary["status_msg"])
-                                
-                            }
-                            
-                            print("These are the Parameters")
-                            print(Parameters)
-                            print("Was it done?")
-                            print(response)
-                            print("************")
-                            
-        }
+        showLoader(&loader, view: view)
+        shoppingCart!.saveOrder2(products: jsonText, parameters: Parameters, completion: { result in
+            self.loader.removeAnimate()
+            switch result {
+            case .failure(let errorMssg):
+                self.throwError(str: errorMssg)
+                return
+            case .success(_):
+                UserDefaults.standard.removeObject(forKey: "shoppingCart")
+                // Register Nib
+                let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
+                newViewController.modalPresentationStyle = .fullScreen
+                // Present View "Modally"
+                self.present(newViewController, animated: true, completion: nil)
+            }
+        })
         
     }
     
@@ -432,7 +389,9 @@ extension ShoppingCartVC: ShoppingCartProductCellDelegate {
             }
             
             shoppingCart?.sub_amount = "\(totalAccount)"
-            amount.text = "\(totalAccount) butch"
+            amount.text = "\(totalAccount)"
+            let costInCoco = totalAccount * 10000
+            cocopoints.text = "\(costInCoco)"
             table.reloadData()
         }
     }

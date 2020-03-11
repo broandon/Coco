@@ -277,9 +277,11 @@
                     </view>
                     <connections>
                         <outlet property="amount" destination="GMd-V5-Nb5" id="ZA9-Nb-rHg"/>
+                        <outlet property="amountLabels" destination="nbO-xm-gIp" id="IGW-Gd-n2O"/>
                         <outlet property="backView" destination="5q5-uw-olW" id="6D0-Kt-puE"/>
                         <outlet property="businessName" destination="qdM-QI-axw" id="xWf-lO-yep"/>
                         <outlet property="cocopoints" destination="kc6-Vu-Yyo" id="6qT-bc-1WQ"/>
+                        <outlet property="cocopointsLabels" destination="WcB-cH-1Pe" id="HU4-HD-zNU"/>
                         <outlet property="heightTable" destination="wLq-IO-SJ1" id="vof-BA-pij"/>
                         <outlet property="orderDescription" destination="MNZ-BC-100" id="PLH-gK-341"/>
                         <outlet property="scroll" destination="mhU-P4-vGX" id="zZA-xh-8Ek"/>

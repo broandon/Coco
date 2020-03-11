@@ -247,6 +247,9 @@ class ShoppingCartVC: UIViewController {
     
     @IBAction func payActionB(_ sender: Any) {
         
+        print("Everything in payActionB starts here")
+        print("***********************")
+        
         saveValueDic()
         
         let normalCost1 = NumberFormatter().number(from: normalCost)!
@@ -257,36 +260,65 @@ class ShoppingCartVC: UIViewController {
         
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
         
-        let params:NSMutableDictionary? = [
+        let Parameters = [
             "funcion" : "saveOrderCocopoints",
-            "id_user" : userID,
+            "id_user" : Defaults[.user]!,
             "amount_final" : normalCost1,
-            "productos": theDict,
+            "productos": theDict!,
             "amount_cocopoints": cost,
             "id_store" : idStore,
-            "comments" : comments]
+            "comments" : comments] as Parameters
         
-        var request = URLRequest(url: NSURL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")! as URL)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let data = try! JSONSerialization.data(withJSONObject: params!, options: JSONSerialization.WritingOptions.prettyPrinted)
+        print(Parameters)
+        
+     //   var request = URLRequest(url: NSURL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")! as URL)
+     //   request.httpMethod = "POST"
+      //  request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let data = try! JSONSerialization.data(withJSONObject: Parameters, options: JSONSerialization.WritingOptions.prettyPrinted)
         
         let json = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
         if let json = json {
+            
+            print("some json")
             print(json)
+            print("¿****")
         }
-        request.httpBody = json!.data(using: String.Encoding.utf8.rawValue);
+     //   request.httpBody = json!.data(using: String.Encoding.utf8.rawValue);
         
-        Alamofire.request(request as! URLRequestConvertible)
-            .responseJSON { response in
-                UserDefaults.standard.removeObject(forKey: "shoppingCart")
-                // Register Nib
-                let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
-                newViewController.modalPresentationStyle = .fullScreen
-                
-                // Present View "Modally"
-                self.present(newViewController, animated: true, completion: nil)
+        Alamofire.request("https://easycode.mx/sistema_coco/webservice/controller_last.php",
+        method: .post,
+        parameters: Parameters).responseJSON { (response) in
+            print("Here are the params")
+            print(Parameters)
+            print("Request here")
+            print(request)
+            print("response here")
+            print(response)
+            
+
+            
         }
+        
+//        Alamofire.request(request as! URLRequestConvertible, parameters: params )
+//            .responseJSON { response in
+//
+//                print("request here")
+//                print(request)
+//                print("******")
+//                print("response here")
+//                print(response)
+//                print("********")
+//
+//                UserDefaults.standard.removeObject(forKey: "shoppingCart")
+//                // Register Nib
+//                let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
+//                newViewController.modalPresentationStyle = .fullScreen
+//                // Present View "Modally"
+//                self.present(newViewController, animated: true, completion: nil)
+//        }
+        
+        print("Everything in payActionB ends here")
+        print("***********************")
         
     }
     

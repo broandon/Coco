@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyUserDefaults
 import Alamofire
+import SwiftyJSON
 
 class ShoppingCartVC: UIViewController {
     
@@ -51,6 +52,7 @@ class ShoppingCartVC: UIViewController {
         configureTable()
         getShoppingCart()
         firstTimer()
+        saveValueDic()
     }
     
     private func configureTable() {
@@ -239,16 +241,22 @@ class ShoppingCartVC: UIViewController {
             products.append(temp)
         }
         
-        let theCocoDict = dict["products"]
+        let theCocoDict = dict["products"] as! [[String:Any]]
         
-        UserDefaults.standard.setValue(theCocoDict, forKey: "theCocoDict")
+        let theCocoDictAfter = theCocoDict[0]
+        
+        print("This is theCocoDict")
+        print(theCocoDict)
+        print("*******************")
+        print("And then some")
+        print(theCocoDictAfter)
+        print("*******************")
+        
+        UserDefaults.standard.setValue(theCocoDictAfter, forKey: "theCocoDict")
         
     }
     
     @IBAction func payActionB(_ sender: Any) {
-        
-        print("Everything in payActionB starts here")
-        print("***********************")
         
         saveValueDic()
         
@@ -256,7 +264,10 @@ class ShoppingCartVC: UIViewController {
         let cost = NumberFormatter().number(from: costInCocopoints)!
         let idStore = (shoppingCart?.id_store)!
         let comments = (shoppingCart?.comments)!
-        let theDict = UserDefaults.standard.value(forKey: "theCocoDict")
+        let theDict = UserDefaults.standard.value(forKey: "theCocoDict") as! [String:Any]
+        
+        print("The coco Dict After")
+        print(theDict)
         
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
         
@@ -264,61 +275,62 @@ class ShoppingCartVC: UIViewController {
             "funcion" : "saveOrderCocopoints",
             "id_user" : Defaults[.user]!,
             "amount_final" : normalCost1,
-            "productos": theDict!,
+            "productos": theDict,
             "amount_cocopoints": cost,
             "id_store" : idStore,
-            "comments" : comments] as Parameters
+            "comments" : comments] as [String : Any]
         
+        print("The parameters")
         print(Parameters)
         
-     //   var request = URLRequest(url: NSURL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")! as URL)
-     //   request.httpMethod = "POST"
-      //  request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        
+        //   var request = URLRequest(url: NSURL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")! as URL)
+        //   request.httpMethod = "POST"
+        //  request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let data = try! JSONSerialization.data(withJSONObject: Parameters, options: JSONSerialization.WritingOptions.prettyPrinted)
         
         let json = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
         if let json = json {
             
-            print("some json")
-            print(json)
-            print("¿****")
         }
-     //   request.httpBody = json!.data(using: String.Encoding.utf8.rawValue);
         
         Alamofire.request("https://easycode.mx/sistema_coco/webservice/controller_last.php",
-        method: .post,
-        parameters: Parameters).responseJSON { (response) in
-            print("Here are the params")
-            print(Parameters)
-            print("Request here")
-            print(request)
-            print("response here")
-            print(response)
-            
+                          method: .post,
+                          parameters: Parameters).responseJSON { (response) in
+                            
+                            if let data = response.data, let uf8Text = String(data: data, encoding: .utf8) {
+                                
+                                print("Data: \(uf8Text)")
+                                
+                            }
+                            
+                            guard let data = response.result.value else {
+                                print("error")
+                                return
+                            }
+                            
 
-            
+                            guard let dictionary = JSON(data).dictionary else {
+                                
+                                print("error")
+                                return
+                            }
+                            
+                            if dictionary["state"] == "200" {
+                                
+                                print("This was succesful")
+                                print(dictionary["status_msg"])
+                                
+                            }
+                            
+                            print("These are the Parameters")
+                            print(Parameters)
+                            print("Was it done?")
+                            print(response)
+                            print("************")
+                            
         }
-        
-//        Alamofire.request(request as! URLRequestConvertible, parameters: params )
-//            .responseJSON { response in
-//
-//                print("request here")
-//                print(request)
-//                print("******")
-//                print("response here")
-//                print(response)
-//                print("********")
-//
-//                UserDefaults.standard.removeObject(forKey: "shoppingCart")
-//                // Register Nib
-//                let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
-//                newViewController.modalPresentationStyle = .fullScreen
-//                // Present View "Modally"
-//                self.present(newViewController, animated: true, completion: nil)
-//        }
-        
-        print("Everything in payActionB ends here")
-        print("***********************")
         
     }
     

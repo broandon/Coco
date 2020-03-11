@@ -87,6 +87,14 @@ class ShoppingCart: Codable {
         data["funcion"] = Routes.saveOrder
         data["id_user"] = Defaults[.user]!
         
+        print("this is the data")
+        print(data)
+        print("these are the parameters")
+        print(parameters)
+        print("Here is the dict")
+        print(data["products"])
+        print("***************")
+        
         Alamofire.request(General.url_connection,
                           method: .post,
                           parameters: data).responseJSON { (response) in

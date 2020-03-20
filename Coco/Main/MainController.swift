@@ -69,7 +69,20 @@ class MainController: UIViewController {
         
     }
     
-    @IBAction func showCocoPopUp(_ sender: Any) {
+    @IBAction func showCocoPopUp(_ sender: UIButton) {
+        
+        if sender.tag == 1 {
+            
+            UserDefaults.standard.set("Cocopoints", forKey: "buttonPressed")
+            
+        }
+        
+        if sender.tag == 3 {
+            
+            UserDefaults.standard.set("tuCodigo", forKey: "buttonPressed")
+            
+        }
+        
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "popUpViewController") as! popUpViewController
@@ -101,7 +114,7 @@ class MainController: UIViewController {
         table.register(nib, forCellReuseIdentifier: BusinessTableViewCell.cellIdentifier)
     }
     
-    private func requestData() {
+    func requestData() {
         showLoader(&loader, view: view)
         mainData.requestUserMain { (result) in
             self.loader.removeAnimate()
@@ -114,11 +127,11 @@ class MainController: UIViewController {
         }
     }
     
-    private func fillInfo() {
+     func fillInfo() {
         table.reloadData()
         balanceLabel.text = "Saldo: $ \(mainData.info?.current_balance ?? "--")"
         cocopointsBalance.text = "Cocopoints: \(mainData.info?.cocopoints_balance ?? "--")"
-        referalCodeLabel.text = "\(mainData.info?.codigo_referido ?? "")"
+        referalCodeLabel.text = "Tu codigo: \(mainData.info?.codigo_referido ?? "")"
     }
     
     @IBAction func menuAction(_ sender: Any) {

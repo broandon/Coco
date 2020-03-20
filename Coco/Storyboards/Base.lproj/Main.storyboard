@@ -144,24 +144,34 @@
                                             <action selector="menuAction:" destination="a5t-bI-LM1" eventType="touchUpInside" id="XGP-ON-by8"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7yd-k4-mOv">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="3" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7yd-k4-mOv">
                                         <rect key="frame" x="104" y="12" width="86" height="34"/>
-                                        <color key="backgroundColor" red="0.70675939320000003" green="0.51245278120000004" blue="0.32124722" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="7yd-k4-mOv" secondAttribute="height" multiplier="43:17" id="4ph-oC-EGp"/>
                                             <constraint firstAttribute="width" constant="86" id="Xyp-CM-KrM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gF-fv-8bi">
+                                        <rect key="frame" x="104" y="12" width="86" height="34"/>
+                                        <connections>
+                                            <action selector="showCocoPopUp:" destination="a5t-bI-LM1" eventType="touchUpInside" id="WUQ-Bh-NRJ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="6gF-fv-8bi" firstAttribute="centerX" secondItem="7yd-k4-mOv" secondAttribute="centerX" id="1IN-pX-ljd"/>
                                     <constraint firstItem="8mb-vP-CUq" firstAttribute="leading" secondItem="OZE-Wp-4EE" secondAttribute="leading" constant="16" id="4QQ-99-9aq"/>
+                                    <constraint firstItem="6gF-fv-8bi" firstAttribute="centerY" secondItem="7yd-k4-mOv" secondAttribute="centerY" id="8MR-nP-2xS"/>
+                                    <constraint firstItem="6gF-fv-8bi" firstAttribute="width" secondItem="7yd-k4-mOv" secondAttribute="width" id="9dK-oc-3Me"/>
                                     <constraint firstAttribute="bottom" secondItem="7yd-k4-mOv" secondAttribute="bottom" constant="4" id="dTR-Tl-WdW"/>
                                     <constraint firstItem="7yd-k4-mOv" firstAttribute="leading" secondItem="8mb-vP-CUq" secondAttribute="trailing" constant="8" id="gB2-Lg-UFo"/>
                                     <constraint firstAttribute="bottom" secondItem="8mb-vP-CUq" secondAttribute="bottom" constant="4" id="ihJ-dR-NsD"/>
+                                    <constraint firstItem="6gF-fv-8bi" firstAttribute="height" secondItem="7yd-k4-mOv" secondAttribute="height" id="jhz-2X-62w"/>
                                     <constraint firstAttribute="bottom" secondItem="Rqb-Qc-I7c" secondAttribute="bottom" constant="4" id="luS-qZ-NbS"/>
                                     <constraint firstAttribute="trailing" secondItem="Rqb-Qc-I7c" secondAttribute="trailing" constant="16" id="xAx-oS-dCe"/>
                                 </constraints>
@@ -212,7 +222,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDK-32-3I0">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDK-32-3I0">
                                                 <rect key="frame" x="0.0" y="0.0" width="166" height="50"/>
                                                 <connections>
                                                     <action selector="showCocoPopUp:" destination="a5t-bI-LM1" eventType="touchUpInside" id="ggQ-Bx-sfj"/>
@@ -265,7 +275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ycL-6x-cML" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-30.434782608695656" y="803.804347826087"/>
+            <point key="canvasLocation" x="-29" y="804"/>
         </scene>
         <!--MenuVC-->
         <scene sceneID="zBz-TP-UzP">
@@ -668,11 +678,11 @@
         <scene sceneID="zfP-5s-RIR">
             <objects>
                 <viewController storyboardIdentifier="popUpViewController" id="pve-kM-Ezk" customClass="popUpViewController" customModule="Coco" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="rkq-Sk-D15">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="rkq-Sk-D15">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khL-bv-66e">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khL-bv-66e">
                                 <rect key="frame" x="32" y="190" width="350" height="438"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UpI-ST-Mtc">
@@ -739,6 +749,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Zh-Ic-Ygo"/>
                     </view>
+                    <connections>
+                        <outlet property="message" destination="UpI-ST-Mtc" id="uE8-vI-oQi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hc5-9h-QwW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1013,7 +1026,7 @@
                                                 <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                                <integer key="value" value="15"/>
+                                                <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -1094,7 +1107,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="Colegio:"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Selecciona tu proveedor"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Selecciona tu institución"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
                                                 <color key="value" name="Black"/>
                                             </userDefinedRuntimeAttribute>

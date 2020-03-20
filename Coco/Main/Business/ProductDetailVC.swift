@@ -92,7 +92,7 @@ class ProductDetailVC: UIViewController {
     private func fillInfo() {
         productNameLabel.text = product.name
         descriptionLabel.text = product.description
-        priceLabel.text = "Precio: \(product.price ?? "")"
+        priceLabel.text = "Precio: $\(product.price ?? "")"
         cocopointsLabel.text = "Cocopoints: \(product.cocopoints ?? 0)"
         
         if product.favorite != nil && product.favorite == "1" {

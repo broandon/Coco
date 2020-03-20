@@ -68,18 +68,19 @@ class ShoppingCartVC: UIViewController {
                 shoppingCart = decoded
                 
                 businessName.text = shoppingCart?.store_name
-                amount.text = shoppingCart?.sub_amount
+                // amount.text = shoppingCart?.sub_amount
                 
                 //MARK: Heres the cocopoints amount
                 
                 let value = Double("\(shoppingCart?.sub_amount ?? "")") ?? 0
                 let oneThousand = 1000.0
-                
                 let valueCocopoints = value * oneThousand
-                
-                normalCost = "\(value)"
+                let textCocos = Float(valueCocopoints).clean
+               
+                normalCost = Float(value).clean
+                amount.text = "$"+normalCost
                 costInCocopoints = "\(valueCocopoints)"
-                cocopoints.text = "\(valueCocopoints)"
+                cocopoints.text = textCocos
                 
             }
         }
@@ -389,9 +390,9 @@ extension ShoppingCartVC: ShoppingCartProductCellDelegate {
             }
             
             shoppingCart?.sub_amount = "\(totalAccount)"
-            amount.text = "\(totalAccount)"
-            let costInCoco = totalAccount * 10000
-            cocopoints.text = "\(costInCoco)"
+            amount.text = "$\(totalAccount.clean)"
+            let costInCoco = totalAccount * 1000
+            cocopoints.text = "\(costInCoco.clean)"
             table.reloadData()
         }
     }

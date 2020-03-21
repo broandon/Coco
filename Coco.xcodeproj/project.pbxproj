@@ -105,6 +105,7 @@
 		C3C0F38222D3E6B900B03F62 /* AlertModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C0F38022D3E6B900B03F62 /* AlertModal.swift */; };
 		C3C0F38322D3E6B900B03F62 /* AlertModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C0F38122D3E6B900B03F62 /* AlertModal.xib */; };
 		CA07F8D7ADCBAEFBD51D5E30 /* Pods_Coco.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4915966DA5C2608206AE0A /* Pods_Coco.framework */; };
+		CF7202E2242549B8008425CD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7202E1242549B8008425CD /* Extensions.swift */; };
 		CFBC53A12406DC7500D4FF95 /* promoCodesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC539F2406DC7500D4FF95 /* promoCodesTableViewCell.swift */; };
 		CFBC53A22406DC7500D4FF95 /* promoCodesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBC53A02406DC7500D4FF95 /* promoCodesTableViewCell.xib */; };
 		CFBC53A52406EADB00D4FF95 /* addNewPromoCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC53A32406EADB00D4FF95 /* addNewPromoCodeViewController.swift */; };
@@ -257,6 +258,7 @@
 		C3C0F37D22D3D73400B03F62 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		C3C0F38022D3E6B900B03F62 /* AlertModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModal.swift; sourceTree = "<group>"; };
 		C3C0F38122D3E6B900B03F62 /* AlertModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertModal.xib; sourceTree = "<group>"; };
+		CF7202E1242549B8008425CD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CFBC539F2406DC7500D4FF95 /* promoCodesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promoCodesTableViewCell.swift; sourceTree = "<group>"; };
 		CFBC53A02406DC7500D4FF95 /* promoCodesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = promoCodesTableViewCell.xib; sourceTree = "<group>"; };
 		CFBC53A32406EADB00D4FF95 /* addNewPromoCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewPromoCodeViewController.swift; sourceTree = "<group>"; };
@@ -747,6 +749,7 @@
 				CFD9D35423EC949C00DACF9E /* doneModalViewController.xib */,
 				9DA878D1240472C9001F8FAF /* popUpViewController.swift */,
 				9DA878D324048428001F8FAF /* newCodeViewController.swift */,
+				CF7202E1242549B8008425CD /* Extensions.swift */,
 			);
 			path = "Brandon Added These";
 			sourceTree = "<group>";
@@ -1114,6 +1117,7 @@
 				C348F14222CB896B000F185C /* Deposits.swift in Sources */,
 				C35572C422CABD7D00FC5C89 /* Business.swift in Sources */,
 				CFBC53AA2407134300D4FF95 /* storedCardsViewController.swift in Sources */,
+				CF7202E2242549B8008425CD /* Extensions.swift in Sources */,
 				CFF0B6AE23EBC97800C30A6D /* rechargeCreditViewController.swift in Sources */,
 				C3C0F36822D3B33700B03F62 /* Schools.swift in Sources */,
 				C348F15D22CBC94B000F185C /* PaymentFormsTableViewCell.swift in Sources */,
@@ -1322,7 +1326,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Easycode.Coco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Coco/Conekta/Coco-Bridging-Header.h";
@@ -1348,7 +1352,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Easycode.Coco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Coco/Conekta/Coco-Bridging-Header.h";

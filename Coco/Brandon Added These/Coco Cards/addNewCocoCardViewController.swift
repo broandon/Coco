@@ -96,6 +96,8 @@ class addNewCocoCardViewController: UIViewController {
                         if stateString == "200" {
                             
                             DispatchQueue.main.async {
+                                
+                                NotificationCenter.default.post(name: Notification.Name("reloadBalance"), object: nil)
             
                                 let alert = UIAlertController(title: "¡Exito!", message: "Se ha recargado tu saldo.", preferredStyle: .alert)
                                 

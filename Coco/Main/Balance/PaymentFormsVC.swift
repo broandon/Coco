@@ -158,5 +158,6 @@ extension PaymentFormsVC: AddCardDelegate {
   func didAddCard() {
     requestData()
     delegate.didChangePaymentForms()
+    NotificationCenter.default.post(name: Notification.Name("reloadBalance"), object: nil)
   }
 }

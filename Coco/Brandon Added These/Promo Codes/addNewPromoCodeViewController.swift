@@ -90,15 +90,6 @@ class addNewPromoCodeViewController: UIViewController {
                         if stateString == "600" {
                             
                             DispatchQueue.main.async {
-                        
-                                self.mainData.requestUserMain { (result) in
-                                    switch result {
-                                    case .failure(let errorMssg):
-                                        self.throwError(str: errorMssg)
-                                    case .success(_):
-                                        self.main?.updateLabels()
-                                    }
-                                }
                                 
                                 let alert = UIAlertController(title: "Error", message: "Ya usaste este codigo.", preferredStyle: .alert)
                                 
@@ -111,16 +102,9 @@ class addNewPromoCodeViewController: UIViewController {
                         
                         if stateString == "200" {
                             
+                            NotificationCenter.default.post(name: Notification.Name("reloadBalance"), object: nil)
+                            
                             DispatchQueue.main.async {
-                                
-                                self.mainData.requestUserMain { (result) in
-                                    switch result {
-                                    case .failure(let errorMssg):
-                                        self.throwError(str: errorMssg)
-                                    case .success(_):
-                                        self.main?.updateLabels()
-                                    }
-                                }
                                 
                                 let alert = UIAlertController(title: "¡Exito!", message: "Se ha canjeado el código exitosamente.", preferredStyle: .alert)
                                 

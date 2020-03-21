@@ -27,7 +27,7 @@
                         <constraint firstAttribute="width" secondItem="FsY-3I-IDW" secondAttribute="height" multiplier="139:117" id="JMQ-K3-S0b"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código Promocional / Referal Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvk-HH-uBR">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código Promocional - Referido" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvk-HH-uBR">
                     <rect key="frame" x="20" y="319" width="374" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="sIK-Ez-Zcc"/>

@@ -57,7 +57,7 @@ enum Menu: String {
   case profile = "Mi Perfil"
   case balance = "Recargar Saldo"
   case cocopoints = "Tarjeta Coco"
-  case promocode = "Código Promocional"
+  case promocode = "Código Promocional - Referido"
   case favorite = "Favoritos"
   case orders = "Pedidos"
   case settings = "Configuración"

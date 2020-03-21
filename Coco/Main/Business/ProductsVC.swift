@@ -12,17 +12,45 @@ class ProductsVC: UIViewController {
     
     @IBOutlet weak var topBar: UIView!
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var labelCosto: UILabel!
+    @IBOutlet weak var labelCocopoints: UILabel!
     
     var id_category: String = ""
     var id_business: String = ""
     var loader: LoaderVC!
     var products: Products!
     
+    private var mainData = Main()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainData = Main()
         products = Products()
         configureTable()
         requestData()
+        fillUpLabels()
+    }
+    
+    private func fillUpLabels() {
+        
+        labelCocopoints.roundCorners(9)
+        labelCosto.roundCorners(9)
+        
+        print("Updating labels")
+        mainData.requestUserMain { (result) in
+            print("Labels data requested")
+            self.loader.removeAnimate()
+            switch result {
+            case .failure(let errorMssg):
+                self.throwError(str: errorMssg)
+            case .success(_):
+                
+                DispatchQueue.main.async {
+                    self.labelCosto.text = "Saldo:\n$\(self.mainData.info?.current_balance ?? "--")"
+                    self.labelCocopoints.text = "Cocopoints:\n\(self.mainData.info?.cocopoints_balance ?? "--") "
+                }
+            }
+        }
     }
     
     private func configureTable() {

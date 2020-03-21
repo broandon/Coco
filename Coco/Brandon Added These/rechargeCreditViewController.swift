@@ -140,6 +140,8 @@ class rechargeCreditViewController: UIViewController {
                               if stateString == "200" {
                                   
                                   DispatchQueue.main.async {
+                                    
+                                    NotificationCenter.default.post(name: Notification.Name("reloadBalance"), object: nil)
                                       
                                       let alert = UIAlertController(title: "¡Exito!", message: "Hemos recargado la cantidad solicitada a tu saldo. ¡A comer!", preferredStyle: .alert)
                                       
@@ -195,3 +197,4 @@ class rechargeCreditViewController: UIViewController {
     }
     
 }
+

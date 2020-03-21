@@ -28,6 +28,8 @@ class MainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        NotificationCenter.default.addObserver(self, selector: #selector(didAddCode), name: Notification.Name("NotificationIdentifier"), object: nil)
+        
         mainData = Main()
         configureView()
         configureTable()
@@ -36,6 +38,15 @@ class MainController: UIViewController {
         pushManager.registerForPushNotifications()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateLabels), name: Notification.Name(rawValue: "reloadBalance"), object: nil)
+        
+    }
+    
+    @objc func didAddCode() {
+     
+        print("Labels Updated")
+        mainData = Main()
+        configureView()
+        configureTable()
         
     }
     
@@ -53,7 +64,7 @@ class MainController: UIViewController {
                 DispatchQueue.main.async {
                     self.balanceLabel.text = "Saldo: $ \(self.mainData.info?.current_balance ?? "--")"
                     self.cocopointsBalance.text = "Cocopoints: \(self.mainData.info?.cocopoints_balance ?? "--")"
-                print("Text populated")
+                    print("Text populated")
                 }
                 self.table.reloadData()
             }
@@ -70,6 +81,8 @@ class MainController: UIViewController {
     }
     
     @IBAction func showCocoPopUp(_ sender: UIButton) {
+        
+        
         
         if sender.tag == 1 {
             
@@ -88,6 +101,7 @@ class MainController: UIViewController {
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "popUpViewController") as! popUpViewController
         newViewController.modalPresentationStyle = .overCurrentContext
         newViewController.modalTransitionStyle = .crossDissolve
+        newViewController.referalCode = mainData.info?.codigo_referido
         self.present(newViewController, animated: true, completion: nil)
         
     }
@@ -127,7 +141,7 @@ class MainController: UIViewController {
         }
     }
     
-     func fillInfo() {
+    func fillInfo() {
         table.reloadData()
         balanceLabel.text = "Saldo: $ \(mainData.info?.current_balance ?? "--")"
         cocopointsBalance.text = "Cocopoints: \(mainData.info?.cocopoints_balance ?? "--")"

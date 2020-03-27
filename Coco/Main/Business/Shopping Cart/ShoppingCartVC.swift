@@ -32,6 +32,9 @@ class ShoppingCartVC: UIViewController {
     @IBOutlet weak var payWithCocoButton: UIButton!
     @IBOutlet weak var payViews: UIView!
     
+    @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var cocoLabel: UILabel!
+    
     var loader: LoaderVC!
     var shoppingCart: ShoppingCart?
     var shoppingCart2extra: ShoppingCart2?
@@ -93,6 +96,8 @@ class ShoppingCartVC: UIViewController {
             case .failure(let errorMssg):
                 self.throwError(str: errorMssg)
             case .success(_):
+                self.cocoLabel.text = "Cocopoints: \(self.mainData.info?.cocopoints_balance ?? "--")"
+                self.balanceLabel.text = "Saldo: $\(self.mainData.info?.current_balance ?? "--")"
                 self.balance = self.mainData.info?.current_balance ?? "0.0"
                 self.cocopointsBalance = self.mainData.info?.cocopoints_balance ?? "0.0"
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "reloadBalance"), object: nil)
@@ -118,7 +123,12 @@ class ShoppingCartVC: UIViewController {
         payWithMoneyButton.roundCorners(15)
         payWithCocopoints.roundCorners(15)
         payWithCocoButton.roundCorners(15)
+        
+        balanceLabel.roundCorners(9)
+        cocoLabel.roundCorners(9)
+        
     }
+
     
     func firstTimer() {
         

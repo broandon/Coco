@@ -17,7 +17,6 @@ class MainController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var balanceView: UIView!
     @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var referalCodeLabel: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var cocopointsView: UIView!
     @IBOutlet weak var cocopointsBalance: UILabel!
@@ -38,6 +37,26 @@ class MainController: UIViewController {
         pushManager.registerForPushNotifications()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateLabels), name: Notification.Name(rawValue: "reloadBalance"), object: nil)
+        
+    }
+    
+    @objc func shareTheCode() {
+        
+        print("Called")
+        
+        // text to share
+        let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(mainData.info?.codigo_referido ?? "--") Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
+
+               // set up activity view controller
+               let textToShare = [ text ]
+               let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+               activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+
+               // exclude some activity types from the list (optional)
+               activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+
+               // present the view controller
+               self.present(activityViewController, animated: true, completion: nil)
         
     }
     
@@ -80,6 +99,15 @@ class MainController: UIViewController {
         
     }
     
+    @IBAction func codigos(_ sender: Any) {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "newCodeViewController") as! newCodeViewController
+        self.present(newViewController, animated: true, completion: nil)
+        
+    }
+    
+    
     @IBAction func showCocoPopUp(_ sender: UIButton) {
         
         
@@ -116,7 +144,6 @@ class MainController: UIViewController {
     private func configureView() {
         balanceView.roundCorners(15)
         cocopointsView.roundCorners(15)
-        referalCodeLabel.roundCorners(15)
     }
     
     private func configureTable() {
@@ -145,7 +172,7 @@ class MainController: UIViewController {
         table.reloadData()
         balanceLabel.text = "Saldo: $ \(mainData.info?.current_balance ?? "--")"
         cocopointsBalance.text = "Cocopoints: \(mainData.info?.cocopoints_balance ?? "--")"
-        referalCodeLabel.text = "Tu codigo: \(mainData.info?.codigo_referido ?? "")"
+       // referalCodeLabel.text = "Tu codigo: \(mainData.info?.codigo_referido ?? "")"
     }
     
     @IBAction func menuAction(_ sender: Any) {

@@ -21,7 +21,9 @@ class popUpViewController: UIViewController {
         super.viewDidLoad()
 
          checkInfo()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(shareTheCode), name: Notification.Name(rawValue: "shareCoco"), object: nil)
+        
+        
     }
     
     func checkInfo() {
@@ -45,8 +47,31 @@ class popUpViewController: UIViewController {
     @IBAction func closePopUp(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
+     
+    }
+    
+    @objc func shareTheCode() {
+        
+        print("Called")
+        
+        // text to share
+               let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(referalCode!) Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
+
+               // set up activity view controller
+               let textToShare = [ text ]
+               let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+               activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+
+               // exclude some activity types from the list (optional)
+               activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+
+               // present the view controller
+               self.present(activityViewController, animated: true, completion: nil)
         
     }
+    
+    
+    
     @IBAction func shareCode(_ sender: Any) {
         
         

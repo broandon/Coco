@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3F70D7C3F4D6293AE3D5BAAC /* Pods_CocoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F14347B74DDFE317E603C86A /* Pods_CocoUITests.framework */; };
+		9D9EB1CF242D787B00FE1E2C /* codeSharingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */; };
+		9D9EB1D0242D787B00FE1E2C /* codeSharingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */; };
 		9DA878D2240472C9001F8FAF /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D1240472C9001F8FAF /* popUpViewController.swift */; };
 		9DA878D424048428001F8FAF /* newCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D324048428001F8FAF /* newCodeViewController.swift */; };
 		C3222BA822E0400300E63F38 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3222BA722E0400300E63F38 /* ShoppingCart.swift */; };
@@ -150,6 +152,8 @@
 		6E4915966DA5C2608206AE0A /* Pods_Coco.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coco.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B3EAF956F1B8B3139D70DA /* Pods-CocoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoTests/Pods-CocoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8224668FFF2D9C032908D0EF /* Pods-Coco.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coco.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coco/Pods-Coco.release.xcconfig"; sourceTree = "<group>"; };
+		9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeSharingTableViewCell.swift; sourceTree = "<group>"; };
+		9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = codeSharingTableViewCell.xib; sourceTree = "<group>"; };
 		9DA878D1240472C9001F8FAF /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
 		9DA878D324048428001F8FAF /* newCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newCodeViewController.swift; sourceTree = "<group>"; };
 		C3222BA722E0400300E63F38 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
@@ -721,6 +725,8 @@
 				CFBC53A02406DC7500D4FF95 /* promoCodesTableViewCell.xib */,
 				CFBC53A32406EADB00D4FF95 /* addNewPromoCodeViewController.swift */,
 				CFBC53A42406EADB00D4FF95 /* addNewPromoCodeViewController.xib */,
+				9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */,
+				9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */,
 			);
 			path = "Promo Codes";
 			sourceTree = "<group>";
@@ -910,6 +916,7 @@
 				CFBC53A22406DC7500D4FF95 /* promoCodesTableViewCell.xib in Resources */,
 				C348F15122CB991D000F185C /* ProductsVC.xib in Resources */,
 				C355729A22CA80C200FC5C89 /* loader.json in Resources */,
+				9D9EB1D0242D787B00FE1E2C /* codeSharingTableViewCell.xib in Resources */,
 				C3C0F36D22D3C1EE00B03F62 /* SchoolModal.xib in Resources */,
 				C3A161E522B9B38900076DD8 /* Main.storyboard in Resources */,
 				CFF0B6AF23EBC97800C30A6D /* rechargeCreditViewController.xib in Resources */,
@@ -1090,6 +1097,7 @@
 				C348F15022CB991D000F185C /* ProductsVC.swift in Sources */,
 				C35572A022CA81B900FC5C89 /* MenuTableViewCell.swift in Sources */,
 				C3C0F37B22D3D4B000B03F62 /* Connection.m in Sources */,
+				9D9EB1CF242D787B00FE1E2C /* codeSharingTableViewCell.swift in Sources */,
 				C34466ED22CAE65400A11433 /* FavoritesTableViewCell.swift in Sources */,
 				C3A1622322B9BC4700076DD8 /* General.swift in Sources */,
 				C34466E222CAC4BA00A11433 /* RegisterVC.swift in Sources */,
@@ -1326,7 +1334,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
+				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Easycode.Coco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Coco/Conekta/Coco-Bridging-Header.h";
@@ -1352,7 +1360,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
+				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Easycode.Coco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Coco/Conekta/Coco-Bridging-Header.h";

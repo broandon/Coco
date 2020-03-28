@@ -245,7 +245,10 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         
-        if newCode == mainData.info?.codigo_referido {
+        let myOwnCode = "\(mainData.info?.codigo_referido ?? "No Code")"
+        
+        
+        if newCode == myOwnCode {
             
             let alert = UIAlertController(title: "¿Usando tu propio codigo?", message: "No puedes usar tu propio codigo.", preferredStyle: .alert)
 

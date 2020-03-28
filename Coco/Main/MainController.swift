@@ -27,8 +27,6 @@ class MainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(didAddCode), name: Notification.Name("NotificationIdentifier"), object: nil)
-        
         mainData = Main()
         configureView()
         configureTable()
@@ -46,22 +44,22 @@ class MainController: UIViewController {
         
         // text to share
         let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(mainData.info?.codigo_referido ?? "--") Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
-
-               // set up activity view controller
-               let textToShare = [ text ]
-               let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-               activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-
-               // exclude some activity types from the list (optional)
-               activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-
-               // present the view controller
-               self.present(activityViewController, animated: true, completion: nil)
+        
+        // set up activity view controller
+        let textToShare = [ text ]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
         
     }
     
     @objc func didAddCode() {
-     
+        
         print("Labels Updated")
         mainData = Main()
         configureView()
@@ -81,7 +79,7 @@ class MainController: UIViewController {
                 print("Labels data was succesfully received, updating texts")
                 self.table.reloadData()
                 DispatchQueue.main.async {
-                    self.balanceLabel.text = "Saldo: $ \(self.mainData.info?.current_balance ?? "--")"
+                    self.balanceLabel.text = "Saldo: $\(self.mainData.info?.current_balance ?? "--")"
                     self.cocopointsBalance.text = "Cocopoints: \(self.mainData.info?.cocopoints_balance ?? "--")"
                     print("Text populated")
                 }
@@ -110,8 +108,6 @@ class MainController: UIViewController {
     
     @IBAction func showCocoPopUp(_ sender: UIButton) {
         
-        
-        
         if sender.tag == 1 {
             
             UserDefaults.standard.set("Cocopoints", forKey: "buttonPressed")
@@ -124,7 +120,6 @@ class MainController: UIViewController {
             
         }
         
-        
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "popUpViewController") as! popUpViewController
         newViewController.modalPresentationStyle = .overCurrentContext
@@ -133,8 +128,6 @@ class MainController: UIViewController {
         self.present(newViewController, animated: true, completion: nil)
         
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -172,7 +165,7 @@ class MainController: UIViewController {
         table.reloadData()
         balanceLabel.text = "Saldo: $ \(mainData.info?.current_balance ?? "--")"
         cocopointsBalance.text = "Cocopoints: \(mainData.info?.cocopoints_balance ?? "--")"
-       // referalCodeLabel.text = "Tu codigo: \(mainData.info?.codigo_referido ?? "")"
+        // referalCodeLabel.text = "Tu codigo: \(mainData.info?.codigo_referido ?? "")"
     }
     
     @IBAction func menuAction(_ sender: Any) {

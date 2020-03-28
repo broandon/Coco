@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -66,17 +66,17 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSi-oV-ktn">
-                    <rect key="frame" x="44" y="813" width="326" height="49"/>
+                    <rect key="frame" x="64" y="817" width="286" height="35"/>
                     <color key="backgroundColor" name="Green"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="49" id="qcD-Pg-oIY"/>
+                        <constraint firstAttribute="height" constant="35" id="9VC-wa-ciG"/>
                     </constraints>
                     <state key="normal" title="Agregar folio">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <integer key="value" value="23"/>
+                            <integer key="value" value="16"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -89,13 +89,13 @@
                 <constraint firstItem="YRj-lb-Hq8" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="2XE-Og-1Ue"/>
                 <constraint firstItem="YRj-lb-Hq8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5ea-0R-fpp"/>
                 <constraint firstItem="YRj-lb-Hq8" firstAttribute="top" secondItem="VEl-dh-moi" secondAttribute="bottom" id="D8O-pU-R9H"/>
-                <constraint firstItem="lSi-oV-ktn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="44" id="Nfa-7p-hBs"/>
-                <constraint firstItem="lSi-oV-ktn" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="OYV-uf-KIb"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lSi-oV-ktn" secondAttribute="trailing" constant="44" id="PNJ-dH-RB0"/>
+                <constraint firstItem="lSi-oV-ktn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="64" id="EXZ-Kz-zHT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lSi-oV-ktn" secondAttribute="trailing" constant="64" id="PDv-Ss-hSG"/>
                 <constraint firstItem="VEl-dh-moi" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="gb5-3J-pLo"/>
                 <constraint firstItem="VEl-dh-moi" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="mq6-5d-lqv"/>
                 <constraint firstItem="VEl-dh-moi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xoh-Bm-tPW"/>
                 <constraint firstAttribute="bottom" secondItem="YRj-lb-Hq8" secondAttribute="bottom" id="yZr-rb-B5K"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="lSi-oV-ktn" secondAttribute="bottom" constant="10" id="yuR-s3-bPg"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="145.98214285714286"/>

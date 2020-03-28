@@ -76,8 +76,29 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
         let documentXib2 = UINib(nibName: "codeSharingTableViewCell", bundle: nil)
         tableView.register(documentXib2, forCellReuseIdentifier: reuseDocument2)
         
+        tableView.allowsSelection = false
+        
     }
     
+    @IBAction func codeShareButton(_ sender: Any) {
+        
+        print("Called")
+        
+        // text to share
+        let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(mainData.info?.codigo_referido ?? "--") Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
+        
+        // set up activity view controller
+        let textToShare = [ text ]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+        
+    }
     @objc func shareTheCode() {
         
         print("Called")
@@ -102,6 +123,10 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
 
         return 1 + codes.count
         
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -131,7 +156,7 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
                 print(codes.count)
                 print(indexPath.row)
                 
-            let document = codes[indexPath.section]
+            let document = codes[indexPath.row - 1]
         
             let amount = document["monto"]
             let date = document["fecha"]
@@ -218,6 +243,20 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
             return
             
         }
+        
+        
+        if newCode == mainData.info?.codigo_referido {
+            
+            let alert = UIAlertController(title: "¿Usando tu propio codigo?", message: "No puedes usar tu propio codigo.", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Usar otro", style: .default, handler: nil))
+             
+            self.present(alert, animated: true)
+            
+            return
+            
+        }
+        
         
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
         

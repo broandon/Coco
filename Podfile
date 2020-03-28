@@ -24,15 +24,11 @@ target 'Coco' do
   pod 'DropDown', '2.3.4'
   pod 'SnapKit', '~> 4.0.0'
   pod 'SkyFloatingLabelTextField'
-
   pod 'lottie-ios'
   pod 'Hero'
-  
-  pod 'FBSDKCoreKit', '~> 5.0.0'
-  pod 'FBSDKLoginKit', '~> 5.0.0'
-  
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
   pod 'UIWindowTransitions'
-
   pod 'IQKeyboardManagerSwift'
   pod 'StickyScrollView'
   pod 'YPImagePicker'

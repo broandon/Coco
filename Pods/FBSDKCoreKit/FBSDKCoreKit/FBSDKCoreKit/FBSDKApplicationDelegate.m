@@ -25,7 +25,9 @@
 #import "FBSDKConstants.h"
 #import "FBSDKDynamicFrameworkLoader.h"
 #import "FBSDKError.h"
+#import "FBSDKFeatureManager.h"
 #import "FBSDKGateKeeperManager.h"
+#import "FBSDKInstrumentManager.h"
 #import "FBSDKInternalUtility.h"
 #import "FBSDKLogger.h"
 #import "FBSDKServerConfiguration.h"
@@ -102,6 +104,12 @@ static UIApplicationState _applicationState;
   [[FBSDKAppEvents singleton] registerNotifications];
 
   [delegate application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:launchOptions];
+
+  [FBSDKFeatureManager checkFeature:FBSDKFeatureInstrument completionBlock:^(BOOL enabled) {
+    if (enabled) {
+      [FBSDKInstrumentManager enable];
+    }
+  }];
 
 #if !TARGET_OS_TV
   // Register Listener for App Link measurement events
@@ -204,8 +212,6 @@ static UIApplicationState _applicationState;
     [FBSDKAccessToken setCurrentAccessToken:cachedToken];
     // fetch app settings
     [FBSDKServerConfigurationManager loadServerConfigurationWithCompletionBlock:NULL];
-    // fetch gate keepers
-    [FBSDKGateKeeperManager loadGateKeepers];
 
     if (FBSDKSettings.isAutoLogAppEventsEnabled) {
         [self _logSDKInitialize];
@@ -284,13 +290,13 @@ static UIApplicationState _applicationState;
   if (!url) {
     return;
   }
-  NSDictionary<NSString *, NSString *> *params = [FBSDKInternalUtility dictionaryWithQueryString:url.query];
+  NSDictionary<NSString *, NSString *> *params = [FBSDKBasicUtility dictionaryWithQueryString:url.query];
   NSString *applinkDataString = params[@"al_applink_data"];
   if (!applinkDataString) {
     return;
   }
 
-  NSDictionary *applinkData = [FBSDKInternalUtility objectForJSONString:applinkDataString error:NULL];
+  NSDictionary<id, id> *applinkData = [FBSDKBasicUtility objectForJSONString:applinkDataString error:NULL];
   if (!applinkData) {
     return;
   }
@@ -344,6 +350,13 @@ static UIApplicationState _applicationState;
     bit++;
   }
 
+  // Tracking if the consuming Application is using Swift
+  id delegate = [UIApplication sharedApplication].delegate;
+  NSString const *className = NSStringFromClass([delegate class]);
+  if ([className componentsSeparatedByString:@"."].count > 1) {
+    params[@"is_using_swift"] = @YES;
+  }
+
   NSInteger existingBitmask = [[NSUserDefaults standardUserDefaults] integerForKey:FBSDKKitsBitmaskKey];
   if (existingBitmask != bitmask) {
     [[NSUserDefaults standardUserDefaults] setInteger:bitmask forKey:FBSDKKitsBitmaskKey];
@@ -355,7 +368,7 @@ static UIApplicationState _applicationState;
 
 + (BOOL)isSDKInitialized
 {
-  return g_isSDKInitialized;
+  return [FBSDKSettings isAutoInitEnabled] || g_isSDKInitialized;
 }
 
 // Wrapping this makes it mockable and enables testability

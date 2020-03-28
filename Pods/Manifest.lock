@@ -1,14 +1,14 @@
 PODS:
   - Alamofire (4.8.2)
   - DropDown (2.3.4)
-  - FBSDKCoreKit (5.0.0):
-    - FBSDKCoreKit/Basics (= 5.0.0)
-    - FBSDKCoreKit/Core (= 5.0.0)
-  - FBSDKCoreKit/Basics (5.0.0)
-  - FBSDKCoreKit/Core (5.0.0):
+  - FBSDKCoreKit (5.4.1):
+    - FBSDKCoreKit/Basics (= 5.4.1)
+    - FBSDKCoreKit/Core (= 5.4.1)
+  - FBSDKCoreKit/Basics (5.4.1)
+  - FBSDKCoreKit/Core (5.4.1):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.0.0):
-    - FBSDKCoreKit (= 5.0.0)
+  - FBSDKLoginKit (5.4.1):
+    - FBSDKCoreKit (~> 5.0)
   - Firebase (4.13.0):
     - Firebase/Core (= 4.13.0)
   - Firebase/Core (4.13.0):
@@ -64,8 +64,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - DropDown (= 2.3.4)
-  - FBSDKCoreKit (~> 5.0.0)
-  - FBSDKLoginKit (~> 5.0.0)
+  - FBSDKCoreKit (~> 5.4.0)
+  - FBSDKLoginKit (~> 5.4.0)
   - Firebase (~> 4.0)
   - Firebase/Core
   - Firebase/Messaging
@@ -84,7 +84,7 @@ DEPENDENCIES:
   - YPImagePicker
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - DropDown
     - FBSDKCoreKit
@@ -116,8 +116,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   DropDown: f225ff0fd09dde064d17aa03db7e4d4e4ff40b6b
-  FBSDKCoreKit: ba361d4a9d4dc29ff218822b849b22d4f869c7bb
-  FBSDKLoginKit: c6d0dc187bd076e370dffa10f7fc8a3562a6892c
+  FBSDKCoreKit: 5144671077d67f07d7d243dbc7fd57a171f73954
+  FBSDKLoginKit: ff38b353b6843353f090028eb1b895c78aa82796
   Firebase: 5ec5e863d269d82d66b4bf56856726f8fb8f0fb3
   FirebaseAnalytics: 7ef69e76a5142f643aeb47c780e1cdce4e23632e
   FirebaseCore: 90cb1c53d69b556f112a1bf72b5fcfaad7650790
@@ -142,6 +142,6 @@ SPEC CHECKSUMS:
   UIWindowTransitions: cb662e2ae9e2d1060fcdbe3eb3de9232bedb7612
   YPImagePicker: 8039f89ad79281545fa868486f32d9bf5d65ede1
 
-PODFILE CHECKSUM: f0bfc85f2940bd0402c46966c2326e3a42ad7bfd
+PODFILE CHECKSUM: 82965ab5cde6bef7e2c51ef64c947db277e782d4
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.9.0

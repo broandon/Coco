@@ -3,7 +3,7 @@
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,7 +38,7 @@
                                     <constraint firstAttribute="height" constant="40" id="NU2-2W-hBd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="14"/>
-                                <state key="normal" title="Inicia sesión con facebook">
+                                <state key="normal" title="Inicia sesión con facebook ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -64,7 +64,7 @@
                                     <constraint firstAttribute="height" constant="40" id="miP-3M-wbj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="14"/>
-                                <state key="normal" title="Iniciar Sesión">
+                                <state key="normal" title="Inicia sesión con correo">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -83,6 +83,20 @@
                                     <action selector="forgotPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xwI-ab-1Kx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tP2-vu-XCk">
+                                <rect key="frame" x="64" y="404" width="286" height="40"/>
+                                <color key="backgroundColor" name="Black"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ug1-bh-CbP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="14"/>
+                                <state key="normal" title="  Inicia sesión con Apple">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapAppleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="89v-gu-G1M"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -95,8 +109,11 @@
                             <constraint firstItem="CZc-6x-I8q" firstAttribute="top" secondItem="bRD-6f-avR" secondAttribute="bottom" constant="20" id="Psl-kC-3a4"/>
                             <constraint firstItem="zXl-t4-KB7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Pvu-id-bph"/>
                             <constraint firstItem="5GV-ZW-gn4" firstAttribute="top" secondItem="zXl-t4-KB7" secondAttribute="bottom" constant="32" id="T1z-5M-XA3"/>
+                            <constraint firstItem="bRD-6f-avR" firstAttribute="top" secondItem="tP2-vu-XCk" secondAttribute="bottom" constant="20" id="VeZ-px-0Jz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CZc-6x-I8q" secondAttribute="trailing" constant="64" id="Xut-7i-fr3"/>
                             <constraint firstItem="bRD-6f-avR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="64" id="Yec-yC-848"/>
+                            <constraint firstItem="tP2-vu-XCk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="64" id="hdU-Dd-7lc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tP2-vu-XCk" secondAttribute="trailing" constant="64" id="kp3-GY-DHR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bRD-6f-avR" secondAttribute="trailing" constant="64" id="mNh-nA-nuc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5GV-ZW-gn4" secondAttribute="bottom" constant="32" id="oSe-xp-KkC"/>
                             <constraint firstItem="ugi-72-Cmo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pGo-kG-gOy"/>
@@ -106,6 +123,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="appleSignIn" destination="tP2-vu-XCk" id="1sG-Ll-Jgx"/>
                         <outlet property="facebookBtn" destination="bRD-6f-avR" id="WGE-JS-lo4"/>
                         <outlet property="loginBtn" destination="CZc-6x-I8q" id="eQI-SA-h3X"/>
                         <outlet property="registerBtn" destination="zXl-t4-KB7" id="XN9-n9-Jns"/>
@@ -955,7 +973,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Regresar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Im-fM-fGb">
-                                        <rect key="frame" x="48" y="12.666666666666664" width="59.666666666666657" height="15"/>
+                                        <rect key="frame" x="48" y="11.333333333333334" width="59.666666666666657" height="17.666666666666664"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="15"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>
@@ -1162,7 +1180,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLu-V1-moy">
-                                                <rect key="frame" x="53" y="9.6666666666666288" width="281" height="26"/>
+                                                <rect key="frame" x="53" y="8" width="281" height="29"/>
                                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                                                 <state key="normal" title="Acepto términos y condiciones">
                                                     <color key="titleColor" name="Black"/>

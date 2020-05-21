@@ -11,284 +11,295 @@ import SwiftyJSON
 import SwiftyUserDefaults
 
 class User: Decodable {
-  public var id: String?
-  public var name: String?
-  public var last_name: String?
-  public var phone: String?
-  public var email: String?
-  public var password: String?
-  public var facebook_login: Bool?
-  public var imgURL: String?
-  public var id_school: String?
-  
-  public init(id: String = "",
-              name: String = "",
-              last_name: String = "",
-              phone: String = "",
-              email: String = "",
-              password: String = "",
-              facebook_login: Bool = false,
-              imgURL: String = "",
-              id_school: String = "") {
-    self.id = id
-    self.name = name
-    self.last_name = last_name
-    self.phone = phone
-    self.email = email
-    self.password = password
-    self.facebook_login = facebook_login
-    self.imgURL = imgURL
-    self.id_school = id_school
-  }
-  
-  enum CodingKeys: String, CodingKey {
-    case id = "id_user"
-    case name = "first_name"
-    case last_name = "last_name"
-    case email
-    case password
-    case phone
-    case facebook_login
-    case imgURL = "imagen"
-  }
-  
-  func loginRequest(completion: @escaping(Result) -> Void) {
-    let data = [
-      "funcion": Routes.login,
-      "email": email ?? "",
-      "password": password ?? ""]
     
-    Alamofire.request(General.url_connection,
-                      method: .post,
-                      parameters: data).responseJSON { (response) in
-      guard let data = response.result.value else {
-        completion(.failure("Error de conexión"))
-        return
-      }
-      
-      guard let dictionary = JSON(data).dictionary else {
-        completion(.failure("Error al obtener los datos"))
-        return
-      }
-      
-      if dictionary["state"] != "200" {
-        completion(.failure(dictionary["status_msg"]?.string ?? ""))
-        return
-      }
-                        
-      guard let dataDictionary = dictionary["data"],
-        let object = try? dataDictionary.rawData(),
-        let decoded = try? JSONDecoder().decode(User.self, from: object) else {
-          completion(.failure("Error al leer los datos"))
-          return
-      }
-      self.id = decoded.id
-      self.email = decoded.email
-      self.name = decoded.name
-      self.last_name = decoded.last_name
-      
-      completion(.success(nil))
-    }
-  }
-  
-  func newUserRequest(completion: @escaping(Result) -> Void) {
-    let data = [
-      "funcion": Routes.newUser,
-      "first_name": name ?? "",
-      "last_name": last_name ?? "",
-      "phone": phone ?? "",
-      "email": email ?? "",
-      "password": password ?? "",
-      "facebook_login": facebook_login ?? false,
-      "id_college": id_school ?? ""] as [String : Any]
+    var user: User!
     
-    Alamofire.request(General.url_connection,
-                      method: .post,
-                      parameters: data).responseJSON { (response) in
-      guard let data = response.result.value else {
-        completion(.failure("Error de conexión"))
-        return
-      }
-      
-      guard let dictionary = JSON(data).dictionary else {
-        completion(.failure("Error al obtener los datos"))
-        return
-      }
-      
-      if dictionary["state"] != "200" {
-        completion(.failure(dictionary["status_msg"]?.string ?? ""))
-        return
-      }
-                        
-      guard let dataDictionary = dictionary["data"],
-        let object = try? dataDictionary.rawData(),
-        let decoded = try? JSONDecoder().decode(User.self, from: object) else {
-          completion(.failure("Error al leer los datos"))
-          return
-      }
-      self.id = decoded.id
-      self.email = decoded.email
-      self.name = decoded.name
-      self.last_name = decoded.last_name
-      completion(.success(nil))
-    }
-  }
-  
-  func forgotPasswordRequest(completion: @escaping(Result) -> Void) {
-    let data = [
-      "funcion": Routes.recoverAccount,
-      "email": email ?? ""] as [String : Any]
+    public var id: String?
+    public var name: String?
+    public var last_name: String?
+    public var phone: String?
+    public var email: String?
+    public var password: String?
+    public var facebook_login: Bool?
+    public var imgURL: String?
+    public var id_school: String?
     
-    Alamofire.request(General.url_connection,
-                      method: .post,
-                      parameters: data).responseJSON { (response) in
-      guard let data = response.result.value else {
-        completion(.failure("Error de conexión"))
-        return
-      }
-      
-      guard let dictionary = JSON(data).dictionary else {
-        completion(.failure("Error al obtener los datos"))
-        return
-      }
-      
-      if dictionary["state"] != "200" {
-        completion(.failure(dictionary["status_msg"]?.string ?? ""))
-        return
-      }
-     
-      completion(.success(nil))
+    public init(id: String = "",
+                name: String = "",
+                last_name: String = "",
+                phone: String = "",
+                email: String = "",
+                password: String = "",
+                facebook_login: Bool = false,
+                imgURL: String = "",
+                id_school: String = "") {
+        self.id = id
+        self.name = name
+        self.last_name = last_name
+        self.phone = phone
+        self.email = email
+        self.password = password
+        self.facebook_login = facebook_login
+        self.imgURL = imgURL
+        self.id_school = id_school
     }
-  }
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id_user"
+        case name = "first_name"
+        case last_name = "last_name"
+        case email
+        case password
+        case phone
+        case facebook_login
+        case imgURL = "imagen"
+    }
+    
+    func loginRequest(completion: @escaping(Result) -> Void) {
+        let data = [
+            "funcion": Routes.login,
+            "email": email ?? "",
+            "password": password ?? ""]
+        
+        Alamofire.request(General.url_connection,
+                          method: .post,
+                          parameters: data).responseJSON { (response) in
+                            guard let data = response.result.value else {
+                                completion(.failure("Error de conexión"))
+                                return
+                            }
+                            
+                            guard let dictionary = JSON(data).dictionary else {
+                                completion(.failure("Error al obtener los datos"))
+                                return
+                            }
+                            
+                            if dictionary["state"] != "200" {
+                                completion(.failure(dictionary["status_msg"]?.string ?? ""))
+                                return
+                            }
+                            
+                            guard let dataDictionary = dictionary["data"],
+                                let object = try? dataDictionary.rawData(),
+                                let decoded = try? JSONDecoder().decode(User.self, from: object) else {
+                                    completion(.failure("Error al leer los datos"))
+                                    return
+                            }
+                            self.id = decoded.id
+                            self.email = decoded.email
+                            self.name = decoded.name
+                            self.last_name = decoded.last_name
+                            
+                            completion(.success(nil))
+        }
+    }
+    
+    func newUserRequest(completion: @escaping(Result) -> Void) {
+        let data = [
+            "funcion": Routes.newUser,
+            "first_name": name ?? "",
+            "last_name": last_name ?? "",
+            "phone": phone ?? "",
+            "email": email ?? "",
+            "password": password ?? "",
+            "facebook_login": facebook_login ?? false,
+            "id_college": id_school ?? ""] as [String : Any]
+        
+        Alamofire.request(General.url_connection,
+                          method: .post,
+                          parameters: data).responseJSON { (response) in
+                            guard let data = response.result.value else {
+                                completion(.failure("Error de conexión"))
+                                return
+                            }
+                            
+                            guard let dictionary = JSON(data).dictionary else {
+                                completion(.failure("Error al obtener los datos"))
+                                return
+                            }
+                            
+                            print(dictionary["state"])
+                            
+                            if dictionary["state"] == "101" {
+                                
+                                
+                                
+                            }
+                            
+                            if dictionary["state"] != "200" {
+                                completion(.failure(dictionary["status_msg"]?.string ?? ""))
+                                return
+                            }
+                            
+                            guard let dataDictionary = dictionary["data"],
+                                let object = try? dataDictionary.rawData(),
+                                let decoded = try? JSONDecoder().decode(User.self, from: object) else {
+                                    completion(.failure("Error al leer los datos"))
+                                    return
+                            }
+                            self.id = decoded.id
+                            self.email = decoded.email
+                            self.name = decoded.name
+                            self.last_name = decoded.last_name
+                            completion(.success(nil))
+        }
+    }
+    
+    func forgotPasswordRequest(completion: @escaping(Result) -> Void) {
+        let data = [
+            "funcion": Routes.recoverAccount,
+            "email": email ?? ""] as [String : Any]
+        
+        Alamofire.request(General.url_connection,
+                          method: .post,
+                          parameters: data).responseJSON { (response) in
+                            guard let data = response.result.value else {
+                                completion(.failure("Error de conexión"))
+                                return
+                            }
+                            
+                            guard let dictionary = JSON(data).dictionary else {
+                                completion(.failure("Error al obtener los datos"))
+                                return
+                            }
+                            
+                            if dictionary["state"] != "200" {
+                                completion(.failure(dictionary["status_msg"]?.string ?? ""))
+                                return
+                            }
+                            
+                            completion(.success(nil))
+        }
+    }
 }
 
 class UserProfile: Decodable {
-  public var name: String?
-  public var last_name: String?
-  public var phone: String?
-  public var imgURL: String?
-  public var imageBase64: String?
-
-  public init(name: String = "",
-              last_name: String = "",
-              phone: String = "",
-              imgURL: String = "",
-              imageBase64: String = "") {
-    self.name = name
-    self.last_name = last_name
-    self.phone = last_name
-    self.imgURL = imgURL
-    self.imageBase64 = imageBase64
-  }
-
-  enum CodingKeys: String, CodingKey {
-    case name = "nombre"
-    case last_name = "apellidos"
-    case phone = "telefono"
-    case imgURL = "imagen"
-  }
-
-  func requestUserInfo(completion: @escaping(Result) -> Void) {
-    let data = [
-      "funcion": Routes.getUserInfo,
-      "id_user": Defaults[.user]!,
-    ]
-
-    Alamofire.request(General.url_connection,
-                      method: .post,
-                      parameters: data).responseJSON { (response) in
-                        if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                          print("Data: \(utf8Text)")
-                        }
-      guard let data = response.result.value else {
-        completion(.failure("Error de conexión"))
-        return
-      }
-
-      guard let dictionary = JSON(data).dictionary else {
-        completion(.failure("Error al obtener los datos"))
-        return
-      }
-
-      if dictionary["state"] != "200" {
-        completion(.failure(dictionary["status_msg"]?.string ?? ""))
-        return
-      }
-      guard let dataDictionary = dictionary["data"],
-        let object = try? dataDictionary["info"].rawData(),
-        let decoded = try? JSONDecoder().decode(UserProfile.self, from: object) else {
-          completion(.failure("Error al leer los datos"))
-          return
-      }
-      self.name = decoded.name
-      self.last_name = decoded.last_name
-      self.phone = decoded.phone
-      self.imgURL = decoded.imgURL
-      completion(.success([]))
+    public var name: String?
+    public var last_name: String?
+    public var phone: String?
+    public var imgURL: String?
+    public var imageBase64: String?
+    
+    public init(name: String = "",
+                last_name: String = "",
+                phone: String = "",
+                imgURL: String = "",
+                imageBase64: String = "") {
+        self.name = name
+        self.last_name = last_name
+        self.phone = last_name
+        self.imgURL = imgURL
+        self.imageBase64 = imageBase64
     }
-  }
-
-  func requestUpdateUserInfo(completion: @escaping(Result) -> Void) {
-    let data = [
-      "funcion": Routes.updateUserIOS,
-      "id_user": Defaults[.user]!,
-      "first_name": name ?? "",
-      "last_name": last_name ?? "",
-      "phone": phone ?? ""
-    ]
-
-    Alamofire.request(General.url_connection,
-                      method: .post,
-                      parameters: data).responseJSON { (response) in
-      guard let data = response.result.value else {
-        completion(.failure("Error de conexión"))
-        return
-      }
-
-      guard let dictionary = JSON(data).dictionary else {
-        completion(.failure("Error al obtener los datos"))
-        return
-      }
-
-      if dictionary["state"] != "200" {
-        completion(.failure(dictionary["status_msg"]?.string ?? ""))
-        return
-      }
-      completion(.success([]))
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "nombre"
+        case last_name = "apellidos"
+        case phone = "telefono"
+        case imgURL = "imagen"
     }
-  }
-
-  func requestUpdateUserImage(completion: @escaping(Result) -> Void) {
-    let data = [
-      "funcion": Routes.updateUserIOS,
-      "id_user": Defaults[.user]!,
-      "first_name": name ?? "",
-      "last_name": last_name ?? "",
-      "phone": phone ?? "",
-      "image": imageBase64 ?? ""
-    ]
-
-    Alamofire.request(General.url_connection,
-                      method: .post,
-                      parameters: data).responseJSON { (response) in
-      guard let data = response.result.value else {
-        completion(.failure("Error de conexión"))
-        return
-      }
-
-      guard let dictionary = JSON(data).dictionary else {
-        completion(.failure("Error al obtener los datos"))
-        return
-      }
-
-      if dictionary["state"] != "200" {
-        completion(.failure(dictionary["status_msg"]?.string ?? ""))
-        return
-      }
-
-      completion(.success([]))
+    
+    func requestUserInfo(completion: @escaping(Result) -> Void) {
+        let data = [
+            "funcion": Routes.getUserInfo,
+            "id_user": Defaults[.user]!,
+        ]
+        
+        Alamofire.request(General.url_connection,
+                          method: .post,
+                          parameters: data).responseJSON { (response) in
+                            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                                print("Data: \(utf8Text)")
+                            }
+                            guard let data = response.result.value else {
+                                completion(.failure("Error de conexión"))
+                                return
+                            }
+                            
+                            guard let dictionary = JSON(data).dictionary else {
+                                completion(.failure("Error al obtener los datos"))
+                                return
+                            }
+                            
+                            if dictionary["state"] != "200" {
+                                completion(.failure(dictionary["status_msg"]?.string ?? ""))
+                                return
+                            }
+                            guard let dataDictionary = dictionary["data"],
+                                let object = try? dataDictionary["info"].rawData(),
+                                let decoded = try? JSONDecoder().decode(UserProfile.self, from: object) else {
+                                    completion(.failure("Error al leer los datos"))
+                                    return
+                            }
+                            self.name = decoded.name
+                            self.last_name = decoded.last_name
+                            self.phone = decoded.phone
+                            self.imgURL = decoded.imgURL
+                            completion(.success([]))
+        }
     }
-  }
+    
+    func requestUpdateUserInfo(completion: @escaping(Result) -> Void) {
+        let data = [
+            "funcion": Routes.updateUserIOS,
+            "id_user": Defaults[.user]!,
+            "first_name": name ?? "",
+            "last_name": last_name ?? "",
+            "phone": phone ?? ""
+        ]
+        
+        Alamofire.request(General.url_connection,
+                          method: .post,
+                          parameters: data).responseJSON { (response) in
+                            guard let data = response.result.value else {
+                                completion(.failure("Error de conexión"))
+                                return
+                            }
+                            
+                            guard let dictionary = JSON(data).dictionary else {
+                                completion(.failure("Error al obtener los datos"))
+                                return
+                            }
+                            
+                            if dictionary["state"] != "200" {
+                                completion(.failure(dictionary["status_msg"]?.string ?? ""))
+                                return
+                            }
+                            completion(.success([]))
+        }
+    }
+    
+    func requestUpdateUserImage(completion: @escaping(Result) -> Void) {
+        let data = [
+            "funcion": Routes.updateUserIOS,
+            "id_user": Defaults[.user]!,
+            "first_name": name ?? "",
+            "last_name": last_name ?? "",
+            "phone": phone ?? "",
+            "image": imageBase64 ?? ""
+        ]
+        
+        Alamofire.request(General.url_connection,
+                          method: .post,
+                          parameters: data).responseJSON { (response) in
+                            guard let data = response.result.value else {
+                                completion(.failure("Error de conexión"))
+                                return
+                            }
+                            
+                            guard let dictionary = JSON(data).dictionary else {
+                                completion(.failure("Error al obtener los datos"))
+                                return
+                            }
+                            
+                            if dictionary["state"] != "200" {
+                                completion(.failure(dictionary["status_msg"]?.string ?? ""))
+                                return
+                            }
+                            
+                            completion(.success([]))
+        }
+    }
 }
 
 

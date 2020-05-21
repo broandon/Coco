@@ -249,10 +249,10 @@ extension MainController: MenuDelegate {
             Defaults.removeObject(forKey: "user")
             Defaults.removeObject(forKey: "token")
             Defaults.removeObject(forKey: "token_saved")
-            let domain = Bundle.main.bundleIdentifier!
-            UserDefaults.standard.removePersistentDomain(forName: domain)
-            UserDefaults.standard.synchronize()
-            print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+          //  let domain = Bundle.main.bundleIdentifier!
+          //  UserDefaults.standard.removePersistentDomain(forName: domain)
+          //  UserDefaults.standard.synchronize()
+          //  print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
             let vc = instantiate(viewControllerClass: AccountVC.self)
             let wnd = UIApplication.shared.keyWindow
             var options = UIWindow.TransitionOptions()

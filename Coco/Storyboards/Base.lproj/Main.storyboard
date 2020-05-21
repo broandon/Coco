@@ -1265,6 +1265,62 @@
             </objects>
             <point key="canvasLocation" x="2161" y="118"/>
         </scene>
+        <!--Promo View Controller-->
+        <scene sceneID="dHK-OJ-hp4">
+            <objects>
+                <viewController storyboardIdentifier="promoViewController" modalPresentationStyle="overCurrentContext" id="Ycc-tF-Xe1" customClass="promoViewController" customModule="Coco" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" alpha="0.65000000000000002" contentMode="scaleToFill" id="isX-fv-Adc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p5g-2V-TNe">
+                                <rect key="frame" x="42" y="203" width="330" height="330"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="p5g-2V-TNe" secondAttribute="height" multiplier="1:1" id="YeF-4q-t6X"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RzP-dW-HHp">
+                                <rect key="frame" x="42" y="203" width="330" height="330"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9i-NZ-xaH">
+                                        <rect key="frame" x="277" y="8" width="45" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="EUG-Dm-0UW"/>
+                                            <constraint firstAttribute="width" constant="45" id="PH9-JW-Jbs"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="cerrarblanco"/>
+                                        <connections>
+                                            <action selector="close:" destination="Ycc-tF-Xe1" eventType="touchUpInside" id="PBB-YP-zwd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="W9i-NZ-xaH" firstAttribute="top" secondItem="RzP-dW-HHp" secondAttribute="top" constant="8" id="Kqd-5V-DBb"/>
+                                    <constraint firstAttribute="trailing" secondItem="W9i-NZ-xaH" secondAttribute="trailing" constant="8" id="bsw-kF-to8"/>
+                                    <constraint firstAttribute="width" secondItem="RzP-dW-HHp" secondAttribute="height" multiplier="1:1" id="jAf-Rh-Mw8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.095943921232876705" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WgC-Yk-ssD" firstAttribute="trailing" secondItem="p5g-2V-TNe" secondAttribute="trailing" constant="42" id="I2n-UQ-s14"/>
+                            <constraint firstItem="RzP-dW-HHp" firstAttribute="leading" secondItem="WgC-Yk-ssD" secondAttribute="leading" constant="42" id="Jtc-Mn-MMr"/>
+                            <constraint firstItem="p5g-2V-TNe" firstAttribute="leading" secondItem="WgC-Yk-ssD" secondAttribute="leading" constant="42" id="huk-r9-cig"/>
+                            <constraint firstItem="p5g-2V-TNe" firstAttribute="centerY" secondItem="isX-fv-Adc" secondAttribute="centerY" id="lYc-uo-zz6"/>
+                            <constraint firstItem="WgC-Yk-ssD" firstAttribute="trailing" secondItem="RzP-dW-HHp" secondAttribute="trailing" constant="42" id="mzS-18-6Df"/>
+                            <constraint firstItem="RzP-dW-HHp" firstAttribute="centerY" secondItem="isX-fv-Adc" secondAttribute="centerY" id="oqG-sG-Xwx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WgC-Yk-ssD"/>
+                    </view>
+                    <connections>
+                        <outlet property="promoImage" destination="p5g-2V-TNe" id="Xcx-bk-6NI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LQX-2w-x3Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2879.7101449275365" y="116.57608695652175"/>
+        </scene>
         <!--Forgot PasswordVC-->
         <scene sceneID="L6e-aO-qoY">
             <objects>
@@ -1289,7 +1345,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Regresar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye2-Vr-OW1">
-                                        <rect key="frame" x="48" y="11.333333333333334" width="59.333333333333343" height="17.666666666666664"/>
+                                        <rect key="frame" x="48" y="12.666666666666664" width="59.333333333333343" height="15"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="15"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>
@@ -1382,6 +1438,7 @@
     </scenes>
     <resources>
         <image name="backnegro" width="64" height="64"/>
+        <image name="cerrarblanco" width="128" height="128"/>
         <image name="error" width="128" height="128"/>
         <image name="logo_negro" width="976" height="293"/>
         <image name="masgris" width="320" height="320"/>

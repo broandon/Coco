@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import SwiftyUserDefaults
+import Hero
 
 class MainController: UIViewController {
     
@@ -35,6 +36,20 @@ class MainController: UIViewController {
         pushManager.registerForPushNotifications()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateLabels), name: Notification.Name(rawValue: "reloadBalance"), object: nil)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let destVC = storyboard.instantiateViewController(withIdentifier: "promoViewController") as! promoViewController
+
+        destVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        destVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+
+        self.present(destVC, animated: true, completion: nil)
+        
         
     }
     
@@ -156,6 +171,7 @@ class MainController: UIViewController {
             case .failure(let errorMssg):
                 self.throwError(str: errorMssg)
             case .success(_):
+                print(result)
                 self.fillInfo()
             }
         }
@@ -249,10 +265,10 @@ extension MainController: MenuDelegate {
             Defaults.removeObject(forKey: "user")
             Defaults.removeObject(forKey: "token")
             Defaults.removeObject(forKey: "token_saved")
-          //  let domain = Bundle.main.bundleIdentifier!
-          //  UserDefaults.standard.removePersistentDomain(forName: domain)
-          //  UserDefaults.standard.synchronize()
-          //  print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+            //  let domain = Bundle.main.bundleIdentifier!
+            //  UserDefaults.standard.removePersistentDomain(forName: domain)
+            //  UserDefaults.standard.synchronize()
+            //  print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
             let vc = instantiate(viewControllerClass: AccountVC.self)
             let wnd = UIApplication.shared.keyWindow
             var options = UIWindow.TransitionOptions()

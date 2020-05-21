@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3F70D7C3F4D6293AE3D5BAAC /* Pods_CocoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F14347B74DDFE317E603C86A /* Pods_CocoUITests.framework */; };
+		9D07DB052476E83B00907E39 /* promoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07DB042476E83B00907E39 /* promoViewController.swift */; };
+		9D07DB072476EE6B00907E39 /* promoMOdel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07DB062476EE6B00907E39 /* promoMOdel.swift */; };
 		9D9EB1CF242D787B00FE1E2C /* codeSharingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */; };
 		9D9EB1D0242D787B00FE1E2C /* codeSharingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */; };
 		9DA878D2240472C9001F8FAF /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D1240472C9001F8FAF /* popUpViewController.swift */; };
@@ -152,6 +154,8 @@
 		6E4915966DA5C2608206AE0A /* Pods_Coco.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coco.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B3EAF956F1B8B3139D70DA /* Pods-CocoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoTests/Pods-CocoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8224668FFF2D9C032908D0EF /* Pods-Coco.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coco.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coco/Pods-Coco.release.xcconfig"; sourceTree = "<group>"; };
+		9D07DB042476E83B00907E39 /* promoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promoViewController.swift; sourceTree = "<group>"; };
+		9D07DB062476EE6B00907E39 /* promoMOdel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promoMOdel.swift; sourceTree = "<group>"; };
 		9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeSharingTableViewCell.swift; sourceTree = "<group>"; };
 		9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = codeSharingTableViewCell.xib; sourceTree = "<group>"; };
 		9DA878D1240472C9001F8FAF /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
@@ -756,6 +760,8 @@
 				9DA878D1240472C9001F8FAF /* popUpViewController.swift */,
 				9DA878D324048428001F8FAF /* newCodeViewController.swift */,
 				CF7202E1242549B8008425CD /* Extensions.swift */,
+				9D07DB042476E83B00907E39 /* promoViewController.swift */,
+				9D07DB062476EE6B00907E39 /* promoMOdel.swift */,
 			);
 			path = "Brandon Added These";
 			sourceTree = "<group>";
@@ -1056,6 +1062,7 @@
 				C34466E222CAC4BA00A11433 /* RegisterVC.swift in Sources */,
 				CFBC53A52406EADB00D4FF95 /* addNewPromoCodeViewController.swift in Sources */,
 				CFBC53A12406DC7500D4FF95 /* promoCodesTableViewCell.swift in Sources */,
+				9D07DB072476EE6B00907E39 /* promoMOdel.swift in Sources */,
 				C35572B122CA932700FC5C89 /* FavoritesVC.swift in Sources */,
 				C3C0F37E22D3D73400B03F62 /* Cards.swift in Sources */,
 				C3A161E822B9B38A00076DD8 /* Coco.xcdatamodeld in Sources */,
@@ -1081,6 +1088,7 @@
 				CF7202E2242549B8008425CD /* Extensions.swift in Sources */,
 				CFF0B6AE23EBC97800C30A6D /* rechargeCreditViewController.swift in Sources */,
 				C3C0F36822D3B33700B03F62 /* Schools.swift in Sources */,
+				9D07DB052476E83B00907E39 /* promoViewController.swift in Sources */,
 				C348F15D22CBC94B000F185C /* PaymentFormsTableViewCell.swift in Sources */,
 				C355729722CA80B000FC5C89 /* LoaderVC.swift in Sources */,
 				C3A1622522B9BC8B00076DD8 /* Routes.swift in Sources */,

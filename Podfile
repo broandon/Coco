@@ -32,6 +32,7 @@ target 'Coco' do
   pod 'IQKeyboardManagerSwift'
   pod 'StickyScrollView'
   pod 'YPImagePicker'
+  pod 'SDWebImage'
 
   target 'CocoUITests' do
     inherit! :search_paths

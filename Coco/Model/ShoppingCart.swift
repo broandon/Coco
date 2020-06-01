@@ -87,20 +87,20 @@ class ShoppingCart: Codable {
         data["funcion"] = Routes.saveOrder
         data["id_user"] = Defaults[.user]!
         
-        print("this is the data")
-        print(data)
-        print("these are the parameters")
-        print(parameters)
-        print("Here is the dict")
-        print(data["products"])
-        print("***************")
-        
         Alamofire.request(General.url_connection,
                           method: .post,
                           parameters: data).responseJSON { (response) in
                             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                                 print("Data: \(utf8Text)")
+                                
+                                let stuff = try? JSONDecoder().decode(Stuff.self, from: data)
+                                
+                                let tiempoEstimado = "\(stuff?.data?.tiempoEstimado ?? 0)"
+                                
+                                UserDefaults.standard.set(tiempoEstimado, forKey: "estimatedValue")
+                                
                             }
+                            
                             guard let data = response.result.value else {
                                 completion(.failure("Error de conexión"))
                                 return
@@ -135,7 +135,15 @@ class ShoppingCart: Codable {
                             
                             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                                 print("Data: \(utf8Text)")
+                                
+                                let stuff = try? JSONDecoder().decode(Stuff.self, from: data)
+                                
+                                let tiempoEstimado = "\(stuff?.data?.tiempoEstimado ?? 0)"
+                                
+                                UserDefaults.standard.set(tiempoEstimado, forKey: "estimatedValue")
+                                
                             }
+                            
                             guard let data = response.result.value else {
                                 completion(.failure("Error de conexión"))
                                 return
@@ -217,66 +225,6 @@ class ShoppingCart2: Codable {
             throw NSError()
         }
         return dictionary
-    }
-    
-    func saveOrder2(products: String, parameters: [String: Any], completion: @escaping(Result) -> Void){
-        var data = parameters
-        data["products"] = products
-        data["funcion"] = Routes.saveOrderCocopoints
-        data["id_user"] = Defaults[.user]!
-        
-        Alamofire.request(General.url_connection,
-                          method: .post,
-                          parameters: data).responseJSON { (response) in
-                            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                                print("Data: \(utf8Text)")
-                            }
-                            guard let data = response.result.value else {
-                                completion(.failure("Error de conexión"))
-                                return
-                            }
-                            
-                            guard let dictionary = JSON(data).dictionary else {
-                                completion(.failure("Error al obtener los datos"))
-                                return
-                            }
-                            
-                            if dictionary["state"] != "200" {
-                                completion(.failure(dictionary["status_msg"]?.string ?? ""))
-                                return
-                            }
-                            completion(.success([]))
-        }
-    }
-    
-    func saveOrder(products: String, parameters: [String: Any], completion: @escaping(Result) -> Void){
-        var data = parameters
-        data["products"] = products
-        data["funcion"] = Routes.saveOrder
-        data["id_user"] = Defaults[.user]!
-        
-        Alamofire.request(General.url_connection,
-                          method: .post,
-                          parameters: data).responseJSON { (response) in
-                            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                                print("Data: \(utf8Text)")
-                            }
-                            guard let data = response.result.value else {
-                                completion(.failure("Error de conexión"))
-                                return
-                            }
-                            
-                            guard let dictionary = JSON(data).dictionary else {
-                                completion(.failure("Error al obtener los datos"))
-                                return
-                            }
-                            
-                            if dictionary["state"] != "200" {
-                                completion(.failure(dictionary["status_msg"]?.string ?? ""))
-                                return
-                            }
-                            completion(.success([]))
-        }
     }
     
 }

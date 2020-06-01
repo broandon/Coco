@@ -15,7 +15,10 @@ class doneModalViewController: UIViewController {
     
     var player: AVPlayer?
     
+    let estimatedValue = UserDefaults.standard.value(forKey: "estimatedValue")
+    
     @IBOutlet weak var doneCheckVideo: UIView!
+    @IBOutlet weak var doneText: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,7 @@ class doneModalViewController: UIViewController {
             
         }
         
+        doneText.text = "Tu pedido ha sido enviado y estara listo en \(estimatedValue ?? "0") minutos"
         
     }
     

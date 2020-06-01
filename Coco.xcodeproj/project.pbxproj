@@ -10,6 +10,8 @@
 		3F70D7C3F4D6293AE3D5BAAC /* Pods_CocoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F14347B74DDFE317E603C86A /* Pods_CocoUITests.framework */; };
 		9D07DB052476E83B00907E39 /* promoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07DB042476E83B00907E39 /* promoViewController.swift */; };
 		9D07DB072476EE6B00907E39 /* promoMOdel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07DB062476EE6B00907E39 /* promoMOdel.swift */; };
+		9D1769A824852E6300EE1E52 /* orderEstimatedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1769A724852E6300EE1E52 /* orderEstimatedTime.swift */; };
+		9D60BAB02484C49800CA00FE /* estimatedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60BAAF2484C49800CA00FE /* estimatedModel.swift */; };
 		9D9EB1CF242D787B00FE1E2C /* codeSharingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */; };
 		9D9EB1D0242D787B00FE1E2C /* codeSharingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */; };
 		9DA878D2240472C9001F8FAF /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D1240472C9001F8FAF /* popUpViewController.swift */; };
@@ -156,6 +158,8 @@
 		8224668FFF2D9C032908D0EF /* Pods-Coco.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coco.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coco/Pods-Coco.release.xcconfig"; sourceTree = "<group>"; };
 		9D07DB042476E83B00907E39 /* promoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promoViewController.swift; sourceTree = "<group>"; };
 		9D07DB062476EE6B00907E39 /* promoMOdel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promoMOdel.swift; sourceTree = "<group>"; };
+		9D1769A724852E6300EE1E52 /* orderEstimatedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderEstimatedTime.swift; sourceTree = "<group>"; };
+		9D60BAAF2484C49800CA00FE /* estimatedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = estimatedModel.swift; sourceTree = "<group>"; };
 		9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeSharingTableViewCell.swift; sourceTree = "<group>"; };
 		9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = codeSharingTableViewCell.xib; sourceTree = "<group>"; };
 		9DA878D1240472C9001F8FAF /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
@@ -328,6 +332,16 @@
 				6461A7046F27B15CD6770900 /* Pods-CocoUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9D1769A62484DA9E00EE1E52 /* newModels */ = {
+			isa = PBXGroup;
+			children = (
+				9D07DB062476EE6B00907E39 /* promoMOdel.swift */,
+				9D60BAAF2484C49800CA00FE /* estimatedModel.swift */,
+				9D1769A724852E6300EE1E52 /* orderEstimatedTime.swift */,
+			);
+			path = newModels;
 			sourceTree = "<group>";
 		};
 		C3222BAE22E04ACB00E63F38 /* Cell */ = {
@@ -751,6 +765,7 @@
 		CFF0B6AB23EBC80600C30A6D /* Brandon Added These */ = {
 			isa = PBXGroup;
 			children = (
+				9D1769A62484DA9E00EE1E52 /* newModels */,
 				CFBC53A7240712C500D4FF95 /* Coco Cards */,
 				CFBC539E2406DC3A00D4FF95 /* Promo Codes */,
 				CFF0B6AC23EBC97800C30A6D /* rechargeCreditViewController.swift */,
@@ -761,7 +776,6 @@
 				9DA878D324048428001F8FAF /* newCodeViewController.swift */,
 				CF7202E1242549B8008425CD /* Extensions.swift */,
 				9D07DB042476E83B00907E39 /* promoViewController.swift */,
-				9D07DB062476EE6B00907E39 /* promoMOdel.swift */,
 			);
 			path = "Brandon Added These";
 			sourceTree = "<group>";
@@ -1077,6 +1091,7 @@
 				C3C0F36C22D3C1EE00B03F62 /* SchoolModal.swift in Sources */,
 				9DA878D424048428001F8FAF /* newCodeViewController.swift in Sources */,
 				C3C0F37C22D3D4B000B03F62 /* Conekta.m in Sources */,
+				9D60BAB02484C49800CA00FE /* estimatedModel.swift in Sources */,
 				C348F15522CBB4B0000F185C /* ProductDetailVC.swift in Sources */,
 				C348F14422CB90B0000F185C /* Categories.swift in Sources */,
 				C348F13A22CB863A000F185C /* BalanceVC.swift in Sources */,
@@ -1104,6 +1119,7 @@
 				C3C0F38222D3E6B900B03F62 /* AlertModal.swift in Sources */,
 				CFBC53B224071B5000D4FF95 /* addNewCocoCardViewController.swift in Sources */,
 				C3B06FE623032CF400E03EC2 /* PushNotificationManager.swift in Sources */,
+				9D1769A824852E6300EE1E52 /* orderEstimatedTime.swift in Sources */,
 				C348F14822CB9258000F185C /* CategoriesVC.swift in Sources */,
 				C35572C222CABC1E00FC5C89 /* User.swift in Sources */,
 				C348F13F22CB8790000F185C /* BalanceTableViewCell.swift in Sources */,
@@ -1287,7 +1303,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Coco/Coco.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = W4MERUEP35;
 				INFOPLIST_FILE = Coco/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1313,7 +1329,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Coco/Coco.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = W4MERUEP35;
 				INFOPLIST_FILE = Coco/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

@@ -15,6 +15,7 @@ class OrdersVC: UIViewController {
   
   var loader: LoaderVC!
   var orders: Orders!
+  var estimated: OrderEstimatedTime!
     
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,6 +41,8 @@ class OrdersVC: UIViewController {
       case .failure(let errorMssg):
         self.throwError(str: errorMssg)
       case .success(_):
+        print("these are the orders")
+        print(self.orders)
         self.fillInfo()
       }
     }
@@ -63,16 +66,25 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return orders.orders.count
   }
+    
+  func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+    return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+  }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: OrderTableViewCell.cellIdentifier, for: indexPath) as? OrderTableViewCell else {
       return UITableViewCell()
     }
+        
     let item = orders.orders[indexPath.row]
+    
+    let (hour, minute, second) = secondsToHoursMinutesSeconds(seconds: item.tiempoEstimado!)
+    
     cell.orderNumber.text = "Orden \(item.id ?? "--")"
     cell.dateLabel.text = "Fecha: \(item.date ?? "--")"
     cell.statusLabel.text = "Estatus: \(item.status ?? "--")"
     cell.businessLabel.text = "Cafetería: \(item.business ?? "--")"
+    cell.tiempoEstimadoLabel.text = "Tiempo estimado: \(minute) min. \(second) sec."
     
     if item.tipoDeCompra == "1" {
         

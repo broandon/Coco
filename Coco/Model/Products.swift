@@ -72,6 +72,7 @@ class Product: Codable {
     public var business: String?
     public var quantity: String?
     public var cocopoints: Int?
+    public var tiempoEstimado: Int?
     
     public init(id: String = "",
                 name: String = "",
@@ -82,6 +83,7 @@ class Product: Codable {
                 favorite: String = "",
                 business: String = "",
                 cocopoints: Int = 0,
+                tiempoEstimado: Int = 0,
                 quantity: String = "") {
         
         self.id = id
@@ -94,6 +96,7 @@ class Product: Codable {
         self.business = business
         self.quantity = quantity
         self.cocopoints = cocopoints
+        self.tiempoEstimado = tiempoEstimado
     }
     
     enum CodingKeys: String, CodingKey {
@@ -108,6 +111,7 @@ class Product: Codable {
         case business = "proveedor"
         case quantity = "cantidad"
         case cocopoints = "cocopoints"
+        case tiempoEstimado = "tiempo_estimado"
     }
     
     func requestProductDetail(completion: @escaping(Result) -> Void){
@@ -157,6 +161,7 @@ class Product: Codable {
                             self.favorite = decoded.favorite
                             self.business = decoded.business
                             self.cocopoints = decoded.cocopoints
+                            self.tiempoEstimado = decoded.tiempoEstimado
                             completion(.success([]))
         }
     }

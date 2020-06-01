@@ -24,6 +24,7 @@ class Order: Decodable {
   public var cocopoints: Int?
   public var tipoDeCompra: String?
   public var totalCocopoints: String?
+  public var tiempoEstimado: Int?
   
   enum CodingKeys: String, CodingKey {
     case id = "Id"
@@ -39,6 +40,7 @@ class Order: Decodable {
     case cocopoints = "cocopoints"
     case tipoDeCompra = "tipo_compra"
     case totalCocopoints = "monto_cocopoints"
+    case tiempoEstimado = "tiempo_estimado"
     
   }
 }
@@ -68,10 +70,15 @@ class Orders: Decodable {
         completion(.failure("Error al obtener los datos"))
         return
       }
-                       
+                        
+      let orderEstimatedTime = try? JSONDecoder().decode(OrderEstimatedTime.self, from: response.data!)
+      
       print("This is the dictionary")
       print(dictionary)
-      
+      print("and data")
+                        print(orderEstimatedTime?.data![0].nombre)
+                        
+                        
       if dictionary["state"] != "200" {
         completion(.failure(dictionary["status_msg"]?.string ?? ""))
         return

@@ -16,6 +16,7 @@ class promoViewController: UIViewController {
     var userProfile: UserProfile!
     var user: User!
     let userID = Defaults[.user]
+    var urlToVisit : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +52,8 @@ class promoViewController: UIViewController {
             }
             
             let imageURL = promoInfo.data?.promocion?.imagen
-            
-            print("This is the imageURL")
-            print(imageURL)
+            let URLDirection = promoInfo.data?.promocion?.link
+            self.urlToVisit = URLDirection
             
             self.promoImage.sd_setImage(with: URL(string: imageURL ?? "No Image"), completed: nil)
             
@@ -63,6 +63,14 @@ class promoViewController: UIViewController {
         
         task.resume()
         
+        
+    }
+    @IBAction func goToProm(_ sender: Any) {
+        
+        if let url = URL(string: urlToVisit ?? "www.google.com") {
+            UIApplication.shared.open(url)
+            
+        }
         
     }
     

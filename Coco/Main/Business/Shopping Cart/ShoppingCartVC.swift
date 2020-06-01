@@ -183,9 +183,7 @@ class ShoppingCartVC: UIViewController {
         guard let dict = try? shoppingCart.asDictionary() else {
             return
         }
-        
-        print(dict)
-        
+                
         var jsonText = ""
         var products = [[String: Any]]()
         for i in dict["products"] as! [[String: Any]] {
@@ -195,9 +193,7 @@ class ShoppingCartVC: UIViewController {
             temp["precio"] = i["precio"]
             products.append(temp)
         }
-        
-        print(products)
-        
+                
         if let theJSONData = try? JSONSerialization.data(
             withJSONObject: products,
             options: .prettyPrinted
@@ -206,9 +202,7 @@ class ShoppingCartVC: UIViewController {
                                      encoding: String.Encoding.ascii) {
             jsonText = theJSONText
         }
-        
-        print(jsonText)
-        
+                
         let my_balance = NumberFormatter().number(from: balance)!
         let cost = NumberFormatter().number(from: shoppingCart.amount_final ?? "0.0")!
         
@@ -225,6 +219,7 @@ class ShoppingCartVC: UIViewController {
                 self.throwError(str: errorMssg)
                 return
             case .success(_):
+                
                 UserDefaults.standard.removeObject(forKey: "shoppingCart")
                 // Register Nib
                 let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
@@ -291,6 +286,11 @@ class ShoppingCartVC: UIViewController {
                 self.throwError(str: errorMssg)
                 return
             case .success(_):
+                
+                print("This /n is /n the /n jsonText")
+                print(jsonText)
+                print("********************")
+                
                 UserDefaults.standard.removeObject(forKey: "shoppingCart")
                 // Register Nib
                 let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)

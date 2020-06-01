@@ -1293,12 +1293,28 @@
                                             <action selector="close:" destination="Ycc-tF-Xe1" eventType="touchUpInside" id="PBB-YP-zwd"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7q-68-WJE">
+                                        <rect key="frame" x="72" y="275" width="187" height="47"/>
+                                        <color key="backgroundColor" name="Green"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="47" id="Vig-Q3-P0q"/>
+                                        </constraints>
+                                        <state key="normal" title="¡Lo quiero!">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goToProm:" destination="Ycc-tF-Xe1" eventType="touchUpInside" id="bwD-Ul-7hg"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="W9i-NZ-xaH" firstAttribute="top" secondItem="RzP-dW-HHp" secondAttribute="top" constant="8" id="Kqd-5V-DBb"/>
                                     <constraint firstAttribute="trailing" secondItem="W9i-NZ-xaH" secondAttribute="trailing" constant="8" id="bsw-kF-to8"/>
+                                    <constraint firstItem="m7q-68-WJE" firstAttribute="leading" secondItem="RzP-dW-HHp" secondAttribute="leading" constant="72" id="iYc-Ih-nW0"/>
                                     <constraint firstAttribute="width" secondItem="RzP-dW-HHp" secondAttribute="height" multiplier="1:1" id="jAf-Rh-Mw8"/>
+                                    <constraint firstAttribute="bottom" secondItem="m7q-68-WJE" secondAttribute="bottom" constant="8" id="pMx-IO-YkM"/>
+                                    <constraint firstAttribute="trailing" secondItem="m7q-68-WJE" secondAttribute="trailing" constant="71" id="zU7-PI-bLv"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1345,7 +1361,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Regresar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye2-Vr-OW1">
-                                        <rect key="frame" x="48" y="12.666666666666664" width="59.333333333333343" height="15"/>
+                                        <rect key="frame" x="48" y="11.333333333333334" width="59.333333333333343" height="17.666666666666664"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="15"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>

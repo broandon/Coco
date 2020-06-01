@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -100,6 +100,15 @@
                                     <constraint firstAttribute="width" constant="1.5" id="hpT-SD-Njc"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tiempo estimado:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="qjc-Sl-Uot">
+                                <rect key="frame" x="8" y="135" width="232.5" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="lb6-Fc-ysh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -113,6 +122,7 @@
                             <constraint firstItem="fU3-q3-xzF" firstAttribute="top" secondItem="6lf-e4-aTt" secondAttribute="bottom" constant="16" id="PBi-su-2oW"/>
                             <constraint firstAttribute="trailing" secondItem="03N-KN-ViP" secondAttribute="trailing" constant="10" id="Rzf-dg-08f"/>
                             <constraint firstItem="03N-KN-ViP" firstAttribute="top" secondItem="yRR-EK-M31" secondAttribute="bottom" constant="22" id="SBL-z5-YKo"/>
+                            <constraint firstItem="iFe-ZE-ICZ" firstAttribute="leading" secondItem="qjc-Sl-Uot" secondAttribute="trailing" constant="8" id="T9Y-mJ-v3N"/>
                             <constraint firstItem="qyB-my-DlZ" firstAttribute="leading" secondItem="see-Wt-7WK" secondAttribute="leading" constant="8" id="UOa-9B-Lm4"/>
                             <constraint firstItem="iFe-ZE-ICZ" firstAttribute="leading" secondItem="fU3-q3-xzF" secondAttribute="trailing" constant="8" id="Uar-Ph-w5r"/>
                             <constraint firstItem="yRR-EK-M31" firstAttribute="leading" secondItem="iFe-ZE-ICZ" secondAttribute="trailing" constant="8" id="W5l-ci-Fkp"/>
@@ -122,8 +132,10 @@
                             <constraint firstItem="qyB-my-DlZ" firstAttribute="top" secondItem="kkt-4L-wDv" secondAttribute="bottom" constant="8" id="ggM-CU-UrH"/>
                             <constraint firstItem="fU3-q3-xzF" firstAttribute="leading" secondItem="see-Wt-7WK" secondAttribute="leading" constant="8" id="hYQ-YA-Fr9"/>
                             <constraint firstItem="iFe-ZE-ICZ" firstAttribute="leading" secondItem="qyB-my-DlZ" secondAttribute="trailing" constant="8" id="iiT-xh-ays"/>
+                            <constraint firstItem="qjc-Sl-Uot" firstAttribute="leading" secondItem="see-Wt-7WK" secondAttribute="leading" constant="8" id="k9p-3Z-Itt"/>
                             <constraint firstItem="yRR-EK-M31" firstAttribute="top" secondItem="z5b-Nl-yYa" secondAttribute="bottom" constant="16" id="oEh-Oz-vwS"/>
                             <constraint firstAttribute="trailing" secondItem="yRR-EK-M31" secondAttribute="trailing" constant="8" id="osG-fS-HY6"/>
+                            <constraint firstItem="qjc-Sl-Uot" firstAttribute="top" secondItem="qyB-my-DlZ" secondAttribute="bottom" constant="8" id="ouj-11-D9O"/>
                             <constraint firstItem="z5b-Nl-yYa" firstAttribute="centerY" secondItem="fU3-q3-xzF" secondAttribute="centerY" id="sjC-Pn-oTt"/>
                             <constraint firstAttribute="bottom" secondItem="iFe-ZE-ICZ" secondAttribute="bottom" constant="16" id="uBX-MJ-vpG"/>
                             <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="03N-KN-ViP" secondAttribute="bottom" constant="5" id="x0a-h0-dHl"/>
@@ -146,6 +158,7 @@
                 <outlet property="montoCocoLabel" destination="z5b-Nl-yYa" id="pUc-be-DwV"/>
                 <outlet property="orderNumber" destination="6lf-e4-aTt" id="xHw-xH-jK3"/>
                 <outlet property="statusLabel" destination="kkt-4L-wDv" id="tTJ-T6-7RM"/>
+                <outlet property="tiempoEstimadoLabel" destination="qjc-Sl-Uot" id="9FC-vB-dxQ"/>
             </connections>
             <point key="canvasLocation" x="205.79710144927537" y="179.79910714285714"/>
         </tableViewCell>

@@ -8,25 +8,42 @@
 
 import UIKit
 
-class OrderTableViewCell: UITableViewCell {
+protocol showMeTheCoco {
+    func showsTheCoco(position: UIView)
+}
 
-  @IBOutlet weak var backView: UIView!
-  @IBOutlet weak var orderNumber: UILabel!
-  @IBOutlet weak var dateLabel: UILabel!
-  @IBOutlet weak var statusLabel: UILabel!
-  @IBOutlet weak var businessLabel: UILabel!
-  @IBOutlet weak var amountLabel: UILabel!
-  @IBOutlet weak var montoCocoLabel: UILabel!
-    @IBOutlet weak var tiempoEstimadoLabel: UILabel!
+class OrderTableViewCell: UITableViewCell {
     
-  
-  static let cellIdentifier = "OrderTableViewCell"
-  let index: Int = 0
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    backView.setShadow()
-    backView.roundCorners(8, clipToBounds: false)
-    orderNumber.roundCorners(12)
-  }
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var orderNumber: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var businessLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var montoCocoLabel: UILabel!
+    @IBOutlet weak var tiempoEstimadoLabel: UILabel!
+    @IBOutlet weak var buttonShowCoco: UIButton!
+    
+    var delegate : showMeTheCoco!
+    
+    static let cellIdentifier = "OrderTableViewCell"
+    let index: Int = 0
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backView.setShadow()
+        backView.roundCorners(8, clipToBounds: false)
+        orderNumber.roundCorners(12)
+    }
+    
+    @IBAction func showPopover(_ sender: UIButton) {
+        
+        let theViewNumber = orderNumber.superview
+        self.delegate.showsTheCoco(position: theViewNumber!)
+        
+        let currentCellNumber = sender.tag
+        print(currentCellNumber)
+        UserDefaults.standard.set(currentCellNumber, forKey: "cocopointsOtorgados")
+        
+    }
 }

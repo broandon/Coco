@@ -35,7 +35,7 @@ class doneModalViewController: UIViewController {
             
         }
         
-        doneText.text = "Tu pedido ha sido enviado y estara listo en \(estimatedValue ?? "0") minutos"
+        doneText.text = "Tu pedido ha sido enviado y estará listo en \(estimatedValue ?? "0") minutos"
         
     }
     

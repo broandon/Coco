@@ -41,6 +41,8 @@ class MainController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
+        if UserDefaults.standard.bool(forKey: "showedPromo") == true {
+        
         
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let destVC = storyboard.instantiateViewController(withIdentifier: "promoViewController") as! promoViewController
@@ -49,7 +51,10 @@ class MainController: UIViewController {
         destVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
 
         self.present(destVC, animated: true, completion: nil)
+            
+            UserDefaults.standard.set(false, forKey: "showedPromo")
         
+        }
         
     }
     

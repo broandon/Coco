@@ -30,6 +30,12 @@ class CategoriesVC: UIViewController {
         fillUpLabels()
     }
     
+    @IBAction func buttonTapped(_ button: UIButton) {
+        
+        
+        
+    }
+    
     private func fillUpLabels() {
         
         labelCocopoints.roundCorners(9)

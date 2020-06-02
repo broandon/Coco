@@ -16,6 +16,8 @@
 		9D9EB1D0242D787B00FE1E2C /* codeSharingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */; };
 		9DA878D2240472C9001F8FAF /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D1240472C9001F8FAF /* popUpViewController.swift */; };
 		9DA878D424048428001F8FAF /* newCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D324048428001F8FAF /* newCodeViewController.swift */; };
+		9DD8DE0C2485BEA50016F3AA /* UITableView+indexPathForView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD8DE0B2485BEA50016F3AA /* UITableView+indexPathForView.swift */; };
+		9DD8DE0E2485C4AE0016F3AA /* popover1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD8DE0D2485C4AE0016F3AA /* popover1ViewController.swift */; };
 		C3222BA822E0400300E63F38 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3222BA722E0400300E63F38 /* ShoppingCart.swift */; };
 		C3222BB122E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3222BAF22E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib */; };
 		C3222BB222E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3222BB022E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift */; };
@@ -164,6 +166,8 @@
 		9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = codeSharingTableViewCell.xib; sourceTree = "<group>"; };
 		9DA878D1240472C9001F8FAF /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
 		9DA878D324048428001F8FAF /* newCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newCodeViewController.swift; sourceTree = "<group>"; };
+		9DD8DE0B2485BEA50016F3AA /* UITableView+indexPathForView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+indexPathForView.swift"; sourceTree = "<group>"; };
+		9DD8DE0D2485C4AE0016F3AA /* popover1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popover1ViewController.swift; sourceTree = "<group>"; };
 		C3222BA722E0400300E63F38 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		C3222BAF22E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartProductCellTableViewCell.xib; sourceTree = "<group>"; };
 		C3222BB022E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartProductCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -776,6 +780,8 @@
 				9DA878D324048428001F8FAF /* newCodeViewController.swift */,
 				CF7202E1242549B8008425CD /* Extensions.swift */,
 				9D07DB042476E83B00907E39 /* promoViewController.swift */,
+				9DD8DE0B2485BEA50016F3AA /* UITableView+indexPathForView.swift */,
+				9DD8DE0D2485C4AE0016F3AA /* popover1ViewController.swift */,
 			);
 			path = "Brandon Added These";
 			sourceTree = "<group>";
@@ -1053,6 +1059,7 @@
 			files = (
 				C35572C822CAC2E600FC5C89 /* AccountVC.swift in Sources */,
 				C34466E822CAE63B00A11433 /* ProductsTableViewCell.swift in Sources */,
+				9DD8DE0E2485C4AE0016F3AA /* popover1ViewController.swift in Sources */,
 				C3B06FE823032D8900E03EC2 /* Notifications.swift in Sources */,
 				C329B73422E226D8005F579D /* OrderProductTableViewCell.swift in Sources */,
 				C35572B922CA946D00FC5C89 /* SettingsVC.swift in Sources */,
@@ -1106,6 +1113,7 @@
 				9D07DB052476E83B00907E39 /* promoViewController.swift in Sources */,
 				C348F15D22CBC94B000F185C /* PaymentFormsTableViewCell.swift in Sources */,
 				C355729722CA80B000FC5C89 /* LoaderVC.swift in Sources */,
+				9DD8DE0C2485BEA50016F3AA /* UITableView+indexPathForView.swift in Sources */,
 				C3A1622522B9BC8B00076DD8 /* Routes.swift in Sources */,
 				C348F13222CB7CE3000F185C /* Orders.swift in Sources */,
 				CFBC53AE2407182F00D4FF95 /* cardsTableViewCell.swift in Sources */,
@@ -1303,7 +1311,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Coco/Coco.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = W4MERUEP35;
 				INFOPLIST_FILE = Coco/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1329,7 +1337,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Coco/Coco.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = W4MERUEP35;
 				INFOPLIST_FILE = Coco/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
+    UserDefaults.standard.set(true, forKey: "showedPromo")
+    
     UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     
     FirebaseApp.configure()
@@ -36,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window?.makeKeyAndVisible()
     
     return ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+    
   }
   
   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -55,6 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationDidEnterBackground(_ application: UIApplication) {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
+    
   }
 
   func applicationWillEnterForeground(_ application: UIApplication) {

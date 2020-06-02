@@ -13,6 +13,8 @@ import SwiftyUserDefaults
 class promoViewController: UIViewController {
     
     @IBOutlet weak var promoImage: UIImageView!
+    @IBOutlet weak var iWantItButton: UIButton!
+    
     var userProfile: UserProfile!
     var user: User!
     let userID = Defaults[.user]
@@ -22,6 +24,14 @@ class promoViewController: UIViewController {
         super.viewDidLoad()
         
         requesData()
+        setupView()
+        
+    }
+    
+    func setupView () {
+        
+        promoImage.layer.cornerRadius = 23
+        iWantItButton.layer.cornerRadius = 23
         
     }
     

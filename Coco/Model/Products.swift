@@ -140,9 +140,7 @@ class Product: Codable {
                             }
                             
                             if dictionary["state"] == "200" {
-                                
-                                print(dictionary)
-                                print(self.cocopoints)
+
                             }
                             
                             if dictionary["state"] != "200" {

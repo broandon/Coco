@@ -1,41 +1,82 @@
 //
-//  addNewCocoCardViewController.swift
+//  rechargeCreditViewController.swift
 //  Coco
 //
-//  Created by Brandon Gonzalez on 26/02/20.
+//  Created by Brandon Gonzalez on 2/5/20.
 //  Copyright © 2020 Easycode. All rights reserved.
 //
 
 import UIKit
 import SwiftyUserDefaults
 
-class addNewCocoCardViewController: UIViewController {
+class rechargeCreditViewController: UIViewController {
     
-    @IBOutlet weak var cardNumberTF: UITextField!
+    @IBOutlet weak var cardNumbers: UITextField!
+    @IBOutlet weak var rechargeAmount: UITextField!
+    @IBOutlet weak var cardImage: UIImageView!
+    
     let userID = Defaults[.user]
-    private var mainData: Main!
-    private var balance: String = ""
+    let cardID = UserDefaults.standard.string(forKey: "cardIDValue")
+    let digits = UserDefaults.standard.string(forKey: "lastDigitsValue")
+    let typeOfCard = UserDefaults.standard.string(forKey: "typeOfCard")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        configureView()
         
     }
     
-    @IBAction func closeView(_ sender: Any) {
+    override func viewDidAppear(_ animated: Bool) {
         
+        UIView.animate(withDuration: 1, animations: {
+            
+            self.cardImage.alpha = 100
+            
+        })
+        
+    }
+    
+    func configureView() {
+        
+        cardImage.alpha = 0
+        
+        cardNumbers.isUserInteractionEnabled = false
+        cardNumbers.text! = "**** **** **** \(digits ?? "****")"
+        cardNumbers.textAlignment = .center
+        rechargeAmount.textAlignment = .center
+        
+        if typeOfCard == "VISA" {
+            
+            cardImage.image = UIImage(named: "visa_sola")
+            
+        }
+        
+        if typeOfCard == "MASTER CARD" {
+            
+            cardImage.image = UIImage(named: "mastercard")
+            
+        }
+        
+        if typeOfCard == "AMEX" {
+            
+            cardImage.image = UIImage(named: "amex")
+            
+        }
+        
+    }
+    
+    @IBAction func cancelRecharge(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
         
     }
     
-    @IBAction func addCard(_ sender: Any) {
+    @IBAction func rechargeButton(_ sender: Any) {
         
-        
-        if cardNumberTF.text!.isEmpty {
+        if rechargeAmount.text!.isEmpty {
             
-            let alert = UIAlertController(title: "¡Error!", message: "Debes introducir un codigo", preferredStyle: .alert)
+            let alert = UIAlertController(title: "¡Cuidado!", message: "Debes introducir una cantidad a recargar. 💵", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Reintentar", style: .default, handler: nil))
             
@@ -45,21 +86,28 @@ class addNewCocoCardViewController: UIViewController {
             
         }
         
+        if  Int(rechargeAmount.text!)! < 200 {
+            throwError(str: "El monto a recargar no puede ser menor a $ 200")
+            return
+        }
+        
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
         
         var request = URLRequest(url: url)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type") // Headers
-        request.httpMethod = "POST" // Metodo
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
         
-        let postString = "funcion=ChangeFolioCocoCard&id_user="+userID!+"&token="+cardNumberTF.text!
+        let string1 = "funcion=rechargeBalance&id_token="+cardID!
+        let string2 = "&amount="+rechargeAmount.text!
+        let string3 = "&id_user="+userID!
+        
+        let postString = string1+string2+string3
         
         print(postString)
         
-        request.httpBody = postString.data(using: .utf8) // SE codifica a UTF-8
+        request.httpBody = postString.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            // Validacion para errores de Red
             
             guard let data = data, error == nil else {
                 print("error=\(String(describing: error))")
@@ -80,31 +128,20 @@ class addNewCocoCardViewController: UIViewController {
                         
                         let stateString = "\(state)"
                         
-                        if stateString == "600" {
-                            
-                            DispatchQueue.main.async {
-                                
-                                let alert = UIAlertController(title: "Error", message: "No se pudo canjear el codigo.", preferredStyle: .alert)
-                                
-                                alert.addAction(UIAlertAction(title: "Intentar otro", style: .default, handler: nil))
-                                
-                                self.present(alert, animated: true)
-                                
-                            }
-                        }
-                        
                         if stateString == "200" {
                             
                             DispatchQueue.main.async {
                                 
                                 NotificationCenter.default.post(name: Notification.Name("reloadBalance"), object: nil)
-            
-                                let alert = UIAlertController(title: "¡Exito!", message: "Se ha recargado tu saldo.", preferredStyle: .alert)
+                                
+                                let alert = UIAlertController(title: "¡Exito!", message: "Hemos recargado la cantidad solicitada a tu saldo. ¡A comer!", preferredStyle: .alert)
                                 
                                 alert.addAction(UIAlertAction(title: "Genial", style: .cancel, handler: { action in
-                                    NotificationCenter.default.post(name: Notification.Name(rawValue: "newCardReload"), object: nil)
-                                    NotificationCenter.default.post(name: Notification.Name(rawValue: "reloadBalance"), object: nil)
-                                    self.dismiss(animated: true, completion: nil)
+                                    
+                                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "MainController") as! MainController
+                                    newViewController.modalPresentationStyle = .fullScreen
+                                    self.present(newViewController, animated: true, completion: nil)
                                     
                                 }))
                                 
@@ -116,9 +153,9 @@ class addNewCocoCardViewController: UIViewController {
                             
                             DispatchQueue.main.async {
                                 
-                                let alert = UIAlertController(title: "Error", message: "El codigo ya fue utilizado.", preferredStyle: .alert)
+                                let alert = UIAlertController(title: "Error", message: "Hemos encontrado un error. Intenta en unos minutos o verifica tener el saldo suficiente en tu tarjeta.", preferredStyle: .alert)
                                 
-                                alert.addAction(UIAlertAction(title: "Volver a intentar o corregir.", style: .default, handler: nil))
+                                alert.addAction(UIAlertAction(title: "Volver a intentar", style: .default, handler: nil))
                                 
                                 self.present(alert, animated: true)
                                 
@@ -127,8 +164,6 @@ class addNewCocoCardViewController: UIViewController {
                         } else {
                             
                             DispatchQueue.main.async {
-                                
-                                print(stateString)
                                 
                                 let alert = UIAlertController(title: "Error", message: "Hay un problema con el servidor, inténtalo de nuevo más tarde.", preferredStyle: .alert)
                                 
@@ -148,8 +183,7 @@ class addNewCocoCardViewController: UIViewController {
         
         task.resume()
         
-        
-        
     }
     
 }
+

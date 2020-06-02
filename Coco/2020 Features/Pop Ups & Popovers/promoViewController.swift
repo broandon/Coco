@@ -65,6 +65,7 @@ class promoViewController: UIViewController {
         
         
     }
+    
     @IBAction func goToProm(_ sender: Any) {
         
         if let url = URL(string: urlToVisit ?? "www.google.com") {

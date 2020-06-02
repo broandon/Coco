@@ -211,10 +211,6 @@ extension AccountVC: ASAuthorizationControllerDelegate {
                 
                 if credentials.user == userValue {
                     
-                    print("These are the uservaules")
-                    print(UserDefaults.standard.value(forKey: "\(userValue)"+"Mail"))
-                    print(UserDefaults.standard.value(forKey: "\(userValue)"+"Name"))
-                    
                     let emailF = UserDefaults.standard.value(forKey: "\(userValue)"+"Mail") as! String
                     let passwordF = UserDefaults.standard.value(forKey: "\(userValue)"+"Password") as! String
                     
@@ -242,7 +238,6 @@ extension AccountVC: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("something bad happened", error)
     }
-    
     
 }
 

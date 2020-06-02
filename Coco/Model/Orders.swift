@@ -73,13 +73,7 @@ class Orders: Decodable {
         return
       }
                         
-      let orderEstimatedTime = try? JSONDecoder().decode(OrderEstimatedTime.self, from: response.data!)
-      
-      print("This is the dictionary")
-      print(dictionary)
-      print("and data")
-                        print(orderEstimatedTime?.data![0].nombre)
-                        
+      let orderEstimatedTime = try? JSONDecoder().decode(OrderEstimatedTime.self, from: response.data!)                        
                         
       if dictionary["state"] != "200" {
         completion(.failure(dictionary["status_msg"]?.string ?? ""))

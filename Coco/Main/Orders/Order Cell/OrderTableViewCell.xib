@@ -147,7 +147,7 @@
                             <constraint firstItem="qjX-X0-K1o" firstAttribute="height" secondItem="6lf-e4-aTt" secondAttribute="height" id="qdj-ix-ywL"/>
                             <constraint firstItem="z5b-Nl-yYa" firstAttribute="centerY" secondItem="fU3-q3-xzF" secondAttribute="centerY" id="sjC-Pn-oTt"/>
                             <constraint firstAttribute="bottom" secondItem="iFe-ZE-ICZ" secondAttribute="bottom" constant="16" id="uBX-MJ-vpG"/>
-                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="03N-KN-ViP" secondAttribute="bottom" constant="5" id="x0a-h0-dHl"/>
+                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="03N-KN-ViP" secondAttribute="bottom" constant="10" id="x0a-h0-dHl"/>
                             <constraint firstItem="qjX-X0-K1o" firstAttribute="centerX" secondItem="6lf-e4-aTt" secondAttribute="centerX" id="ybm-eP-679"/>
                         </constraints>
                     </view>

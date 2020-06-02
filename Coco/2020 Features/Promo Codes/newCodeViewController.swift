@@ -29,6 +29,7 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
     private var mainData: Main!
     
     //MARK: viewDid
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,7 +37,7 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
         getThemCodes()
         mainData = Main()
         updateLabels()
-                
+        
         NotificationCenter.default.addObserver(self, selector: #selector(shareTheCode), name: Notification.Name(rawValue: "shareCoco"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(addNewCode), name: Notification.Name(rawValue: "exchangeCode"), object: nil)
@@ -82,45 +83,34 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func codeShareButton(_ sender: Any) {
         
-        print("Called")
-        
-        // text to share
         let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(mainData.info?.codigo_referido ?? "--") Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
         
-        // set up activity view controller
         let textToShare = [ text ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         
-        // exclude some activity types from the list (optional)
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
         
-        // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
         
     }
+    
     @objc func shareTheCode() {
         
-        print("Called")
-        
-        // text to share
         let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(mainData.info?.codigo_referido ?? "--") Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
         
-        // set up activity view controller
         let textToShare = [ text ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         
-        // exclude some activity types from the list (optional)
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
         
-        // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return 1 + codes.count
         
     }
@@ -143,27 +133,27 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-            
-            if indexPath.row == 0
-            {
-
-                let cell = tableView.dequeueReusableCell(withIdentifier: reuseDocument2, for: indexPath)
-                return cell
-
-            } else {
         
+        if indexPath.row == 0
             
-                print(codes.count)
-                print(indexPath.row)
-                
+        {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseDocument2, for: indexPath)
+            return cell
+            
+        } else {
+            
+            print(codes.count)
+            print(indexPath.row)
+            
             let document = codes[indexPath.row - 1]
-        
+            
             let amount = document["monto"]
             let date = document["fecha"]
             let token = document["token"]
             
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseDocument, for: indexPath)
-                        
+            
             if let cell = cell as? promoCodesTableViewCell {
                 
                 DispatchQueue.main.async {
@@ -174,19 +164,13 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
                     
                 }
                 
-            return cell
+                return cell
                 
-        } }
-                        
+            } }
         
         return UITableViewCell()
-                
+        
     }
-    
-    
-    
-    
-    //MARK: Actions
     
     @IBAction func exchangeButton(_ sender: Any) {
         
@@ -203,16 +187,10 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func addCode(_ sender: Any) {
         
-        
         let addCardVC = addNewPromoCodeViewController(nibName: "addNewPromoCodeViewController", bundle: nil)
-        
         self.present(addCardVC, animated: true, completion: nil)
         
     }
-    
-    
-    
-    //MARK: Funcs
     
     @objc func addNewCode() {
         
@@ -223,9 +201,9 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
         if  newCode == "" {
             
             let alert = UIAlertController(title: "Falta un dato", message: "Debes escribir un codigo", preferredStyle: .alert)
-
+            
             alert.addAction(UIAlertAction(title: "Reintentar", style: .default, handler: nil))
-             
+            
             self.present(alert, animated: true)
             
             return
@@ -235,9 +213,9 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
         if newCode == "--" {
             
             let alert = UIAlertController(title: "Falta un dato", message: "Debes escribir un codigo", preferredStyle: .alert)
-
+            
             alert.addAction(UIAlertAction(title: "Reintentar", style: .default, handler: nil))
-             
+            
             self.present(alert, animated: true)
             
             return
@@ -251,9 +229,9 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
         if newCode == myOwnCode {
             
             let alert = UIAlertController(title: "¿Usando tu propio codigo?", message: "No puedes usar tu propio codigo.", preferredStyle: .alert)
-
+            
             alert.addAction(UIAlertAction(title: "Usar otro", style: .default, handler: nil))
-             
+            
             self.present(alert, animated: true)
             
             return
@@ -264,18 +242,15 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
         
         var request = URLRequest(url: url)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type") // Headers
-        request.httpMethod = "POST" // Metodo
-        
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
         let postString = "funcion=ChangeCodePromotional&id_user="+userID!+"&token="+"\(newCode)"
         
         print(postString)
         
-        request.httpBody = postString.data(using: .utf8) // SE codifica a UTF-8
+        request.httpBody = postString.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            // Validacion para errores de Red
             
             guard let data = data, error == nil else {
                 print("error=\(String(describing: error))")
@@ -319,7 +294,7 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
                                 
                                 alert.addAction(UIAlertAction(title: "Genial", style: .cancel, handler: { action in
                                     NotificationCenter.default.post(name: Notification.Name(rawValue: "newCodeReload"), object: nil)
-                                                                        
+                                    
                                     
                                 }))
                                 
@@ -427,11 +402,7 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    //MARK: Extensions
-    
 }
-
-
 
 @IBDesignable
 class GradientView: UIView {

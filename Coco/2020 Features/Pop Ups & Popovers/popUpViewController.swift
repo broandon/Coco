@@ -14,20 +14,20 @@ class popUpViewController: UIViewController {
     
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var shareCode: UIButton!
-        
+    
     var typeOfInfo = UserDefaults.standard.value(forKey: "buttonPressed") as! String
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-         checkInfo()
+        
+        checkInfo()
         NotificationCenter.default.addObserver(self, selector: #selector(shareTheCode), name: Notification.Name(rawValue: "shareCoco"), object: nil)
         
         
     }
     
     func checkInfo() {
-    
+        
         if typeOfInfo == "Cocopoints" {
             
             shareCode.isHidden = true
@@ -37,59 +37,47 @@ class popUpViewController: UIViewController {
         }
         
         if typeOfInfo == "tuCodigo" {
-                        
+            
             message.text = "¡Ahora compartir CocoApp te dará beneficios! Comparte tu código y colócalo en la sección de código promocional,y recibe saldo para seguir comprando."
             
         }
         
     }
-
+    
     @IBAction func closePopUp(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
-     
+        
     }
     
     @objc func shareTheCode() {
         
         print("Called")
         
-        // text to share
-               let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(referalCode!) Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
-
-               // set up activity view controller
-               let textToShare = [ text ]
-               let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-               activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-
-               // exclude some activity types from the list (optional)
-               activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-
-               // present the view controller
-               self.present(activityViewController, animated: true, completion: nil)
-        
-    }
-    
-    
-    
-    @IBAction func shareCode(_ sender: Any) {
-        
-        
-        // text to share
         let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(referalCode!) Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
-
-        // set up activity view controller
+        
         let textToShare = [ text ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-
-        // exclude some activity types from the list (optional)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-
-        // present the view controller
+        
         self.present(activityViewController, animated: true, completion: nil)
         
     }
     
+    @IBAction func shareCode(_ sender: Any) {
+        
+        let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(referalCode!) Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
+        
+        let textToShare = [ text ]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+        self.present(activityViewController, animated: true, completion: nil)
+        
+    }
     
 }

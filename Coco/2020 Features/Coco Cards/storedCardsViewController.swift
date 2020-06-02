@@ -12,27 +12,21 @@ import Hero
 
 class storedCardsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    //MARK: Outlets
-    
     let reuseDocument = "DocumentCellCards"
     let userID = Defaults[.user]
     var cards : [Dictionary<String, Any>] = []
-
+    
     @IBOutlet weak var tableView: UITableView!
     
-    //MARK: viewDid
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTableView()
         getThemCards()
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(newCard), name: Notification.Name(rawValue: "newCardReload"), object: nil)
         
     }
-
-    //MARK: TableView
     
     func setupTableView() {
         
@@ -92,8 +86,6 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
         return UITableViewCell()
         
     }
-    
-    //MARK: Funcs
     
     @objc func newCard() {
         
@@ -158,21 +150,19 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    //MARK: Buttons
-    
     @IBAction func addNewCard(_ sender: Any) {
         
         let addCardVC = addNewCocoCardViewController(nibName: "addNewCocoCardViewController", bundle: nil)
-                self.present(addCardVC, animated: true, completion: nil)
+        self.present(addCardVC, animated: true, completion: nil)
         
     }
     
     
     @IBAction func closeView(_ sender: Any) {
-    
+        
         self.dismiss(animated: true, completion: nil)
-    
+        
     }
     
-
+    
 }

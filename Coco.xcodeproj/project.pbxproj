@@ -9,14 +9,13 @@
 /* Begin PBXBuildFile section */
 		3F70D7C3F4D6293AE3D5BAAC /* Pods_CocoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F14347B74DDFE317E603C86A /* Pods_CocoUITests.framework */; };
 		9D07DB052476E83B00907E39 /* promoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07DB042476E83B00907E39 /* promoViewController.swift */; };
-		9D07DB072476EE6B00907E39 /* promoMOdel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07DB062476EE6B00907E39 /* promoMOdel.swift */; };
+		9D07DB072476EE6B00907E39 /* promoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07DB062476EE6B00907E39 /* promoModel.swift */; };
 		9D1769A824852E6300EE1E52 /* orderEstimatedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1769A724852E6300EE1E52 /* orderEstimatedTime.swift */; };
 		9D60BAB02484C49800CA00FE /* estimatedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60BAAF2484C49800CA00FE /* estimatedModel.swift */; };
 		9D9EB1CF242D787B00FE1E2C /* codeSharingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */; };
 		9D9EB1D0242D787B00FE1E2C /* codeSharingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */; };
 		9DA878D2240472C9001F8FAF /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D1240472C9001F8FAF /* popUpViewController.swift */; };
 		9DA878D424048428001F8FAF /* newCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D324048428001F8FAF /* newCodeViewController.swift */; };
-		9DD8DE0C2485BEA50016F3AA /* UITableView+indexPathForView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD8DE0B2485BEA50016F3AA /* UITableView+indexPathForView.swift */; };
 		9DD8DE0E2485C4AE0016F3AA /* popover1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD8DE0D2485C4AE0016F3AA /* popover1ViewController.swift */; };
 		C3222BA822E0400300E63F38 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3222BA722E0400300E63F38 /* ShoppingCart.swift */; };
 		C3222BB122E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3222BAF22E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib */; };
@@ -127,8 +126,6 @@
 		CFD9D35523EC949C00DACF9E /* doneModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9D35323EC949C00DACF9E /* doneModalViewController.swift */; };
 		CFD9D35623EC949C00DACF9E /* doneModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD9D35423EC949C00DACF9E /* doneModalViewController.xib */; };
 		CFD9D35A23ECBD0400DACF9E /* checkmark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFD9D35923ECBD0300DACF9E /* checkmark.mp4 */; };
-		CFD9D35C23ECBD4E00DACF9E /* e80652af2c77e3a73858e16b2ffe5f9a.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFD9D35B23ECBD4D00DACF9E /* e80652af2c77e3a73858e16b2ffe5f9a.gif */; };
-		CFD9D35E23ECBDB500DACF9E /*  checkmark - 01.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFD9D35D23ECBDB400DACF9E /*  checkmark - 01.mp4 */; };
 		CFF0B6AE23EBC97800C30A6D /* rechargeCreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0B6AC23EBC97800C30A6D /* rechargeCreditViewController.swift */; };
 		CFF0B6AF23EBC97800C30A6D /* rechargeCreditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFF0B6AD23EBC97800C30A6D /* rechargeCreditViewController.xib */; };
 		D1768355637E940C0BEFEBD7 /* Pods_CocoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6546AE0874C25E7DDE23877 /* Pods_CocoTests.framework */; };
@@ -159,14 +156,13 @@
 		79B3EAF956F1B8B3139D70DA /* Pods-CocoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoTests/Pods-CocoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8224668FFF2D9C032908D0EF /* Pods-Coco.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coco.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coco/Pods-Coco.release.xcconfig"; sourceTree = "<group>"; };
 		9D07DB042476E83B00907E39 /* promoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promoViewController.swift; sourceTree = "<group>"; };
-		9D07DB062476EE6B00907E39 /* promoMOdel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promoMOdel.swift; sourceTree = "<group>"; };
+		9D07DB062476EE6B00907E39 /* promoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promoModel.swift; sourceTree = "<group>"; };
 		9D1769A724852E6300EE1E52 /* orderEstimatedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderEstimatedTime.swift; sourceTree = "<group>"; };
 		9D60BAAF2484C49800CA00FE /* estimatedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = estimatedModel.swift; sourceTree = "<group>"; };
 		9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeSharingTableViewCell.swift; sourceTree = "<group>"; };
 		9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = codeSharingTableViewCell.xib; sourceTree = "<group>"; };
 		9DA878D1240472C9001F8FAF /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
 		9DA878D324048428001F8FAF /* newCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newCodeViewController.swift; sourceTree = "<group>"; };
-		9DD8DE0B2485BEA50016F3AA /* UITableView+indexPathForView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+indexPathForView.swift"; sourceTree = "<group>"; };
 		9DD8DE0D2485C4AE0016F3AA /* popover1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popover1ViewController.swift; sourceTree = "<group>"; };
 		C3222BA722E0400300E63F38 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		C3222BAF22E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartProductCellTableViewCell.xib; sourceTree = "<group>"; };
@@ -288,8 +284,6 @@
 		CFD9D35323EC949C00DACF9E /* doneModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doneModalViewController.swift; sourceTree = "<group>"; };
 		CFD9D35423EC949C00DACF9E /* doneModalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = doneModalViewController.xib; sourceTree = "<group>"; };
 		CFD9D35923ECBD0300DACF9E /* checkmark.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = checkmark.mp4; sourceTree = "<group>"; };
-		CFD9D35B23ECBD4D00DACF9E /* e80652af2c77e3a73858e16b2ffe5f9a.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = e80652af2c77e3a73858e16b2ffe5f9a.gif; sourceTree = "<group>"; };
-		CFD9D35D23ECBDB400DACF9E /*  checkmark - 01.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = " checkmark - 01.mp4"; sourceTree = "<group>"; };
 		CFF0B6AC23EBC97800C30A6D /* rechargeCreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rechargeCreditViewController.swift; sourceTree = "<group>"; };
 		CFF0B6AD23EBC97800C30A6D /* rechargeCreditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = rechargeCreditViewController.xib; sourceTree = "<group>"; };
 		D130DF29F11E0E2FDD29E8B1 /* Pods-Coco.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coco.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coco/Pods-Coco.debug.xcconfig"; sourceTree = "<group>"; };
@@ -341,11 +335,23 @@
 		9D1769A62484DA9E00EE1E52 /* newModels */ = {
 			isa = PBXGroup;
 			children = (
-				9D07DB062476EE6B00907E39 /* promoMOdel.swift */,
+				9D07DB062476EE6B00907E39 /* promoModel.swift */,
 				9D60BAAF2484C49800CA00FE /* estimatedModel.swift */,
 				9D1769A724852E6300EE1E52 /* orderEstimatedTime.swift */,
 			);
 			path = newModels;
+			sourceTree = "<group>";
+		};
+		9DD8DE0F2485F72B0016F3AA /* Pop Ups & Popovers */ = {
+			isa = PBXGroup;
+			children = (
+				9DD8DE0D2485C4AE0016F3AA /* popover1ViewController.swift */,
+				9D07DB042476E83B00907E39 /* promoViewController.swift */,
+				9DA878D1240472C9001F8FAF /* popUpViewController.swift */,
+				CFD9D35323EC949C00DACF9E /* doneModalViewController.swift */,
+				CFD9D35423EC949C00DACF9E /* doneModalViewController.xib */,
+			);
+			path = "Pop Ups & Popovers";
 			sourceTree = "<group>";
 		};
 		C3222BAE22E04ACB00E63F38 /* Cell */ = {
@@ -530,8 +536,6 @@
 		C3A161D322B9B38900076DD8 = {
 			isa = PBXGroup;
 			children = (
-				CFD9D35D23ECBDB400DACF9E /*  checkmark - 01.mp4 */,
-				CFD9D35B23ECBD4D00DACF9E /* e80652af2c77e3a73858e16b2ffe5f9a.gif */,
 				CFD9D35923ECBD0300DACF9E /* checkmark.mp4 */,
 				C3A161DE22B9B38900076DD8 /* Coco */,
 				C3A161F622B9B38C00076DD8 /* CocoTests */,
@@ -555,8 +559,7 @@
 		C3A161DE22B9B38900076DD8 /* Coco */ = {
 			isa = PBXGroup;
 			children = (
-				CFF0B6AB23EBC80600C30A6D /* Brandon Added These */,
-				C3A1621622B9BAC900076DD8 /* Coco.entitlements */,
+				CFF0B6AB23EBC80600C30A6D /* 2020 Features */,
 				C3A1621422B9B94C00076DD8 /* Conekta */,
 				C3A1621222B9B90800076DD8 /* Model */,
 				C3A1621522B9B95200076DD8 /* Account */,
@@ -569,6 +572,7 @@
 				C3A161EE22B9B38C00076DD8 /* Info.plist */,
 				C34F4CDF22CA676600A97097 /* GoogleService-Info.plist */,
 				C3A161E622B9B38A00076DD8 /* Coco.xcdatamodeld */,
+				C3A1621622B9BAC900076DD8 /* Coco.entitlements */,
 			);
 			path = Coco;
 			sourceTree = "<group>";
@@ -665,6 +669,7 @@
 		C3A1621722B9BB4B00076DD8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CF7202E1242549B8008425CD /* Extensions.swift */,
 				C3A1621822B9BB7500076DD8 /* UIViewExtensions.swift */,
 				C3A1621A22B9BB8400076DD8 /* UIViewControllerExtensions.swift */,
 				C3A1621C22B9BB9200076DD8 /* UIImageViewExtensions.swift */,
@@ -743,6 +748,7 @@
 		CFBC539E2406DC3A00D4FF95 /* Promo Codes */ = {
 			isa = PBXGroup;
 			children = (
+				9DA878D324048428001F8FAF /* newCodeViewController.swift */,
 				CFBC539F2406DC7500D4FF95 /* promoCodesTableViewCell.swift */,
 				CFBC53A02406DC7500D4FF95 /* promoCodesTableViewCell.xib */,
 				CFBC53A32406EADB00D4FF95 /* addNewPromoCodeViewController.swift */,
@@ -762,28 +768,21 @@
 				CFBC53AD2407182F00D4FF95 /* cardsTableViewCell.xib */,
 				CFBC53B024071B5000D4FF95 /* addNewCocoCardViewController.swift */,
 				CFBC53B124071B5000D4FF95 /* addNewCocoCardViewController.xib */,
+				CFF0B6AC23EBC97800C30A6D /* rechargeCreditViewController.swift */,
+				CFF0B6AD23EBC97800C30A6D /* rechargeCreditViewController.xib */,
 			);
 			path = "Coco Cards";
 			sourceTree = "<group>";
 		};
-		CFF0B6AB23EBC80600C30A6D /* Brandon Added These */ = {
+		CFF0B6AB23EBC80600C30A6D /* 2020 Features */ = {
 			isa = PBXGroup;
 			children = (
+				9DD8DE0F2485F72B0016F3AA /* Pop Ups & Popovers */,
 				9D1769A62484DA9E00EE1E52 /* newModels */,
 				CFBC53A7240712C500D4FF95 /* Coco Cards */,
 				CFBC539E2406DC3A00D4FF95 /* Promo Codes */,
-				CFF0B6AC23EBC97800C30A6D /* rechargeCreditViewController.swift */,
-				CFF0B6AD23EBC97800C30A6D /* rechargeCreditViewController.xib */,
-				CFD9D35323EC949C00DACF9E /* doneModalViewController.swift */,
-				CFD9D35423EC949C00DACF9E /* doneModalViewController.xib */,
-				9DA878D1240472C9001F8FAF /* popUpViewController.swift */,
-				9DA878D324048428001F8FAF /* newCodeViewController.swift */,
-				CF7202E1242549B8008425CD /* Extensions.swift */,
-				9D07DB042476E83B00907E39 /* promoViewController.swift */,
-				9DD8DE0B2485BEA50016F3AA /* UITableView+indexPathForView.swift */,
-				9DD8DE0D2485C4AE0016F3AA /* popover1ViewController.swift */,
 			);
-			path = "Brandon Added These";
+			path = "2020 Features";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -908,9 +907,7 @@
 				C35572B622CA93C000FC5C89 /* OrdersVC.xib in Resources */,
 				C348F14922CB9258000F185C /* CategoriesVC.xib in Resources */,
 				CFBC53A62406EADC00D4FF95 /* addNewPromoCodeViewController.xib in Resources */,
-				CFD9D35E23ECBDB500DACF9E /*  checkmark - 01.mp4 in Resources */,
 				CFD9D35A23ECBD0400DACF9E /* checkmark.mp4 in Resources */,
-				CFD9D35C23ECBD4E00DACF9E /* e80652af2c77e3a73858e16b2ffe5f9a.gif in Resources */,
 				C3A161ED22B9B38C00076DD8 /* LaunchScreen.storyboard in Resources */,
 				C3A1622E22B9BD4200076DD8 /* MyriadPro-Regular.otf in Resources */,
 				C348F14022CB8790000F185C /* BalanceTableViewCell.xib in Resources */,
@@ -1083,7 +1080,7 @@
 				C34466E222CAC4BA00A11433 /* RegisterVC.swift in Sources */,
 				CFBC53A52406EADB00D4FF95 /* addNewPromoCodeViewController.swift in Sources */,
 				CFBC53A12406DC7500D4FF95 /* promoCodesTableViewCell.swift in Sources */,
-				9D07DB072476EE6B00907E39 /* promoMOdel.swift in Sources */,
+				9D07DB072476EE6B00907E39 /* promoModel.swift in Sources */,
 				C35572B122CA932700FC5C89 /* FavoritesVC.swift in Sources */,
 				C3C0F37E22D3D73400B03F62 /* Cards.swift in Sources */,
 				C3A161E822B9B38A00076DD8 /* Coco.xcdatamodeld in Sources */,
@@ -1113,7 +1110,6 @@
 				9D07DB052476E83B00907E39 /* promoViewController.swift in Sources */,
 				C348F15D22CBC94B000F185C /* PaymentFormsTableViewCell.swift in Sources */,
 				C355729722CA80B000FC5C89 /* LoaderVC.swift in Sources */,
-				9DD8DE0C2485BEA50016F3AA /* UITableView+indexPathForView.swift in Sources */,
 				C3A1622522B9BC8B00076DD8 /* Routes.swift in Sources */,
 				C348F13222CB7CE3000F185C /* Orders.swift in Sources */,
 				CFBC53AE2407182F00D4FF95 /* cardsTableViewCell.swift in Sources */,

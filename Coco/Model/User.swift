@@ -118,14 +118,6 @@ class User: Decodable {
                                 return
                             }
                             
-                            print(dictionary["state"])
-                            
-                            if dictionary["state"] == "101" {
-                                
-                                
-                                
-                            }
-                            
                             if dictionary["state"] != "200" {
                                 completion(.failure(dictionary["status_msg"]?.string ?? ""))
                                 return

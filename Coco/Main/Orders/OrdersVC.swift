@@ -16,16 +16,33 @@ class OrdersVC: UIViewController, showMeTheCoco, UIPopoverPresentationController
     var loader: LoaderVC!
     var orders: Orders!
     var estimated: OrderEstimatedTime!
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         orders = Orders()
         configureTable()
         requestData()
+        scheduledTimerWithTimeInterval()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        timer.invalidate()
+    }
+    
+    func scheduledTimerWithTimeInterval() {
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateCounting() {
+        
+        timerDataRequesting()
+        self.table.reloadData()
+        
     }
     
     func showsTheCoco(position: UIView) {
-                
+        
         // get a reference to the view controller for the popover
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popoverID")
         
@@ -68,6 +85,17 @@ class OrdersVC: UIViewController, showMeTheCoco, UIPopoverPresentationController
         }
     }
     
+    private func timerDataRequesting() {
+        orders.requestOrders { result in
+            switch result {
+            case .failure(let errorMssg):
+                self.dismiss(animated: true, completion: nil)
+            case .success(_):
+                self.fillInfo()
+            }
+        }
+    }
+    
     private func fillInfo() {
         table.reloadData()
     }
@@ -87,10 +115,6 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
         return orders.orders.count
     }
     
-    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OrderTableViewCell.cellIdentifier, for: indexPath) as? OrderTableViewCell else {
             return UITableViewCell()
@@ -99,8 +123,6 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
         cell.delegate = self
         
         let item = orders.orders[indexPath.row]
-        
-        let timeToGo = item.tiempoEstimado?.msToSeconds
         
         cell.orderNumber.text = "Orden \(item.id ?? "--")"
         cell.dateLabel.text = "Fecha: \(item.date ?? "--")"
@@ -116,17 +138,21 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
             
         } else {
             
-        cell.buttonShowCoco.tag = Int(otorgados)!
-        
-        }
+            cell.buttonShowCoco.tag = Int(otorgados)!
             
+        }
+        
+        print(item.tiempoEstimado)
+        
         if item.tiempoEstimado == 0 {
             
             cell.tiempoEstimadoLabel.isHidden = true
             
         } else {
             
-            cell.tiempoEstimadoLabel.text = "Tiempo estimado: \(timeToGo?.minute ?? 0) min. \(timeToGo?.second ?? 0) sec."
+            let tiempoTotal = item.tiempoEstimado
+            let restante = tiempoTotal?.msToSeconds.minuteSecondMS
+            cell.tiempoEstimadoLabel.text = "⏱ Tiempo estimado:  \(restante!)"
             
         }
         

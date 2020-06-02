@@ -10,6 +10,7 @@ import UIKit
 import SwiftyUserDefaults
 import Alamofire
 import SwiftyJSON
+import M13Checkbox
 
 class ShoppingCartVC: UIViewController {
     

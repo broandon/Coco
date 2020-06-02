@@ -55,7 +55,7 @@ class OrdersVC: UIViewController, showMeTheCoco, UIPopoverPresentationController
         popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.left
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = position
-        popController.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: 100.0, height: 33.0)
+        popController.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: 130, height: 65)
         
         // present the popover
         self.present(popController, animated: true, completion: nil)
@@ -141,9 +141,7 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
             cell.buttonShowCoco.tag = Int(otorgados)!
             
         }
-        
-        print(item.tiempoEstimado)
-        
+                
         if item.tiempoEstimado == 0 {
             
             cell.tiempoEstimadoLabel.isHidden = true
@@ -186,7 +184,7 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
 
 extension TimeInterval {
     var minuteSecondMS: String {
-        return String(format:"%d:%02d.%03d", minute, second, millisecond)
+        return String(format:"%d mins %02d segs", minute, second, millisecond)
     }
     var minute: Int {
         return Int((self/60).truncatingRemainder(dividingBy: 60))

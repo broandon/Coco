@@ -16,9 +16,7 @@ class popover1ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         cantidadDeCOcos.text = "\(cantidad ?? 0)"
-        
     }
     
 }

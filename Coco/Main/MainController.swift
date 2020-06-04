@@ -31,73 +31,49 @@ class MainController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         mainData = Main()
         configureView()
         configureTable()
-        
         let pushManager = PushNotificationManager()
         pushManager.registerForPushNotifications()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(updateLabels), name: Notification.Name(rawValue: "reloadBalance"), object: nil)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         if UserDefaults.standard.bool(forKey: "showedPromo") == true {
-            
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let destVC = storyboard.instantiateViewController(withIdentifier: "promoViewController") as! promoViewController
-            
             destVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             destVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            
             UserDefaults.standard.set(false, forKey: "showedPromo")
-            
             self.present(destVC, animated: true, completion: nil)
-            
         }
-        
         requestEstimatedTime()
-        
     }
     
     func requestEstimatedTime() {
-        
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
-        
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        
         let postString = "funcion=getUserMain&id_user="+userID!
-        
         request.httpBody = postString.data(using: .utf8)
-        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            
             let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
-            
             if let dictionary = json as? Dictionary<String, AnyObject> {
-                
-                print(dictionary)
-                
                 if let data = dictionary["data"] {
-                    
                     if let tiempoEstimado = data["ultimo_pedido"] {
-                        
                         let tiempoDePedido = "\(tiempoEstimado ?? 0)"
                         let tiempoDePedidoInt = Int(tiempoDePedido)
-                        
-                        if tiempoDePedidoInt == 0 {
-                            
+                        if tiempoDePedidoInt == nil {
                             self.currentEstimatedTime.isHidden = true
-                            
+                            return
+                        }
+                        if tiempoDePedidoInt == 0 {
+                            self.currentEstimatedTime.isHidden = true
                         } else {
-                            
                             DispatchQueue.main.async {
-                                self.estimatedTimeText.text = "\(tiempoDePedidoInt?.msToSeconds.minute ?? 0) mins y \(tiempoDePedidoInt?.msToSeconds.second ?? 0) segs"
+                                self.estimatedTimeText.text = "\(tiempoDePedidoInt?.msToSeconds.minute ?? 0) Minutos"
                                 self.currentEstimatedTime.isHidden = false
                                 self.currentEstimatedTime.slideInFromBottom()
                                 self.countDownTest(minutes: (tiempoDePedidoInt?.msToSeconds.minute)!, seconds: (tiempoDePedidoInt?.msToSeconds.second)!)
@@ -112,46 +88,39 @@ class MainController: UIViewController {
             }
             
         }
-        
         task.resume()
-        
     }
     
     func countDownTest(minutes: Int, seconds: Int) {
         
-        var minutesToGo = minutes
-        var secondsToGo = seconds
+        var minutesToGo = minutes - 1
         
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+        Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { timer in
             
-            self.estimatedTimeText.text = "\(minutesToGo) mins y \(secondsToGo) segs"
-            secondsToGo -= 1
-            if secondsToGo == 0 {
-                secondsToGo = 59
-                minutesToGo -= 1
-            }
+            self.estimatedTimeText.text = "\(minutesToGo) Minutos"
+            minutesToGo -= 1
+            
             if minutesToGo == 0 {
-                timer.invalidate()
+                
                 self.currentEstimatedTime.isHidden = true
+                timer.invalidate()
+                
             }
+            
         }
         
     }
     
     @objc func shareTheCode() {
-                
-        // text to share
+        
         let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(mainData.info?.codigo_referido ?? "--") Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
         
-        // set up activity view controller
         let textToShare = [ text ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         
-        // exclude some activity types from the list (optional)
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
         
-        // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
         
     }

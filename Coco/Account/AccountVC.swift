@@ -65,7 +65,6 @@ class AccountVC: UIViewController {
         
     }
     
-    
     @IBAction private func facebookLoginAction(_ sender: Any) {
         let loginManager = LoginManager()
         loginManager.logIn(permissions: ["public_profile", "email"], from: self) { (result, error) in
@@ -192,7 +191,6 @@ extension AccountVC: ASAuthorizationControllerDelegate {
                 UserDefaults.standard.set(mailValue, forKey: "\(userValue)"+"Mail")
                 UserDefaults.standard.set(nameValue, forKey: "\(userValue)"+"Name")
                 UserDefaults.standard.set(mailValue, forKey: "\(userValue)"+"Password")
-                
                 UserDefaults.standard.set(true, forKey: "ComingFromAppleSignIn")
                 UserDefaults.standard.set(true, forKey: "ComingFromAppleSignInPrompt")
                 UserDefaults.standard.set(true, forKey: "ComingFromAppleSignInAlreadyExists")

@@ -12,8 +12,10 @@ import SwiftyUserDefaults
 
 class promoViewController: UIViewController {
     
+    @IBOutlet var mainView: UIView!
     @IBOutlet weak var promoImage: UIImageView!
     @IBOutlet weak var iWantItButton: UIButton!
+    @IBOutlet weak var closePromoButton: UIButton!
     
     var userProfile: UserProfile!
     var user: User!
@@ -22,9 +24,11 @@ class promoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         requesData()
         setupView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
     }
     
@@ -32,6 +36,26 @@ class promoViewController: UIViewController {
         
         promoImage.layer.cornerRadius = 23
         iWantItButton.layer.cornerRadius = 23
+        
+        DispatchQueue.main.async {
+            self.mainView.alpha = 0
+            self.promoImage.alpha = 0
+            self.iWantItButton.alpha = 0
+            self.closePromoButton.alpha = 0
+        }
+    }
+    
+    func showPromo () {
+        
+        UIView.animate(withDuration: 2, animations: {
+            
+            DispatchQueue.main.async {
+                self.mainView.alpha = 0.80
+                self.promoImage.alpha = 1
+                self.iWantItButton.alpha = 1
+                self.closePromoButton.alpha = 1
+            }
+        })
         
     }
     
@@ -61,18 +85,27 @@ class promoViewController: UIViewController {
                 
             }
             
+            if promoInfo.data?.promocion?.imagen == nil {
+                
+                DispatchQueue.main.async {
+                    
+                    self.dismiss(animated: false, completion: nil)
+                    
+                }
+                
+                return
+                
+            }
+            
             let imageURL = promoInfo.data?.promocion?.imagen
             let URLDirection = promoInfo.data?.promocion?.link
             self.urlToVisit = URLDirection
-            
             self.promoImage.sd_setImage(with: URL(string: imageURL ?? "No Image"), completed: nil)
-            
+            self.showPromo()
             
         }
         
-        
         task.resume()
-        
         
     }
     

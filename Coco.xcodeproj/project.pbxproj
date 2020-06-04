@@ -11,6 +11,7 @@
 		9D07DB052476E83B00907E39 /* promoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07DB042476E83B00907E39 /* promoViewController.swift */; };
 		9D07DB072476EE6B00907E39 /* promoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07DB062476EE6B00907E39 /* promoModel.swift */; };
 		9D1769A824852E6300EE1E52 /* orderEstimatedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1769A724852E6300EE1E52 /* orderEstimatedTime.swift */; };
+		9D17FEA42488D214007A91F2 /* newUserMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D17FEA32488D214007A91F2 /* newUserMain.swift */; };
 		9D60BAB02484C49800CA00FE /* estimatedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60BAAF2484C49800CA00FE /* estimatedModel.swift */; };
 		9D9EB1CF242D787B00FE1E2C /* codeSharingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */; };
 		9D9EB1D0242D787B00FE1E2C /* codeSharingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */; };
@@ -158,6 +159,7 @@
 		9D07DB042476E83B00907E39 /* promoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promoViewController.swift; sourceTree = "<group>"; };
 		9D07DB062476EE6B00907E39 /* promoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promoModel.swift; sourceTree = "<group>"; };
 		9D1769A724852E6300EE1E52 /* orderEstimatedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderEstimatedTime.swift; sourceTree = "<group>"; };
+		9D17FEA32488D214007A91F2 /* newUserMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newUserMain.swift; sourceTree = "<group>"; };
 		9D60BAAF2484C49800CA00FE /* estimatedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = estimatedModel.swift; sourceTree = "<group>"; };
 		9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeSharingTableViewCell.swift; sourceTree = "<group>"; };
 		9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = codeSharingTableViewCell.xib; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				9D07DB062476EE6B00907E39 /* promoModel.swift */,
 				9D60BAAF2484C49800CA00FE /* estimatedModel.swift */,
 				9D1769A724852E6300EE1E52 /* orderEstimatedTime.swift */,
+				9D17FEA32488D214007A91F2 /* newUserMain.swift */,
 			);
 			path = newModels;
 			sourceTree = "<group>";
@@ -1104,6 +1107,7 @@
 				C348F14222CB896B000F185C /* Deposits.swift in Sources */,
 				C35572C422CABD7D00FC5C89 /* Business.swift in Sources */,
 				CFBC53AA2407134300D4FF95 /* storedCardsViewController.swift in Sources */,
+				9D17FEA42488D214007A91F2 /* newUserMain.swift in Sources */,
 				CF7202E2242549B8008425CD /* Extensions.swift in Sources */,
 				CFF0B6AE23EBC97800C30A6D /* rechargeCreditViewController.swift in Sources */,
 				C3C0F36822D3B33700B03F62 /* Schools.swift in Sources */,

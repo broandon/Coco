@@ -141,18 +141,6 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
             cell.buttonShowCoco.tag = Int(otorgados)!
             
         }
-                
-        if item.tiempoEstimado == 0 {
-            
-            cell.tiempoEstimadoLabel.isHidden = true
-            
-        } else {
-            
-            let tiempoTotal = item.tiempoEstimado
-            let restante = tiempoTotal?.msToSeconds.minuteSecondMS
-            cell.tiempoEstimadoLabel.text = "⏱ Tiempo estimado:  \(restante!)"
-            
-        }
         
         if item.tipoDeCompra == "1" {
             
@@ -170,7 +158,7 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 195 //187
+        return 187
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

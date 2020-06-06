@@ -1316,7 +1316,7 @@
         <scene sceneID="dHK-OJ-hp4">
             <objects>
                 <viewController storyboardIdentifier="promoViewController" modalPresentationStyle="overCurrentContext" id="Ycc-tF-Xe1" customClass="promoViewController" customModule="Coco" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" alpha="0.65000000000000002" contentMode="scaleToFill" id="isX-fv-Adc">
+                    <view key="view" contentMode="scaleToFill" id="isX-fv-Adc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1363,7 +1363,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.095943921232876705" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.29334332191780821" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="p5g-2V-TNe" firstAttribute="top" secondItem="W9i-NZ-xaH" secondAttribute="bottom" constant="20" id="5XG-NQ-ghz"/>
                             <constraint firstItem="WgC-Yk-ssD" firstAttribute="trailing" secondItem="W9i-NZ-xaH" secondAttribute="trailing" constant="42" id="7Cp-jd-kUq"/>

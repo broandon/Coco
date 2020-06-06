@@ -36,33 +36,19 @@ class AccountVC: UIViewController {
     }
     
     @IBAction func didTapAppleButton(_ sender: Any) {
-        
         if #available(iOS 13.0, *) {
-            
             let provider = ASAuthorizationAppleIDProvider()
-            
             let request = provider.createRequest()
             request.requestedScopes = [.fullName, .email]
-            
             let controller = ASAuthorizationController(authorizationRequests: [request])
-            
             controller.delegate = self
-            
             controller.presentationContextProvider = self
-            
             controller.performRequests()
-            
         } else {
-            
-            
             let alert = UIAlertController(title: "Error", message: "Esta funcionalidad solo está disponible en iOS 13 en adelante. Te invitamos a iniciar sesion o abrir tu cuenta con otra opción.", preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "Intentar otra opción.", style: .default, handler: nil))
-            
             self.present(alert, animated: true)
-            
         }
-        
     }
     
     @IBAction private func facebookLoginAction(_ sender: Any) {
@@ -176,44 +162,31 @@ extension AccountVC: SchoolModalDelegate {
 extension AccountVC: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        
         switch authorization.credential {
-            
         case let credentials as ASAuthorizationAppleIDCredential:
-            
             if credentials.email != nil {
-                
                 let userValue = credentials.user
                 let mailValue = credentials.email
                 let nameValue = credentials.fullName?.givenName
                 let lastNameValue = credentials.fullName?.familyName
-                
                 UserDefaults.standard.set(mailValue, forKey: "\(userValue)"+"Mail")
                 UserDefaults.standard.set(nameValue, forKey: "\(userValue)"+"Name")
                 UserDefaults.standard.set(mailValue, forKey: "\(userValue)"+"Password")
                 UserDefaults.standard.set(true, forKey: "ComingFromAppleSignIn")
                 UserDefaults.standard.set(true, forKey: "ComingFromAppleSignInPrompt")
                 UserDefaults.standard.set(true, forKey: "ComingFromAppleSignInAlreadyExists")
-                
                 let registerVC = instantiate(viewControllerClass: RegisterVC.self)
                 registerVC.nameFromApple = nameValue
                 registerVC.emailFromApple = mailValue
                 registerVC.surnameFromApple = lastNameValue
                 registerVC.passwordFromApple = mailValue
-                
                 present(registerVC, animated: true)
-                
             } else {
-                
                 let userValue = credentials.user
-                
                 if credentials.user == userValue {
-                    
                     let emailF = UserDefaults.standard.value(forKey: "\(userValue)"+"Mail") as! String
                     let passwordF = UserDefaults.standard.value(forKey: "\(userValue)"+"Password") as! String
-                    
                     self.user = User(email: emailF, password: passwordF)
-                    
                     self.user.loginRequest { result in
                         switch result {
                         case .failure(let errorMssg):
@@ -222,15 +195,10 @@ extension AccountVC: ASAuthorizationControllerDelegate {
                             self.performSuccessLogin()
                         }
                     }
-                    
                 }
-                
             }
-            
         default:break
-            
         }
-        
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
@@ -241,9 +209,7 @@ extension AccountVC: ASAuthorizationControllerDelegate {
 
 @available(iOS 13.0, *)
 extension AccountVC: ASAuthorizationControllerPresentationContextProviding {
-    
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return view.window!
     }
-    
 }

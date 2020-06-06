@@ -48,7 +48,7 @@ class promoViewController: UIViewController {
     func showPromo () {
         UIView.animate(withDuration: 2, animations: {
             DispatchQueue.main.async {
-                self.mainView.alpha = 0.80
+                self.mainView.alpha = 1
                 self.promoImage.alpha = 1
                 self.iWantItButton.alpha = 1
                 self.closePromoButton.alpha = 1
@@ -80,8 +80,11 @@ class promoViewController: UIViewController {
             }
             let imageURL = promoInfo.data?.promocion?.imagen
             let URLDirection = promoInfo.data?.promocion?.link
+            let str = imageURL?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
+            print(imageURL)
+            print(str)
             self.urlToVisit = URLDirection
-            self.promoImage.sd_setImage(with: URL(string: imageURL ?? "No Image"), completed: nil)
+            self.promoImage.sd_setImage(with: URL(string: str! ), completed: nil)
             self.showPromo()
         }
         task.resume()

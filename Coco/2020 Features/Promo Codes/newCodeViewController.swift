@@ -32,20 +32,14 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupTableView()
         getThemCodes()
         mainData = Main()
         updateLabels()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(shareTheCode), name: Notification.Name(rawValue: "shareCoco"), object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(addNewCode), name: Notification.Name(rawValue: "exchangeCode"), object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(newCode), name: Notification.Name(rawValue: "newCodeReload"), object: nil)
-        
         addCodeButton.isHidden = true
-        
     }
     
     //MARK: Tableview
@@ -68,51 +62,35 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func setupTableView() {
-        
         tableView.delegate = self
         tableView.dataSource = self
         let documentXib = UINib(nibName: "promoCodesTableViewCell", bundle: nil)
         tableView.register(documentXib, forCellReuseIdentifier: reuseDocument)
-        
         let documentXib2 = UINib(nibName: "codeSharingTableViewCell", bundle: nil)
         tableView.register(documentXib2, forCellReuseIdentifier: reuseDocument2)
-        
         tableView.allowsSelection = false
-        
     }
     
     @IBAction func codeShareButton(_ sender: Any) {
-        
         let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(mainData.info?.codigo_referido ?? "--") Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
-        
         let textToShare = [ text ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-        
         self.present(activityViewController, animated: true, completion: nil)
-        
     }
     
     @objc func shareTheCode() {
-        
         let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(mainData.info?.codigo_referido ?? "--") Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
-        
         let textToShare = [ text ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-        
         self.present(activityViewController, animated: true, completion: nil)
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return 1 + codes.count
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -120,288 +98,157 @@ class newCodeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         if indexPath.row == 0 {
-            
             return 550
-            
         }
-        
         return 160
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-        if indexPath.row == 0
-            
-        {
-            
+        if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseDocument2, for: indexPath)
             return cell
-            
         } else {
-            
-            print(codes.count)
-            print(indexPath.row)
-            
             let document = codes[indexPath.row - 1]
-            
             let amount = document["monto"]
             let date = document["fecha"]
             let token = document["token"]
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseDocument, for: indexPath)
-            
             if let cell = cell as? promoCodesTableViewCell {
-                
                 DispatchQueue.main.async {
-                    
                     cell.montoLabel.text = amount as! String
                     cell.fechaLabel.text = date as! String
                     cell.codigoLabel.text = token as! String
-                    
                 }
-                
                 return cell
-                
-            } }
-        
+            }
+        }
         return UITableViewCell()
-        
     }
     
     @IBAction func exchangeButton(_ sender: Any) {
-        
-        
-        
+        // No sé que hace este boton pero no lo voy a quitar porque todo se puede romper.
     }
     
-    
     @IBAction func promoCodes(_ sender: Any) {
-        
         self.dismiss(animated: true, completion: nil)
-        
     }
     
     @IBAction func addCode(_ sender: Any) {
-        
         let addCardVC = addNewPromoCodeViewController(nibName: "addNewPromoCodeViewController", bundle: nil)
         self.present(addCardVC, animated: true, completion: nil)
-        
     }
     
     @objc func addNewCode() {
-        
         let newCode = "\(UserDefaults.standard.value(forKey: "code") ?? "--")"
-        
-        print(newCode)
-        
         if  newCode == "" {
-            
             let alert = UIAlertController(title: "Falta un dato", message: "Debes escribir un codigo", preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "Reintentar", style: .default, handler: nil))
-            
             self.present(alert, animated: true)
-            
             return
-            
         }
         
         if newCode == "--" {
-            
             let alert = UIAlertController(title: "Falta un dato", message: "Debes escribir un codigo", preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "Reintentar", style: .default, handler: nil))
-            
             self.present(alert, animated: true)
-            
             return
-            
         }
-        
         
         let myOwnCode = "\(mainData.info?.codigo_referido ?? "No Code")"
         
-        
         if newCode == myOwnCode {
-            
             let alert = UIAlertController(title: "¿Usando tu propio codigo?", message: "No puedes usar tu propio codigo.", preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "Usar otro", style: .default, handler: nil))
-            
             self.present(alert, animated: true)
-            
             return
-            
         }
         
-        
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
-        
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         let postString = "funcion=ChangeCodePromotional&id_user="+userID!+"&token="+"\(newCode)"
-        
-        print(postString)
-        
         request.httpBody = postString.data(using: .utf8)
-        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            
             guard let data = data, error == nil else {
                 print("error=\(String(describing: error))")
                 return
             }
             
-            do {
-                
-                let json = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary
-                print(" \n\n Respuesta: ")
-                print(" ============ ")
-                print(json as Any)
-                print(" ============ ")
-                
-                if let parseJSON = json {
-                    
-                    if let state = parseJSON["state"]{
-                        
-                        let stateString = "\(state)"
-                        
-                        if stateString == "600" {
-                            
-                            DispatchQueue.main.async {
-                                
-                                let alert = UIAlertController(title: "Error", message: "Ya usaste este codigo.", preferredStyle: .alert)
-                                
-                                alert.addAction(UIAlertAction(title: "Intentar otro.", style: .default, handler: nil))
-                                
-                                self.present(alert, animated: true)
-                                
-                            }
+            let json = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary
+            if let parseJSON = json {
+                if let state = parseJSON["state"]{
+                    let stateString = "\(state)"
+                    if stateString == "600" {
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Error", message: "Ya usaste este codigo.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Intentar otro.", style: .default, handler: nil))
+                            self.present(alert, animated: true)
                         }
-                        
-                        if stateString == "200" {
-                            
-                            NotificationCenter.default.post(name: Notification.Name("reloadBalance"), object: nil)
-                            
-                            DispatchQueue.main.async {
-                                
-                                let alert = UIAlertController(title: "¡Exito!", message: "Se ha canjeado el código exitosamente.", preferredStyle: .alert)
-                                
-                                alert.addAction(UIAlertAction(title: "Genial", style: .cancel, handler: { action in
-                                    NotificationCenter.default.post(name: Notification.Name(rawValue: "newCodeReload"), object: nil)
-                                    
-                                    
-                                }))
-                                
-                                self.present(alert, animated: true)
-                                
-                            }
-                            
-                            
-                        } else if stateString == "101" {
-                            
-                            DispatchQueue.main.async {
-                                
-                                let alert = UIAlertController(title: "Error", message: "El codigo no existe.", preferredStyle: .alert)
-                                
-                                alert.addAction(UIAlertAction(title: "Volver a intentar o corregir.", style: .default, handler: nil))
-                                
-                                self.present(alert, animated: true)
-                                
-                            }
-                            
-                        } else {
-                            
-                            DispatchQueue.main.async {
-                                
-                                print(stateString)
-                                
-                                let alert = UIAlertController(title: "Error", message: "Hay un problema con el servidor, inténtalo de nuevo más tarde.", preferredStyle: .alert)
-                                
-                                alert.addAction(UIAlertAction(title: "Entendido", style: .default, handler: nil))
-                                
-                                self.present(alert, animated: true)
-                                
-                            }
-                            
-                        }
-                        
                     }
                     
+                    if stateString == "200" {
+                        NotificationCenter.default.post(name: Notification.Name("reloadBalance"), object: nil)
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "¡Exito!", message: "Se ha canjeado el código exitosamente.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Genial", style: .cancel, handler: { action in
+                                NotificationCenter.default.post(name: Notification.Name(rawValue: "newCodeReload"), object: nil)
+                            }))
+                            self.present(alert, animated: true)
+                        }
+                        
+                    } else if stateString == "101" {
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Error", message: "El codigo no existe.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Volver a intentar o corregir.", style: .default, handler: nil))
+                            self.present(alert, animated: true)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Error", message: "Hay un problema con el servidor, inténtalo de nuevo más tarde.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Entendido", style: .default, handler: nil))
+                            self.present(alert, animated: true)
+                        }
+                    }
                 }
             }
         }
-        
         task.resume()
-        
     }
     
     @objc func newCode() {
-        
-        print("called")
         codes.removeAll()
         getThemCodes()
         DispatchQueue.main.async { self.tableView.reloadData() }
-        
     }
     
     func getThemCodes() {
-        
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
-        
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         let postString = "funcion=getCodePromotionals&id_user="+userID!
-        
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil, response != nil else {
                 return
             }
-            
-            do {
-                let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                
-                if let dictionary = json as? Dictionary<String, AnyObject>
-                    
-                {
-                    
-                    print("cupones")
-                    print(dictionary)
-                    print("*********")
-                    
-                    if let items = dictionary["data"] as? [Dictionary<String, Any>] {
-                        
-                        for d in items {
-                            
-                            self.codes.append(d)
-                            
-                        }
-                        
+            let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+            if let dictionary = json as? Dictionary<String, AnyObject> {
+                if let items = dictionary["data"] as? [Dictionary<String, Any>] {
+                    for d in items {
+                        self.codes.append(d)
                     }
-                    
                 }
-                
-                DispatchQueue.main.async {
-                    if self.codes.count > 0 {
-                        self.tableView.reloadData()
-                    }
-                    
-                }
-                
             }
-            
+            DispatchQueue.main.async {
+                if self.codes.count > 0 {
+                    self.tableView.reloadData()
+                }
+            }
         }.resume()
-        
-        
     }
-    
 }
 
 @IBDesignable
@@ -427,12 +274,15 @@ class GradientView: UIView {
             gradientLayer.endPoint   = diagonalMode ? .init(x: 1, y: 1) : .init(x: 0.5, y: 1)
         }
     }
+    
     func updateLocations() {
         gradientLayer.locations = [startLocation as NSNumber, endLocation as NSNumber]
     }
+    
     func updateColors() {
         gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
     }
+    
     override public func layoutSubviews() {
         super.layoutSubviews()
         updatePoints()

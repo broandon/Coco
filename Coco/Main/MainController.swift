@@ -66,17 +66,20 @@ class MainController: UIViewController {
                         let tiempoDePedido = "\(tiempoEstimado ?? 0)"
                         let tiempoDePedidoInt = Int(tiempoDePedido)
                         if tiempoDePedidoInt == nil {
-                            self.currentEstimatedTime.isHidden = true
+                            DispatchQueue.main.async {
+                                self.currentEstimatedTime.isHidden = true
+                            }
                             return
                         }
                         if tiempoDePedidoInt == 0 {
                             self.currentEstimatedTime.isHidden = true
                         } else {
                             DispatchQueue.main.async {
-                                self.estimatedTimeText.text = "\(tiempoDePedidoInt?.msToSeconds.minute ?? 0) Minutos"
+                                let tiempoDePedidoMasUno = (tiempoDePedidoInt?.msToSeconds.minute)! + 1
+                                self.estimatedTimeText.text = "\(tiempoDePedidoMasUno) Minutos"
                                 self.currentEstimatedTime.isHidden = false
                                 self.currentEstimatedTime.slideInFromBottom()
-                                self.countDownTest(minutes: (tiempoDePedidoInt?.msToSeconds.minute)!, seconds: (tiempoDePedidoInt?.msToSeconds.second)!)
+                                self.countDownTest(minutes: tiempoDePedidoMasUno, seconds: tiempoDePedidoInt?.msToSeconds.second ?? 0)
                             }
                             
                         }
@@ -92,46 +95,39 @@ class MainController: UIViewController {
     }
     
     func countDownTest(minutes: Int, seconds: Int) {
-        
-        var minutesToGo = minutes - 1
-        
+        var minutesToGo = minutes
         Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { timer in
-            
             self.estimatedTimeText.text = "\(minutesToGo) Minutos"
             minutesToGo -= 1
-            
             if minutesToGo == 0 {
-                
-                self.currentEstimatedTime.isHidden = true
+                DispatchQueue.main.async {
+                    self.currentEstimatedTime.isHidden = true
+                }
                 timer.invalidate()
-                
             }
-            
+            if minutesToGo == 1 {
+                DispatchQueue.main.async {
+                    self.currentEstimatedTime.isHidden = true
+                }
+                timer.invalidate()
+            }
         }
-        
     }
     
     @objc func shareTheCode() {
-        
         let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(mainData.info?.codigo_referido ?? "--") Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
-        
         let textToShare = [ text ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-        
         self.present(activityViewController, animated: true, completion: nil)
-        
     }
     
     @objc func didAddCode() {
-        
         print("Labels Updated")
         mainData = Main()
         configureView()
         configureTable()
-        
     }
     
     @objc func updateLabels() {
@@ -156,44 +152,32 @@ class MainController: UIViewController {
     }
     
     @IBAction func showCards(_ sender: Any) {
-        
         let vc = BalanceVC()
         vc.delegate = self
         vc.modalTransitionStyle = .crossDissolve
         presentAsync(vc)
-        
     }
     
     @IBAction func codigos(_ sender: Any) {
-        
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "newCodeViewController") as! newCodeViewController
         self.present(newViewController, animated: true, completion: nil)
-        
     }
     
     
     @IBAction func showCocoPopUp(_ sender: UIButton) {
-        
         if sender.tag == 1 {
-            
             UserDefaults.standard.set("Cocopoints", forKey: "buttonPressed")
-            
         }
-        
         if sender.tag == 3 {
-            
             UserDefaults.standard.set("tuCodigo", forKey: "buttonPressed")
-            
         }
-        
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "popUpViewController") as! popUpViewController
         newViewController.modalPresentationStyle = .overCurrentContext
         newViewController.modalTransitionStyle = .crossDissolve
         newViewController.referalCode = mainData.info?.codigo_referido
         self.present(newViewController, animated: true, completion: nil)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -318,20 +302,28 @@ extension MainController: MenuDelegate {
             let vc = SettingsVC()
             presentAsync(vc)
         case .session:
-            Defaults.removeObject(forKey: "user")
-            Defaults.removeObject(forKey: "token")
-            Defaults.removeObject(forKey: "token_saved")
-            //  let domain = Bundle.main.bundleIdentifier!
-            //  UserDefaults.standard.removePersistentDomain(forName: domain)
-            //  UserDefaults.standard.synchronize()
-            //  print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
-            let vc = instantiate(viewControllerClass: AccountVC.self)
-            let wnd = UIApplication.shared.keyWindow
-            var options = UIWindow.TransitionOptions()
-            options.direction = .toBottom
-            options.duration = 0.4
-            options.style = .easeOut
-            wnd?.setRootViewController(vc, options: options)
+            let refreshAlert = UIAlertController(title: "¿Cerrar sesión?", message: "Si cierras sesión tendrás que volver a introducir tus credenciales.", preferredStyle: UIAlertController.Style.alert)
+            refreshAlert.addAction(UIAlertAction(title: "Cerrar Sesión", style: .destructive, handler: { (action: UIAlertAction!) in
+                Defaults.removeObject(forKey: "user")
+                Defaults.removeObject(forKey: "token")
+                Defaults.removeObject(forKey: "token_saved")
+                //  let domain = Bundle.main.bundleIdentifier!
+                //  UserDefaults.standard.removePersistentDomain(forName: domain)
+                //  UserDefaults.standard.synchronize()
+                //  print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+                let vc = self.instantiate(viewControllerClass: AccountVC.self)
+                let wnd = UIApplication.shared.keyWindow
+                var options = UIWindow.TransitionOptions()
+                options.direction = .toBottom
+                options.duration = 0.4
+                options.style = .easeOut
+                wnd?.setRootViewController(vc, options: options)
+            }))
+            refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: { (action: UIAlertAction!) in
+                print("Handle Cancel Logic here")
+                refreshAlert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(refreshAlert, animated: true, completion: nil)
         }
     }
 }

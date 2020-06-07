@@ -81,8 +81,6 @@ class promoViewController: UIViewController {
             let imageURL = promoInfo.data?.promocion?.imagen
             let URLDirection = promoInfo.data?.promocion?.link
             let str = imageURL?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
-            print(imageURL)
-            print(str)
             self.urlToVisit = URLDirection
             self.promoImage.sd_setImage(with: URL(string: str! ), completed: nil)
             self.showPromo()

@@ -12,7 +12,6 @@ import SwiftyJSON
 import YPImagePicker
 import SwiftyUserDefaults
 
-
 struct General {
   static var token = Defaults[.token]
   static var username = Defaults[.user]

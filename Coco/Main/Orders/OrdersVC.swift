@@ -15,54 +15,28 @@ class OrdersVC: UIViewController, showMeTheCoco, UIPopoverPresentationController
     
     var loader: LoaderVC!
     var orders: Orders!
-    var estimated: OrderEstimatedTime!
-    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         orders = Orders()
         configureTable()
         requestData()
-        scheduledTimerWithTimeInterval()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        timer.invalidate()
-    }
-    
-    func scheduledTimerWithTimeInterval() {
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
-    }
-    
-    @objc func updateCounting() {
-        
-        timerDataRequesting()
-        self.table.reloadData()
-        
     }
     
     func showsTheCoco(position: UIView) {
-        
-        // get a reference to the view controller for the popover
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popoverID")
-        
-        // set the presentation style
         popController.modalPresentationStyle = .overCurrentContext
         popController.modalPresentationStyle = .popover
         popController.modalTransitionStyle = .crossDissolve
-        
-        // set up the popover presentation controller
         popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.left
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = position
         popController.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: 130, height: 65)
-        
-        // present the popover
         self.present(popController, animated: true, completion: nil)
     }
     
-    // UIPopoverPresentationControllerDelegate method
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle { return UIModalPresentationStyle.none }
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle { return UIModalPresentationStyle.none
+    }
     
     private func configureTable() {
         table.delegate = self
@@ -79,17 +53,6 @@ class OrdersVC: UIViewController, showMeTheCoco, UIPopoverPresentationController
             switch result {
             case .failure(let errorMssg):
                 self.throwError(str: errorMssg)
-            case .success(_):
-                self.fillInfo()
-            }
-        }
-    }
-    
-    private func timerDataRequesting() {
-        orders.requestOrders { result in
-            switch result {
-            case .failure(let errorMssg):
-                self.dismiss(animated: true, completion: nil)
             case .success(_):
                 self.fillInfo()
             }
@@ -121,37 +84,30 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.delegate = self
-        
         let item = orders.orders[indexPath.row]
-        
         cell.orderNumber.text = "Orden \(item.id ?? "--")"
         cell.dateLabel.text = "Fecha: \(item.date ?? "--")"
         cell.statusLabel.text = "Estatus: \(item.status ?? "--")"
         cell.businessLabel.text = "Cafetería: \(item.business ?? "--")"
+        let otorgados = item.cocopointsOtorgados
+        let otorgadosDouble = Double("\(otorgados ?? "0")")
+        let otorgadosInt = Int(otorgadosDouble ?? 0)
         
-        
-        let otorgados = "\(item.cocopointsOtorgados ?? "0")"
-        
-        if otorgados == "0" {
-            
+        if otorgadosInt == 0 {
             cell.buttonShowCoco.isHidden = true
-            
-        } else {
-            
-            cell.buttonShowCoco.tag = Int(otorgados)!
-            
+        }
+        
+        if otorgadosInt != 0 {
+            cell.buttonShowCoco.isHidden = false
+            cell.buttonShowCoco.tag = otorgadosInt
         }
         
         if item.tipoDeCompra == "1" {
-            
             cell.amountLabel.text = item.total
             cell.montoCocoLabel.text = "Monto"
-            
         } else if item.tipoDeCompra == "2" {
-            
             cell.montoCocoLabel.text = "Cocopoints"
             cell.amountLabel.text = item.totalCocopoints
-            
         }
         
         return cell

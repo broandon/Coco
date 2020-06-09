@@ -27,7 +27,6 @@ class OrderTableViewCell: UITableViewCell {
     var delegate : showMeTheCoco!
     
     static let cellIdentifier = "OrderTableViewCell"
-    let index: Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,13 +36,9 @@ class OrderTableViewCell: UITableViewCell {
     }
     
     @IBAction func showPopover(_ sender: UIButton) {
-        
+        let currentCellNumber = sender.tag
+        UserDefaults.standard.set(currentCellNumber, forKey: "cocopointsOtorgados")
         let theViewNumber = orderNumber.superview
         self.delegate.showsTheCoco(position: theViewNumber!)
-        
-        let currentCellNumber = sender.tag
-        print(currentCellNumber)
-        UserDefaults.standard.set(currentCellNumber, forKey: "cocopointsOtorgados")
-        
     }
 }

@@ -83,7 +83,9 @@ class promoViewController: UIViewController {
             let str = imageURL?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
             self.urlToVisit = URLDirection
             self.promoImage.sd_setImage(with: URL(string: str! ), completed: nil)
-            self.showPromo()
+            DispatchQueue.main.async {
+                self.showPromo()
+            }
         }
         task.resume()
     }

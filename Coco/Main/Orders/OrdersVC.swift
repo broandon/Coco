@@ -39,6 +39,7 @@ class OrdersVC: UIViewController, showMeTheCoco, UIPopoverPresentationController
     }
     
     private func configureTable() {
+        table.separatorStyle = .none
         table.delegate = self
         table.dataSource = self
         table.tableFooterView = UIView()

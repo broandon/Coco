@@ -163,7 +163,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cnb-m7-dc9">
-                                        <rect key="frame" x="324" y="18.666666666666668" width="31" height="20.000000000000004"/>
+                                        <rect key="frame" x="309" y="18.666666666666668" width="31" height="20.000000000000004"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="Dax-I9-hHs"/>
                                             <constraint firstAttribute="width" constant="31" id="bl1-hZ-XKL"/>
@@ -173,12 +173,25 @@
                                             <action selector="codigos:" destination="a5t-bI-LM1" eventType="touchUpInside" id="gcH-Ge-xIe"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIz-mE-WkK">
+                                        <rect key="frame" x="255" y="13" width="31" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="31" id="bON-bb-IuM"/>
+                                            <constraint firstAttribute="height" constant="31" id="p0Y-d9-jte"/>
+                                        </constraints>
+                                        <state key="normal" image="gift"/>
+                                        <connections>
+                                            <action selector="showMeTheGifts:" destination="a5t-bI-LM1" eventType="touchUpInside" id="XCx-ia-1i0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="8mb-vP-CUq" firstAttribute="leading" secondItem="OZE-Wp-4EE" secondAttribute="leading" constant="16" id="4QQ-99-9aq"/>
                                     <constraint firstItem="Cnb-m7-dc9" firstAttribute="centerY" secondItem="Rqb-Qc-I7c" secondAttribute="centerY" id="CaE-rU-vRN"/>
-                                    <constraint firstItem="Rqb-Qc-I7c" firstAttribute="leading" secondItem="Cnb-m7-dc9" secondAttribute="trailing" constant="8" id="DIe-oL-9xc"/>
+                                    <constraint firstItem="Rqb-Qc-I7c" firstAttribute="leading" secondItem="Cnb-m7-dc9" secondAttribute="trailing" constant="23" id="DIe-oL-9xc"/>
+                                    <constraint firstItem="Cnb-m7-dc9" firstAttribute="leading" secondItem="AIz-mE-WkK" secondAttribute="trailing" constant="23" id="IAz-0c-Utn"/>
+                                    <constraint firstItem="AIz-mE-WkK" firstAttribute="centerY" secondItem="Cnb-m7-dc9" secondAttribute="centerY" id="UFr-ss-qfQ"/>
                                     <constraint firstAttribute="bottom" secondItem="8mb-vP-CUq" secondAttribute="bottom" constant="4" id="ihJ-dR-NsD"/>
                                     <constraint firstAttribute="bottom" secondItem="Rqb-Qc-I7c" secondAttribute="bottom" constant="4" id="luS-qZ-NbS"/>
                                     <constraint firstAttribute="trailing" secondItem="Rqb-Qc-I7c" secondAttribute="trailing" constant="16" id="xAx-oS-dCe"/>
@@ -199,7 +212,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="166" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saldo: $ --" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQ4-eK-L4o">
-                                                <rect key="frame" x="49.666666666666664" y="17" width="66.666666666666686" height="16.333333333333329"/>
+                                                <rect key="frame" x="54.333333333333329" y="18" width="57.333333333333329" height="14"/>
                                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -225,7 +238,7 @@
                                         <rect key="frame" x="183" y="0.0" width="166" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cocopoints: $ --" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GK-1A-IAK">
-                                                <rect key="frame" x="31.666666666666657" y="17" width="103" height="16.333333333333329"/>
+                                                <rect key="frame" x="37.666666666666657" y="18" width="91" height="14"/>
                                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -321,6 +334,7 @@
                         <outlet property="cocopointsView" destination="OiT-Sf-KkH" id="5fV-BD-Dxs"/>
                         <outlet property="currentEstimatedTime" destination="ToR-6X-gCP" id="OT5-Y9-71a"/>
                         <outlet property="estimatedTimeText" destination="CJe-HP-7nS" id="Irj-Ly-H3g"/>
+                        <outlet property="giftButton" destination="AIz-mE-WkK" id="992-89-BQ6"/>
                         <outlet property="logo" destination="8mb-vP-CUq" id="ecx-fL-9ey"/>
                         <outlet property="menuButton" destination="Rqb-Qc-I7c" id="GDj-TC-F6U"/>
                         <outlet property="table" destination="ddK-Z9-XbU" id="r2X-IB-XYh"/>
@@ -437,7 +451,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detalle de Producto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSo-kX-AU7">
-                                        <rect key="frame" x="48" y="11.333333333333334" width="132.66666666666666" height="17.666666666666664"/>
+                                        <rect key="frame" x="48" y="12.666666666666664" width="132.66666666666666" height="15"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="15"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>
@@ -1363,7 +1377,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.29334332191780821" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.70432898116438358" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="p5g-2V-TNe" firstAttribute="top" secondItem="W9i-NZ-xaH" secondAttribute="bottom" constant="20" id="5XG-NQ-ghz"/>
                             <constraint firstItem="WgC-Yk-ssD" firstAttribute="trailing" secondItem="W9i-NZ-xaH" secondAttribute="trailing" constant="42" id="7Cp-jd-kUq"/>
@@ -1462,7 +1476,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Regresar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye2-Vr-OW1">
-                                        <rect key="frame" x="48" y="11.333333333333334" width="59.333333333333343" height="17.666666666666664"/>
+                                        <rect key="frame" x="48" y="12.666666666666664" width="59.333333333333343" height="15"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="15"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>
@@ -1558,6 +1572,7 @@
         <image name="cerrarblanco" width="128" height="128"/>
         <image name="clock" width="512" height="512"/>
         <image name="error" width="128" height="128"/>
+        <image name="gift" width="256" height="256"/>
         <image name="logo_blanco" width="976" height="293"/>
         <image name="logo_negro" width="976" height="293"/>
         <image name="masgris" width="320" height="320"/>

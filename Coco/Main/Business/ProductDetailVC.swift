@@ -42,6 +42,7 @@ class ProductDetailVC: UIViewController {
         super.viewDidLoad()
         configureView()
         requestData()
+        print("This is the one")
     }
     
     override func viewWillAppear(_ animated: Bool) {

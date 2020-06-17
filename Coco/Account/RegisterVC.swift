@@ -22,7 +22,6 @@ class RegisterVC: UIViewController {
     @IBOutlet private weak var passwordField: SkyFloatingLabelTextField!
     @IBOutlet private weak var schoolField: SkyFloatingLabelTextField!
     @IBOutlet private weak var registerBtn: UIButton!
-    
     @IBOutlet weak var checkTerms: UIView!
     @IBOutlet weak var buttonTems: UIButton!
     
@@ -50,47 +49,32 @@ class RegisterVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         if UserDefaults.standard.bool(forKey: "ComingFromAppleSignInPrompt") == true {
-            
             let alert = UIAlertController(title: "¡Hola!", message: "Parece que estás creando una cuenta nueva. ¡Solo faltan unos pasos para disfrutar de Coco APP! Por favor selecciona tu institución. No te olvides de leer y aceptar los términos y condiciones.", preferredStyle: .alert)
-
             alert.addAction(UIAlertAction(title: "Elegir institución", style: .default, handler: nil))
-             
             self.present(alert, animated: true)
-            
             UserDefaults.standard.set(false, forKey: "ComingFromAppleSignInPrompt")
-            
         }
-        
     }
     
     private func comingFrom() {
-        
         if UserDefaults.standard.bool(forKey: "ComingFromAppleSignIn") == true {
-            
             nameField.isUserInteractionEnabled = false
             emailField.isUserInteractionEnabled = false
             lastNameField.isUserInteractionEnabled = false
             passwordField.isUserInteractionEnabled = false
-            
             nameField.alpha = 0.5
             emailField.alpha = 0.5
             lastNameField.alpha = 0.5
             passwordField.alpha = 0.5
-            
             nameField.text = nameFromApple
             emailField.text = emailFromApple
             lastNameField.text = surnameFromApple
             passwordField.text = passwordFromApple
             phoneField.text = "2222222222"
-            
             schoolField.lineColor = UIColor.green
-            
             UserDefaults.standard.set(false, forKey: "ComingFromAppleSignIn")
-            
         }
-        
     }
     
     private func configureView() {
@@ -163,24 +147,24 @@ class RegisterVC: UIViewController {
             case .failure(let errorMssg):
                 
                 if UserDefaults.standard.bool(forKey: "ComingFromAppleSignInAlreadyExists") == true {
-                
-                if errorMssg == "USER ALREADY EXIST" {
                     
-                    let emailF = self.emailFromApple
-                    let passwordF = self.passwordFromApple
-                    
-                    self.user = User(email: emailF!, password: passwordF!)
-                    
-                    self.user.loginRequest { result in
-                      self.loader.removeAnimate()
-                      switch result {
-                      case .failure(let errorMssg):
-                        self.throwError(str: errorMssg)
-                      case .success(_):
-                        self.performSuccessLogin()
-                      }
-                    }
-                    
+                    if errorMssg == "USER ALREADY EXIST" {
+                        
+                        let emailF = self.emailFromApple
+                        let passwordF = self.passwordFromApple
+                        
+                        self.user = User(email: emailF!, password: passwordF!)
+                        
+                        self.user.loginRequest { result in
+                            self.loader.removeAnimate()
+                            switch result {
+                            case .failure(let errorMssg):
+                                self.throwError(str: errorMssg)
+                            case .success(_):
+                                self.performSuccessLogin()
+                            }
+                        }
+                        
                     }} else {
                     
                     self.throwError(str: errorMssg)
@@ -216,15 +200,15 @@ class RegisterVC: UIViewController {
     }
     
     private func performSuccessLogin() {
-      guard let id = user.id else { return }
-      Defaults[.user] = id
-      let vc = instantiate(viewControllerClass: MainController.self)
-      let wnd = UIApplication.shared.keyWindow
-      var options = UIWindow.TransitionOptions()
-      options.direction = .fade
-      options.duration = 0.4
-      options.style = .easeOut
-      wnd?.setRootViewController(vc, options: options)
+        guard let id = user.id else { return }
+        Defaults[.user] = id
+        let vc = instantiate(viewControllerClass: MainController.self)
+        let wnd = UIApplication.shared.keyWindow
+        var options = UIWindow.TransitionOptions()
+        options.direction = .fade
+        options.duration = 0.4
+        options.style = .easeOut
+        wnd?.setRootViewController(vc, options: options)
     }
     
     @IBAction func btnTermsAction(_ sender: Any) {

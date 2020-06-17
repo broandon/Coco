@@ -32,9 +32,12 @@ class ShoppingCartVC: UIViewController {
     @IBOutlet weak var payWithCocopoints: UIButton!
     @IBOutlet weak var payWithCocoButton: UIButton!
     @IBOutlet weak var payViews: UIView!
-    
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var cocoLabel: UILabel!
+    @IBOutlet weak var noCheckView: UIView!
+    @IBOutlet weak var yesCheckView: UIView!
+    @IBOutlet weak var searchFriendView: UIView!
+    @IBOutlet weak var disappearingViewHeight: NSLayoutConstraint!
     
     var loader: LoaderVC!
     var shoppingCart: ShoppingCart?
@@ -45,8 +48,9 @@ class ShoppingCartVC: UIViewController {
     var costInCocopoints: String = ""
     var normalCost: String = ""
     let userID = Defaults[.user]
-    
     var tip: Int = 0
+    let checkYes = M13Checkbox()
+    let checkNo = M13Checkbox()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,22 +74,16 @@ class ShoppingCartVC: UIViewController {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode(ShoppingCart.self, from: cart) {
                 shoppingCart = decoded
-                
                 businessName.text = shoppingCart?.store_name
-                // amount.text = shoppingCart?.sub_amount
-                
-                //MARK: Heres the cocopoints amount
-                
                 let value = Double("\(shoppingCart?.sub_amount ?? "")") ?? 0
                 let oneThousand = 1000.0
                 let valueCocopoints = value * oneThousand
                 let textCocos = Float(valueCocopoints).clean
-               
+                
                 normalCost = Float(value).clean
                 amount.text = "$"+normalCost
                 costInCocopoints = "\(valueCocopoints)"
                 cocopoints.text = textCocos
-                
             }
         }
     }
@@ -110,29 +108,67 @@ class ShoppingCartVC: UIViewController {
         backView.setShadow()
         backView.roundCorners(15)
         payButton.roundCorners(15)
-        
         tip_5.circleBorders()
         tip_10.circleBorders()
         tip_15.circleBorders()
-        
         tip_5.addBorder(thickness: 2, color: .CocoBlack)
         tip_10.addBorder(thickness: 2, color: .CocoBlack)
         tip_15.addBorder(thickness: 2, color: .CocoBlack)
-        
         orderDescription.addBorder(thickness: 1, color: .CocoBlack)
-        
         payWithMoneyButton.roundCorners(15)
         payWithCocopoints.roundCorners(15)
         payWithCocoButton.roundCorners(15)
-        
         balanceLabel.roundCorners(9)
         cocoLabel.roundCorners(9)
+        disappearingViewHeight.constant = 0
         
-    }
+        noCheckView.addSubview(checkNo)
+        checkNo.frame = CGRect(origin: .zero, size: noCheckView.frame.size)
+        checkNo.setCheckState(.checked, animated: true)
+        checkNo.tintColor = .white
+        checkNo.backgroundColor = .CocoPink
+        checkNo.boxType = .circle
+        checkNo.checkmarkLineWidth = 3
+        checkNo.layer.masksToBounds = true
+        noCheckView.layer.cornerRadius = checkNo.bounds.height / 2
+        checkNo.layer.cornerRadius = noCheckView.bounds.height / 2
+        checkNo.addTarget(self, action: #selector(self.noCheckBoxPressed(_:)), for: .valueChanged)
+        checkNo.stateChangeAnimation = .expand(.stroke)
+        
+        yesCheckView.addSubview(checkYes)
+           checkYes.frame = CGRect(origin: .zero, size: yesCheckView.frame.size)
+           checkYes.setCheckState(.unchecked, animated: true)
+           checkYes.tintColor = .white
+           checkYes.backgroundColor = .CocoPink
+           checkYes.boxType = .circle
+           checkYes.checkmarkLineWidth = 3
+           checkYes.layer.masksToBounds = true
+           yesCheckView.layer.cornerRadius = checkYes.bounds.height / 2
+           checkYes.layer.cornerRadius = yesCheckView.bounds.height / 2
+        checkYes.addTarget(self, action: #selector(self.yesCheckboxPressed(_:)), for: .valueChanged)
+        checkYes.stateChangeAnimation = .expand(.stroke)
 
+    }
+    
+    @objc func yesCheckboxPressed(_ sender: M13Checkbox) {
+        checkYes.isUserInteractionEnabled = false
+        checkNo.isUserInteractionEnabled = true
+        checkNo.setCheckState(.unchecked, animated: true)
+        searchFriendView.isHidden = false
+        disappearingViewHeight.constant = 100
+        self.view.layoutIfNeeded()
+    }
+    
+    @objc func noCheckBoxPressed(_ sender: M13Checkbox){
+        checkNo.isUserInteractionEnabled = false
+        checkYes.isUserInteractionEnabled = true
+        checkYes.setCheckState(.unchecked, animated: true)
+        searchFriendView.isHidden = true
+        disappearingViewHeight.constant = 0
+        self.view.layoutIfNeeded()
+    }
     
     func firstTimer() {
-        
         tipLabel.isHidden = true
         tip_5.isHidden = true
         tip_10.isHidden = true
@@ -141,12 +177,9 @@ class ShoppingCartVC: UIViewController {
         descriptionLabel.isHidden = true
         payButton.isHidden = true
         payWithCocoButton.isHidden = true
-        
-        
     }
     
     @IBAction func payWithMoney(_ sender: Any) {
-        
         payViews.isHidden = true
         tipLabel.isHidden = false
         tip_5.isHidden = false
@@ -155,10 +188,8 @@ class ShoppingCartVC: UIViewController {
         orderDescription.isHidden = false
         descriptionLabel.isHidden = false
         payButton.isHidden = false
-        
         let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.bounds.size.height)
         scroll.setContentOffset(bottomOffset, animated: true)
-        
     }
     
     @IBAction func payWithCocopoints(_ sender: Any) {
@@ -184,7 +215,7 @@ class ShoppingCartVC: UIViewController {
         guard let dict = try? shoppingCart.asDictionary() else {
             return
         }
-                
+        
         var jsonText = ""
         var products = [[String: Any]]()
         for i in dict["products"] as! [[String: Any]] {
@@ -194,7 +225,7 @@ class ShoppingCartVC: UIViewController {
             temp["precio"] = i["precio"]
             products.append(temp)
         }
-                
+        
         if let theJSONData = try? JSONSerialization.data(
             withJSONObject: products,
             options: .prettyPrinted
@@ -203,7 +234,7 @@ class ShoppingCartVC: UIViewController {
                                      encoding: String.Encoding.ascii) {
             jsonText = theJSONText
         }
-                
+        
         let my_balance = NumberFormatter().number(from: balance)!
         let cost = NumberFormatter().number(from: shoppingCart.amount_final ?? "0.0")!
         

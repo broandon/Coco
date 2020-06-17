@@ -23,6 +23,7 @@ class MainController: UIViewController {
     @IBOutlet weak var cocopointsBalance: UILabel!
     @IBOutlet weak var currentEstimatedTime: UIView!
     @IBOutlet weak var estimatedTimeText: UILabel!
+    @IBOutlet weak var giftButton: UIButton!
     
     private var loader: LoaderVC!
     private var mainData: Main!
@@ -34,6 +35,7 @@ class MainController: UIViewController {
         mainData = Main()
         configureView()
         configureTable()
+        getGiftState()
         let pushManager = PushNotificationManager()
         pushManager.registerForPushNotifications()
         NotificationCenter.default.addObserver(self, selector: #selector(updateLabels), name: Notification.Name(rawValue: "reloadBalance"), object: nil)
@@ -49,6 +51,43 @@ class MainController: UIViewController {
             self.present(destVC, animated: true, completion: nil)
         }
         requestEstimatedTime()
+    }
+    
+    func getGiftState() {
+        let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "funcion=getUserMain&id_user="+userID!
+        request.httpBody = postString.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                print("error: No data to decode")
+                return
+            }
+            guard let promoInfo = try? JSONDecoder().decode(Promo.self, from: data) else {
+                print("Error: Couldn't decode data into info")
+                return
+            }
+            
+            if promoInfo.data?.promocion?.imagen == nil {
+                DispatchQueue.main.async {
+                    self.dismiss(animated: false, completion: nil)
+                }
+                return
+            }
+            
+            if promoInfo.data?.regalo != nil {
+                DispatchQueue.main.async {
+                    self.giftButton.shake(duration: 4, values: [-7.0, 7.0, -4.0, 4.0, -6.0, 6.0, -2.0, 2.0])
+                }
+            } else if promoInfo.data?.regalo == nil {
+                DispatchQueue.main.async {
+                    self.giftButton.shake()
+                }
+            }
+        }
+        task.resume()
     }
     
     func requestEstimatedTime() {
@@ -118,7 +157,7 @@ class MainController: UIViewController {
         let text = "¡Descarga Cocoapp y usa mi código para obtener saldo gratis en tu primera recarga! CODIGO: \(mainData.info?.codigo_referido ?? "--") Descargala en: https://apps.apple.com/mx/app/coco-app/id1470991257?l=en"
         let textToShare = [ text ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        activityViewController.popoverPresentationController?.sourceView = self.view
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
         self.present(activityViewController, animated: true, completion: nil)
     }
@@ -158,12 +197,17 @@ class MainController: UIViewController {
         presentAsync(vc)
     }
     
+    @IBAction func showMeTheGifts(_ sender: Any) {
+        let myViewController = giftsViewController(nibName: "giftsViewController", bundle: nil)
+        self.present(myViewController, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func codigos(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "newCodeViewController") as! newCodeViewController
         self.present(newViewController, animated: true, completion: nil)
     }
-    
     
     @IBAction func showCocoPopUp(_ sender: UIButton) {
         if sender.tag == 1 {
@@ -197,9 +241,9 @@ class MainController: UIViewController {
         table.delegate = self
         table.dataSource = self
         table.tableFooterView = UIView()
-        
         let nib = UINib(nibName: BusinessTableViewCell.cellIdentifier, bundle: nil)
         table.register(nib, forCellReuseIdentifier: BusinessTableViewCell.cellIdentifier)
+        table.separatorStyle = .none
     }
     
     func requestData() {
@@ -220,7 +264,6 @@ class MainController: UIViewController {
         table.reloadData()
         balanceLabel.text = "Saldo: $ \(mainData.info?.current_balance ?? "--")"
         cocopointsBalance.text = "Cocopoints: \(mainData.info?.cocopoints_balance ?? "--")"
-        // referalCodeLabel.text = "Tu codigo: \(mainData.info?.codigo_referido ?? "")"
     }
     
     @IBAction func menuAction(_ sender: Any) {
@@ -230,10 +273,10 @@ class MainController: UIViewController {
         let username = "\(mainData.info?.name ?? "") \(mainData.info?.last_name ?? "")"
         vc.showInView(aView: view, userName: username)
     }
-    
 }
 
 extension MainController: UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -307,6 +350,7 @@ extension MainController: MenuDelegate {
                 Defaults.removeObject(forKey: "user")
                 Defaults.removeObject(forKey: "token")
                 Defaults.removeObject(forKey: "token_saved")
+                //  Estas ultimas las tuve que borrar porque tengo que guardar algunos objetos para el inicio de sesión con Apple ID. No sé si sean necesarias despues.
                 //  let domain = Bundle.main.bundleIdentifier!
                 //  UserDefaults.standard.removePersistentDomain(forName: domain)
                 //  UserDefaults.standard.synchronize()
@@ -334,3 +378,38 @@ extension MainController: BalanceDelegate {
     }
 }
 
+extension UIView {
+    
+    // Using CAMediaTimingFunction
+    func shake(duration: TimeInterval = 0.5, values: [CGFloat]) {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        
+        // Swift 4.2 and above
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        
+        animation.duration = duration // You can set fix duration
+        animation.values = values  // You can set fix values here also
+        animation.repeatDuration = .infinity
+        self.layer.add(animation, forKey: "shake")
+    }
+        
+    // Using SpringWithDamping
+    func shake(duration: TimeInterval = 0.5, xValue: CGFloat = 12, yValue: CGFloat = 0) {
+        self.transform = CGAffineTransform(translationX: xValue, y: yValue)
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.transform = CGAffineTransform.identity
+        }, completion: nil)
+    }
+
+    // Using CABasicAnimation
+    func shake(duration: TimeInterval = 0.05, shakeCount: Float = 6, xValue: CGFloat = 12, yValue: CGFloat = 0){
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = duration
+        animation.repeatCount = shakeCount
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - xValue, y: self.center.y - yValue))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + xValue, y: self.center.y - yValue))
+        self.layer.add(animation, forKey: "shake")
+    }
+    
+}

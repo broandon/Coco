@@ -17,6 +17,10 @@
 		9D9EB1D0242D787B00FE1E2C /* codeSharingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */; };
 		9DA878D2240472C9001F8FAF /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D1240472C9001F8FAF /* popUpViewController.swift */; };
 		9DA878D424048428001F8FAF /* newCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D324048428001F8FAF /* newCodeViewController.swift */; };
+		9DD30B26249983FE009C7FD0 /* giftsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD30B24249983FE009C7FD0 /* giftsViewController.swift */; };
+		9DD30B27249983FE009C7FD0 /* giftsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DD30B25249983FE009C7FD0 /* giftsViewController.xib */; };
+		9DD30B2A2499862D009C7FD0 /* giftsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD30B282499862D009C7FD0 /* giftsTableViewCell.swift */; };
+		9DD30B2B2499862D009C7FD0 /* giftsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DD30B292499862D009C7FD0 /* giftsTableViewCell.xib */; };
 		9DD8DE0E2485C4AE0016F3AA /* popover1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD8DE0D2485C4AE0016F3AA /* popover1ViewController.swift */; };
 		C3222BA822E0400300E63F38 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3222BA722E0400300E63F38 /* ShoppingCart.swift */; };
 		C3222BB122E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3222BAF22E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib */; };
@@ -165,6 +169,10 @@
 		9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = codeSharingTableViewCell.xib; sourceTree = "<group>"; };
 		9DA878D1240472C9001F8FAF /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
 		9DA878D324048428001F8FAF /* newCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newCodeViewController.swift; sourceTree = "<group>"; };
+		9DD30B24249983FE009C7FD0 /* giftsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = giftsViewController.swift; sourceTree = "<group>"; };
+		9DD30B25249983FE009C7FD0 /* giftsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = giftsViewController.xib; sourceTree = "<group>"; };
+		9DD30B282499862D009C7FD0 /* giftsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = giftsTableViewCell.swift; sourceTree = "<group>"; };
+		9DD30B292499862D009C7FD0 /* giftsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = giftsTableViewCell.xib; sourceTree = "<group>"; };
 		9DD8DE0D2485C4AE0016F3AA /* popover1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popover1ViewController.swift; sourceTree = "<group>"; };
 		C3222BA722E0400300E63F38 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		C3222BAF22E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartProductCellTableViewCell.xib; sourceTree = "<group>"; };
@@ -343,6 +351,17 @@
 				9D17FEA32488D214007A91F2 /* newUserMain.swift */,
 			);
 			path = newModels;
+			sourceTree = "<group>";
+		};
+		9DD30B23249983DA009C7FD0 /* Gifts */ = {
+			isa = PBXGroup;
+			children = (
+				9DD30B24249983FE009C7FD0 /* giftsViewController.swift */,
+				9DD30B25249983FE009C7FD0 /* giftsViewController.xib */,
+				9DD30B282499862D009C7FD0 /* giftsTableViewCell.swift */,
+				9DD30B292499862D009C7FD0 /* giftsTableViewCell.xib */,
+			);
+			path = Gifts;
 			sourceTree = "<group>";
 		};
 		9DD8DE0F2485F72B0016F3AA /* Pop Ups & Popovers */ = {
@@ -780,6 +799,7 @@
 		CFF0B6AB23EBC80600C30A6D /* 2020 Features */ = {
 			isa = PBXGroup;
 			children = (
+				9DD30B23249983DA009C7FD0 /* Gifts */,
 				9DD8DE0F2485F72B0016F3AA /* Pop Ups & Popovers */,
 				9D1769A62484DA9E00EE1E52 /* newModels */,
 				CFBC53A7240712C500D4FF95 /* Coco Cards */,
@@ -912,6 +932,7 @@
 				CFBC53A62406EADC00D4FF95 /* addNewPromoCodeViewController.xib in Resources */,
 				CFD9D35A23ECBD0400DACF9E /* checkmark.mp4 in Resources */,
 				C3A161ED22B9B38C00076DD8 /* LaunchScreen.storyboard in Resources */,
+				9DD30B2B2499862D009C7FD0 /* giftsTableViewCell.xib in Resources */,
 				C3A1622E22B9BD4200076DD8 /* MyriadPro-Regular.otf in Resources */,
 				C348F14022CB8790000F185C /* BalanceTableViewCell.xib in Resources */,
 				C35572B222CA932700FC5C89 /* FavoritesVC.xib in Resources */,
@@ -942,6 +963,7 @@
 				CFBC53A22406DC7500D4FF95 /* promoCodesTableViewCell.xib in Resources */,
 				C348F15122CB991D000F185C /* ProductsVC.xib in Resources */,
 				C355729A22CA80C200FC5C89 /* loader.json in Resources */,
+				9DD30B27249983FE009C7FD0 /* giftsViewController.xib in Resources */,
 				9D9EB1D0242D787B00FE1E2C /* codeSharingTableViewCell.xib in Resources */,
 				C3C0F36D22D3C1EE00B03F62 /* SchoolModal.xib in Resources */,
 				C3A161E522B9B38900076DD8 /* Main.storyboard in Resources */,
@@ -1087,6 +1109,7 @@
 				C35572B122CA932700FC5C89 /* FavoritesVC.swift in Sources */,
 				C3C0F37E22D3D73400B03F62 /* Cards.swift in Sources */,
 				C3A161E822B9B38A00076DD8 /* Coco.xcdatamodeld in Sources */,
+				9DD30B26249983FE009C7FD0 /* giftsViewController.swift in Sources */,
 				C3C0F37A22D3D4B000B03F62 /* Card.m in Sources */,
 				C3A1621B22B9BB8400076DD8 /* UIViewControllerExtensions.swift in Sources */,
 				9DA878D2240472C9001F8FAF /* popUpViewController.swift in Sources */,
@@ -1119,6 +1142,7 @@
 				CFBC53AE2407182F00D4FF95 /* cardsTableViewCell.swift in Sources */,
 				C334339322D5304E0014A254 /* ShoppingCartVC.swift in Sources */,
 				C3A1621D22B9BB9200076DD8 /* UIImageViewExtensions.swift in Sources */,
+				9DD30B2A2499862D009C7FD0 /* giftsTableViewCell.swift in Sources */,
 				C348F13622CB7F76000F185C /* OrderTableViewCell.swift in Sources */,
 				C329B73122E21875005F579D /* OrderDetail.swift in Sources */,
 				C35572A422CA8EDE00FC5C89 /* MainController.swift in Sources */,

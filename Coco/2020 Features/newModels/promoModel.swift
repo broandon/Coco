@@ -7,12 +7,12 @@ import Foundation
 
 // MARK: - Promo
 class Promo: Codable {
-    let state, statusMsg: String?
-    let data: DataClass?
+    var state, statusMsg: String?
+    var data: DataClass?
 
     enum CodingKeys: String, CodingKey {
         case state
-        case statusMsg = "status_msg"
+        case statusMsg
         case data
     }
 
@@ -25,27 +25,54 @@ class Promo: Codable {
 
 // MARK: - DataClass
 class DataClass: Codable {
-    let info: Info?
-    let tiendas: [Tienda]?
-    let promocion: Promocion?
+    var info: Info?
+    var tiendas: [Tienda]?
+    var promocion: Promocion?
+    var ultimoPedido: Int?
+    var alumnos: [Alumno]?
+    var regalo: Int?
 
-    init(info: Info?, tiendas: [Tienda]?, promocion: Promocion?) {
+    enum CodingKeys: String, CodingKey {
+        case info, tiendas, promocion
+        case ultimoPedido
+        case alumnos, regalo
+    }
+
+    init(info: Info?, tiendas: [Tienda]?, promocion: Promocion?, ultimoPedido: Int?, alumnos: [Alumno]?, regalo: Int?) {
         self.info = info
         self.tiendas = tiendas
         self.promocion = promocion
+        self.ultimoPedido = ultimoPedido
+        self.alumnos = alumnos
+        self.regalo = regalo
+    }
+}
+
+// MARK: - Alumno
+class Alumno: Codable {
+    var id, nombre: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case nombre
+    }
+
+    init(id: String?, nombre: String?) {
+        self.id = id
+        self.nombre = nombre
     }
 }
 
 // MARK: - Info
 class Info: Codable {
-    let nombre, apellidos, notificaciones, saldoActual: String?
-    let saldoCocopoints, codigoReferido: String?
+    var nombre, apellidos, notificaciones, saldoActual: String?
+    var saldoCocopoints, codigoReferido: String?
 
     enum CodingKeys: String, CodingKey {
         case nombre, apellidos, notificaciones
-        case saldoActual = "saldo_actual"
-        case saldoCocopoints = "saldo_cocopoints"
-        case codigoReferido = "codigo_referido"
+        case saldoActual
+        case saldoCocopoints
+        case codigoReferido
     }
 
     init(nombre: String?, apellidos: String?, notificaciones: String?, saldoActual: String?, saldoCocopoints: String?, codigoReferido: String?) {
@@ -60,12 +87,12 @@ class Info: Codable {
 
 // MARK: - Promocion
 class Promocion: Codable {
-    let id, titulo, descripcion: String?
-    let imagen: String?
-    let link: String?
+    var id, titulo, descripcion: String?
+    var imagen: String?
+    var link: String?
 
     enum CodingKeys: String, CodingKey {
-        case id = "Id"
+        case id
         case titulo, descripcion, imagen, link
     }
 
@@ -80,12 +107,12 @@ class Promocion: Codable {
 
 // MARK: - Tienda
 class Tienda: Codable {
-    let id, nombre, horario: String?
-    let imagen: String?
-    let direccion: String?
+    var id, nombre, horario: String?
+    var imagen: String?
+    var direccion: String?
 
     enum CodingKeys: String, CodingKey {
-        case id = "Id"
+        case id
         case nombre, horario, imagen, direccion
     }
 

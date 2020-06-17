@@ -34,6 +34,7 @@ class BalanceVC: UIViewController {
   }
   
   private func configureTable() {
+    table.separatorStyle = .none
     table.delegate = self
     table.dataSource = self
     table.tableFooterView = UIView()

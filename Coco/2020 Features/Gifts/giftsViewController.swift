@@ -1,45 +1,31 @@
 //
-//  storedCardsViewController.swift
+//  giftsViewController.swift
 //  Coco
 //
-//  Created by Brandon Gonzalez on 26/02/20.
+//  Created by Brandon Gonzalez on 16/06/20.
 //  Copyright © 2020 Easycode. All rights reserved.
 //
 
 import UIKit
 import SwiftyUserDefaults
-import Hero
 
-class storedCardsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let reuseDocument = "DocumentCellCards"
+    @IBOutlet weak var table: UITableView!
+    
+    var gifts : [Dictionary<String, Any>] = []
     let userID = Defaults[.user]
-    var cards : [Dictionary<String, Any>] = []
-    
-    @IBOutlet weak var tableView: UITableView!
+    let reuseDocument = "DocumentCellCards"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupTableView()
-        getThemCards()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(newCard), name: Notification.Name(rawValue: "newCardReload"), object: nil)
-        
-    }
-    
-    func setupTableView() {
-        tableView.separatorStyle = .none
-        tableView.delegate = self
-        tableView.dataSource = self
-        let documentXib = UINib(nibName: "cardsTableViewCell", bundle: nil)
-        tableView.register(documentXib, forCellReuseIdentifier: reuseDocument)
-        
+        configureTable()
+        getThemGifts()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if cards.count < 0 {
+        if gifts.count < 0 {
             
             tableView.isHidden = true
             
@@ -47,36 +33,31 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
             
         }
         
-        return cards.count
+        return gifts.count
         
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 160
-        
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let document = cards[indexPath.row]
+        let document = gifts[indexPath.row]
         
-        let amount = document["monto"] as! String
         let date = document["fecha"] as! String
-        let token = document["token"] as! String
+        let status = document["estatus"] as! String
+        let orden = document["Id"] as! String
+        let businessName = document["nombre"] as! String
+        let friend = document["amigo"] as! String
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseDocument, for: indexPath)
-        
+
         cell.selectionStyle = .none
         
-        if let cell = cell as? cardsTableViewCell {
+        if let cell = cell as? giftsTableViewCell {
             
             DispatchQueue.main.async {
-                
-                cell.fechaLabel.text = date
-                cell.folioLabel.text = token
-                cell.moneyAmountLavel.text = "$\(amount)"
-                
+                cell.dateOrder.text = "Fecha: \(date)"
+                cell.statusOrder.text = "Estatus: \(status)"
+                cell.orderName.text = orden
+                cell.friendOrder.text = "Amigo:" + friend
+                cell.storeOrder.text = "Cafetería:" + businessName
             }
             
             return cell
@@ -87,24 +68,29 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    @objc func newCard() {
-        
-        cards.removeAll()
-        getThemCards()
-        DispatchQueue.main.async { self.tableView.reloadData() }
-        
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        187
     }
     
-    func getThemCards() {
+    private func configureTable() {
+        table.separatorStyle = .none
+        table.delegate = self
+        table.dataSource = self
+        table.tableFooterView = UIView()
+        let documentXib = UINib(nibName: "giftsTableViewCell", bundle: nil)
+        table.register(documentXib, forCellReuseIdentifier: reuseDocument)
+    }
+    
+    func getThemGifts() {
         
-        print("Downloading cards")
+        print("Downloading gifts")
         
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
         
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let postString = "funcion=getCocoCards&id_user="+userID!
+        let postString = "funcion=getPresent&id_user="+userID!
         print(userID!)
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -125,7 +111,7 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
                         
                         for d in items {
                             
-                            self.cards.append(d)
+                            self.gifts.append(d)
                             
                             print("Appended cards")
                             
@@ -136,8 +122,8 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
                 }
                 
                 DispatchQueue.main.async {
-                    if self.cards.count > 0 {
-                        self.tableView.reloadData()
+                    if self.gifts.count > 0 {
+                        self.table.reloadData()
                         print("Tableview was reloaded")
                     }
                     
@@ -150,19 +136,7 @@ class storedCardsViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    @IBAction func addNewCard(_ sender: Any) {
-        
-        let addCardVC = addNewCocoCardViewController(nibName: "addNewCocoCardViewController", bundle: nil)
-        self.present(addCardVC, animated: true, completion: nil)
-        
-    }
-    
-    
-    @IBAction func closeView(_ sender: Any) {
-        
+    @IBAction func close(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        
     }
-    
-    
 }

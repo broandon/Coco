@@ -112,7 +112,7 @@ class RegisterVC: UIViewController {
         }
         dropdown.anchorView = schoolField
         dropdown.bottomOffset = CGPoint(x: 0, y: schoolField.bounds.height)
-        dropdown.direction = .top
+        dropdown.direction = .bottom
         dropdown.dataSource = dropdownTitle
         dropdown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.schoolField.text = item
@@ -222,6 +222,6 @@ class RegisterVC: UIViewController {
 extension RegisterVC: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         dropdown.show()
-        return false
+        return true
     }
 }

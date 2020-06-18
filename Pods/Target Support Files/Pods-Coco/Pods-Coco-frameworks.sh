@@ -218,6 +218,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UIWindowTransitions/UIWindowTransitions.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YPImagePicker/YPImagePicker.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
 fi
@@ -243,6 +244,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UIWindowTransitions/UIWindowTransitions.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YPImagePicker/YPImagePicker.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
 fi

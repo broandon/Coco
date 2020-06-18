@@ -26,7 +26,14 @@ class doneModalViewController: UIViewController {
             newViewController.modalPresentationStyle = .fullScreen
             self.present(newViewController, animated: true, completion: nil)
         }
-        doneText.text = "Tu pedido ha sido enviado y estará listo en \(estimatedValue ?? "0") minutos"
+        if UserDefaults.standard.bool(forKey: "comingFromFriend") == true {
+            doneText.text = "Tu regalo ha sido enviado. ¡Gracias!"
+        }
+        
+        if UserDefaults.standard.bool(forKey: "comingFromFriend") == false {
+            doneText.text = "Tu pedido ha sido enviado y estará listo en \(estimatedValue ?? "0") minutos"
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,6 +41,7 @@ class doneModalViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        UserDefaults.standard.set(false, forKey: "comingFromFriend")
         player?.pause()
     }
     

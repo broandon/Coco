@@ -81,11 +81,7 @@ class MainController: UIViewController {
                 DispatchQueue.main.async {
                     self.giftButton.shake(duration: 4, values: [-7.0, 7.0, -4.0, 4.0, -6.0, 6.0, -2.0, 2.0])
                 }
-            } else if promoInfo.data?.regalo == nil {
-                DispatchQueue.main.async {
-                    self.giftButton.shake()
-                }
-            }
+            } 
         }
         task.resume()
     }

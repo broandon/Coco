@@ -24,48 +24,55 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if gifts.count < 0 {
-            
             tableView.isHidden = true
-            
             return 0
-            
         }
-        
         return gifts.count
-        
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let document = gifts[indexPath.row]
-        
         let date = document["fecha"] as! String
         let status = document["estatus"] as! String
         let orden = document["Id"] as! String
         let businessName = document["nombre"] as! String
         let friend = document["amigo"] as! String
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseDocument, for: indexPath)
-
         cell.selectionStyle = .none
-        
         if let cell = cell as? giftsTableViewCell {
-            
             DispatchQueue.main.async {
+                
+                if status == "Pagado" {
+                    cell.underGiftButton.backgroundColor = UIColor.CocoGreen
+                    cell.underGiftButton.setTitleColor(UIColor.white, for: .normal)
+                    cell.underGiftButton.isUserInteractionEnabled = true
+                    cell.underGiftButton.setTitle("¡Pedir Regalo!", for: .normal)
+                }
+                
+                if status == "Canjeado" {
+                    cell.underGiftButton.backgroundColor = UIColor.white
+                    cell.underGiftButton.setTitleColor(UIColor.black, for: .normal)
+                    cell.underGiftButton.isUserInteractionEnabled = false
+                    cell.underGiftButton.setTitle("Regalo abierto", for: .normal)
+                }
+                if status == "Entregado" {
+                    cell.underGiftButton.backgroundColor = UIColor.white
+                    cell.underGiftButton.setTitleColor(UIColor.white, for: .normal)
+                    cell.underGiftButton.isUserInteractionEnabled = false
+                    cell.underGiftButton.setTitle("Regalo abierto", for: .normal)
+                }
+                
+                cell.underGiftButton.isUserInteractionEnabled = false
                 cell.dateOrder.text = "Fecha: \(date)"
                 cell.statusOrder.text = "Estatus: \(status)"
                 cell.orderName.text = orden
-                cell.friendOrder.text = "Amigo:" + friend
-                cell.storeOrder.text = "Cafetería:" + businessName
+                cell.friendOrder.text = "Amigo: " + friend
+                cell.storeOrder.text = "Cafetería: " + businessName
             }
-            
             return cell
-            
         }
-        
         return UITableViewCell()
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -82,11 +89,7 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func getThemGifts() {
-        
-        print("Downloading gifts")
-        
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
-        
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
@@ -98,27 +101,14 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 return
             }
             
-            do {
                 let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                
-                if let dictionary = json as? Dictionary<String, AnyObject>
-                    
-                {
-                    
-                    print(dictionary)
-                    
+                if let dictionary = json as? Dictionary<String, AnyObject> {
                     if let items = dictionary["data"] as? [Dictionary<String, Any>] {
-                        
                         for d in items {
-                            
                             self.gifts.append(d)
-                            
-                            print("Appended cards")
-                            
+                            print(d)
                         }
-                        
                     }
-                    
                 }
                 
                 DispatchQueue.main.async {
@@ -126,14 +116,8 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         self.table.reloadData()
                         print("Tableview was reloaded")
                     }
-                    
                 }
-                
-            }
-            
         }.resume()
-        
-        
     }
     
     @IBAction func close(_ sender: Any) {

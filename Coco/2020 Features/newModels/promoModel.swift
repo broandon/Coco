@@ -50,15 +50,15 @@ class DataClass: Codable {
 
 // MARK: - Alumno
 class Alumno: Codable {
-    var id, nombre: String?
+    var Id, nombre: String?
 
     enum CodingKeys: String, CodingKey {
-        case id
+        case Id
         case nombre
     }
 
-    init(id: String?, nombre: String?) {
-        self.id = id
+    init(Id: String?, nombre: String?) {
+        self.Id = Id
         self.nombre = nombre
     }
 }

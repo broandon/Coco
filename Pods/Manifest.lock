@@ -38,6 +38,7 @@ PODS:
   - "GoogleToolboxForMac/NSData+zlib (2.2.1)":
     - GoogleToolboxForMac/Defines (= 2.2.1)
   - Hero (1.4.0)
+  - iOSDropDown (0.3.4)
   - IQKeyboardManagerSwift (6.3.0)
   - Kingfisher (4.10.1)
   - lottie-ios (3.0.6)
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Messaging
   - Hero
+  - iOSDropDown
   - IQKeyboardManagerSwift
   - Kingfisher (~> 4.0)
   - lottie-ios
@@ -100,6 +102,7 @@ SPEC REPOS:
     - FirebaseMessaging
     - GoogleToolboxForMac
     - Hero
+    - iOSDropDown
     - IQKeyboardManagerSwift
     - Kingfisher
     - lottie-ios
@@ -130,6 +133,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 75cdb862e86c30e0913a2ff307e48d49357c5b73
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
+  iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   lottie-ios: d030b6cda141cfd8bbaa3db89264785e6fdf675a
@@ -148,6 +152,6 @@ SPEC CHECKSUMS:
   UIWindowTransitions: cb662e2ae9e2d1060fcdbe3eb3de9232bedb7612
   YPImagePicker: 8039f89ad79281545fa868486f32d9bf5d65ede1
 
-PODFILE CHECKSUM: 52161b1f196bfe087f439a1ae6dddb4c50819fe4
+PODFILE CHECKSUM: 106a7f5da6eab70167284353f913f97a7022f05e
 
 COCOAPODS: 1.9.1

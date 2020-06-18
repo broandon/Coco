@@ -11,6 +11,8 @@ import SwiftyUserDefaults
 import Alamofire
 import SwiftyJSON
 import M13Checkbox
+import DropDown
+import SkyFloatingLabelTextField
 
 class ShoppingCartVC: UIViewController {
     
@@ -38,6 +40,10 @@ class ShoppingCartVC: UIViewController {
     @IBOutlet weak var yesCheckView: UIView!
     @IBOutlet weak var searchFriendView: UIView!
     @IBOutlet weak var disappearingViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var giftOptionsView: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var messageForFriend: UIView!
+    @IBOutlet weak var messageForFriendTF: SkyFloatingLabelTextField!
     
     var loader: LoaderVC!
     var shoppingCart: ShoppingCart?
@@ -51,14 +57,31 @@ class ShoppingCartVC: UIViewController {
     var tip: Int = 0
     let checkYes = M13Checkbox()
     let checkNo = M13Checkbox()
+    let dropdown = DropDown()
+    var data: [String] = ["apple","appear","Azhar","code","BCom"]
+    var dataFiltered: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dataFiltered = data
         requestData()
         configureView()
         configureTable()
         getShoppingCart()
         firstTimer()
+        configureDropdown()
+    }
+    
+    private func configureDropdown() {
+        dropdown.anchorView = searchBar
+        dropdown.bottomOffset = CGPoint(x: 0, y: searchBar.bounds.height)
+        dropdown.direction = .bottom
+        dropdown.dataSource = data
+        dropdown.selectionAction = { [unowned self] (index: Int, item: String) in
+            print("Some value: \(item) in the index \(index)")
+        self.dropdown.hide()
+        }
     }
     
     private func configureTable() {
@@ -105,6 +128,8 @@ class ShoppingCartVC: UIViewController {
     }
     
     private func configureView() {
+        UserDefaults.standard.set(false, forKey: "toFriend")
+        searchBar.delegate = self
         backView.setShadow()
         backView.roundCorners(15)
         payButton.roundCorners(15)
@@ -121,6 +146,7 @@ class ShoppingCartVC: UIViewController {
         balanceLabel.roundCorners(9)
         cocoLabel.roundCorners(9)
         disappearingViewHeight.constant = 0
+        searchFriendView.isHidden = true
         
         noCheckView.addSubview(checkNo)
         checkNo.frame = CGRect(origin: .zero, size: noCheckView.frame.size)
@@ -136,35 +162,37 @@ class ShoppingCartVC: UIViewController {
         checkNo.stateChangeAnimation = .expand(.stroke)
         
         yesCheckView.addSubview(checkYes)
-           checkYes.frame = CGRect(origin: .zero, size: yesCheckView.frame.size)
-           checkYes.setCheckState(.unchecked, animated: true)
-           checkYes.tintColor = .white
-           checkYes.backgroundColor = .CocoPink
-           checkYes.boxType = .circle
-           checkYes.checkmarkLineWidth = 3
-           checkYes.layer.masksToBounds = true
-           yesCheckView.layer.cornerRadius = checkYes.bounds.height / 2
-           checkYes.layer.cornerRadius = yesCheckView.bounds.height / 2
+        checkYes.frame = CGRect(origin: .zero, size: yesCheckView.frame.size)
+        checkYes.setCheckState(.unchecked, animated: true)
+        checkYes.tintColor = .white
+        checkYes.backgroundColor = .CocoPink
+        checkYes.boxType = .circle
+        checkYes.checkmarkLineWidth = 3
+        checkYes.layer.masksToBounds = true
+        yesCheckView.layer.cornerRadius = checkYes.bounds.height / 2
+        checkYes.layer.cornerRadius = yesCheckView.bounds.height / 2
         checkYes.addTarget(self, action: #selector(self.yesCheckboxPressed(_:)), for: .valueChanged)
         checkYes.stateChangeAnimation = .expand(.stroke)
-
+        
     }
     
     @objc func yesCheckboxPressed(_ sender: M13Checkbox) {
+        UserDefaults.standard.set(true, forKey: "toFriend")
         checkYes.isUserInteractionEnabled = false
         checkNo.isUserInteractionEnabled = true
         checkNo.setCheckState(.unchecked, animated: true)
+        disappearingViewHeight.constant = 250
         searchFriendView.isHidden = false
-        disappearingViewHeight.constant = 100
         self.view.layoutIfNeeded()
     }
     
     @objc func noCheckBoxPressed(_ sender: M13Checkbox){
+        UserDefaults.standard.set(false, forKey: "toFriend")
         checkNo.isUserInteractionEnabled = false
         checkYes.isUserInteractionEnabled = true
         checkYes.setCheckState(.unchecked, animated: true)
-        searchFriendView.isHidden = true
         disappearingViewHeight.constant = 0
+        searchFriendView.isHidden = true
         self.view.layoutIfNeeded()
     }
     
@@ -188,13 +216,16 @@ class ShoppingCartVC: UIViewController {
         orderDescription.isHidden = false
         descriptionLabel.isHidden = false
         payButton.isHidden = false
+        giftOptionsView.isHidden = true
         let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.bounds.size.height)
         scroll.setContentOffset(bottomOffset, animated: true)
+        searchFriendView.isHidden = true
     }
     
     @IBAction func payWithCocopoints(_ sender: Any) {
-        
+        giftOptionsView.isHidden = true
         payViews.isHidden = true
+        searchFriendView.isHidden = true
         orderDescription.isHidden = false
         descriptionLabel.isHidden = false
         payWithCocoButton.isHidden = false
@@ -209,128 +240,267 @@ class ShoppingCartVC: UIViewController {
     }
     
     @IBAction func payAction(_ sender: Any) {
-        guard let shoppingCart = shoppingCart else { return }
-        shoppingCart.setService(percentage: tip)
-        shoppingCart.comments = orderDescription.text
-        guard let dict = try? shoppingCart.asDictionary() else {
-            return
-        }
         
-        var jsonText = ""
-        var products = [[String: Any]]()
-        for i in dict["products"] as! [[String: Any]] {
-            var temp = [String: Any]()
-            temp["id"] = i["Id"]
-            temp["cantidad"] = i["cantidad"]
-            temp["precio"] = i["precio"]
-            products.append(temp)
-        }
-        
-        if let theJSONData = try? JSONSerialization.data(
-            withJSONObject: products,
-            options: .prettyPrinted
-            ),
-            let theJSONText = String(data: theJSONData,
-                                     encoding: String.Encoding.ascii) {
-            jsonText = theJSONText
-        }
-        
-        let my_balance = NumberFormatter().number(from: balance)!
-        let cost = NumberFormatter().number(from: shoppingCart.amount_final ?? "0.0")!
-        
-        if my_balance.floatValue < cost.floatValue {
-            self.throwError(str: "Saldo insuficiente")
-            return
-        }
-        
-        showLoader(&loader, view: view)
-        shoppingCart.saveOrder(products: jsonText, parameters: dict, completion: { result in
-            self.loader.removeAnimate()
-            switch result {
-            case .failure(let errorMssg):
-                self.throwError(str: errorMssg)
+        if UserDefaults.standard.bool(forKey: "toFriend") == true {
+            guard let shoppingCart = shoppingCart else { return }
+            shoppingCart.setService(percentage: tip)
+            shoppingCart.comments = orderDescription.text
+            guard let dict = try? shoppingCart.asDictionary() else {
                 return
-            case .success(_):
-                
-                UserDefaults.standard.removeObject(forKey: "shoppingCart")
-                // Register Nib
-                let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
-                newViewController.modalPresentationStyle = .fullScreen
-                
-                // Present View "Modally"
-                self.present(newViewController, animated: true, completion: nil)
             }
-        })
+            
+            var jsonText = ""
+            var products = [[String: Any]]()
+            for i in dict["products"] as! [[String: Any]] {
+                var temp = [String: Any]()
+                temp["id"] = i["Id"]
+                temp["cantidad"] = i["cantidad"]
+                temp["precio"] = i["precio"]
+                products.append(temp)
+            }
+            
+            if let theJSONData = try? JSONSerialization.data(
+                withJSONObject: products,
+                options: .prettyPrinted
+                ),
+                let theJSONText = String(data: theJSONData,
+                                         encoding: String.Encoding.ascii) {
+                jsonText = theJSONText
+            }
+            
+            let my_balance = NumberFormatter().number(from: balance)!
+            let cost = NumberFormatter().number(from: shoppingCart.amount_final ?? "0.0")!
+            
+            if my_balance.floatValue < cost.floatValue {
+                self.throwError(str: "Saldo insuficiente")
+                return
+            }
+            
+            let idNumber = UserDefaults.standard.value(forKey: "friendID") as! String
+            
+            showLoader(&loader, view: view)
+            shoppingCart.saveOrderGiftMoney(idFriend: idNumber, friendMessage: messageForFriendTF.text ?? "", products: jsonText, parameters: dict, completion: { result in
+                self.loader.removeAnimate()
+                switch result {
+                case .failure(let errorMssg):
+                    self.throwError(str: errorMssg)
+                    return
+                case .success(_):
+                    UserDefaults.standard.set(true, forKey: "comingFromFriend")
+                    UserDefaults.standard.removeObject(forKey: "shoppingCart")
+                    // Register Nib
+                    let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
+                    newViewController.modalPresentationStyle = .fullScreen
+                    
+                    // Present View "Modally"
+                    self.present(newViewController, animated: true, completion: nil)
+                }
+            })
+        }
+        
+        if UserDefaults.standard.bool(forKey: "toFriend") == false {
+            guard let shoppingCart = shoppingCart else { return }
+            shoppingCart.setService(percentage: tip)
+            shoppingCart.comments = orderDescription.text
+            guard let dict = try? shoppingCart.asDictionary() else {
+                return
+            }
+            
+            var jsonText = ""
+            var products = [[String: Any]]()
+            for i in dict["products"] as! [[String: Any]] {
+                var temp = [String: Any]()
+                temp["id"] = i["Id"]
+                temp["cantidad"] = i["cantidad"]
+                temp["precio"] = i["precio"]
+                products.append(temp)
+            }
+            
+            if let theJSONData = try? JSONSerialization.data(
+                withJSONObject: products,
+                options: .prettyPrinted
+                ),
+                let theJSONText = String(data: theJSONData,
+                                         encoding: String.Encoding.ascii) {
+                jsonText = theJSONText
+            }
+            
+            let my_balance = NumberFormatter().number(from: balance)!
+            let cost = NumberFormatter().number(from: shoppingCart.amount_final ?? "0.0")!
+            
+            if my_balance.floatValue < cost.floatValue {
+                self.throwError(str: "Saldo insuficiente")
+                return
+            }
+            
+            showLoader(&loader, view: view)
+            shoppingCart.saveOrder(products: jsonText, parameters: dict, completion: { result in
+                self.loader.removeAnimate()
+                switch result {
+                case .failure(let errorMssg):
+                    self.throwError(str: errorMssg)
+                    return
+                case .success(_):
+                    UserDefaults.standard.set(false, forKey: "comingFromFriend")
+                    UserDefaults.standard.removeObject(forKey: "shoppingCart")
+                    // Register Nib
+                    let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
+                    newViewController.modalPresentationStyle = .fullScreen
+                    
+                    // Present View "Modally"
+                    self.present(newViewController, animated: true, completion: nil)
+                }
+            })
+        }
+        
     }
     
     @IBAction func payActionB(_ sender: Any) {
         
-        guard let shoppingCarts = shoppingCart else { return }
-        guard let dict = try? shoppingCarts.asDictionary() else {
-            return
-        }
-        
-        var jsonText = ""
-        var products = [[String: Any]]()
-        for i in dict["products"] as! [[String: Any]] {
-            var temp = [String: Any]()
-            temp["id"] = i["Id"]
-            temp["cantidad"] = i["cantidad"]
-            temp["precio"] = i["precio"]
-            products.append(temp)
-        }
-        
-        if let theJSONData = try? JSONSerialization.data(
-            withJSONObject: products,
-            options: .prettyPrinted
-            ),
-            let theJSONText = String(data: theJSONData,
-                                     encoding: String.Encoding.ascii) {
-            jsonText = theJSONText
-        }
-        
-        let my_balance = NumberFormatter().number(from: cocopointsBalance)!
-        let costTotal = NumberFormatter().number(from: costInCocopoints)!
-        
-        if my_balance.floatValue < costTotal.floatValue {
-            self.throwError(str: "Saldo insuficiente")
-            return
-        }
-        
-        let normalCost1 = NumberFormatter().number(from: normalCost)!
-        let cost = NumberFormatter().number(from: costInCocopoints)!
-        let idStore = (shoppingCart?.id_store)!
-        let comments = (shoppingCart?.comments)!
-        
-        let Parameters = [
-            "funcion" : "saveOrderCocopoints",
-            "id_user" : Defaults[.user]!,
-            "amount_final" : normalCost1,
-            "amount_cocopoints": cost,
-            "id_store" : idStore,
-            "comments" : comments] as [String : Any]
-        
-        showLoader(&loader, view: view)
-        shoppingCart!.saveOrder2(products: jsonText, parameters: Parameters, completion: { result in
-            self.loader.removeAnimate()
-            switch result {
-            case .failure(let errorMssg):
-                self.throwError(str: errorMssg)
+        if UserDefaults.standard.bool(forKey: "toFriend") == false {
+            
+            guard let shoppingCarts = shoppingCart else { return }
+            guard let dict = try? shoppingCarts.asDictionary() else {
                 return
-            case .success(_):
-                
-                print("This /n is /n the /n jsonText")
-                print(jsonText)
-                print("********************")
-                
-                UserDefaults.standard.removeObject(forKey: "shoppingCart")
-                // Register Nib
-                let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
-                newViewController.modalPresentationStyle = .fullScreen
-                // Present View "Modally"
-                self.present(newViewController, animated: true, completion: nil)
             }
-        })
+            
+            var jsonText = ""
+            var products = [[String: Any]]()
+            for i in dict["products"] as! [[String: Any]] {
+                var temp = [String: Any]()
+                temp["id"] = i["Id"]
+                temp["cantidad"] = i["cantidad"]
+                temp["precio"] = i["precio"]
+                products.append(temp)
+            }
+            
+            if let theJSONData = try? JSONSerialization.data(
+                withJSONObject: products,
+                options: .prettyPrinted
+                ),
+                let theJSONText = String(data: theJSONData,
+                                         encoding: String.Encoding.ascii) {
+                jsonText = theJSONText
+            }
+            
+            let my_balance = NumberFormatter().number(from: cocopointsBalance)!
+            let costTotal = NumberFormatter().number(from: costInCocopoints)!
+            
+            if my_balance.floatValue < costTotal.floatValue {
+                self.throwError(str: "Saldo insuficiente")
+                return
+            }
+            
+            let normalCost1 = NumberFormatter().number(from: normalCost)!
+            let cost = NumberFormatter().number(from: costInCocopoints)!
+            let idStore = (shoppingCart?.id_store)!
+            let comments = (shoppingCart?.comments)!
+            
+            let Parameters = [
+                "funcion" : "saveOrderCocopoints",
+                "id_user" : Defaults[.user]!,
+                "amount_final" : normalCost1,
+                "amount_cocopoints": cost,
+                "id_store" : idStore,
+                "comments" : comments] as [String : Any]
+            
+            showLoader(&loader, view: view)
+            shoppingCart!.saveOrder2(products: jsonText, parameters: Parameters, completion: { result in
+                self.loader.removeAnimate()
+                switch result {
+                case .failure(let errorMssg):
+                    self.throwError(str: errorMssg)
+                    return
+                case .success(_):
+                    
+                    print("This /n is /n the /n jsonText")
+                    print(jsonText)
+                    print("********************")
+                    
+                    UserDefaults.standard.removeObject(forKey: "shoppingCart")
+                    // Register Nib
+                    let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
+                    newViewController.modalPresentationStyle = .fullScreen
+                    // Present View "Modally"
+                    self.present(newViewController, animated: true, completion: nil)
+                }
+            })
+            
+        }
+        
+        if UserDefaults.standard.bool(forKey: "toFriend") == true {
+            
+            guard let shoppingCarts = shoppingCart else { return }
+            guard let dict = try? shoppingCarts.asDictionary() else {
+                return
+            }
+            
+            var jsonText = ""
+            var products = [[String: Any]]()
+            for i in dict["products"] as! [[String: Any]] {
+                var temp = [String: Any]()
+                temp["id"] = i["Id"]
+                temp["cantidad"] = i["cantidad"]
+                temp["precio"] = i["precio"]
+                products.append(temp)
+            }
+            
+            if let theJSONData = try? JSONSerialization.data(
+                withJSONObject: products,
+                options: .prettyPrinted
+                ),
+                let theJSONText = String(data: theJSONData,
+                                         encoding: String.Encoding.ascii) {
+                jsonText = theJSONText
+            }
+            
+            let my_balance = NumberFormatter().number(from: cocopointsBalance)!
+            let costTotal = NumberFormatter().number(from: costInCocopoints)!
+            
+            if my_balance.floatValue < costTotal.floatValue {
+                self.throwError(str: "Saldo insuficiente")
+                return
+            }
+            
+            let normalCost1 = NumberFormatter().number(from: normalCost)!
+            let cost = NumberFormatter().number(from: costInCocopoints)!
+            let idStore = (shoppingCart?.id_store)!
+            let comments = (shoppingCart?.comments)!
+            
+            let Parameters = [
+                "funcion" : "saveOrderCocopointsPresent",
+                "id_user" : Defaults[.user]!,
+                "amount_final" : normalCost1,
+                "amount_cocopoints": cost,
+                "id_store" : idStore,
+                "comments" : comments] as [String : Any]
+            
+            let idNumber = UserDefaults.standard.value(forKey: "friendID") as! String
+            
+            showLoader(&loader, view: view)
+            shoppingCart!.saveOrderCocopointsGift(idFriend: idNumber, friendMessage: messageForFriendTF.text ?? "", products: jsonText, parameters: Parameters, completion: { result in
+                self.loader.removeAnimate()
+                switch result {
+                case .failure(let errorMssg):
+                    self.throwError(str: errorMssg)
+                    return
+                case .success(_):
+                    
+                    print("This /n is /n the /n jsonText")
+                    print(jsonText)
+                    print("********************")
+                    
+                    UserDefaults.standard.removeObject(forKey: "shoppingCart")
+                    UserDefaults.standard.set(true, forKey: "comingFromFriend")
+                    // Register Nib
+                    let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
+                    newViewController.modalPresentationStyle = .fullScreen
+                    // Present View "Modally"
+                    self.present(newViewController, animated: true, completion: nil)
+                }
+            })
+            
+        }
         
     }
     
@@ -362,6 +532,13 @@ class ShoppingCartVC: UIViewController {
         tip_15.backgroundColor = .CocoBlack
         tip_15.setTitleColor(.white, for: .normal)
         tip = 15
+    }
+    @IBAction func showList(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let destVC = storyboard.instantiateViewController(withIdentifier: "listOfStudentsViewController") as! listOfStudentsViewController
+        destVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        destVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        self.present(destVC, animated: true, completion: nil)
     }
     
 }
@@ -438,4 +615,46 @@ extension ShoppingCartVC: ShoppingCartProductCellDelegate {
             table.reloadData()
         }
     }
+}
+
+extension ShoppingCartVC : UISearchBarDelegate {
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        print("Alright")
+        print("Bitches")
+        dropdown.dataSource = ["apple","appear","Azhar","code","BCom"]
+        dropdown.show()
+        return true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        dataFiltered = searchText.isEmpty ? data : data.filter({ (dat) -> Bool in
+            dat.range(of: searchText, options: .caseInsensitive) != nil
+        })
+
+        dropdown.dataSource = dataFiltered
+        dropdown.show()
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+        for ob: UIView in ((searchBar.subviews[0] )).subviews {
+            if let z = ob as? UIButton {
+                let btn: UIButton = z
+                btn.setTitleColor(UIColor.white, for: .normal)
+            }
+        }
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.text = ""
+        dataFiltered = data
+        dropdown.hide()
+    }
+    
 }

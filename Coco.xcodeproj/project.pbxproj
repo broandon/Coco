@@ -22,6 +22,7 @@
 		9DD30B2A2499862D009C7FD0 /* giftsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD30B282499862D009C7FD0 /* giftsTableViewCell.swift */; };
 		9DD30B2B2499862D009C7FD0 /* giftsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DD30B292499862D009C7FD0 /* giftsTableViewCell.xib */; };
 		9DD8DE0E2485C4AE0016F3AA /* popover1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD8DE0D2485C4AE0016F3AA /* popover1ViewController.swift */; };
+		9DF017F5249B6CF1003F14BF /* listOfStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF017F4249B6CF1003F14BF /* listOfStudentsViewController.swift */; };
 		C3222BA822E0400300E63F38 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3222BA722E0400300E63F38 /* ShoppingCart.swift */; };
 		C3222BB122E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3222BAF22E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib */; };
 		C3222BB222E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3222BB022E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift */; };
@@ -174,6 +175,7 @@
 		9DD30B282499862D009C7FD0 /* giftsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = giftsTableViewCell.swift; sourceTree = "<group>"; };
 		9DD30B292499862D009C7FD0 /* giftsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = giftsTableViewCell.xib; sourceTree = "<group>"; };
 		9DD8DE0D2485C4AE0016F3AA /* popover1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popover1ViewController.swift; sourceTree = "<group>"; };
+		9DF017F4249B6CF1003F14BF /* listOfStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listOfStudentsViewController.swift; sourceTree = "<group>"; };
 		C3222BA722E0400300E63F38 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		C3222BAF22E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartProductCellTableViewCell.xib; sourceTree = "<group>"; };
 		C3222BB022E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartProductCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				9DD30B25249983FE009C7FD0 /* giftsViewController.xib */,
 				9DD30B282499862D009C7FD0 /* giftsTableViewCell.swift */,
 				9DD30B292499862D009C7FD0 /* giftsTableViewCell.xib */,
+				9DF017F4249B6CF1003F14BF /* listOfStudentsViewController.swift */,
 			);
 			path = Gifts;
 			sourceTree = "<group>";
@@ -1097,6 +1100,7 @@
 				C35572BE22CAB7DD00FC5C89 /* BusinessTableViewCell.swift in Sources */,
 				C348F16022CBCBD5000F185C /* PaymentForms.swift in Sources */,
 				C348F15022CB991D000F185C /* ProductsVC.swift in Sources */,
+				9DF017F5249B6CF1003F14BF /* listOfStudentsViewController.swift in Sources */,
 				C35572A022CA81B900FC5C89 /* MenuTableViewCell.swift in Sources */,
 				C3C0F37B22D3D4B000B03F62 /* Connection.m in Sources */,
 				9D9EB1CF242D787B00FE1E2C /* codeSharingTableViewCell.swift in Sources */,

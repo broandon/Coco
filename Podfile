@@ -33,6 +33,7 @@ target 'Coco' do
   pod 'StickyScrollView'
   pod 'YPImagePicker'
   pod 'SDWebImage'
+  pod 'iOSDropDown'
 
   target 'CocoUITests' do
     inherit! :search_paths

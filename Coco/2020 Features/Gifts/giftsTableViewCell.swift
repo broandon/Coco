@@ -18,12 +18,15 @@ class giftsTableViewCell: UITableViewCell {
     @IBOutlet weak var storeOrder: UILabel!
     @IBOutlet weak var friendOrder: UILabel!
     @IBOutlet weak var behindView: UIView!
+    @IBOutlet weak var underGiftButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         behindView.addShadow()
-        orderName.roundCorners(13)
+        orderName.roundCorners(12)
+        behindView.layer.cornerRadius = 12
+        underGiftButton.roundCorners(12)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

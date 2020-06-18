@@ -212,7 +212,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="166" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saldo: $ --" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQ4-eK-L4o">
-                                                <rect key="frame" x="54.333333333333329" y="18" width="57.333333333333329" height="14"/>
+                                                <rect key="frame" x="49.666666666666664" y="17" width="66.666666666666686" height="16.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -238,7 +238,7 @@
                                         <rect key="frame" x="183" y="0.0" width="166" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cocopoints: $ --" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GK-1A-IAK">
-                                                <rect key="frame" x="37.666666666666657" y="18" width="91" height="14"/>
+                                                <rect key="frame" x="31.666666666666657" y="17" width="103" height="16.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -451,7 +451,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detalle de Producto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSo-kX-AU7">
-                                        <rect key="frame" x="48" y="12.666666666666664" width="132.66666666666666" height="15"/>
+                                        <rect key="frame" x="48" y="11.333333333333334" width="132.66666666666666" height="17.666666666666664"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="15"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>
@@ -1452,6 +1452,38 @@
             </objects>
             <point key="canvasLocation" x="3344.9275362318845" y="-156.92934782608697"/>
         </scene>
+        <!--List Of Students View Controller-->
+        <scene sceneID="BMl-Pj-Mvq">
+            <objects>
+                <viewController storyboardIdentifier="listOfStudentsViewController" id="6tW-9R-TyJ" customClass="listOfStudentsViewController" customModule="Coco" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5w1-Ma-lkH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Busca a alguien..." translatesAutoresizingMaskIntoConstraints="NO" id="4ch-iJ-Uy4">
+                                <rect key="frame" x="52" y="111" width="310" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="zNY-4Q-zoD"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.52541738013698636" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rCR-VE-Yxv" firstAttribute="trailing" secondItem="4ch-iJ-Uy4" secondAttribute="trailing" constant="52" id="0qS-Jq-fer"/>
+                            <constraint firstItem="4ch-iJ-Uy4" firstAttribute="leading" secondItem="rCR-VE-Yxv" secondAttribute="leading" constant="52" id="i2j-8R-FeJ"/>
+                            <constraint firstItem="4ch-iJ-Uy4" firstAttribute="top" secondItem="rCR-VE-Yxv" secondAttribute="top" constant="111" id="sPz-UA-33k"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rCR-VE-Yxv"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="4ch-iJ-Uy4" id="BJj-QQ-3Qo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bj1-GP-Ciq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3815.9420289855075" y="117.39130434782609"/>
+        </scene>
         <!--Forgot PasswordVC-->
         <scene sceneID="L6e-aO-qoY">
             <objects>
@@ -1476,7 +1508,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Regresar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye2-Vr-OW1">
-                                        <rect key="frame" x="48" y="12.666666666666664" width="59.333333333333343" height="15"/>
+                                        <rect key="frame" x="48" y="11.333333333333334" width="59.333333333333343" height="17.666666666666664"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="15"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>

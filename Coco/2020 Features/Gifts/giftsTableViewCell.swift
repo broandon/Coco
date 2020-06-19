@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol showMeTheGiftDetail {
+    func showTheDetail(idNumber:String)
+}
+
 class giftsTableViewCell: UITableViewCell {
+    
+    var orderNameID : String?
 
     static let cellIdentifier = "giftsTableViewCell"
     
@@ -19,10 +25,12 @@ class giftsTableViewCell: UITableViewCell {
     @IBOutlet weak var friendOrder: UILabel!
     @IBOutlet weak var behindView: UIView!
     @IBOutlet weak var underGiftButton: UIButton!
+    @IBOutlet weak var detailsButton: UIButton!
+    
+    var delegate : showMeTheGiftDetail!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         behindView.addShadow()
         orderName.roundCorners(12)
         behindView.layer.cornerRadius = 12
@@ -33,6 +41,16 @@ class giftsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func openTheGift(_ sender: UIButton) {
+        let currentcellnumber = "\(sender.tag)"
+        self.delegate.showTheDetail(idNumber: currentcellnumber)
+    }
+    
+    @IBAction func theDetails(_ sender: UIButton) {
+        let currentcellnumber = "\(sender.tag)"
+        self.delegate.showTheDetail(idNumber: currentcellnumber)
     }
     
 }

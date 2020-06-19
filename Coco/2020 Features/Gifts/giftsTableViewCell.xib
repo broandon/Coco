@@ -9,9 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="MyriadPro-Bold.otf">
-            <string>MyriadPro-Bold</string>
-        </array>
         <array key="MyriadPro-Regular.otf">
             <string>MyriadPro-Regular</string>
         </array>
@@ -26,9 +23,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="187"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xe0-Lx-ULv">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xe0-Lx-ULv">
                         <rect key="frame" x="16" y="16" width="382" height="155"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fecha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SrM-Yf-9wg">
                                 <rect key="frame" x="8" y="57" width="232.5" height="18"/>
@@ -66,13 +62,6 @@
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ver detalles -&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60f-Y1-jvK">
-                                <rect key="frame" x="300" y="138" width="72" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="10"/>
-                                <color key="textColor" name="Salmon"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ndm-ty-S5s">
                                 <rect key="frame" x="248.5" y="16" width="1.5" height="123"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -90,16 +79,37 @@
                                 <state key="normal" title="Regalo Abierto">
                                     <color key="titleColor" name="Black"/>
                                 </state>
+                                <connections>
+                                    <action selector="openTheGift:" destination="5np-DV-soL" eventType="touchUpInside" id="aRi-p3-86s"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5K-no-OTh">
+                                <rect key="frame" x="258" y="132" width="116" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                <state key="normal" title="Ver detalles &gt;&gt;&gt;">
+                                    <color key="titleColor" name="Salmon"/>
+                                </state>
+                                <connections>
+                                    <action selector="theDetails:" destination="5np-DV-soL" eventType="touchUpInside" id="ZE0-yq-CKd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Xe0-Lx-ULv" secondAttribute="bottom" constant="16" id="3a7-nY-3fY"/>
+                    <constraint firstItem="Xe0-Lx-ULv" firstAttribute="leading" secondItem="pjI-xl-UHN" secondAttribute="leading" constant="16" id="4XN-yL-eMY"/>
+                    <constraint firstItem="Xe0-Lx-ULv" firstAttribute="top" secondItem="pjI-xl-UHN" secondAttribute="top" constant="16" id="V4t-7Z-YK2"/>
+                    <constraint firstAttribute="trailing" secondItem="Xe0-Lx-ULv" secondAttribute="trailing" constant="16" id="iqt-JW-RtA"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="qJh-y4-DoD"/>
             <connections>
                 <outlet property="behindView" destination="Xe0-Lx-ULv" id="VNm-Wp-KBF"/>
                 <outlet property="dateOrder" destination="SrM-Yf-9wg" id="5Y6-uA-fau"/>
+                <outlet property="detailsButton" destination="t5K-no-OTh" id="5b9-eH-ctt"/>
                 <outlet property="friendOrder" destination="R0g-Js-4SE" id="Jpp-ES-JHj"/>
                 <outlet property="orderName" destination="R66-Z6-VFb" id="LQM-ig-if8"/>
                 <outlet property="statusOrder" destination="kZk-6p-zEX" id="DHr-Kj-V1f"/>

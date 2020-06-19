@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyUserDefaults
 
-class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, showMeTheGiftDetail {
     
     @IBOutlet weak var table: UITableView!
     
@@ -21,6 +21,12 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         configureTable()
         getThemGifts()
+    }
+    
+    func showTheDetail(idNumber:String) {
+        let myViewController = giftDetailViewController(nibName: "giftDetailViewController", bundle: nil)
+        myViewController.orderNumber = idNumber
+        self.present(myViewController, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,14 +45,15 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let businessName = document["nombre"] as! String
         let friend = document["amigo"] as! String
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseDocument, for: indexPath)
-        cell.selectionStyle = .none
         if let cell = cell as? giftsTableViewCell {
+            cell.delegate = self
             DispatchQueue.main.async {
-                
                 if status == "Pagado" {
                     cell.underGiftButton.backgroundColor = UIColor.CocoGreen
                     cell.underGiftButton.setTitleColor(UIColor.white, for: .normal)
                     cell.underGiftButton.isUserInteractionEnabled = true
+                    cell.detailsButton.isUserInteractionEnabled = false
+                    cell.detailsButton.isHidden = true
                     cell.underGiftButton.setTitle("¡Pedir Regalo!", for: .normal)
                 }
                 
@@ -54,21 +61,28 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     cell.underGiftButton.backgroundColor = UIColor.white
                     cell.underGiftButton.setTitleColor(UIColor.black, for: .normal)
                     cell.underGiftButton.isUserInteractionEnabled = false
-                    cell.underGiftButton.setTitle("Regalo abierto", for: .normal)
-                }
-                if status == "Entregado" {
-                    cell.underGiftButton.backgroundColor = UIColor.white
-                    cell.underGiftButton.setTitleColor(UIColor.white, for: .normal)
-                    cell.underGiftButton.isUserInteractionEnabled = false
+                    cell.detailsButton.isUserInteractionEnabled = true
+                    cell.detailsButton.isHidden = false
                     cell.underGiftButton.setTitle("Regalo abierto", for: .normal)
                 }
                 
-                cell.underGiftButton.isUserInteractionEnabled = false
+                if status == "Entregado" {
+                    cell.underGiftButton.backgroundColor = UIColor.white
+                    cell.underGiftButton.setTitleColor(UIColor.black, for: .normal)
+                    cell.underGiftButton.isUserInteractionEnabled = false
+                    cell.detailsButton.isUserInteractionEnabled = true
+                    cell.detailsButton.isHidden = false
+                    cell.underGiftButton.setTitle("Regalo abierto", for: .normal)
+                }
+                
                 cell.dateOrder.text = "Fecha: \(date)"
                 cell.statusOrder.text = "Estatus: \(status)"
                 cell.orderName.text = orden
                 cell.friendOrder.text = "Amigo: " + friend
                 cell.storeOrder.text = "Cafetería: " + businessName
+                let ordenNumber = Int(orden)
+                cell.underGiftButton.tag = ordenNumber!
+                cell.detailsButton.tag = ordenNumber!
             }
             return cell
         }
@@ -94,29 +108,28 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         let postString = "funcion=getPresent&id_user="+userID!
-        print(userID!)
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil, response != nil else {
                 return
             }
+            let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
             
-                let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                if let dictionary = json as? Dictionary<String, AnyObject> {
-                    if let items = dictionary["data"] as? [Dictionary<String, Any>] {
-                        for d in items {
-                            self.gifts.append(d)
-                            print(d)
-                        }
+            if let dictionary = json as? Dictionary<String, AnyObject> {
+                if let items = dictionary["data"] as? [Dictionary<String, Any>] {
+                    for d in items {
+                        self.gifts.append(d)
+                        print(d)
                     }
                 }
-                
-                DispatchQueue.main.async {
-                    if self.gifts.count > 0 {
-                        self.table.reloadData()
-                        print("Tableview was reloaded")
-                    }
+            }
+            
+            DispatchQueue.main.async {
+                if self.gifts.count > 0 {
+                    self.table.reloadData()
+                    print("Tableview was reloaded")
                 }
+            }
         }.resume()
     }
     

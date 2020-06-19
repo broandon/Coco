@@ -485,11 +485,6 @@ class ShoppingCartVC: UIViewController {
                     self.throwError(str: errorMssg)
                     return
                 case .success(_):
-                    
-                    print("This /n is /n the /n jsonText")
-                    print(jsonText)
-                    print("********************")
-                    
                     UserDefaults.standard.removeObject(forKey: "shoppingCart")
                     UserDefaults.standard.set(true, forKey: "comingFromFriend")
                     // Register Nib

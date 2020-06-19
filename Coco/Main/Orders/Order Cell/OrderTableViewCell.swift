@@ -33,6 +33,7 @@ class OrderTableViewCell: UITableViewCell {
         backView.setShadow()
         backView.roundCorners(8, clipToBounds: false)
         orderNumber.roundCorners(12)
+        buttonShowCoco.isUserInteractionEnabled = false
     }
     
     @IBAction func showPopover(_ sender: UIButton) {

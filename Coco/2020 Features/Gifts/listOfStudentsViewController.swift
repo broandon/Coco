@@ -27,6 +27,8 @@ class listOfStudentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.barTintColor = .white
+        searchBar.tintColor = .CocoBlack
         requesData()
         searchBar.delegate = self
         dataFiltered = data
@@ -104,8 +106,14 @@ class listOfStudentsViewController: UIViewController {
             }
             let ID: String? = self.dictionary[item]
             UserDefaults.standard.set(ID, forKey: "friendID")
+            UserDefaults.standard.set(item, forKey: "friendName")
+            NotificationCenter.default.post(name: Notification.Name("changedTheName"), object: nil)
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func goAway(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

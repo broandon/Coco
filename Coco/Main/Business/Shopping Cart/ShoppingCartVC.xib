@@ -430,12 +430,12 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <searchBar userInteractionEnabled="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="GI3-WN-bgV">
-                                            <rect key="frame" x="108" y="20" width="282" height="56"/>
+                                            <rect key="frame" x="108" y="19.5" width="282" height="56"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </searchBar>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctD-T4-im7">
                                             <rect key="frame" x="112" y="22.5" width="274" height="50"/>
-                                            <state key="normal" title="Buscar amigo">
+                                            <state key="normal">
                                                 <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>

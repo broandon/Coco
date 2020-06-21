@@ -1460,7 +1460,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Busca a alguien..." translatesAutoresizingMaskIntoConstraints="NO" id="4ch-iJ-Uy4">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUu-DU-8RB">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <connections>
+                                    <action selector="goAway:" destination="6tW-9R-TyJ" eventType="touchUpInside" id="qMg-oC-my9"/>
+                                </connections>
+                            </button>
+                            <searchBar contentMode="redraw" placeholder="Escribe el nombre de alguien..." translatesAutoresizingMaskIntoConstraints="NO" id="4ch-iJ-Uy4">
                                 <rect key="frame" x="52" y="111" width="310" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="zNY-4Q-zoD"/>
@@ -1468,10 +1474,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="0.52541738013698636" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="0.75342465753424659" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rCR-VE-Yxv" firstAttribute="trailing" secondItem="4ch-iJ-Uy4" secondAttribute="trailing" constant="52" id="0qS-Jq-fer"/>
+                            <constraint firstItem="EUu-DU-8RB" firstAttribute="top" secondItem="rCR-VE-Yxv" secondAttribute="top" id="5V8-gB-niA"/>
+                            <constraint firstItem="EUu-DU-8RB" firstAttribute="leading" secondItem="rCR-VE-Yxv" secondAttribute="leading" id="Y26-ep-Xet"/>
+                            <constraint firstItem="EUu-DU-8RB" firstAttribute="bottom" secondItem="rCR-VE-Yxv" secondAttribute="bottom" id="ZDy-aZ-kvX"/>
                             <constraint firstItem="4ch-iJ-Uy4" firstAttribute="leading" secondItem="rCR-VE-Yxv" secondAttribute="leading" constant="52" id="i2j-8R-FeJ"/>
+                            <constraint firstItem="EUu-DU-8RB" firstAttribute="trailing" secondItem="rCR-VE-Yxv" secondAttribute="trailing" id="lva-4L-4yJ"/>
                             <constraint firstItem="4ch-iJ-Uy4" firstAttribute="top" secondItem="rCR-VE-Yxv" secondAttribute="top" constant="111" id="sPz-UA-33k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rCR-VE-Yxv"/>
@@ -1508,7 +1518,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Regresar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye2-Vr-OW1">
-                                        <rect key="frame" x="48" y="11.333333333333334" width="59.333333333333343" height="17.666666666666664"/>
+                                        <rect key="frame" x="48" y="12.666666666666664" width="59.333333333333343" height="15"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="15"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>

@@ -41,7 +41,6 @@ class promoViewController: UIViewController {
             self.mainView.alpha = 0
             self.promoImage.alpha = 0
             self.iWantItButton.alpha = 0
-            self.closePromoButton.alpha = 0
         }
     }
     
@@ -51,7 +50,6 @@ class promoViewController: UIViewController {
                 self.mainView.alpha = 1
                 self.promoImage.alpha = 1
                 self.iWantItButton.alpha = 1
-                self.closePromoButton.alpha = 1
             }
         })
     }

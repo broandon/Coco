@@ -63,7 +63,8 @@ class ShoppingCartVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        searchBar.barTintColor = .white
+        searchBar.tintColor = .black
         dataFiltered = data
         requestData()
         configureView()
@@ -71,6 +72,18 @@ class ShoppingCartVC: UIViewController {
         getShoppingCart()
         firstTimer()
         configureDropdown()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.changedTheName), name: Notification.Name("changedTheName"), object: nil)
+    }
+    
+    @objc func changedTheName() {
+        let newName = UserDefaults.standard.value(forKey: "friendName") as! String
+            DispatchQueue.main.async {
+                if #available(iOS 13.0, *) {
+                    self.searchBar.placeholder = newName 
+                } else {
+                    self.searchBar.placeholder = newName
+                }
+        }
     }
     
     private func configureDropdown() {

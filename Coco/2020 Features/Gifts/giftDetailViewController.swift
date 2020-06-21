@@ -29,16 +29,23 @@ class giftDetailViewController: UIViewController {
     @IBOutlet weak var gotItButton: UIButton!
     @IBOutlet weak var aboveMessageLabel: UILabel!
     @IBOutlet weak var redeemGiftButton: UIButton!
+    @IBOutlet weak var cover: UIView!
     
     var player : AVPlayer?
     var orderNumber : String!
     let userID = Defaults[.user]
+    var giftStatus : String?
+    var loader: LoaderVC!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         getGiftDetails()
         initializeVideoPlayerWithVideo()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.post(name: Notification.Name("refreshTheList"), object: nil)
     }
     
     func configureView() {
@@ -51,10 +58,12 @@ class giftDetailViewController: UIViewController {
         friendMessageText.alpha = 0
         gotItButton.alpha = 0
         redeemGiftButton.roundCorners(12)
+        redeemGiftButton.isHidden = true
     }
     
     func notShowingTheVideo() {
         DispatchQueue.main.async {
+            self.cover.alpha = 0
             self.animationBackground.alpha = 0
             self.animationBackground.isUserInteractionEnabled = false
         }
@@ -62,6 +71,7 @@ class giftDetailViewController: UIViewController {
     
     func showingTheVideo() {
         DispatchQueue.main.async {
+            self.cover.alpha = 0
             self.player?.play()
             self.animationBackground.alpha = 1
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -97,6 +107,7 @@ class giftDetailViewController: UIViewController {
     }
     
     func getGiftDetails() {
+        showLoader(&loader, view: view)
         let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -134,17 +145,17 @@ class giftDetailViewController: UIViewController {
                             self.store.text = "Cafetería: " + cafeteria
                             self.friendName.text = amigo
                             self.friendMessageText.text = mensajeAmigo
+                            self.loader.removeAnimate()
+                            if status == "Pagado" {
+                                self.redeemGiftButton.isHidden = false
+                            }
                         }
                         
-                        if status == "Pagado" {
+                        if self.giftStatus == "Cerrado" {
                             self.showingTheVideo()
                         }
                         
-                        if status == "Canjeado" {
-                            self.notShowingTheVideo()
-                        }
-                        
-                        if status == "Entregado" {
+                        if self.giftStatus == "Abierto" {
                             self.notShowingTheVideo()
                         }
                     }
@@ -155,42 +166,58 @@ class giftDetailViewController: UIViewController {
     
     @IBAction func close(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: Notification.Name("refreshTheList"), object: nil)
     }
+    
     @IBAction func redeemGift(_ sender: Any) {
-        let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
-        var request = URLRequest(url: url)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        let postString = "funcion=changePresent&id_user="+userID!+"&id_order="+orderNumber
-        request.httpBody = postString.data(using: .utf8)
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil, response != nil else {
-                return
-            }
-            let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+        
+        // Alert with action
+        
+        let alert = UIAlertController(title: "Canjeando", message: "¿De verdad quieres canjear el regalo?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Si", style: .destructive, handler: { action in
             
-            if let dictionary = json as? Dictionary<String, AnyObject> {
-                
-                if let estimatedTime = dictionary["data"] as? Dictionary<String, AnyObject> {
-                    if let time = estimatedTime["TiempoEstimado"] {
-                        UserDefaults.standard.set(time, forKey: "estimatedValue")
-                    }
+            let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
+            var request = URLRequest(url: url)
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            let postString = "funcion=changePresent&id_user="+self.userID!+"&id_order="+self.orderNumber
+            request.httpBody = postString.data(using: .utf8)
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil, response != nil else {
+                    return
                 }
+                let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                 
-                if let state = dictionary["state"] {
-                    if state as! String == "200" {
-                        DispatchQueue.main.async {
-                        UserDefaults.standard.set(false, forKey: "comingFromFriend")
-                        // Register Nib
-                        let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
-                        newViewController.modalPresentationStyle = .fullScreen
-                        // Present View "Modally"
-                        self.present(newViewController, animated: true, completion: nil)
+                if let dictionary = json as? Dictionary<String, AnyObject> {
+                    
+                    if let estimatedTime = dictionary["data"] as? Dictionary<String, AnyObject> {
+                        if let time = estimatedTime["TiempoEstimado"] {
+                            UserDefaults.standard.set(time, forKey: "estimatedValue")
+                        }
+                    }
+                    
+                    if let state = dictionary["state"] {
+                        if state as! String == "200" {
+                            NotificationCenter.default.post(name: Notification.Name("refreshTheList"), object: nil)
+                            DispatchQueue.main.async {
+                                UserDefaults.standard.set(false, forKey: "comingFromFriend")
+                                // Register Nib
+                                let newViewController = doneModalViewController(nibName: "doneModalViewController", bundle: nil)
+                                newViewController.modalPresentationStyle = .fullScreen
+                                // Present View "Modally"
+                                self.present(newViewController, animated: true, completion: nil)
+                            }
                         }
                     }
                 }
-            }
-        }.resume()
+            }.resume()
+            
+        }))
+        
+        self.present(alert, animated: true)
+        
     }
     
 }

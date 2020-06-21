@@ -68,6 +68,7 @@ class User: Decodable {
                                 completion(.failure("Error de conexión"))
                                 return
                             }
+                            print(data)
                             
                             guard let dictionary = JSON(data).dictionary else {
                                 completion(.failure("Error al obtener los datos"))

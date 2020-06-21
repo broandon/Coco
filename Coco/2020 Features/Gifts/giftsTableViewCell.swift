@@ -9,12 +9,12 @@
 import UIKit
 
 protocol showMeTheGiftDetail {
-    func showTheDetail(idNumber:String)
+    func showTheDetail(idNumber:String, orderStatus:String)
 }
 
 class giftsTableViewCell: UITableViewCell {
     
-    var orderNameID : String?
+    var giftStatus : String?
 
     static let cellIdentifier = "giftsTableViewCell"
     
@@ -45,12 +45,12 @@ class giftsTableViewCell: UITableViewCell {
     
     @IBAction func openTheGift(_ sender: UIButton) {
         let currentcellnumber = "\(sender.tag)"
-        self.delegate.showTheDetail(idNumber: currentcellnumber)
+        self.delegate.showTheDetail(idNumber: currentcellnumber, orderStatus: giftStatus!)
     }
     
     @IBAction func theDetails(_ sender: UIButton) {
         let currentcellnumber = "\(sender.tag)"
-        self.delegate.showTheDetail(idNumber: currentcellnumber)
+        self.delegate.showTheDetail(idNumber: currentcellnumber, orderStatus: giftStatus!)
     }
     
 }

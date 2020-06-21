@@ -10,7 +10,7 @@ import UIKit
 import SwiftyUserDefaults
 
 class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, showMeTheGiftDetail {
-    
+      
     @IBOutlet weak var table: UITableView!
     
     var gifts : [Dictionary<String, Any>] = []
@@ -21,12 +21,25 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         configureTable()
         getThemGifts()
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Notification.Name(rawValue: "refreshTheList"), object: nil)
+
     }
     
-    func showTheDetail(idNumber:String) {
+    func showTheDetail(idNumber:String, orderStatus:String) {
         let myViewController = giftDetailViewController(nibName: "giftDetailViewController", bundle: nil)
         myViewController.orderNumber = idNumber
-        self.present(myViewController, animated: true, completion: nil)
+        myViewController.giftStatus = orderStatus
+        self.present(myViewController, animated: true, completion: {
+            NotificationCenter.default.post(name: Notification.Name("refreshTheList"), object: nil)})
+    }
+    
+    @objc func refresh() {
+        print("Refreshing")
+        gifts.removeAll()
+        getThemGifts()
+        DispatchQueue.main.async {
+            self.table.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,17 +57,27 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let orden = document["Id"] as! String
         let businessName = document["nombre"] as! String
         let friend = document["amigo"] as! String
+        let estatusRegalo = document["estatus_regalo"] as! String
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseDocument, for: indexPath)
         if let cell = cell as? giftsTableViewCell {
             cell.delegate = self
             DispatchQueue.main.async {
-                if status == "Pagado" {
+                if status == "Pagado" && estatusRegalo == "Cerrado" {
                     cell.underGiftButton.backgroundColor = UIColor.CocoGreen
                     cell.underGiftButton.setTitleColor(UIColor.white, for: .normal)
                     cell.underGiftButton.isUserInteractionEnabled = true
                     cell.detailsButton.isUserInteractionEnabled = false
                     cell.detailsButton.isHidden = true
-                    cell.underGiftButton.setTitle("¡Pedir Regalo!", for: .normal)
+                    cell.underGiftButton.setTitle("¡Abrir Regalo!", for: .normal)
+                }
+                
+                if status == "Pagado" && estatusRegalo == "Abierto" {
+                   cell.underGiftButton.backgroundColor = UIColor.white
+                   cell.underGiftButton.setTitleColor(UIColor.black, for: .normal)
+                   cell.underGiftButton.isUserInteractionEnabled = false
+                   cell.detailsButton.isUserInteractionEnabled = true
+                   cell.detailsButton.isHidden = false
+                   cell.underGiftButton.setTitle("Regalo abierto", for: .normal)
                 }
                 
                 if status == "Canjeado" {
@@ -83,6 +106,7 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let ordenNumber = Int(orden)
                 cell.underGiftButton.tag = ordenNumber!
                 cell.detailsButton.tag = ordenNumber!
+                cell.giftStatus = estatusRegalo
             }
             return cell
         }

@@ -16,6 +16,7 @@ import SkyFloatingLabelTextField
 
 class ShoppingCartVC: UIViewController {
     
+    @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var topBar: UIView!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var scroll: UIScrollView!
@@ -44,6 +45,8 @@ class ShoppingCartVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var messageForFriend: UIView!
     @IBOutlet weak var messageForFriendTF: SkyFloatingLabelTextField!
+    @IBOutlet weak var payButtonTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cocoPayTopConstraing: NSLayoutConstraint!
     
     var loader: LoaderVC!
     var shoppingCart: ShoppingCart?
@@ -77,12 +80,12 @@ class ShoppingCartVC: UIViewController {
     
     @objc func changedTheName() {
         let newName = UserDefaults.standard.value(forKey: "friendName") as! String
-            DispatchQueue.main.async {
-                if #available(iOS 13.0, *) {
-                    self.searchBar.placeholder = newName 
-                } else {
-                    self.searchBar.placeholder = newName
-                }
+        DispatchQueue.main.async {
+            if #available(iOS 13.0, *) {
+                self.searchBar.placeholder = newName
+            } else {
+                self.searchBar.placeholder = newName
+            }
         }
     }
     
@@ -93,7 +96,7 @@ class ShoppingCartVC: UIViewController {
         dropdown.dataSource = data
         dropdown.selectionAction = { [unowned self] (index: Int, item: String) in
             print("Some value: \(item) in the index \(index)")
-        self.dropdown.hide()
+            self.dropdown.hide()
         }
     }
     
@@ -198,6 +201,8 @@ class ShoppingCartVC: UIViewController {
             self.disappearingViewHeight.constant = 250
             self.searchFriendView.isHidden = false
             self.view.layoutIfNeeded()
+            let bottomOffset = CGPoint(x: 0, y: self.mainScrollView.contentSize.height - self.mainScrollView.bounds.size.height)
+            self.mainScrollView.setContentOffset(bottomOffset, animated: true)
         })
     }
     
@@ -230,6 +235,9 @@ class ShoppingCartVC: UIViewController {
             tip_5.isHidden = true
             tip_10.isHidden = true
             tip_15.isHidden = true
+            payButtonTopConstraint.constant = 23
+            mainScrollView.scrollToTop()
+            mainScrollView.isScrollEnabled = false
         }
         
         if UserDefaults.standard.bool(forKey: "toFriend") == false {
@@ -243,8 +251,8 @@ class ShoppingCartVC: UIViewController {
         payViews.isHidden = true
         payButton.isHidden = false
         giftOptionsView.isHidden = true
-//        let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.bounds.size.height)
-//        scroll.setContentOffset(bottomOffset, animated: true)
+        //        let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.bounds.size.height)
+        //        scroll.setContentOffset(bottomOffset, animated: true)
         searchFriendView.isHidden = true
     }
     
@@ -252,7 +260,11 @@ class ShoppingCartVC: UIViewController {
         if UserDefaults.standard.bool(forKey: "toFriend") == true {
             descriptionLabel.isHidden = true
             orderDescription.isHidden = true
+            cocoPayTopConstraing.constant = 23
+            mainScrollView.scrollToTop()
+         //   mainScrollView.isScrollEnabled = false
         }
+        
         if UserDefaults.standard.bool(forKey: "toFriend") == false {
             descriptionLabel.isHidden = false
             orderDescription.isHidden = false
@@ -261,9 +273,8 @@ class ShoppingCartVC: UIViewController {
         payViews.isHidden = true
         searchFriendView.isHidden = true
         payWithCocoButton.isHidden = false
-        let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.bounds.size.height)
-        scroll.setContentOffset(bottomOffset, animated: true)
-        
+//        let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.bounds.size.height)
+//        scroll.setContentOffset(bottomOffset, animated: true)
     }
     
     @IBAction func backBtn(_ sender: Any) {
@@ -657,11 +668,11 @@ extension ShoppingCartVC : UISearchBarDelegate {
         dataFiltered = searchText.isEmpty ? data : data.filter({ (dat) -> Bool in
             dat.range(of: searchText, options: .caseInsensitive) != nil
         })
-
+        
         dropdown.dataSource = dataFiltered
         dropdown.show()
     }
-
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
         for ob: UIView in ((searchBar.subviews[0] )).subviews {
@@ -671,11 +682,11 @@ extension ShoppingCartVC : UISearchBarDelegate {
             }
         }
     }
-
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
     }
-
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.text = ""
@@ -683,4 +694,16 @@ extension ShoppingCartVC : UISearchBarDelegate {
         dropdown.hide()
     }
     
+}
+
+extension UIScrollView {
+    func scrollToTop() {
+        let desiredOffset = CGPoint(x: 0, y: -contentInset.top)
+        setContentOffset(desiredOffset, animated: true)
+    }
+    
+    func scrollToBottom() {
+        let desiredOffset = CGPoint(x: 0, y: -contentInset.bottom)
+        setContentOffset(desiredOffset, animated: true)
+    }
 }

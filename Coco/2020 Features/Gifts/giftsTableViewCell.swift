@@ -26,15 +26,19 @@ class giftsTableViewCell: UITableViewCell {
     @IBOutlet weak var behindView: UIView!
     @IBOutlet weak var underGiftButton: UIButton!
     @IBOutlet weak var detailsButton: UIButton!
+    @IBOutlet weak var detailsLabel: UILabel!
     
     var delegate : showMeTheGiftDetail!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        behindView.addShadow()
         orderName.roundCorners(12)
         behindView.layer.cornerRadius = 12
         underGiftButton.roundCorners(12)
+        behindView.layer.masksToBounds = false
+        behindView.layer.shadowOffset = CGSize(width: 0.5, height: 0.4)
+        behindView.layer.shadowRadius = 5
+        behindView.layer.shadowOpacity = 0.5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -68,6 +68,7 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     cell.underGiftButton.isUserInteractionEnabled = true
                     cell.detailsButton.isUserInteractionEnabled = false
                     cell.detailsButton.isHidden = true
+                    cell.detailsLabel.isHidden = true
                     cell.underGiftButton.setTitle("¡Abrir Regalo!", for: .normal)
                 }
                 
@@ -77,6 +78,7 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                    cell.underGiftButton.isUserInteractionEnabled = false
                    cell.detailsButton.isUserInteractionEnabled = true
                    cell.detailsButton.isHidden = false
+                    cell.detailsLabel.isHidden = false
                    cell.underGiftButton.setTitle("Regalo abierto", for: .normal)
                 }
                 
@@ -86,6 +88,7 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     cell.underGiftButton.isUserInteractionEnabled = false
                     cell.detailsButton.isUserInteractionEnabled = true
                     cell.detailsButton.isHidden = false
+                    cell.detailsLabel.isHidden = false
                     cell.underGiftButton.setTitle("Regalo abierto", for: .normal)
                 }
                 

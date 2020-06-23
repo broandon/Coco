@@ -49,7 +49,11 @@ class giftDetailViewController: UIViewController {
     }
     
     func configureView() {
-        backgroundView.addShadow()
+        backgroundView.layer.masksToBounds = false
+        backgroundView.layer.shadowOffset = CGSize(width: 0.5, height: 0.4)
+        backgroundView.layer.shadowRadius = 5
+        backgroundView.layer.shadowOpacity = 0.5
+        backgroundView.layer.cornerRadius = 12
         orderNameNUmber.roundCorners(12)
         buttonGetIt.roundCorners(12)
         openedGiftImage.alpha = 0
@@ -121,6 +125,7 @@ class giftDetailViewController: UIViewController {
             let gift = try? JSONDecoder().decode(giftDetailMain.self, from: data)
             let productnameText = gift?.data?.products![0].nombre
             let imageProduct = gift?.data?.products![0].imagen
+            
             
             DispatchQueue.main.async {
                 self.productName.text = productnameText

@@ -18,7 +18,8 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    backView.setShadow()
+    backView.layer.borderWidth = 0.5
+    backView.layer.borderColor = UIColor.lightGray.cgColor
     backView.roundCorners(8, clipToBounds: false)
     categoryImage.roundCorners(8)
   }

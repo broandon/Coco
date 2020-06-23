@@ -79,7 +79,7 @@ class MainController: UIViewController {
             
             if promoInfo.data?.regalo != nil {
                 DispatchQueue.main.async {
-                    self.giftButton.shake(duration: 4, values: [-7.0, 7.0, -4.0, 4.0, -6.0, 6.0, -2.0, 2.0])
+                    self.giftButton.shake(duration: 1, values: [-6.0, 6.0, -3.0, 3.0, -6.0, 6.0, -2.0, 2.0])
                 }
             } 
         }
@@ -166,20 +166,16 @@ class MainController: UIViewController {
     }
     
     @objc func updateLabels() {
-        print("Updating labels")
         mainData.requestUserMain { (result) in
-            print("Labels data requested")
             self.loader.removeAnimate()
             switch result {
             case .failure(let errorMssg):
                 self.throwError(str: errorMssg)
             case .success(_):
-                print("Labels data was succesfully received, updating texts")
                 self.table.reloadData()
                 DispatchQueue.main.async {
                     self.balanceLabel.text = "Saldo: $\(self.mainData.info?.current_balance ?? "--")"
                     self.cocopointsBalance.text = "Cocopoints: \(self.mainData.info?.cocopoints_balance ?? "--")"
-                    print("Text populated")
                 }
                 self.table.reloadData()
             }
@@ -388,7 +384,7 @@ extension UIView {
         animation.repeatDuration = .infinity
         self.layer.add(animation, forKey: "shake")
     }
-        
+    
     // Using SpringWithDamping
     func shake(duration: TimeInterval = 0.5, xValue: CGFloat = 12, yValue: CGFloat = 0) {
         self.transform = CGAffineTransform(translationX: xValue, y: yValue)
@@ -396,7 +392,7 @@ extension UIView {
             self.transform = CGAffineTransform.identity
         }, completion: nil)
     }
-
+    
     // Using CABasicAnimation
     func shake(duration: TimeInterval = 0.05, shakeCount: Float = 6, xValue: CGFloat = 12, yValue: CGFloat = 0){
         let animation = CABasicAnimation(keyPath: "position")

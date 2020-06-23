@@ -87,6 +87,9 @@ class ShoppingCart: Codable {
         data["funcion"] = Routes.saveOrder
         data["id_user"] = Defaults[.user]!
         
+        print("This is the buying")
+        print(data)
+        
         Alamofire.request(General.url_connection,
                           method: .post,
                           parameters: data).responseJSON { (response) in
@@ -171,10 +174,12 @@ class ShoppingCart: Codable {
         data["id_user_present"] = idFriend
         data["friend_message"] = friendMessage
         
+        print("This is the JSON")
+        print(data)
+        
         Alamofire.request(General.url_connection,
                           method: .post,
                           parameters: data).responseJSON { (response) in
-                            
                             
                             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                                 print("Data: \(utf8Text)")
@@ -185,9 +190,11 @@ class ShoppingCart: Codable {
                                 
                                 UserDefaults.standard.set(tiempoEstimado, forKey: "estimatedValue")
                                 
+                                print(data)
                             }
                             
                             guard let data = response.result.value else {
+                                print("We are here.")
                                 completion(.failure("Error de conexión"))
                                 return
                             }
@@ -256,7 +263,9 @@ class ShoppingCart: Codable {
         let amount = NumberFormatter().number(from: sub_amount!)
         let amount_service_float = (amount?.floatValue ?? 10 * Float(percentage))/100
         amount_service = "\(amount_service_float)"
-        amount_final = "\(amount_service_float + Float(truncating: amount!))"
+        let preAmount = Double("\(amount_service_float + Float(truncating: amount!))")
+        let doubleStr = String(format: "%.2f", preAmount as! CVarArg)
+        amount_final = doubleStr
     }
 }
 

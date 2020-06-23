@@ -13,6 +13,8 @@
 		9D1769A824852E6300EE1E52 /* orderEstimatedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1769A724852E6300EE1E52 /* orderEstimatedTime.swift */; };
 		9D17FEA42488D214007A91F2 /* newUserMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D17FEA32488D214007A91F2 /* newUserMain.swift */; };
 		9D60BAB02484C49800CA00FE /* estimatedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60BAAF2484C49800CA00FE /* estimatedModel.swift */; };
+		9D8DF17724A19AAE00774361 /* giftDetailImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8DF17524A19AAE00774361 /* giftDetailImagesTableViewCell.swift */; };
+		9D8DF17824A19AAE00774361 /* giftDetailImagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D8DF17624A19AAE00774361 /* giftDetailImagesTableViewCell.xib */; };
 		9D9EB1CF242D787B00FE1E2C /* codeSharingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */; };
 		9D9EB1D0242D787B00FE1E2C /* codeSharingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */; };
 		9DA878D2240472C9001F8FAF /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA878D1240472C9001F8FAF /* popUpViewController.swift */; };
@@ -27,6 +29,10 @@
 		9DF017F9249BF95B003F14BF /* giftDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DF017F7249BF95A003F14BF /* giftDetailViewController.xib */; };
 		9DF017FB249C05C0003F14BF /* giftDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF017FA249C05C0003F14BF /* giftDetailModel.swift */; };
 		9DF017FD249D0D1C003F14BF /* gift.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9DF017FC249D0D1B003F14BF /* gift.mp4 */; };
+		9DFFF89624A1E65200AC32EA /* animationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFF89424A1E65200AC32EA /* animationPopUpViewController.swift */; };
+		9DFFF89724A1E65200AC32EA /* animationPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DFFF89524A1E65200AC32EA /* animationPopUpViewController.xib */; };
+		9DFFF89A24A1EBFF00AC32EA /* productImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFF89824A1EBFF00AC32EA /* productImagesTableViewCell.swift */; };
+		9DFFF89B24A1EBFF00AC32EA /* productImagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DFFF89924A1EBFF00AC32EA /* productImagesTableViewCell.xib */; };
 		C3222BA822E0400300E63F38 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3222BA722E0400300E63F38 /* ShoppingCart.swift */; };
 		C3222BB122E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3222BAF22E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib */; };
 		C3222BB222E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3222BB022E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift */; };
@@ -170,6 +176,8 @@
 		9D1769A724852E6300EE1E52 /* orderEstimatedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderEstimatedTime.swift; sourceTree = "<group>"; };
 		9D17FEA32488D214007A91F2 /* newUserMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newUserMain.swift; sourceTree = "<group>"; };
 		9D60BAAF2484C49800CA00FE /* estimatedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = estimatedModel.swift; sourceTree = "<group>"; };
+		9D8DF17524A19AAE00774361 /* giftDetailImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = giftDetailImagesTableViewCell.swift; sourceTree = "<group>"; };
+		9D8DF17624A19AAE00774361 /* giftDetailImagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = giftDetailImagesTableViewCell.xib; sourceTree = "<group>"; };
 		9D9EB1CD242D787B00FE1E2C /* codeSharingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeSharingTableViewCell.swift; sourceTree = "<group>"; };
 		9D9EB1CE242D787B00FE1E2C /* codeSharingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = codeSharingTableViewCell.xib; sourceTree = "<group>"; };
 		9DA878D1240472C9001F8FAF /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +192,10 @@
 		9DF017F7249BF95A003F14BF /* giftDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = giftDetailViewController.xib; sourceTree = "<group>"; };
 		9DF017FA249C05C0003F14BF /* giftDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = giftDetailModel.swift; sourceTree = "<group>"; };
 		9DF017FC249D0D1B003F14BF /* gift.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gift.mp4; sourceTree = "<group>"; };
+		9DFFF89424A1E65200AC32EA /* animationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animationPopUpViewController.swift; sourceTree = "<group>"; };
+		9DFFF89524A1E65200AC32EA /* animationPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = animationPopUpViewController.xib; sourceTree = "<group>"; };
+		9DFFF89824A1EBFF00AC32EA /* productImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = productImagesTableViewCell.swift; sourceTree = "<group>"; };
+		9DFFF89924A1EBFF00AC32EA /* productImagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = productImagesTableViewCell.xib; sourceTree = "<group>"; };
 		C3222BA722E0400300E63F38 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		C3222BAF22E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartProductCellTableViewCell.xib; sourceTree = "<group>"; };
 		C3222BB022E04EAB00E63F38 /* ShoppingCartProductCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartProductCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -367,6 +379,7 @@
 		9DD30B23249983DA009C7FD0 /* Gifts */ = {
 			isa = PBXGroup;
 			children = (
+				9DFFF89324A1E47B00AC32EA /* giftPopUps */,
 				9DD30B24249983FE009C7FD0 /* giftsViewController.swift */,
 				9DD30B25249983FE009C7FD0 /* giftsViewController.xib */,
 				9DD30B282499862D009C7FD0 /* giftsTableViewCell.swift */,
@@ -374,6 +387,8 @@
 				9DF017F4249B6CF1003F14BF /* listOfStudentsViewController.swift */,
 				9DF017F6249BF95A003F14BF /* giftDetailViewController.swift */,
 				9DF017F7249BF95A003F14BF /* giftDetailViewController.xib */,
+				9D8DF17524A19AAE00774361 /* giftDetailImagesTableViewCell.swift */,
+				9D8DF17624A19AAE00774361 /* giftDetailImagesTableViewCell.xib */,
 			);
 			path = Gifts;
 			sourceTree = "<group>";
@@ -388,6 +403,17 @@
 				CFD9D35423EC949C00DACF9E /* doneModalViewController.xib */,
 			);
 			path = "Pop Ups & Popovers";
+			sourceTree = "<group>";
+		};
+		9DFFF89324A1E47B00AC32EA /* giftPopUps */ = {
+			isa = PBXGroup;
+			children = (
+				9DFFF89424A1E65200AC32EA /* animationPopUpViewController.swift */,
+				9DFFF89524A1E65200AC32EA /* animationPopUpViewController.xib */,
+				9DFFF89824A1EBFF00AC32EA /* productImagesTableViewCell.swift */,
+				9DFFF89924A1EBFF00AC32EA /* productImagesTableViewCell.xib */,
+			);
+			path = giftPopUps;
 			sourceTree = "<group>";
 		};
 		C3222BAE22E04ACB00E63F38 /* Cell */ = {
@@ -955,6 +981,7 @@
 				C34F4CE022CA676600A97097 /* GoogleService-Info.plist in Resources */,
 				C3A161EA22B9B38C00076DD8 /* Assets.xcassets in Resources */,
 				CFBC53B324071B5000D4FF95 /* addNewCocoCardViewController.xib in Resources */,
+				9DFFF89B24A1EBFF00AC32EA /* productImagesTableViewCell.xib in Resources */,
 				C348F14D22CB9277000F185C /* CategoriesCollectionViewCell.xib in Resources */,
 				C348F15E22CBC94B000F185C /* PaymentFormsTableViewCell.xib in Resources */,
 				C34466EE22CAE65400A11433 /* FavoritesTableViewCell.xib in Resources */,
@@ -964,6 +991,7 @@
 				C34466E922CAE63B00A11433 /* ProductsTableViewCell.xib in Resources */,
 				C35572BA22CA946D00FC5C89 /* SettingsVC.xib in Resources */,
 				C348F13722CB7F76000F185C /* OrderTableViewCell.xib in Resources */,
+				9D8DF17824A19AAE00774361 /* giftDetailImagesTableViewCell.xib in Resources */,
 				C35572BF22CAB7DD00FC5C89 /* BusinessTableViewCell.xib in Resources */,
 				CFBC53AB2407134300D4FF95 /* storedCardsViewController.xib in Resources */,
 				C3A1622D22B9BD4200076DD8 /* MyriadPro-Bold.otf in Resources */,
@@ -979,6 +1007,7 @@
 				C334339422D5304E0014A254 /* ShoppingCartVC.xib in Resources */,
 				CFBC53A22406DC7500D4FF95 /* promoCodesTableViewCell.xib in Resources */,
 				C348F15122CB991D000F185C /* ProductsVC.xib in Resources */,
+				9DFFF89724A1E65200AC32EA /* animationPopUpViewController.xib in Resources */,
 				C355729A22CA80C200FC5C89 /* loader.json in Resources */,
 				9DD30B27249983FE009C7FD0 /* giftsViewController.xib in Resources */,
 				9D9EB1D0242D787B00FE1E2C /* codeSharingTableViewCell.xib in Resources */,
@@ -1130,6 +1159,7 @@
 				C3A161E822B9B38A00076DD8 /* Coco.xcdatamodeld in Sources */,
 				9DD30B26249983FE009C7FD0 /* giftsViewController.swift in Sources */,
 				9DF017FB249C05C0003F14BF /* giftDetailModel.swift in Sources */,
+				9DFFF89A24A1EBFF00AC32EA /* productImagesTableViewCell.swift in Sources */,
 				C3C0F37A22D3D4B000B03F62 /* Card.m in Sources */,
 				C3A1621B22B9BB8400076DD8 /* UIViewControllerExtensions.swift in Sources */,
 				9DA878D2240472C9001F8FAF /* popUpViewController.swift in Sources */,
@@ -1138,9 +1168,11 @@
 				C3222BA822E0400300E63F38 /* ShoppingCart.swift in Sources */,
 				C35572C622CABE3300FC5C89 /* UserMain.swift in Sources */,
 				C3A1623422BA71F300076DD8 /* MenuVC.swift in Sources */,
+				9D8DF17724A19AAE00774361 /* giftDetailImagesTableViewCell.swift in Sources */,
 				C3C0F36C22D3C1EE00B03F62 /* SchoolModal.swift in Sources */,
 				9DA878D424048428001F8FAF /* newCodeViewController.swift in Sources */,
 				C3C0F37C22D3D4B000B03F62 /* Conekta.m in Sources */,
+				9DFFF89624A1E65200AC32EA /* animationPopUpViewController.swift in Sources */,
 				9D60BAB02484C49800CA00FE /* estimatedModel.swift in Sources */,
 				C348F15522CBB4B0000F185C /* ProductDetailVC.swift in Sources */,
 				C348F14422CB90B0000F185C /* Categories.swift in Sources */,
@@ -1355,7 +1387,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Coco/Coco.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = W4MERUEP35;
 				INFOPLIST_FILE = Coco/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1381,7 +1413,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Coco/Coco.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = W4MERUEP35;
 				INFOPLIST_FILE = Coco/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

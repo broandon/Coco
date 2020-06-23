@@ -12,11 +12,11 @@ import Hero
 
 class storedCardsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     let reuseDocument = "DocumentCellCards"
     let userID = Defaults[.user]
     var cards : [Dictionary<String, Any>] = []
-    
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

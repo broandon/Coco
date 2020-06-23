@@ -191,12 +191,14 @@ class ShoppingCartVC: UIViewController {
     
     @objc func yesCheckboxPressed(_ sender: M13Checkbox) {
         UserDefaults.standard.set(true, forKey: "toFriend")
-        checkYes.isUserInteractionEnabled = false
-        checkNo.isUserInteractionEnabled = true
-        checkNo.setCheckState(.unchecked, animated: true)
-        disappearingViewHeight.constant = 250
-        searchFriendView.isHidden = false
-        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.5, animations: {
+            self.checkYes.isUserInteractionEnabled = false
+            self.checkNo.isUserInteractionEnabled = true
+            self.checkNo.setCheckState(.unchecked, animated: true)
+            self.disappearingViewHeight.constant = 250
+            self.searchFriendView.isHidden = false
+            self.view.layoutIfNeeded()
+        })
     }
     
     @objc func noCheckBoxPressed(_ sender: M13Checkbox){
@@ -221,28 +223,44 @@ class ShoppingCartVC: UIViewController {
     }
     
     @IBAction func payWithMoney(_ sender: Any) {
+        
+        if UserDefaults.standard.bool(forKey: "toFriend") == true {
+            descriptionLabel.isHidden = true
+            orderDescription.isHidden = true
+            tip_5.isHidden = true
+            tip_10.isHidden = true
+            tip_15.isHidden = true
+        }
+        
+        if UserDefaults.standard.bool(forKey: "toFriend") == false {
+            descriptionLabel.isHidden = false
+            orderDescription.isHidden = false
+            tipLabel.isHidden = false
+            tip_5.isHidden = false
+            tip_10.isHidden = false
+            tip_15.isHidden = false
+        }
         payViews.isHidden = true
-        tipLabel.isHidden = false
-        tip_5.isHidden = false
-        tip_10.isHidden = false
-        tip_15.isHidden = false
-        orderDescription.isHidden = false
-        descriptionLabel.isHidden = false
         payButton.isHidden = false
         giftOptionsView.isHidden = true
-        let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.bounds.size.height)
-        scroll.setContentOffset(bottomOffset, animated: true)
+//        let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.bounds.size.height)
+//        scroll.setContentOffset(bottomOffset, animated: true)
         searchFriendView.isHidden = true
     }
     
     @IBAction func payWithCocopoints(_ sender: Any) {
+        if UserDefaults.standard.bool(forKey: "toFriend") == true {
+            descriptionLabel.isHidden = true
+            orderDescription.isHidden = true
+        }
+        if UserDefaults.standard.bool(forKey: "toFriend") == false {
+            descriptionLabel.isHidden = false
+            orderDescription.isHidden = false
+        }
         giftOptionsView.isHidden = true
         payViews.isHidden = true
         searchFriendView.isHidden = true
-        orderDescription.isHidden = false
-        descriptionLabel.isHidden = false
         payWithCocoButton.isHidden = false
-        
         let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.bounds.size.height)
         scroll.setContentOffset(bottomOffset, animated: true)
         

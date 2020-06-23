@@ -10,7 +10,7 @@ import UIKit
 import SwiftyUserDefaults
 
 class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, showMeTheGiftDetail {
-      
+    
     @IBOutlet weak var table: UITableView!
     
     var gifts : [Dictionary<String, Any>] = []
@@ -22,19 +22,16 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         configureTable()
         getThemGifts()
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Notification.Name(rawValue: "refreshTheList"), object: nil)
-
     }
     
     func showTheDetail(idNumber:String, orderStatus:String) {
         let myViewController = giftDetailViewController(nibName: "giftDetailViewController", bundle: nil)
         myViewController.orderNumber = idNumber
         myViewController.giftStatus = orderStatus
-        self.present(myViewController, animated: true, completion: {
-            NotificationCenter.default.post(name: Notification.Name("refreshTheList"), object: nil)})
+        self.present(myViewController, animated: true, completion: nil)
     }
     
     @objc func refresh() {
-        print("Refreshing")
         gifts.removeAll()
         getThemGifts()
         DispatchQueue.main.async {
@@ -43,10 +40,10 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if gifts.count < 0 {
-            tableView.isHidden = true
-            return 0
-        }
+//        if gifts.count < 0 {
+//            tableView.isHidden = true
+//            return 0
+//        }
         return gifts.count
     }
     
@@ -73,13 +70,13 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 
                 if status == "Pagado" && estatusRegalo == "Abierto" {
-                   cell.underGiftButton.backgroundColor = UIColor.white
-                   cell.underGiftButton.setTitleColor(UIColor.black, for: .normal)
-                   cell.underGiftButton.isUserInteractionEnabled = false
-                   cell.detailsButton.isUserInteractionEnabled = true
-                   cell.detailsButton.isHidden = false
+                    cell.underGiftButton.backgroundColor = UIColor.white
+                    cell.underGiftButton.setTitleColor(UIColor.black, for: .normal)
+                    cell.underGiftButton.isUserInteractionEnabled = false
+                    cell.detailsButton.isUserInteractionEnabled = true
+                    cell.detailsButton.isHidden = false
                     cell.detailsLabel.isHidden = false
-                   cell.underGiftButton.setTitle("Regalo abierto", for: .normal)
+                    cell.underGiftButton.setTitle("Regalo abierto", for: .normal)
                 }
                 
                 if status == "Canjeado" {
@@ -100,7 +97,6 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     cell.detailsButton.isHidden = false
                     cell.underGiftButton.setTitle("Regalo abierto", for: .normal)
                 }
-                
                 cell.dateOrder.text = "Fecha: \(date)"
                 cell.statusOrder.text = "Estatus: \(status)"
                 cell.orderName.text = orden
@@ -110,6 +106,7 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 cell.underGiftButton.tag = ordenNumber!
                 cell.detailsButton.tag = ordenNumber!
                 cell.giftStatus = estatusRegalo
+                print(estatusRegalo)
             }
             return cell
         }
@@ -146,7 +143,6 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if let items = dictionary["data"] as? [Dictionary<String, Any>] {
                     for d in items {
                         self.gifts.append(d)
-                        print(d)
                     }
                 }
             }
@@ -154,7 +150,6 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             DispatchQueue.main.async {
                 if self.gifts.count > 0 {
                     self.table.reloadData()
-                    print("Tableview was reloaded")
                 }
             }
         }.resume()

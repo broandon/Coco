@@ -39,6 +39,7 @@ class MainController: UIViewController {
         let pushManager = PushNotificationManager()
         pushManager.registerForPushNotifications()
         NotificationCenter.default.addObserver(self, selector: #selector(updateLabels), name: Notification.Name(rawValue: "reloadBalance"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showPopUp), name: Notification.Name(rawValue: "showPopUp"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,6 +52,15 @@ class MainController: UIViewController {
             self.present(destVC, animated: true, completion: nil)
         }
         requestEstimatedTime()
+    }
+    
+    @objc func showPopUp() {
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let destVC = storyboard.instantiateViewController(withIdentifier: "promoViewController") as! promoViewController
+            destVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            destVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            UserDefaults.standard.set(false, forKey: "showedPromo")
+            self.present(destVC, animated: true, completion: nil)
     }
     
     func getGiftState() {

@@ -10,8 +10,9 @@ import UIKit
 import SwiftyUserDefaults
 import SDWebImage
 import AVKit
+import SkyFloatingLabelTextField
 
-class giftDetailViewController: UIViewController {
+class giftDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var orderNameNUmber: UILabel!
     @IBOutlet weak var date: UILabel!
@@ -19,94 +20,103 @@ class giftDetailViewController: UIViewController {
     @IBOutlet weak var store: UILabel!
     @IBOutlet weak var friendName: UILabel!
     @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var productImage: UIImageView!
-    @IBOutlet weak var productName: UILabel!
-    @IBOutlet weak var videoPlayer: UIView!
-    @IBOutlet weak var friendMessageText: UILabel!
-    @IBOutlet weak var buttonGetIt: UIButton!
-    @IBOutlet weak var animationBackground: UIView!
-    @IBOutlet weak var openedGiftImage: UIImageView!
-    @IBOutlet weak var gotItButton: UIButton!
-    @IBOutlet weak var aboveMessageLabel: UILabel!
     @IBOutlet weak var redeemGiftButton: UIButton!
-    @IBOutlet weak var cover: UIView!
+    @IBOutlet weak var giftsTable: UITableView!
+    @IBOutlet weak var mensajeDeAmigo: UILabel!
+    @IBOutlet weak var especificaOrden: SkyFloatingLabelTextField!
+    @IBOutlet weak var contentView: UIView!
     
     var player : AVPlayer?
     var orderNumber : String!
     let userID = Defaults[.user]
     var giftStatus : String?
     var loader: LoaderVC!
+    var giftProducts : [Dictionary<String, Any>] = []
+    let reuseDocument = "DocumentCell666"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        configureTable()
         getGiftDetails()
-        initializeVideoPlayerWithVideo()
+        NotificationCenter.default.addObserver(self, selector: #selector(reveal), name: Notification.Name(rawValue: "revealTheView"), object: nil)
+        //   initializeVideoPlayerWithVideo()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        NotificationCenter.default.post(name: Notification.Name("refreshTheList"), object: nil)
+    @objc func reveal() {
+        self.contentView.alpha = 1
+    }
+    
+    func configureTable() {
+        giftsTable.delegate = self
+        giftsTable.dataSource = self
+        giftsTable.tableFooterView = UIView()
+        let nib = UINib(nibName: "giftDetailImagesTableViewCell", bundle: nil)
+        giftsTable.register(nib, forCellReuseIdentifier: reuseDocument )
+        giftsTable.separatorStyle = .none
     }
     
     func configureView() {
+        contentView.alpha = 0
         backgroundView.layer.masksToBounds = false
         backgroundView.layer.shadowOffset = CGSize(width: 0.5, height: 0.4)
         backgroundView.layer.shadowRadius = 5
         backgroundView.layer.shadowOpacity = 0.5
         backgroundView.layer.cornerRadius = 12
         orderNameNUmber.roundCorners(12)
-        buttonGetIt.roundCorners(12)
-        openedGiftImage.alpha = 0
-        animationBackground.alpha = 0
-        aboveMessageLabel.alpha = 0
-        friendMessageText.alpha = 0
-        gotItButton.alpha = 0
         redeemGiftButton.roundCorners(12)
         redeemGiftButton.isHidden = true
+        especificaOrden.isHidden = true
     }
     
-    func notShowingTheVideo() {
-        DispatchQueue.main.async {
-            self.cover.alpha = 0
-            self.animationBackground.alpha = 0
-            self.animationBackground.isUserInteractionEnabled = false
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 288
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        giftProducts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseDocument, for: indexPath) as? giftDetailImagesTableViewCell else {
+            return UITableViewCell()
         }
+        
+        let document = giftProducts[indexPath.row]
+        let nombredeProducto = document["nombre"] as! String
+        let imagenDeProducto = document["imagen"] as! String
+        
+        cell.nameOfProduct.text = nombredeProducto
+        cell.productImage.sd_setImage(with: URL(string: imagenDeProducto), completed: nil)
+        
+        return cell
     }
     
-    func showingTheVideo() {
+    //    func initializeVideoPlayerWithVideo() {
+    //        videoPlayer.clipsToBounds = true
+    //        let videoString:String? = Bundle.main.path(forResource: "gift", ofType: "mp4")
+    //        guard let unwrappedVideoPath = videoString else {return}
+    //        let videoUrl = URL(fileURLWithPath: unwrappedVideoPath)
+    //        self.player = AVPlayer(url: videoUrl)
+    //        let layer: AVPlayerLayer = AVPlayerLayer(player: player)
+    //        layer.frame = videoPlayer!.bounds
+    //        layer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+    //        layer.cornerRadius = 30
+    //        videoPlayer?.layer.addSublayer(layer)
+    //    }
+    
+    func showingTheVideo(idNumber:String, statusRegalo: String) {
         DispatchQueue.main.async {
-            self.cover.alpha = 0
-            self.player?.play()
-            self.animationBackground.alpha = 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                UIView.animate(withDuration: 2, animations: {
-                    self.videoPlayer.alpha = 0
-                    self.openedGiftImage.alpha = 1
-                    self.gotItButton.alpha = 1
-                    self.aboveMessageLabel.alpha = 1
-                    self.friendMessageText.alpha = 1
-                })
+            let myViewController = animationPopUpViewController(nibName: "animationPopUpViewController", bundle: nil)
+            if #available(iOS 13.0, *) {
+                myViewController.isModalInPresentation = true
+            } else {
+                print("You are in iOS 12 or lower")
             }
-        }
-    }
-    
-    func initializeVideoPlayerWithVideo() {
-        videoPlayer.clipsToBounds = true
-        let videoString:String? = Bundle.main.path(forResource: "gift", ofType: "mp4")
-        guard let unwrappedVideoPath = videoString else {return}
-        let videoUrl = URL(fileURLWithPath: unwrappedVideoPath)
-        self.player = AVPlayer(url: videoUrl)
-        let layer: AVPlayerLayer = AVPlayerLayer(player: player)
-        layer.frame = videoPlayer!.bounds
-        layer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        layer.cornerRadius = 30
-        videoPlayer?.layer.addSublayer(layer)
-    }
-    
-    @IBAction func alrightyThen(_ sender: Any) {
-        DispatchQueue.main.async {
-            self.animationBackground.alpha = 0
-            self.animationBackground.isUserInteractionEnabled = false
+            myViewController.orderNumber = idNumber
+            myViewController.giftStatus = statusRegalo
+            myViewController.modalPresentationStyle = .overCurrentContext
+            self.present(myViewController, animated: false, completion: nil)
         }
     }
     
@@ -116,7 +126,9 @@ class giftDetailViewController: UIViewController {
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let postString = "funcion=getPresentDetail&id_user="+userID!+"&id_order="+orderNumber
+        let string1 = "funcion=getPresentDetail&id_user="+userID!
+        let string2 = "&id_order="+orderNumber
+        let postString = string1+string2
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil, response != nil else {
@@ -126,12 +138,12 @@ class giftDetailViewController: UIViewController {
             let productnameText = gift?.data?.products![0].nombre
             let imageProduct = gift?.data?.products![0].imagen
             
+            //            DispatchQueue.main.async {
+            //                self.productName.text = productnameText
+            //                self.productImage.sd_setImage(with: URL(string: imageProduct!), completed: nil)
+            //                self.openedGiftImage.sd_setImage(with: URL(string: imageProduct!), completed: nil)
+            //            }
             
-            DispatchQueue.main.async {
-                self.productName.text = productnameText
-                self.productImage.sd_setImage(with: URL(string: imageProduct!), completed: nil)
-                self.openedGiftImage.sd_setImage(with: URL(string: imageProduct!), completed: nil)
-            }
             let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
             
             if let dictionary = json as? Dictionary<String, AnyObject> {
@@ -149,29 +161,45 @@ class giftDetailViewController: UIViewController {
                             self.status.text = "Estatus: " + status
                             self.store.text = "Cafetería: " + cafeteria
                             self.friendName.text = amigo
-                            self.friendMessageText.text = mensajeAmigo
+                            self.mensajeDeAmigo.text = mensajeAmigo
                             self.loader.removeAnimate()
                             if status == "Pagado" {
+                                self.especificaOrden.isHidden = false
                                 self.redeemGiftButton.isHidden = false
                             }
                         }
                         
                         if self.giftStatus == "Cerrado" {
-                            self.showingTheVideo()
+                            self.showingTheVideo(idNumber: orden, statusRegalo: self.giftStatus!)
                         }
                         
                         if self.giftStatus == "Abierto" {
-                            self.notShowingTheVideo()
+                            DispatchQueue.main.async {
+                            self.contentView.alpha = 1
+                            } 
+                        }
+                    }
+                    
+                    if let productos = items["products"] as? [Dictionary<String, Any>] {
+                        for d in productos {
+                            self.giftProducts.append(d)
+                            print("Anotha one")
+                            print(d)
+                            print("And added")
+                            print(self.giftProducts)
                         }
                     }
                 }
+                
+            }
+            DispatchQueue.main.async {
+                self.giftsTable.reloadData()
             }
         }.resume()
     }
     
     @IBAction func close(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        NotificationCenter.default.post(name: Notification.Name("refreshTheList"), object: nil)
     }
     
     @IBAction func redeemGift(_ sender: Any) {
@@ -187,7 +215,12 @@ class giftDetailViewController: UIViewController {
             var request = URLRequest(url: url)
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.httpMethod = "POST"
-            let postString = "funcion=changePresent&id_user="+self.userID!+"&id_order="+self.orderNumber
+            let string1 = "funcion=changePresent&id_user="+self.userID!
+            let string2 = "&id_order="+self.orderNumber
+            let orderSpecifics = self.especificaOrden.text ?? ""
+            let string3 = "&comments="+orderSpecifics
+            let postString = string1+string2+string3
+            print(postString)
             request.httpBody = postString.data(using: .utf8)
             URLSession.shared.dataTask(with: request) { data, response, error in
                 guard let data = data, error == nil, response != nil else {
@@ -226,3 +259,30 @@ class giftDetailViewController: UIViewController {
     }
     
 }
+
+//extension giftDetailViewController : UITableViewDelegate, UITableViewDataSource {
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 288
+//    }
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        giftProducts.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        print("Loaded")
+//        let document = giftProducts[indexPath.row]
+//        let nombredeProducto = document["nombre"] as! String
+//        let imagenDeProducto = document["imagen"] as! String
+//        let cell = tableView.dequeueReusableCell(withIdentifier: reuseDocument, for: indexPath)
+//        if let cell = cell as? giftDetailImagesTableViewCell {
+//            DispatchQueue.main.async {
+//                cell.nameOfProduct.text = nombredeProducto
+//                cell.productImage.sd_setImage(with: URL(string: imagenDeProducto), completed: nil)
+//            }
+//            return cell
+//        }
+//        return UITableViewCell()
+//    }
+//}

@@ -11,7 +11,7 @@ import SnapKit
 import SwiftyUserDefaults
 import Hero
 
-class MainController: UIViewController {
+class MainController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var topBar: UIView!
@@ -40,6 +40,36 @@ class MainController: UIViewController {
         pushManager.registerForPushNotifications()
         NotificationCenter.default.addObserver(self, selector: #selector(updateLabels), name: Notification.Name(rawValue: "reloadBalance"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPopUp), name: Notification.Name(rawValue: "showPopUp"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stopShaking), name: Notification.Name(rawValue: "stopShaking"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getGiftState2), name: Notification.Name(rawValue: "anotherGift"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(requestEstimatedTime2), name: Notification.Name(rawValue: "getMoreTime"), object: nil)
+    }
+    
+    func gotCocos() {
+        if UserDefaults.standard.bool(forKey: "gotCocos") == true {
+            print("product bought with cocopoints")
+            addedCocopoints()
+        }
+    }
+    
+    @objc func stopShaking() {
+        giftButton.layer.removeAllAnimations()
+    }
+    
+    func addedCocopoints() {
+        UserDefaults.standard.set(false, forKey: "showedPromo")
+        DispatchQueue.main.async {
+            let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popoverID")
+            popController.modalPresentationStyle = .overCurrentContext
+            popController.modalPresentationStyle = .popover
+            popController.modalTransitionStyle = .crossDissolve
+            popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+            popController.popoverPresentationController?.delegate = self
+            popController.popoverPresentationController?.sourceView = self.cocopointsView
+            popController.popoverPresentationController?.sourceRect = CGRect(x: 40, y: 0, width: 75, height: 35)
+            popController.preferredContentSize = CGSize(width: 75, height: 35)
+            self.present(popController, animated: true, completion: nil)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,16 +81,56 @@ class MainController: UIViewController {
             UserDefaults.standard.set(false, forKey: "showedPromo")
             self.present(destVC, animated: true, completion: nil)
         }
+        if UserDefaults.standard.bool(forKey: "gotCocos") == true {
+            addedCocopoints()
+        }
         requestEstimatedTime()
     }
     
     @objc func showPopUp() {
-            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let destVC = storyboard.instantiateViewController(withIdentifier: "promoViewController") as! promoViewController
-            destVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            destVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            UserDefaults.standard.set(false, forKey: "showedPromo")
-            self.present(destVC, animated: true, completion: nil)
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let destVC = storyboard.instantiateViewController(withIdentifier: "promoViewController") as! promoViewController
+        destVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        destVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        UserDefaults.standard.set(false, forKey: "showedPromo")
+        self.present(destVC, animated: true, completion: nil)
+    }
+    
+    @objc func getGiftState2() {
+        print("Called")
+        let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "funcion=getUserMain&id_user="+userID!
+        request.httpBody = postString.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                print("error: No data to decode")
+                return
+            }
+            guard let promoInfo = try? JSONDecoder().decode(Promo.self, from: data) else {
+                print("Error: Couldn't decode data into info")
+                return
+            }
+            
+            if promoInfo.data?.promocion?.imagen == nil {
+                DispatchQueue.main.async {
+                    self.dismiss(animated: false, completion: nil)
+                }
+                return
+            }
+            
+            if promoInfo.data?.regalo != nil {
+                DispatchQueue.main.async {
+                    self.giftButton.shake(duration: 1, values: [-6.0, 6.0, -3.0, 3.0, -6.0, 6.0, -2.0, 2.0])
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle { return UIModalPresentationStyle.none
     }
     
     func getGiftState() {
@@ -91,7 +161,50 @@ class MainController: UIViewController {
                 DispatchQueue.main.async {
                     self.giftButton.shake(duration: 1, values: [-6.0, 6.0, -3.0, 3.0, -6.0, 6.0, -2.0, 2.0])
                 }
-            } 
+            }
+        }
+        task.resume()
+    }
+    
+    @objc func requestEstimatedTime2() {
+        let url = URL(string: "https://easycode.mx/sistema_coco/webservice/controller_last.php")!
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "funcion=getUserMain&id_user="+userID!
+        request.httpBody = postString.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
+            if let dictionary = json as? Dictionary<String, AnyObject> {
+                if let data = dictionary["data"] {
+                    if let tiempoEstimado = data["ultimo_pedido"] {
+                        let tiempoDePedido = "\(tiempoEstimado ?? 0)"
+                        let tiempoDePedidoInt = Int(tiempoDePedido)
+                        if tiempoDePedidoInt == nil {
+                            DispatchQueue.main.async {
+                                self.currentEstimatedTime.isHidden = true
+                            }
+                            return
+                        }
+                        if tiempoDePedidoInt == 0 {
+                            self.currentEstimatedTime.isHidden = true
+                        } else {
+                            DispatchQueue.main.async {
+                                let tiempoDePedidoMasUno = (tiempoDePedidoInt?.msToSeconds.minute)! + 1
+                                self.estimatedTimeText.text = "\(tiempoDePedidoMasUno) Minutos"
+                                self.currentEstimatedTime.isHidden = false
+                                self.currentEstimatedTime.slideInFromBottom()
+                                self.countDownTest(minutes: tiempoDePedidoMasUno, seconds: tiempoDePedidoInt?.msToSeconds.second ?? 0)
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
         }
         task.resume()
     }
@@ -200,6 +313,7 @@ class MainController: UIViewController {
     }
     
     @IBAction func showMeTheGifts(_ sender: Any) {
+        giftButton.layer.removeAllAnimations()
         let myViewController = giftsViewController(nibName: "giftsViewController", bundle: nil)
         self.present(myViewController, animated: true, completion: nil)
     }

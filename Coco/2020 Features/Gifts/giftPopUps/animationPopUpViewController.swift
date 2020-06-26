@@ -126,6 +126,7 @@ class animationPopUpViewController: UIViewController {
     @IBAction func GotIt(_ sender: Any) {
         NotificationCenter.default.post(name: Notification.Name("revealTheView"), object: nil)
         NotificationCenter.default.post(name: Notification.Name("refreshTheList"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name("stopShaking"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
 }

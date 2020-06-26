@@ -10,7 +10,8 @@ import UIKit
 
 class popover1ViewController: UIViewController {
     
-    var cantidad = UserDefaults.standard.value(forKey: "cocopointsOtorgados")
+    var cantidad = UserDefaults.standard.value(forKey: "cocosOtorgados")
+    
     @IBOutlet weak var cantidadDeCOcos: UILabel!
     
     override func viewDidLoad() {
@@ -18,10 +19,14 @@ class popover1ViewController: UIViewController {
         if cantidad == nil {
             cantidad = 0
         }
-        cantidadDeCOcos.text = "\(cantidad ?? 0)"
+        cantidadDeCOcos.text = "+ \(cantidad ?? 0)"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        UserDefaults.standard.removeObject(forKey: "cocopointsOtorgados")
+        UserDefaults.standard.removeObject(forKey: "cocosOtorgados")
+        UserDefaults.standard.set(false, forKey: "gotCocos")
     }
 }

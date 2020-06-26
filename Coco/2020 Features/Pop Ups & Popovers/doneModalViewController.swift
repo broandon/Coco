@@ -25,15 +25,30 @@ class doneModalViewController: UIViewController {
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "MainController") as! MainController
             newViewController.modalPresentationStyle = .fullScreen
             self.present(newViewController, animated: true, completion: nil)
+            print("THIS IS THE ESTIMATED TIME")
+            print(self.estimatedValue)
         }
+        
         if UserDefaults.standard.bool(forKey: "comingFromFriend") == true {
             doneText.text = "Tu regalo ha sido enviado. ¡Gracias!"
         }
         
         if UserDefaults.standard.bool(forKey: "comingFromFriend") == false {
-            doneText.text = "Tu pedido ha sido enviado y estará listo en \(estimatedValue ?? "0") minutos"
+            
+            let theValue = "\(estimatedValue!)"
+            
+            if theValue == "0" {
+                doneText.text = "¡Tu pedido ha sido enviado y se encuentra listo!"
+                return
+            }
+            
+            if theValue == "" {
+                doneText.text = "Tu pedido ha sido enviado y estará listo en unos minutos"
+                return
+            }
+            
+            doneText.text = "Tu pedido ha sido enviado y estará listo en \(estimatedValue) minutos"
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {

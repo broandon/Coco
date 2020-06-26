@@ -86,22 +86,35 @@ class ShoppingCart: Codable {
         data["products"] = products
         data["funcion"] = Routes.saveOrder
         data["id_user"] = Defaults[.user]!
-        
-        print("This is the buying")
-        print(data)
-        
+
         Alamofire.request(General.url_connection,
                           method: .post,
                           parameters: data).responseJSON { (response) in
+                            print("Product bought wih money")
+                            print(data)
                             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                                 print("Data: \(utf8Text)")
                                 
-                                let stuff = try? JSONDecoder().decode(Stuff.self, from: data)
+                                //                                let stuff = try? JSONDecoder().decode(Stuff.self, from: data)
                                 
-                                let tiempoEstimado = "\(stuff?.data?.tiempoEstimado ?? 0)"
+                                let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                                 
-                                UserDefaults.standard.set(tiempoEstimado, forKey: "estimatedValue")
+                                if let dictionary = json as? Dictionary<String, AnyObject> {
+                                    if let info = dictionary["data"] as? Dictionary<String, Any> {
+                                        print(info)
+                                        let tiempoEstimado = info["TiempoEstimado"]
+                                        print(tiempoEstimado)
+                                        let cocosOtorgados = info["Cocopoints"]
+                                        print(cocosOtorgados)
+                                        UserDefaults.standard.set(tiempoEstimado, forKey: "estimatedValue")
+                                        UserDefaults.standard.set(cocosOtorgados, forKey: "cocosOtorgados")
+                                    }
+                                }
                                 
+                                //                                let tiempoEstimado = "\(stuff?.data?.tiempoEstimado!)"
+                                //                                let cocosOtorgados = "\(stuff?.data?.cocos!)"
+                                
+                                UserDefaults.standard.set(true, forKey: "gotCocos")
                             }
                             
                             guard let data = response.result.value else {
@@ -132,18 +145,23 @@ class ShoppingCart: Codable {
                           method: .post,
                           parameters: data).responseJSON { (response) in
                             
-                            print("THIS IS THE LAST DATA")
-                            print(data)
-                            print("*********************")
-                            
                             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                                 print("Data: \(utf8Text)")
                                 
-                                let stuff = try? JSONDecoder().decode(Stuff.self, from: data)
+                                let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                                 
-                                let tiempoEstimado = "\(stuff?.data?.tiempoEstimado ?? 0)"
-                                
-                                UserDefaults.standard.set(tiempoEstimado, forKey: "estimatedValue")
+                                if let dictionary = json as? Dictionary<String, AnyObject> {
+                                    if let info = dictionary["data"] as? Dictionary<String, Any> {
+                                        print(info)
+                                        let tiempoEstimado = info["TiempoEstimado"]
+                                        print(tiempoEstimado)
+                                        let cocosOtorgados = info["Cocopoints"]
+                                        print(cocosOtorgados)
+                                        UserDefaults.standard.set(tiempoEstimado, forKey: "estimatedValue")
+                                        UserDefaults.standard.set(cocosOtorgados, forKey: "cocosOtorgados")
+                                        UserDefaults.standard.set(false, forKey: "gotCocos")
+                                    }
+                                }
                                 
                             }
                             
@@ -181,16 +199,26 @@ class ShoppingCart: Codable {
                           method: .post,
                           parameters: data).responseJSON { (response) in
                             
+                            print("product bought with cocopoints and its a gift")
+                            print(data)
+                            
                             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                                 print("Data: \(utf8Text)")
                                 
-                                let stuff = try? JSONDecoder().decode(Stuff.self, from: data)
+                                let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                                 
-                                let tiempoEstimado = "\(stuff?.data?.tiempoEstimado ?? 0)"
-                                
-                                UserDefaults.standard.set(tiempoEstimado, forKey: "estimatedValue")
-                                
-                                print(data)
+                                if let dictionary = json as? Dictionary<String, AnyObject> {
+                                    if let info = dictionary["data"] as? Dictionary<String, Any> {
+                                        print(info)
+                                        let tiempoEstimado = info["TiempoEstimado"]
+                                        print(tiempoEstimado)
+                                        let cocosOtorgados = info["Cocopoints"]
+                                        print(cocosOtorgados)
+                                        UserDefaults.standard.set(tiempoEstimado, forKey: "estimatedValue")
+                                        UserDefaults.standard.set(cocosOtorgados, forKey: "cocosOtorgados")
+                                        UserDefaults.standard.set(true, forKey: "gotCocos")
+                                    }
+                                }
                             }
                             
                             guard let data = response.result.value else {
@@ -230,13 +258,20 @@ class ShoppingCart: Codable {
                             print("*********************")
                             
                             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                                print("Data: \(utf8Text)")
+                                let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                                 
-                                let stuff = try? JSONDecoder().decode(Stuff.self, from: data)
-                                
-                                let tiempoEstimado = "\(stuff?.data?.tiempoEstimado ?? 0)"
-                                
-                                UserDefaults.standard.set(tiempoEstimado, forKey: "estimatedValue")
+                                if let dictionary = json as? Dictionary<String, AnyObject> {
+                                    if let info = dictionary["data"] as? Dictionary<String, Any> {
+                                        print(info)
+                                        let tiempoEstimado = info["TiempoEstimado"]
+                                        print(tiempoEstimado)
+                                        let cocosOtorgados = info["Cocopoints"]
+                                        print(cocosOtorgados)
+                                        UserDefaults.standard.set(tiempoEstimado, forKey: "estimatedValue")
+                                        UserDefaults.standard.set(cocosOtorgados, forKey: "cocosOtorgados")
+                                        UserDefaults.standard.set(false, forKey: "gotCocos")
+                                    }
+                                }
                                 
                             }
                             

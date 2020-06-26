@@ -68,6 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationDidBecomeActive(_ application: UIApplication) {
     NotificationCenter.default.post(name: Notification.Name(rawValue: "showPopUp"), object: nil)
+    NotificationCenter.default.post(name: Notification.Name("anotherGift"), object: nil)
+    NotificationCenter.default.post(name: Notification.Name("getMoreTime"), object: nil)
   }
 
   func applicationWillTerminate(_ application: UIApplication) {

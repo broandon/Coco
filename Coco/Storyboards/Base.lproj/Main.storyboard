@@ -1406,7 +1406,7 @@
             <objects>
                 <viewController storyboardIdentifier="popoverID" modalPresentationStyle="overCurrentContext" id="y5w-Ph-PBc" customClass="popover1ViewController" customModule="Coco" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oGV-UK-Z1w">
-                        <rect key="frame" x="0.0" y="0.0" width="130" height="65"/>
+                        <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sbd-7f-1NJ">
@@ -1416,14 +1416,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_blanco" translatesAutoresizingMaskIntoConstraints="NO" id="Tgb-3x-62L">
-                                <rect key="frame" x="54" y="15" width="66" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="66" id="aPz-oV-wBX"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="Spf-fI-cB7">
-                                <rect key="frame" x="5" y="22" width="44" height="21"/>
+                                <rect key="frame" x="16" y="5" width="43" height="20"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1431,26 +1425,23 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Spf-fI-cB7" firstAttribute="leading" secondItem="NFP-5f-e8c" secondAttribute="leading" constant="5" id="1fk-4h-D1f"/>
-                            <constraint firstItem="Tgb-3x-62L" firstAttribute="leading" secondItem="Spf-fI-cB7" secondAttribute="trailing" constant="5" id="C5r-fm-xyx"/>
-                            <constraint firstItem="NFP-5f-e8c" firstAttribute="trailing" secondItem="Tgb-3x-62L" secondAttribute="trailing" constant="10" id="jbY-Gw-3aO"/>
-                            <constraint firstItem="Tgb-3x-62L" firstAttribute="top" secondItem="NFP-5f-e8c" secondAttribute="top" constant="15" id="lBx-wl-OB4"/>
-                            <constraint firstItem="NFP-5f-e8c" firstAttribute="bottom" secondItem="Tgb-3x-62L" secondAttribute="bottom" constant="15" id="lYV-cI-odD"/>
-                            <constraint firstItem="NFP-5f-e8c" firstAttribute="bottom" secondItem="Spf-fI-cB7" secondAttribute="bottom" constant="22" id="v8f-HS-Ryb"/>
-                            <constraint firstItem="Spf-fI-cB7" firstAttribute="top" secondItem="NFP-5f-e8c" secondAttribute="top" constant="22" id="yIc-F5-e1w"/>
+                            <constraint firstItem="NFP-5f-e8c" firstAttribute="trailing" secondItem="Spf-fI-cB7" secondAttribute="trailing" constant="16" id="AW7-2j-DeT"/>
+                            <constraint firstItem="Spf-fI-cB7" firstAttribute="top" secondItem="NFP-5f-e8c" secondAttribute="top" constant="5" id="fIP-MB-Qj8"/>
+                            <constraint firstItem="Spf-fI-cB7" firstAttribute="leading" secondItem="NFP-5f-e8c" secondAttribute="leading" constant="16" id="hKZ-N9-BAe"/>
+                            <constraint firstItem="NFP-5f-e8c" firstAttribute="bottom" secondItem="Spf-fI-cB7" secondAttribute="bottom" constant="5" id="lUg-Xm-Ejr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NFP-5f-e8c"/>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="130" height="65"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="130" height="65"/>
+                    <size key="freeformSize" width="75" height="30"/>
                     <connections>
                         <outlet property="cantidadDeCOcos" destination="Spf-fI-cB7" id="aHb-Tc-Bay"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEc-JK-hM9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3344.9275362318845" y="-156.92934782608697"/>
+            <point key="canvasLocation" x="3344.9275362318845" y="-157.33695652173915"/>
         </scene>
         <!--List Of Students View Controller-->
         <scene sceneID="BMl-Pj-Mvq">
@@ -1615,7 +1606,6 @@
         <image name="clock" width="512" height="512"/>
         <image name="error" width="128" height="128"/>
         <image name="gift" width="256" height="256"/>
-        <image name="logo_blanco" width="976" height="293"/>
         <image name="logo_negro" width="976" height="293"/>
         <image name="masgris" width="320" height="320"/>
         <image name="menosgris" width="320" height="320"/>

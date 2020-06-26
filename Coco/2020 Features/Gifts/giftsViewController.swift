@@ -156,6 +156,7 @@ class giftsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func close(_ sender: Any) {
+        NotificationCenter.default.post(name: Notification.Name("stopShaking"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
 }

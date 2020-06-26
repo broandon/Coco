@@ -26,12 +26,14 @@ class Stuff: Codable {
 // MARK: - DataClass
 class DataClass23: Codable {
     let tiempoEstimado: Int?
-
+    let cocos: Int?
     enum CodingKeys: String, CodingKey {
         case tiempoEstimado = "TiempoEstimado"
+        case cocos = "Cocopoints"
     }
 
-    init(tiempoEstimado: Int?) {
+    init(tiempoEstimado: Int?, cocos: Int?) {
         self.tiempoEstimado = tiempoEstimado
+        self.cocos = cocos
     }
 }

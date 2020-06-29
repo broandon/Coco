@@ -63,7 +63,7 @@ class MainController: UIViewController, UIPopoverPresentationControllerDelegate 
             popController.modalPresentationStyle = .overCurrentContext
             popController.modalPresentationStyle = .popover
             popController.modalTransitionStyle = .crossDissolve
-            popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+            popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
             popController.popoverPresentationController?.delegate = self
             popController.popoverPresentationController?.sourceView = self.cocopointsView
             popController.popoverPresentationController?.sourceRect = CGRect(x: 40, y: 0, width: 75, height: 35)

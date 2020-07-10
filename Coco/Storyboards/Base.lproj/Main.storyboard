@@ -90,7 +90,7 @@
                                     <constraint firstAttribute="height" constant="40" id="ug1-bh-CbP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="14"/>
-                                <state key="normal" title="  Inicia sesión con Apple">
+                                <state key="normal" title="  Iniciar sesión con Apple">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -889,7 +889,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Regresar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMk-PL-okF">
-                                        <rect key="frame" x="48" y="11.333333333333334" width="59.666666666666657" height="17.666666666666664"/>
+                                        <rect key="frame" x="48" y="12.666666666666664" width="59.666666666666657" height="15"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="15"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>
@@ -1214,7 +1214,7 @@
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Colegio:"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="INSTITUCIÓN:"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Selecciona tu institución"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
                                                 <color key="value" name="Black"/>

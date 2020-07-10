@@ -98,6 +98,7 @@ class RegisterVC: UIViewController {
             self.loader.removeAnimate()
             switch result {
             case .failure(let errorMssg):
+                print("There was an error here")
                 self.throwError(str: errorMssg)
             case .success(_):
                 self.configureDropdown()
@@ -112,7 +113,7 @@ class RegisterVC: UIViewController {
         }
         dropdown.anchorView = schoolField
         dropdown.bottomOffset = CGPoint(x: 0, y: schoolField.bounds.height)
-        dropdown.direction = .bottom
+        dropdown.direction = .any
         dropdown.dataSource = dropdownTitle
         dropdown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.schoolField.text = item
@@ -222,6 +223,6 @@ class RegisterVC: UIViewController {
 extension RegisterVC: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         dropdown.show()
-        return true
+        return false
     }
 }

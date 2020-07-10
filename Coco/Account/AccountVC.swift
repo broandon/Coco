@@ -165,6 +165,8 @@ extension AccountVC: ASAuthorizationControllerDelegate {
         switch authorization.credential {
         case let credentials as ASAuthorizationAppleIDCredential:
             if credentials.email != nil {
+                print("This functions got activated because credentials are not nil")
+                print(credentials.email)
                 let userValue = credentials.user
                 let mailValue = credentials.email
                 let nameValue = credentials.fullName?.givenName
@@ -182,7 +184,9 @@ extension AccountVC: ASAuthorizationControllerDelegate {
                 registerVC.passwordFromApple = mailValue
                 present(registerVC, animated: true)
             } else {
+                print("This function activated because the mail is nil.")
                 let userValue = credentials.user
+                print(credentials.user)
                 if credentials.user == userValue {
                     let emailF = UserDefaults.standard.value(forKey: "\(userValue)"+"Mail") as! String
                     let passwordF = UserDefaults.standard.value(forKey: "\(userValue)"+"Password") as! String

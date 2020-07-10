@@ -149,27 +149,45 @@ class RegisterVC: UIViewController {
                 
                 if UserDefaults.standard.bool(forKey: "ComingFromAppleSignInAlreadyExists") == true {
                     
-                    if errorMssg == "USER ALREADY EXIST" {
-                        
-                        let emailF = self.emailFromApple
-                        let passwordF = self.passwordFromApple
-                        
-                        self.user = User(email: emailF!, password: passwordF!)
-                        
-                        self.user.loginRequest { result in
-                            self.loader.removeAnimate()
-                            switch result {
-                            case .failure(let errorMssg):
-                                self.throwError(str: errorMssg)
-                            case .success(_):
-                                self.performSuccessLogin()
-                            }
+                    self.user.newUserRequest2 { result in
+                        self.loader.removeAnimate()
+                        switch result {
+                        case .failure(let errorMssg):
+                            
+                            print("This shit failed")
+                            
+                        case .success(_):
+                            
+                            self.performSuccessRegister()
+                            print("We might be getting somewhere.")
+                            
+                            //self.performSuccessRegister()
                         }
-                        
-                    }} else {
+                    }
+                
                     
-                    self.throwError(str: errorMssg)
+                
+                    print(errorMssg)
                     
+//                    if errorMssg == "USER ALREADY EXIST" {
+//
+//                        print("This is being called.")
+//                        let emailF = self.emailFromApple
+//                        let passwordF = self.passwordFromApple
+//
+//                        self.user = User(email: emailF!, password: passwordF!)
+//
+//                        self.user.loginRequest { result in
+//                            self.loader.removeAnimate()
+//                            switch result {
+//                            case .failure(let errorMssg):
+//                                self.throwError(str: errorMssg)
+//                            case .success(_):
+//                                self.performSuccessLogin()
+//                            }
+//                        }
+//
+//                    }
                 }
                 
             case .success(_):

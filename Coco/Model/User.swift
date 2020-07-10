@@ -68,7 +68,6 @@ class User: Decodable {
                                 completion(.failure("Error de conexión"))
                                 return
                             }
-                            print(data)
                             
                             guard let dictionary = JSON(data).dictionary else {
                                 completion(.failure("Error al obtener los datos"))
@@ -118,6 +117,53 @@ class User: Decodable {
                                 completion(.failure("Error al obtener los datos"))
                                 return
                             }
+                            
+                            if dictionary["state"] != "200" {
+                                completion(.failure(dictionary["status_msg"]?.string ?? ""))
+                                return
+                            }
+                            
+                            guard let dataDictionary = dictionary["data"],
+                                let object = try? dataDictionary.rawData(),
+                                let decoded = try? JSONDecoder().decode(User.self, from: object) else {
+                                    completion(.failure("Error al leer los datos"))
+                                    return
+                            }
+                            self.id = decoded.id
+                            self.email = decoded.email
+                            self.name = decoded.name
+                            self.last_name = decoded.last_name
+                            completion(.success(nil))
+        }
+    }
+
+    func newUserRequest2(completion: @escaping(Result) -> Void) {
+        let data = [
+            "funcion": Routes.newUser,
+            "first_name": name ?? "",
+            "last_name": last_name ?? "",
+            "phone": phone ?? "",
+            "email": email ?? "",
+            "password": password ?? "",
+            "facebook_login": "2",
+            "id_college": id_school ?? ""] as [String : Any]
+        
+        Alamofire.request(General.url_connection,
+                          method: .post,
+                          parameters: data).responseJSON { (response) in
+                            guard let data = response.result.value else {
+                                completion(.failure("Error de conexión"))
+                                return
+                            }
+                            
+                            guard let dictionary = JSON(data).dictionary else {
+                                completion(.failure("Error al obtener los datos"))
+                                return
+                            }
+                            
+                            print("This is the data I'm tryuing to get out")
+                            print(data)
+                            print("***************************************")
                             
                             if dictionary["state"] != "200" {
                                 completion(.failure(dictionary["status_msg"]?.string ?? ""))

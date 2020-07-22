@@ -10,6 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import SwiftyUserDefaults
 import AuthenticationServices
+import JWTDecode
 
 class AccountVC: UIViewController {
     
@@ -32,7 +33,11 @@ class AccountVC: UIViewController {
         loginBtn.roundCorners(15)
         facebookBtn.roundCorners(15)
         appleSignIn.roundCorners(15)
-        
+        if #available(iOS 13.0,*) {
+            print("The iOS version is 13 or newer")
+        } else {
+            appleSignIn.isHidden = true
+        }
     }
     
     @IBAction func didTapAppleButton(_ sender: Any) {
@@ -164,9 +169,15 @@ extension AccountVC: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let credentials as ASAuthorizationAppleIDCredential:
+            print("ASAAUTHHappened")
+            print(credentials.identityToken)
+            let bitch = String(data: credentials.identityToken!, encoding: .utf8)
+            print("Bitch")
+            print(bitch)
             if credentials.email != nil {
                 print("This functions got activated because credentials are not nil")
                 print(credentials.email)
+                print(credentials.authorizationCode)
                 let userValue = credentials.user
                 let mailValue = credentials.email
                 let nameValue = credentials.fullName?.givenName
@@ -185,22 +196,29 @@ extension AccountVC: ASAuthorizationControllerDelegate {
                 present(registerVC, animated: true)
             } else {
                 print("This function activated because the mail is nil.")
-                let userValue = credentials.user
-                print(credentials.user)
-                if credentials.user == userValue {
-                    let emailF = UserDefaults.standard.value(forKey: "\(userValue)"+"Mail") as! String
-                    let passwordF = UserDefaults.standard.value(forKey: "\(userValue)"+"Password") as! String
-                    self.user = User(email: emailF, password: passwordF)
-                    self.user.loginRequest { result in
-                        switch result {
-                        case .failure(let errorMssg):
-                            self.throwError(str: errorMssg)
-                        case .success(_):
-                            self.performSuccessLogin()
-                        }
+                let bitch = String(data: credentials.identityToken!, encoding: .utf8)
+                let jwt = try! decode(jwt: bitch!)
+                print("This was a bitch")
+                print(jwt.claim(name: "email"))
+                let bitchMail = "\(jwt.claim(name: "email"))"
+                
+                user = User(name: "name", last_name: "last_name", phone: "phone", email: bitchMail, password: bitchMail, facebook_login: false, id_school: "1")
+                
+                self.user.newUserRequest2 { result in
+                    switch result {
+                    case .failure(let errorMssg):
+                        print("This shit failed")
+                    case .success(_):
+                        self.performSuccessRegister()
+                        print("We might be getting somewhere.")
                     }
                 }
+
+                
             }
+        case let passwordCredential as ASPasswordCredential:
+            print("This happened, the passwordCredential")
+            print(passwordCredential.password)
         default:break
         }
     }

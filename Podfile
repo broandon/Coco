@@ -34,6 +34,7 @@ target 'Coco' do
   pod 'YPImagePicker'
   pod 'SDWebImage'
   pod 'iOSDropDown'
+  pod 'JWTDecode'
 
   target 'CocoUITests' do
     inherit! :search_paths

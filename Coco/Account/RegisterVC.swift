@@ -153,11 +153,8 @@ class RegisterVC: UIViewController {
                         self.loader.removeAnimate()
                         switch result {
                         case .failure(let errorMssg):
-                            
                             print("This shit failed")
-                            
                         case .success(_):
-                            
                             self.performSuccessRegister()
                             print("We might be getting somewhere.")
                             

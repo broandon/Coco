@@ -40,6 +40,7 @@ PODS:
   - Hero (1.4.0)
   - iOSDropDown (0.3.4)
   - IQKeyboardManagerSwift (6.3.0)
+  - JWTDecode (2.4.1)
   - Kingfisher (4.10.1)
   - lottie-ios (3.0.6)
   - M13Checkbox (3.4.0)
@@ -76,6 +77,7 @@ DEPENDENCIES:
   - Hero
   - iOSDropDown
   - IQKeyboardManagerSwift
+  - JWTDecode
   - Kingfisher (~> 4.0)
   - lottie-ios
   - M13Checkbox
@@ -104,6 +106,7 @@ SPEC REPOS:
     - Hero
     - iOSDropDown
     - IQKeyboardManagerSwift
+    - JWTDecode
     - Kingfisher
     - lottie-ios
     - M13Checkbox
@@ -135,6 +138,7 @@ SPEC CHECKSUMS:
   Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
   iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
+  JWTDecode: 4bd4da0cdf0f8154fd467fa48499f34ec057fb88
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   lottie-ios: d030b6cda141cfd8bbaa3db89264785e6fdf675a
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
@@ -152,6 +156,6 @@ SPEC CHECKSUMS:
   UIWindowTransitions: cb662e2ae9e2d1060fcdbe3eb3de9232bedb7612
   YPImagePicker: 8039f89ad79281545fa868486f32d9bf5d65ede1
 
-PODFILE CHECKSUM: 106a7f5da6eab70167284353f913f97a7022f05e
+PODFILE CHECKSUM: aea86480caa73214c59729655b99dc60e3d0021c
 
 COCOAPODS: 1.9.1

@@ -13,6 +13,7 @@ import SwiftyUserDefaults
 class User: Decodable {
     
     var user: User!
+    var globalEmail = UserDefaults.standard.value(forKey: "globalEmail") as! String
     
     public var id: String?
     public var name: String?
@@ -94,6 +95,45 @@ class User: Decodable {
         }
     }
     
+    func loginRequestFromApple(completion: @escaping(Result) -> Void) {
+        let data = [
+            "funcion": Routes.login,
+            "email": email ?? "",
+            "password": password ?? ""]
+        
+        Alamofire.request(General.url_connection,
+                          method: .post,
+                          parameters: data).responseJSON { (response) in
+                            guard let data = response.result.value else {
+                                completion(.failure("Error de conexión"))
+                                return
+                            }
+                            
+                            guard let dictionary = JSON(data).dictionary else {
+                                completion(.failure("Error al obtener los datos"))
+                                return
+                            }
+                            
+                            if dictionary["state"] != "200" {
+                                completion(.failure(dictionary["status_msg"]?.string ?? ""))
+                                return
+                            }
+                            
+                            guard let dataDictionary = dictionary["data"],
+                                let object = try? dataDictionary.rawData(),
+                                let decoded = try? JSONDecoder().decode(User.self, from: object) else {
+                                    completion(.failure("Error al leer los datos"))
+                                    return
+                            }
+                            self.id = decoded.id
+                            self.email = decoded.email
+                            self.name = decoded.name
+                            self.last_name = decoded.last_name
+                            
+                            completion(.success(nil))
+        }
+    }
+    
     func newUserRequest(completion: @escaping(Result) -> Void) {
         let data = [
             "funcion": Routes.newUser,
@@ -136,7 +176,7 @@ class User: Decodable {
                             completion(.success(nil))
         }
     }
-
+    
     func newUserRequest2(completion: @escaping(Result) -> Void) {
         let data = [
             "funcion": Routes.newUser,

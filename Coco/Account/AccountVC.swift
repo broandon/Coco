@@ -169,69 +169,77 @@ extension AccountVC: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let credentials as ASAuthorizationAppleIDCredential:
-            print("ASAAUTHHappened")
-            print(credentials.identityToken)
-            let bitch = String(data: credentials.identityToken!, encoding: .utf8)
-            print("Bitch")
-            print(bitch)
-            if credentials.email != nil {
-                print("This functions got activated because credentials are not nil")
-                print(credentials.email)
-                print(credentials.authorizationCode)
-                let userValue = credentials.user
-                let mailValue = credentials.email
-                let nameValue = credentials.fullName?.givenName
-                let lastNameValue = credentials.fullName?.familyName
-                UserDefaults.standard.set(mailValue, forKey: "\(userValue)"+"Mail")
-                UserDefaults.standard.set(nameValue, forKey: "\(userValue)"+"Name")
-                UserDefaults.standard.set(mailValue, forKey: "\(userValue)"+"Password")
-                UserDefaults.standard.set(true, forKey: "ComingFromAppleSignIn")
-                UserDefaults.standard.set(true, forKey: "ComingFromAppleSignInPrompt")
-                UserDefaults.standard.set(true, forKey: "ComingFromAppleSignInAlreadyExists")
-                let registerVC = instantiate(viewControllerClass: RegisterVC.self)
-                registerVC.nameFromApple = nameValue
-                registerVC.emailFromApple = mailValue
-                registerVC.surnameFromApple = lastNameValue
-                registerVC.passwordFromApple = mailValue
-                present(registerVC, animated: true)
-            } else {
-                UserDefaults.standard.set(true, forKey: "newUserHiddenMail")
-                let idToken = String(data: credentials.identityToken!, encoding: .utf8)
-                print(idToken)
-                let jwt = try! decode(jwt: idToken!)
-                let hiddenMail = jwt.claim(name: "email").string
-                
-                UserDefaults.standard.set(hiddenMail!, forKey: "hiddenMail")
-                let registerVC = instantiate(viewControllerClass: RegisterVC.self)
-                registerVC.emailFromApple = hiddenMail
-                registerVC.passwordFromApple = hiddenMail
-                present(registerVC, animated: true)
-                
-//                UserDefaults.standard.set(true, forKey: "newUserHiddenMail")
-//                print("This function activated because the mail is nil.")
-//                let bitch = String(data: credentials.identityToken!, encoding: .utf8)
-//                let jwt = try! decode(jwt: bitch!)
-//                print("This was a bitch")
-//                print(jwt.claim(name: "email"))
-//                let mailAccount = jwt.claim(name: "email").string
-//                print(mailAccount!)
-//                let bitchMail = "\(jwt.claim(name: "email"))"
-//
-//                user = User(name: "name", last_name: "last_name", phone: "phone", email: mailAccount!, password: bitchMail, facebook_login: false, id_school: "1")
-//                print(user)
-//
-//                self.user.newUserRequest2 { result in
-//                    switch result {
-//                    case .failure(let errorMssg):
-//                        print("This shit failed")
-//                    case .success(_):
-//                        self.performSuccessRegister()
-//                        print("We might be getting somewhere.")
-//                    }
-//                }
-
-                
+            
+            let idToken = String(data: credentials.identityToken!, encoding: .utf8)
+            let jwt = try! decode(jwt: idToken!)
+            let userMail = jwt.claim(name: "email").string
+            UserDefaults.standard.set(userMail!, forKey: "globalEmail")
+            
+            user = User(email: userMail!, password: userMail!)
+            
+            user.loginRequestFromApple { result in
+                switch result {
+                case .failure(let errorMssg):
+                    if errorMssg == "Incorrect Password" {
+                        print("Do the type 2 login")
+                        self.user.newUserRequest2 { result in
+                            switch result {
+                            case .failure(let errorMssg):
+                                print("This shit failed")
+                            case .success(_):
+                                self.performSuccessRegister()
+                                print("We might be getting somewhere.")
+                            }
+                        }
+                    }
+                    if errorMssg == "User not found" {
+                        UserDefaults.standard.set(true, forKey: "newUserHiddenMail")
+                        UserDefaults.standard.set(userMail!, forKey: "hiddenMail")
+                        let registerVC = self.instantiate(viewControllerClass: RegisterVC.self)
+                        registerVC.emailFromApple = userMail!
+                        registerVC.passwordFromApple = userMail!
+                        self.present(registerVC, animated: true)
+                    }
+                case .success(_):
+                    print("Succesful login will be performed.")
+                    self.performSuccessLogin()
+                }
             }
+            
+            //            if credentials.email != nil {
+            //                print("This functions got activated because credentials are not nil")
+            //                print(credentials.email)
+            //                print(credentials.authorizationCode)
+            //                let userValue = credentials.user
+            //                let mailValue = credentials.email
+            //                let nameValue = credentials.fullName?.givenName
+            //                let lastNameValue = credentials.fullName?.familyName
+            //                UserDefaults.standard.set(mailValue, forKey: "\(userValue)"+"Mail")
+            //                UserDefaults.standard.set(nameValue, forKey: "\(userValue)"+"Name")
+            //                UserDefaults.standard.set(mailValue, forKey: "\(userValue)"+"Password")
+            //                UserDefaults.standard.set(true, forKey: "ComingFromAppleSignIn")
+            //                UserDefaults.standard.set(true, forKey: "ComingFromAppleSignInPrompt")
+            //                UserDefaults.standard.set(true, forKey: "ComingFromAppleSignInAlreadyExists")
+            //                let registerVC = instantiate(viewControllerClass: RegisterVC.self)
+            //                registerVC.nameFromApple = nameValue
+            //                registerVC.emailFromApple = mailValue
+            //                registerVC.surnameFromApple = lastNameValue
+            //                registerVC.passwordFromApple = mailValue
+            //                present(registerVC, animated: true)
+            //            } else {
+            //                UserDefaults.standard.set(true, forKey: "newUserHiddenMail")
+            //                let idToken = String(data: credentials.identityToken!, encoding: .utf8)
+            //                print(idToken)
+            //                let jwt = try! decode(jwt: idToken!)
+            //                let hiddenMail = jwt.claim(name: "email").string
+            //
+            //                UserDefaults.standard.set(hiddenMail!, forKey: "hiddenMail")
+            //                let registerVC = instantiate(viewControllerClass: RegisterVC.self)
+            //                registerVC.emailFromApple = hiddenMail
+            //                registerVC.passwordFromApple = hiddenMail
+            //                present(registerVC, animated: true)
+            //
+        //            }
         case let passwordCredential as ASPasswordCredential:
             print("This happened, the passwordCredential")
             print(passwordCredential.password)

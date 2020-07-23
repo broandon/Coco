@@ -157,14 +157,13 @@ class RegisterVC: UIViewController {
             showLoader(&loader, view: view)
             user = User(name: name, last_name: last_name, phone: phone, email: email, password: password, facebook_login: false, id_school: school)
             
-            self.user.newUserRequest2 { result in
+            self.user.newUserRequest { result in
                 self.loader.removeAnimate()
                 switch result {
                 case .failure(let errorMssg):
                     print("This shit failed", errorMssg)
                 case .success(_):
                     self.performSuccessRegister()
-                    print("We might be getting somewhere.")
                 }
             }
             UserDefaults.standard.set(false, forKey: "newUserHiddenMail")

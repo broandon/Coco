@@ -55,6 +55,11 @@ class RegisterVC: UIViewController {
             self.present(alert, animated: true)
             UserDefaults.standard.set(false, forKey: "ComingFromAppleSignInPrompt")
         }
+        if UserDefaults.standard.bool(forKey: "newUserHiddenMail") == true {
+            let alert = UIAlertController(title: "¡Hola!", message: "Parece que estás creando una cuenta nueva. ¡Solo faltan unos pasos para disfrutar de Coco APP! Por favor rellena los campos vacios. No te olvides de leer y aceptar los términos y condiciones.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Llenar campos faltantes", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
     private func comingFrom() {
@@ -74,6 +79,12 @@ class RegisterVC: UIViewController {
             phoneField.text = "2222222222"
             schoolField.lineColor = UIColor.green
             UserDefaults.standard.set(false, forKey: "ComingFromAppleSignIn")
+        }
+        if UserDefaults.standard.bool(forKey: "newUserHiddenMail") == true {
+            emailField.isUserInteractionEnabled = false
+            passwordField.isUserInteractionEnabled = false
+            emailField.text = emailFromApple
+            passwordField.text = passwordFromApple
         }
     }
     
@@ -127,6 +138,40 @@ class RegisterVC: UIViewController {
     }
     
     @IBAction private func registerBtnAction(_ sender: Any) {
+        
+        if UserDefaults.standard.bool(forKey: "newUserHiddenMail") == true {
+            
+            guard let name = validateField(txtField: nameField),
+            let last_name = validateField(txtField: lastNameField),
+            let phone = validateField(txtField: phoneField),
+            let email = validateField(txtField: emailField),
+            let password = validateField(txtField: passwordField),
+            let school = schoolId else { return }
+            
+            if check.checkState != .checked {
+                throwError(str: "Para continuar debes aceptar los términos y condiciones")
+                return
+            }
+            
+            view.resignFirstResponder()
+            showLoader(&loader, view: view)
+            user = User(name: name, last_name: last_name, phone: phone, email: email, password: password, facebook_login: false, id_school: school)
+            
+            self.user.newUserRequest2 { result in
+                self.loader.removeAnimate()
+                switch result {
+                case .failure(let errorMssg):
+                    print("This shit failed", errorMssg)
+                case .success(_):
+                    self.performSuccessRegister()
+                    print("We might be getting somewhere.")
+                }
+            }
+            UserDefaults.standard.set(false, forKey: "newUserHiddenMail")
+            return
+        }
+        
+        
         guard let name = validateField(txtField: nameField),
             let last_name = validateField(txtField: lastNameField),
             let phone = validateField(txtField: phoneField),
@@ -157,34 +202,9 @@ class RegisterVC: UIViewController {
                         case .success(_):
                             self.performSuccessRegister()
                             print("We might be getting somewhere.")
-                            
-                            //self.performSuccessRegister()
                         }
                     }
-                
-                    
-                
-                    print(errorMssg)
-                    
-//                    if errorMssg == "USER ALREADY EXIST" {
-//
-//                        print("This is being called.")
-//                        let emailF = self.emailFromApple
-//                        let passwordF = self.passwordFromApple
-//
-//                        self.user = User(email: emailF!, password: passwordF!)
-//
-//                        self.user.loginRequest { result in
-//                            self.loader.removeAnimate()
-//                            switch result {
-//                            case .failure(let errorMssg):
-//                                self.throwError(str: errorMssg)
-//                            case .success(_):
-//                                self.performSuccessLogin()
-//                            }
-//                        }
-//
-//                    }
+
                 }
                 
             case .success(_):

@@ -195,24 +195,40 @@ extension AccountVC: ASAuthorizationControllerDelegate {
                 registerVC.passwordFromApple = mailValue
                 present(registerVC, animated: true)
             } else {
-                print("This function activated because the mail is nil.")
-                let bitch = String(data: credentials.identityToken!, encoding: .utf8)
-                let jwt = try! decode(jwt: bitch!)
-                print("This was a bitch")
-                print(jwt.claim(name: "email"))
-                let bitchMail = "\(jwt.claim(name: "email"))"
+                UserDefaults.standard.set(true, forKey: "newUserHiddenMail")
+                let idToken = String(data: credentials.identityToken!, encoding: .utf8)
+                print(idToken)
+                let jwt = try! decode(jwt: idToken!)
+                let hiddenMail = jwt.claim(name: "email").string
                 
-                user = User(name: "name", last_name: "last_name", phone: "phone", email: bitchMail, password: bitchMail, facebook_login: false, id_school: "1")
+                UserDefaults.standard.set(hiddenMail!, forKey: "hiddenMail")
+                let registerVC = instantiate(viewControllerClass: RegisterVC.self)
+                registerVC.emailFromApple = hiddenMail
+                registerVC.passwordFromApple = hiddenMail
+                present(registerVC, animated: true)
                 
-                self.user.newUserRequest2 { result in
-                    switch result {
-                    case .failure(let errorMssg):
-                        print("This shit failed")
-                    case .success(_):
-                        self.performSuccessRegister()
-                        print("We might be getting somewhere.")
-                    }
-                }
+//                UserDefaults.standard.set(true, forKey: "newUserHiddenMail")
+//                print("This function activated because the mail is nil.")
+//                let bitch = String(data: credentials.identityToken!, encoding: .utf8)
+//                let jwt = try! decode(jwt: bitch!)
+//                print("This was a bitch")
+//                print(jwt.claim(name: "email"))
+//                let mailAccount = jwt.claim(name: "email").string
+//                print(mailAccount!)
+//                let bitchMail = "\(jwt.claim(name: "email"))"
+//
+//                user = User(name: "name", last_name: "last_name", phone: "phone", email: mailAccount!, password: bitchMail, facebook_login: false, id_school: "1")
+//                print(user)
+//
+//                self.user.newUserRequest2 { result in
+//                    switch result {
+//                    case .failure(let errorMssg):
+//                        print("This shit failed")
+//                    case .success(_):
+//                        self.performSuccessRegister()
+//                        print("We might be getting somewhere.")
+//                    }
+//                }
 
                 
             }

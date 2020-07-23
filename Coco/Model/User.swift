@@ -147,7 +147,7 @@ class User: Decodable {
             "password": password ?? "",
             "facebook_login": "2",
             "id_college": id_school ?? ""] as [String : Any]
-        
+        print(data)
         Alamofire.request(General.url_connection,
                           method: .post,
                           parameters: data).responseJSON { (response) in
